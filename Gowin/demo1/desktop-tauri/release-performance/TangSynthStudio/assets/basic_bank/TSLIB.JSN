@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "resources": [
+    {
+      "resource_id": 257,
+      "revision": 1,
+      "title": "管风琴波表",
+      "filename": "00000101.BIN",
+      "sha256": "699b99f64c630acd6b75828f1345111d4e212ee6cc97e1b043dc625cb5fa5068"
+    },
+    {
+      "resource_id": 258,
+      "revision": 1,
+      "title": "笛音波表",
+      "filename": "00000102.BIN",
+      "sha256": "2b74fe815bd1eebf707afef6cb5fe2c1d39ccc0c569c1d307e042eedd3b1cf7b"
+    },
+    {
+      "resource_id": 259,
+      "revision": 1,
+      "title": "单簧管波表",
+      "filename": "00000103.BIN",
+      "sha256": "90ad87bf5a5ac5eef1d0fc7db7e58936522ae05498c5f8802e15168b3ea159c2"
+    },
+    {
+      "resource_id": 260,
+      "revision": 1,
+      "title": "双簧管波表",
+      "filename": "00000104.BIN",
+      "sha256": "48704f3e7df29120cd3587faa79b21297f0eaa1f951bc9bf4018bcb07c7add25"
+    },
+    {
+      "resource_id": 261,
+      "revision": 1,
+      "title": "弦乐感波表",
+      "filename": "00000105.BIN",
+      "sha256": "96a7318e924841973c90f49103cd5aeed5853528d10be25885db942087dceff9"
+    },
+    {
+      "resource_id": 262,
+      "revision": 1,
+      "title": "电钢琴波表",
+      "filename": "00000106.BIN",
+      "sha256": "990e7aeca5c06f13819a535e1b009390e31eabf0a06a517bc40aaedde91f7968"
+    },
+    {
+      "resource_id": 263,
+      "revision": 1,
+      "title": "人声感波表",
+      "filename": "00000107.BIN",
+      "sha256": "ce23f1be4a35c42ef7f383c97b6dca1965ec01e770997c4f942cf94dc4ee4a56"
+    },
+    {
+      "resource_id": 264,
+      "revision": 1,
+      "title": "芯片波表",
+      "filename": "00000108.BIN",
+      "sha256": "72237f441ef5c3551f87e1bdca2ceec48e9602959420197916deec3110439599"
+    }
+  ]
+}

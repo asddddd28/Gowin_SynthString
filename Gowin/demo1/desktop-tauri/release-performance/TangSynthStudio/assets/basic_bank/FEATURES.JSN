@@ -1,0 +1,313 @@
+{
+  "format": "tang-basic-requirements-v1",
+  "timbres": [
+    {
+      "timbre_id": 1,
+      "title": "正弦贝斯",
+      "resource_id": null,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "per_key_profile",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 2,
+      "title": "柔和三角",
+      "resource_id": null,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "per_key_profile",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 3,
+      "title": "方波主音",
+      "resource_id": null,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "per_key_profile",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 4,
+      "title": "FM 电钢琴",
+      "resource_id": null,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "fm_pm",
+        "modulation_adsr",
+        "per_key_profile",
+        "pitch_phase",
+        "second_oscillator",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 5,
+      "title": "FM 钟声",
+      "resource_id": null,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "fm_pm",
+        "modulation_adsr",
+        "per_key_profile",
+        "pitch_phase",
+        "second_oscillator",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 6,
+      "title": "FM 贝斯",
+      "resource_id": null,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "fm_pm",
+        "modulation_adsr",
+        "per_key_profile",
+        "pitch_phase",
+        "second_oscillator",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 7,
+      "title": "AM 颤音",
+      "resource_id": null,
+      "requirements": [
+        "am",
+        "amplitude_adsr",
+        "basic_waveform",
+        "modulation_adsr",
+        "per_key_profile",
+        "pitch_phase",
+        "second_oscillator",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 8,
+      "title": "环形金属",
+      "resource_id": null,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "modulation_adsr",
+        "per_key_profile",
+        "pitch_phase",
+        "ring_modulation",
+        "second_oscillator",
+        "uart_profile_confirmation",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 9,
+      "title": "管风琴波表",
+      "resource_id": 257,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 10,
+      "title": "笛音波表",
+      "resource_id": 258,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 11,
+      "title": "单簧管波表",
+      "resource_id": 259,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 12,
+      "title": "双簧管波表",
+      "resource_id": 260,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 13,
+      "title": "弦乐感波表",
+      "resource_id": 261,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 14,
+      "title": "电钢琴波表",
+      "resource_id": 262,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 15,
+      "title": "人声感波表",
+      "resource_id": 263,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    },
+    {
+      "timbre_id": 16,
+      "title": "芯片波表",
+      "resource_id": 264,
+      "requirements": [
+        "amplitude_adsr",
+        "basic_waveform",
+        "double_bank_commit",
+        "linear_interpolation",
+        "per_key_profile",
+        "periodic_wavetable",
+        "pitch_phase",
+        "uart_profile_confirmation",
+        "uart_resource_upload",
+        "velocity_gain",
+        "voice_allocator"
+      ]
+    }
+  ],
+  "next_stages": [
+    {
+      "target": "逐键独立素材",
+      "features": [
+        "resource_id_binding",
+        "resident_cache",
+        "sd_exfat_read",
+        "ddr_load"
+      ]
+    },
+    {
+      "target": "滤波贝斯与拨弦",
+      "features": [
+        "lowpass_filter",
+        "filter_envelope",
+        "parameter_smoothing"
+      ]
+    },
+    {
+      "target": "木琴/马林巴采样",
+      "features": [
+        "multi_sample_regions",
+        "pcm_pitch_interpolation",
+        "one_shot_playback",
+        "velocity_layers"
+      ]
+    },
+    {
+      "target": "铺底音色",
+      "features": [
+        "detune",
+        "lfo",
+        "stereo_pan",
+        "optional_chorus"
+      ]
+    }
+  ]
+}

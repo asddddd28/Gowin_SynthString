@@ -1,0 +1,39 @@
+{
+  "name": "tang-synth-studio",
+  "private": true,
+  "version": "0.4.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 1421 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 1421",
+    "tauri": "tauri",
+    "prepare:assets": "node scripts/prepare-assets.mjs",
+    "test:backend": "node scripts/rust-task.mjs test --lib --locked",
+    "pretest": "node scripts/rust-task.mjs build --bin studio-test-harness --features test-harness --locked",
+    "desktop:build": "node scripts/build-desktop.mjs",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource-variable/geist": "5.3.0",
+    "@fontsource-variable/jetbrains-mono": "5.3.0",
+    "@radix-ui/react-slider": "1.6.1",
+    "@radix-ui/react-switch": "^1.2.6",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@tauri-apps/api": "^2.11.0",
+    "@tauri-apps/plugin-dialog": "^2.6.0",
+    "lucide-react": "1.61.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.1",
+    "@tauri-apps/cli": "2.12.4",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.0.0",
+    "typescript": "~6.0.3",
+    "vite": "8.3.5"
+  }
+}

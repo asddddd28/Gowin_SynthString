@@ -1,0 +1,91 @@
+Surge standard SVF reference and FPGA sample kernel
+
+License: GPL-3.0-only. The accompanying SST-Filters-GPL-3.0.txt is the
+unchanged upstream license text. AKWF waveform assets retain their separate
+CC0 license; this notice does not change existing third-party notices.
+
+Algorithm reference: Surge Synth Team, sst-filters
+https://github.com/surge-synthesizer/sst-filters
+Commit: 9eb74b595c0fc244fdd67452fc17948edec4cf28
+Source: include/sst/filters/QuadFilterUnit_Impl.h and
+        include/sst/filters/FilterCoefficientMaker_Impl.h
+
+This project's fixed-point transition and RTL pipeline are adaptations of
+the standard SVFLP12Aquad, SVFHP12Aquad and SVFBP12Aquad algorithms. The
+upstream headers remain unchanged. The FPGA kernel is not the full Surge
+synthesizer, nor a port of its Driven/Clean or 24dB variants.
+
+Applicable adaptation files:
+  model/surge_svf_reference.cpp
+  model/surge_svf_port.py
+  model/surge_svf_pipeline.py
+  model/surge_svf_voice_state.py
+  rtl/synth/SurgeSvfSample.v
+  rtl/synth/SurgeSvfReturnPack.v
+  rtl/synth/SurgeSvfVoiceState.v
+
+Adaptation author: Codex, 2026-10-12, for this project.
+The standalone synthesis requires constraints/surge_svf_sample.gsc.
+The voice state and shared return pack are independently verified modules;
+their 32-slot feedback connection is currently a simulation harness, not
+an integrated board audio path or a hardware-tested Surge patch engine.
+
+2026-10-13 continuation support (GPL-3.0-only within this adaptation):
+  model/surge_wavetable_schedule.py
+  scripts/validate_surge_wavetable_schedule.py
+  scripts/record_surge_wavetable_schedule_results.py
+  rtl/synth/WavetableMorphCompact.v
+  rtl/synth/WavetableVoiceSchedule.v
+These support compact interpolation and an independent phase schedule.
+The shared-filter arbitration and VCA connection remain a simulation prototype;
+no complete Surge preset engine or new board release is claimed.
+
+2026-10-13 public-port wave read continuation (GPL-3.0-only):
+  model/wavetable_pair_read.py
+  scripts/validate_wavetable_pair_read.py
+  scripts/record_wavetable_pair_read_results.py
+  rtl/synth/WavetableMorphFused.v
+  rtl/synth/WavetablePairRead.v
+Five-edge interpolation preserves the existing fixed-point floor operations.
+The read data path accepts external synchronous sine and user-table pairs;
+legacy writable cache, behaviorally modeled sine ROM, arbitration and tail
+verification do not constitute a new board-integrated Surge preset engine.
+
+2026-10-13 frame lifecycle and atomic voice-ingress continuation
+(GPL-3.0-only within this adaptation):
+  model/surge_frame_control.py
+  scripts/validate_surge_frame_control.py
+  scripts/record_surge_frame_control_results.py
+  rtl/synth/WavetableFrameGuard.v
+  rtl/synth/SurgeVoiceIngress.v
+The frame guard and two mailboxes are separately synthesized control modules.
+Their simulated connection verifies whole-frame cancellation and reuse through
+the standard SVF owner boundary. The writable cache, sine ROM hardware,
+native VCA/master/I2S path and complete board integration remain unfinished.
+
+2026-10-13 captured amplitude and shared voice-tail continuation
+(GPL-3.0-only within this adaptation):
+  model/surge_voice_tail.py
+  scripts/validate_surge_voice_tail.py
+  scripts/record_surge_voice_tail_results.py
+  rtl/synth/SurgeVoiceTailTag.v
+  rtl/synth/SurgeVoiceVca.v
+  rtl/synth/SurgeFrameAccumulator.v
+The VCA preserves the previous fixed-point amplitude floor operations and
+consumes parameters captured with the accepted filter request. The accumulator
+produces an exact signed64 sum of32 unique qualified voices in one frame.
+These three leaf modules are individually synthesized and connected to a
+verified shared-filter simulation fixture. Native amplitude-envelope generation,
+master gain, clipping,24-bit I2S and board integration remain unfinished.
+
+2026-10-13 full-width fixed-point PCM boundary continuation (GPL-3.0-only):
+  model/surge_pcm_output.py
+  scripts/validate_surge_pcm_output.py
+  scripts/record_surge_pcm_output_results.py
+  rtl/audio/SurgePcmOutput.v
+This module captures a nonnegative Q16 gain per frame, preserves the full
+signed64 mix product, rounds symmetrically and saturates the final24-bit PCM.
+The frozen public I2sTx/PcmRounder modules are used in simulation to verify
+24-bit I2S and16-bit PT8211 transmission. Native Surge dB conversion, block
+smoothing, master mute and selectable float clipping are not yet reproduced.
+Complete board integration and physical audio verification remain unfinished.

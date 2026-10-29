@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "resources": [
+    {
+      "resource_id": 1,
+      "revision": 1,
+      "title": "正弦 → 锯齿（63帧）",
+      "filename": "00000001.BIN",
+      "sha256": "ab2120687a4b28a541c3db1dffa77b81b788638a80ae3a6a04ed81105783fe25"
+    },
+    {
+      "resource_id": 2,
+      "revision": 1,
+      "title": "正弦 → 方波（31帧）",
+      "filename": "00000002.BIN",
+      "sha256": "26c798c05c22a413bb42615b606962b707661d45e2be54856a5b8b1554e7c1cb"
+    }
+  ]
+}

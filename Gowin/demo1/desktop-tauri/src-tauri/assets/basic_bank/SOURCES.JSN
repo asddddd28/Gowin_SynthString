@@ -1,0 +1,208 @@
+{
+  "upstream": "https://github.com/KristofferKarlAxelEkstrand/AKWF-FREE",
+  "commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+  "license": "CC0-1.0",
+  "files": [
+    {
+      "path": "AKWF/AKWF_eorgan/AKWF_eorgan_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_eorgan/AKWF_eorgan_0001.wav",
+      "git_blob_sha1": "89260eb03b8cef2cf1e42eb6205943b47bc1be00",
+      "sha256": "63b23c306b7dcf757d7d5d2cdd92b29d1df341900b257287ff22ae077333754c",
+      "bytes": 1344
+    },
+    {
+      "path": "AKWF/AKWF_flute/AKWF_flute_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_flute/AKWF_flute_0001.wav",
+      "git_blob_sha1": "5904ac4a2ff2a135c832ef4a41d957aed2f73dcb",
+      "sha256": "9c84f3e721a7b6a6e74420ac0674a62f9ea0a171c0f59feb9ad4a1c2dafe0311",
+      "bytes": 1344
+    },
+    {
+      "path": "AKWF/AKWF_clarinett/AKWF_clarinett_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_clarinett/AKWF_clarinett_0001.wav",
+      "git_blob_sha1": "ad6caad6db7e3dd8e6941e8d16b16366218e6f3d",
+      "sha256": "3d1b4335917313a14a7c79f0a770c3ad0d99dd039a0ba220f16cc80d2e18584f",
+      "bytes": 1344
+    },
+    {
+      "path": "AKWF/AKWF_oboe/AKWF_oboe_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_oboe/AKWF_oboe_0001.wav",
+      "git_blob_sha1": "0683615b22aca2ca9be29919db0aa526438e2e39",
+      "sha256": "b6fb29a31325bc13e14901dc086ec8a30a93e8aca4df1ea00e905cc99aeecc77",
+      "bytes": 1344
+    },
+    {
+      "path": "AKWF/AKWF_stringbox/AKWF_cheeze_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_stringbox/AKWF_cheeze_0001.wav",
+      "git_blob_sha1": "53ab12d35b828cd2e0a42b5a01c57176269d73dc",
+      "sha256": "27b8ee51d6789be3942a5011cd53835703a0b2bd11416540a9e5068ee57337d1",
+      "bytes": 1344
+    },
+    {
+      "path": "AKWF/AKWF_epiano/AKWF_epiano_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_epiano/AKWF_epiano_0001.wav",
+      "git_blob_sha1": "892af4108f9274e0b1cbf8beac2663933026e0be",
+      "sha256": "844df08a41e1296169d14426b9f348ca8e0f9ad3ef465b5d136982b1d3f49c0e",
+      "bytes": 1344
+    },
+    {
+      "path": "AKWF/AKWF_hvoice/AKWF_hvoice_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_hvoice/AKWF_hvoice_0001.wav",
+      "git_blob_sha1": "2a63f62ffd465bf20913a0a00e477e1cb6fecd33",
+      "sha256": "ea57edce5b9b72b0380c0269081c75fae7be4df13ce74bdb5b555892a5714220",
+      "bytes": 1344
+    },
+    {
+      "path": "AKWF/AKWF_bitreduced/AKWF_bitreduced_0001.wav",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/AKWF/AKWF_bitreduced/AKWF_bitreduced_0001.wav",
+      "git_blob_sha1": "b3a3d2e77d10138a5d64ab6e5e85b8237b3fffbe",
+      "sha256": "d570fbcf18bbdf3bedefc735ed3bb03f8800f9420ebcffc986e897e4ca4820e1",
+      "bytes": 1344
+    },
+    {
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/KristofferKarlAxelEkstrand/AKWF-FREE/8de90bf94376670947369e69de0af6b9fbd19286/LICENSE.md",
+      "git_blob_sha1": "670154e3538863b2d9891fd5483160fbdfc89164",
+      "sha256": "36ffd9dc085d529a7e60e1276d73ae5a030b020313e6c5408593a6ae2af39673",
+      "bytes": 6555
+    }
+  ],
+  "conversions": [
+    {
+      "resource_id": 257,
+      "key": "eorgan",
+      "path": "AKWF/AKWF_eorgan/AKWF_eorgan_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "63b23c306b7dcf757d7d5d2cdd92b29d1df341900b257287ff22ae077333754c",
+      "resource_sha256": "699b99f64c630acd6b75828f1345111d4e212ee6cc97e1b043dc625cb5fa5068",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": 0.025,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    },
+    {
+      "resource_id": 258,
+      "key": "flute",
+      "path": "AKWF/AKWF_flute/AKWF_flute_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "9c84f3e721a7b6a6e74420ac0674a62f9ea0a171c0f59feb9ad4a1c2dafe0311",
+      "resource_sha256": "2b74fe815bd1eebf707afef6cb5fe2c1d39ccc0c569c1d307e042eedd3b1cf7b",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": -509.5883333333333,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    },
+    {
+      "resource_id": 259,
+      "key": "clarinet",
+      "path": "AKWF/AKWF_clarinett/AKWF_clarinett_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "3d1b4335917313a14a7c79f0a770c3ad0d99dd039a0ba220f16cc80d2e18584f",
+      "resource_sha256": "90ad87bf5a5ac5eef1d0fc7db7e58936522ae05498c5f8802e15168b3ea159c2",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": -3.2716666666666665,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    },
+    {
+      "resource_id": 260,
+      "key": "oboe",
+      "path": "AKWF/AKWF_oboe/AKWF_oboe_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "b6fb29a31325bc13e14901dc086ec8a30a93e8aca4df1ea00e905cc99aeecc77",
+      "resource_sha256": "48704f3e7df29120cd3587faa79b21297f0eaa1f951bc9bf4018bcb07c7add25",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": 294.6383333333333,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    },
+    {
+      "resource_id": 261,
+      "key": "string",
+      "path": "AKWF/AKWF_stringbox/AKWF_cheeze_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "27b8ee51d6789be3942a5011cd53835703a0b2bd11416540a9e5068ee57337d1",
+      "resource_sha256": "96a7318e924841973c90f49103cd5aeed5853528d10be25885db942087dceff9",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": 55.11,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    },
+    {
+      "resource_id": 262,
+      "key": "epiano",
+      "path": "AKWF/AKWF_epiano/AKWF_epiano_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "844df08a41e1296169d14426b9f348ca8e0f9ad3ef465b5d136982b1d3f49c0e",
+      "resource_sha256": "990e7aeca5c06f13819a535e1b009390e31eabf0a06a517bc40aaedde91f7968",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": -84.61,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    },
+    {
+      "resource_id": 263,
+      "key": "voice",
+      "path": "AKWF/AKWF_hvoice/AKWF_hvoice_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "ea57edce5b9b72b0380c0269081c75fae7be4df13ce74bdb5b555892a5714220",
+      "resource_sha256": "ce23f1be4a35c42ef7f383c97b6dca1965ec01e770997c4f942cf94dc4ee4a56",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": 48.27333333333333,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    },
+    {
+      "resource_id": 264,
+      "key": "chip",
+      "path": "AKWF/AKWF_bitreduced/AKWF_bitreduced_0001.wav",
+      "upstream_commit": "8de90bf94376670947369e69de0af6b9fbd19286",
+      "source_sha256": "d570fbcf18bbdf3bedefc735ed3bb03f8800f9420ebcffc986e897e4ca4820e1",
+      "resource_sha256": "72237f441ef5c3551f87e1bdca2ceec48e9602959420197916deec3110439599",
+      "source_samples": 600,
+      "source_rate": 44100,
+      "source_bits": 16,
+      "output_samples": 1024,
+      "output_bits": 16,
+      "removed_dc": -2394.2716666666665,
+      "normalization_peak": 0.9,
+      "resampling": "periodic linear interpolation",
+      "mip_bandlimited": false
+    }
+  ]
+}
