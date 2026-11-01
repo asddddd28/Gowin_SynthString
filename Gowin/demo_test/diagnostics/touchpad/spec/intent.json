@@ -1,0 +1,39 @@
+{
+  "classification": [
+    "generate",
+    "validate"
+  ],
+  "requirements": "Two independently powered MPR121 boards on independent I2C buses; physical left/right join. Read all 12 electrodes each, preserve individual health and stale data status. SRAM diagnostic only.",
+  "codegen_plan": [
+    "Reuse unmodified licensed OpenCores byte/bit controller from supplied Tang Mega example.",
+    "I2cRegister transaction sequencer: 100 kHz, repeated START, every write ACK checked, final read NACK, bounded timeout resets/release bus.",
+    "MprScanner per bus: scan 5A..5D, reset/stop/configure, read back 5C..5E, burst 00..29, atomic commit, bounded retry. No unsupported multi-touch coordinate claim.",
+    "TouchpadDebug captures two immutable snapshots every 50 ms and streams 100-byte CRC-8 ASCII frames via existing 115200 UART.",
+    "Python parser validates CRC, ranges and frame length; App shows raw filtered/baseline/delta, status and tentative single-finger row/column centroid."
+  ],
+  "timing": "50MHz; initial100kHz compared with10kHz, final diagnostic uses10kHz. 100ms timeout;20ms idle+burst+verification. UART20Hz perboard.",
+  "safety": "SCL/SDA only drive zero or high impedance. IRQ input only. No external Flash, debugger firmware, clock or calibration changes.",
+  "verification": [
+    "Python CRC vector and configuration",
+    "Behavioral two-slave simulation with address scan/readback/ACK/NACK/timeout",
+    "Full UART decode checked against Python",
+    "App regression, corrupt/truncated frames, stale isolation",
+    "Gowin 50 MHz timing and pin report",
+    "Real SRAM and serial observation then controlled physical touches"
+  ],
+  "gates": [
+    "compile",
+    "ast",
+    "readability",
+    "comment",
+    "naming",
+    "profile",
+    "testbench",
+    "toolchain"
+  ],
+  "observations": [
+    "TP1 no ACK at100kHz or10kHz.",
+    "TP2 configuration readback correct but00..29 allzero with auto enabled and disabled.",
+    "User confirmsR4=75kohm; VDD/VREG pendingmeasurement."
+  ]
+}

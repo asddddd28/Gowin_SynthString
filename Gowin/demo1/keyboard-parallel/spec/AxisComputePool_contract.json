@@ -1,0 +1,184 @@
+{
+  "modules": [
+    {
+      "name": "AxisComputePool",
+      "rtl_path": "src/AxisComputePool.v",
+      "description": "C_KIND=0..5依次实例化PhaseFm、WaveLookup+WaveSample、ADSR、StudioOscMixer、SVF、VCA；每池C_CORES=1..4。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "width": 1,
+            "direction": "input",
+            "description": "i axis aclk",
+            "role": "clock"
+          },
+          {
+            "name": "i_axis_arstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i axis arstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "width": "C_INPUT_WIDTH",
+            "direction": "input",
+            "description": "i s axis tdata",
+            "role": "data"
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "width": "C_USER_WIDTH",
+            "direction": "input",
+            "description": "i s axis tuser",
+            "role": "data"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "width": 1,
+            "direction": "input",
+            "description": "i s axis tvalid",
+            "role": "data"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "width": 1,
+            "direction": "output",
+            "description": "o s axis tready",
+            "role": "data"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "width": "C_OUTPUT_WIDTH",
+            "direction": "output",
+            "description": "o m axis tdata",
+            "role": "data"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "width": "C_USER_WIDTH",
+            "direction": "output",
+            "description": "o m axis tuser",
+            "role": "data"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "width": 1,
+            "direction": "output",
+            "description": "o m axis tvalid",
+            "role": "data"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "width": 1,
+            "direction": "input",
+            "description": "i m axis tready",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_write",
+            "width": 1,
+            "direction": "input",
+            "description": "i wave write",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_frame",
+            "width": 1,
+            "direction": "input",
+            "description": "i wave frame",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_address",
+            "width": 11,
+            "direction": "input",
+            "description": "i wave address",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_data",
+            "width": 16,
+            "direction": "input",
+            "description": "i wave data",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "C_KIND=0..5依次实例化PhaseFm、WaveLookup+WaveSample、ADSR、StudioOscMixer、SVF、VCA；每池C_CORES=1..4。",
+        "输入游标只在valid&&ready时前进；输出游标只在结果握手时前进；二者分别模C_CORES轮转。",
+        "各lane保存独立信用和返回FIFO，按发射顺序回收；排在前面的lane未完成时保守阻塞，不能跨声部乱序提交。",
+        "背压时保持结果及标签；复位清游标和核心有效位，取消全部旧任务。",
+        "Wave池每lane含独立波表缓存；仅空闲时广播每个写采样，所有副本接收相同写地址和数据。",
+        "合法输入/输出位宽依次为128/32、54/32、112/64、136/64、320/192、64/32；前四类user固定21位。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，低有效复位；板级复位同步释放。",
+        "C_*_CORES是综合期参数，1..4；任意配置需要独立验证资源和时序，只有默认配置有本板实现证据。",
+        "一个issue和一个retire端口；仍保留阶段屏障，不是任意连接的多发射计算图。"
+      ],
+      "corner_cases": [
+        "全满背压及同时接受/返回",
+        "非2次幂核心数游标回绕",
+        "处理中复位",
+        "wave副本写一致性",
+        "note-off保留旧参数"
+      ],
+      "verification_cases": [
+        "原引擎逐声部及PCM等值比较",
+        "各池1/2/3/4核配置",
+        "输入输出停顿及复位",
+        "真实ADC/UART/PT8211引脚闭环",
+        "Gowin综合与50MHz时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "ordered",
+          "title": "背压与有序返回",
+          "scenario": "handshake",
+          "description": "示意ready为0时保持队首；箭头不代表固定核心算术延迟。实际周期见各核心和阶段统计。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_axis_aclk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "task",
+                "wave": "x2...x..",
+                "data": [
+                  "voice n"
+                ]
+              },
+              {
+                "name": "accept",
+                "wave": "0...10.."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

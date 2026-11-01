@@ -20,3 +20,14 @@ Gowin/demo1/desktop-tauri/src-tauri/gen/
 *.log
 *.tmp
 **/xsim.dir/
+
+# Implementation caches / local IDE and simulation state (selected FS/reports are explicitly tracked).
+**/impl/
+**/baseline/
+**/.Xil/
+*.gprj.user
+*.wdb
+*.jou
+*.pb
+*.dmp
+*.jsonl

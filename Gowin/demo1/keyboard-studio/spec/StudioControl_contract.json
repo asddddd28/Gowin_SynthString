@@ -1,0 +1,259 @@
+{
+  "modules": [
+    {
+      "name": "StudioControl",
+      "rtl_path": "src/StudioControl.v",
+      "description": "长包71字节：A5 C3 op seq key payload64 CRC16小端；CRC-CCITT初始化FFFF，覆盖头及数据。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "i clk",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i rstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_rx_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "i rx valid",
+            "role": "data"
+          },
+          {
+            "name": "i_rx_error",
+            "width": 1,
+            "direction": "input",
+            "description": "i rx error",
+            "role": "data"
+          },
+          {
+            "name": "i_rx_data",
+            "width": 8,
+            "direction": "input",
+            "description": "i rx data",
+            "role": "data"
+          },
+          {
+            "name": "o_ascii_valid",
+            "width": 1,
+            "direction": "output",
+            "description": "o ascii valid",
+            "role": "data"
+          },
+          {
+            "name": "o_ascii_data",
+            "width": 8,
+            "direction": "output",
+            "description": "o ascii data",
+            "role": "data"
+          },
+          {
+            "name": "o_patch_valid",
+            "width": 1,
+            "direction": "output",
+            "description": "o patch valid",
+            "role": "data"
+          },
+          {
+            "name": "i_patch_ready",
+            "width": 1,
+            "direction": "input",
+            "description": "i patch ready",
+            "role": "data"
+          },
+          {
+            "name": "o_patch_key",
+            "width": 5,
+            "direction": "output",
+            "description": "o patch key",
+            "role": "data"
+          },
+          {
+            "name": "o_patch_data",
+            "width": 512,
+            "direction": "output",
+            "description": "o patch data",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_valid",
+            "width": 1,
+            "direction": "output",
+            "description": "o wave valid",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_ready",
+            "width": 1,
+            "direction": "input",
+            "description": "i wave ready",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_frame",
+            "width": 1,
+            "direction": "output",
+            "description": "o wave frame",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_address",
+            "width": 11,
+            "direction": "output",
+            "description": "o wave address",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_data",
+            "width": 16,
+            "direction": "output",
+            "description": "o wave data",
+            "role": "data"
+          },
+          {
+            "name": "o_remote",
+            "width": 32,
+            "direction": "output",
+            "description": "o remote",
+            "role": "data"
+          },
+          {
+            "name": "o_velocity",
+            "width": 224,
+            "direction": "output",
+            "description": "o velocity",
+            "role": "data"
+          },
+          {
+            "name": "o_volume",
+            "width": 4,
+            "direction": "output",
+            "description": "o volume",
+            "role": "data"
+          },
+          {
+            "name": "o_volume_valid",
+            "width": 1,
+            "direction": "output",
+            "description": "o volume valid",
+            "role": "data"
+          },
+          {
+            "name": "o_ack_seq",
+            "width": 8,
+            "direction": "output",
+            "description": "o ack seq",
+            "role": "data"
+          },
+          {
+            "name": "o_ack_op",
+            "width": 8,
+            "direction": "output",
+            "description": "o ack op",
+            "role": "data"
+          },
+          {
+            "name": "o_ack_status",
+            "width": 8,
+            "direction": "output",
+            "description": "o ack status",
+            "role": "data"
+          },
+          {
+            "name": "o_ack_key",
+            "width": 8,
+            "direction": "output",
+            "description": "o ack key",
+            "role": "data"
+          },
+          {
+            "name": "o_ack_crc",
+            "width": 16,
+            "direction": "output",
+            "description": "o ack crc",
+            "role": "data"
+          },
+          {
+            "name": "o_commits",
+            "width": 32,
+            "direction": "output",
+            "description": "o commits",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "长包71字节：A5 C3 op seq key payload64 CRC16小端；CRC-CCITT初始化FFFF，覆盖头及数据。",
+        "短包8字节：A5 C4 op seq key value CRC16小端；仅演奏、音量、心跳命令允许。载荷不解释为ASCII。",
+        "仅CRC与参数范围通过后提交；配置等待Bridge接受才ACK，波表块等待32个写握手才ACK。",
+        "20ms字节超时取消残包；1.5秒无有效主机包释放远程键，实体键不受影响。",
+        "64块完成位图保护双帧波表可用性；第0块重置位图，失败需重新完整上传。"
+      ],
+      "constraints": [
+        "50MHz单时钟域；异步低有效复位，板级同步释放。",
+        "新固件协议与旧96kHz Studio不兼容，必须核对版本3。"
+      ],
+      "corner_cases": [
+        "复位取消旧任务",
+        "输出背压",
+        "32键复音",
+        "CRC失败与残包",
+        "参数在释音中更新"
+      ],
+      "verification_cases": [
+        "完整ADC/UART/PT8211闭环",
+        "400个混合整数向量",
+        "配置ACK及短演奏包",
+        "无覆盖的活动参数快照",
+        "Gowin综合实现时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "commit",
+          "title": "参数与任务提交",
+          "scenario": "handshake",
+          "description": "有效期间保持完整事务，接受后才发射或确认；算术延迟见行为合同。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......"
+              },
+              {
+                "name": "valid",
+                "wave": "01..0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0..10.."
+              },
+              {
+                "name": "commit",
+                "wave": "0...10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

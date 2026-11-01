@@ -1,0 +1,32 @@
+{
+  "checked_at": "2026-11-01T21:13:58.0093460+08:00",
+  "user_confirmed_audible": true,
+  "connection": "live",
+  "fresh_count": 40,
+  "counts": [
+    11,
+    11,
+    10,
+    12,
+    14,
+    14
+  ],
+  "stale_events": 0,
+  "event_age_ms": [
+    14.871000000027834,
+    17.31840000002194
+  ],
+  "packet_gaps": 0,
+  "audio": {
+    "ready": true,
+    "device": "扬声器 (Realtek(R) Audio)",
+    "sample_rate": 48000,
+    "channels": 2,
+    "buffer_frames": 256,
+    "error": "",
+    "played": 72,
+    "dropped": 0
+  },
+  "frame_errors": 0,
+  "sequence_errors": 0
+}

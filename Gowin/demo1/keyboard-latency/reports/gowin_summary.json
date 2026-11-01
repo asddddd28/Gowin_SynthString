@@ -1,0 +1,81 @@
+{
+  "build": {
+    "implDir": "D:\\Projects\\ai\\Gowin\\demo1\\keyboard-latency\\impl",
+    "name": "keyboard_latency",
+    "designFile": "D:\\Projects\\ai\\Gowin\\demo1\\keyboard-latency\\impl\\gwsynthesis\\keyboard_latency.vg",
+    "constraintsFile": "D:\\Projects\\ai\\Gowin\\demo1\\keyboard-studio\\src\\keyboard_axis.cst",
+    "sdcFile": "D:\\Projects\\ai\\Gowin\\demo1\\keyboard-studio\\src\\keyboard_axis.sdc",
+    "toolVersion": "V1.9.11.03 Education",
+    "partNumber": "GW5AT-LV60PG484AC1/I0",
+    "device": "GW5AT-60",
+    "deviceVersion": "B",
+    "createdTime": "Mon Nov  2 01:07:53 2026",
+    "elapsed": "0h 6m 35s",
+    "peakMemory": "2003MB"
+  },
+  "resources": {
+    "logic": {
+      "name": "Logic",
+      "depth": 0,
+      "used": 24995,
+      "available": 59904,
+      "utilization": "42%",
+      "raw": "24995/59904"
+    },
+    "cls": {
+      "name": "CLS",
+      "depth": 0,
+      "used": 25325,
+      "available": 29952,
+      "utilization": "85%",
+      "raw": "25325/29952"
+    },
+    "register": {
+      "name": "Register",
+      "depth": 0,
+      "used": 31583,
+      "available": 60780,
+      "utilization": "52%",
+      "raw": "31583/60780"
+    },
+    "bsram": {
+      "name": "BSRAM",
+      "depth": 0,
+      "used": 94,
+      "available": 118,
+      "utilization": "80%",
+      "raw": "94/118"
+    },
+    "dsp": {
+      "name": "DSP",
+      "depth": 0,
+      "used": 74,
+      "available": 118,
+      "utilization": "63%",
+      "raw": "74/118"
+    },
+    "ioPort": {
+      "name": "I/O Port",
+      "depth": 0,
+      "used": 16,
+      "available": 297,
+      "utilization": "6%",
+      "raw": "16/297"
+    }
+  },
+  "timing": {
+    "fmax": [
+      {
+        "clock": "sys_clk",
+        "constraintMhz": 50,
+        "actualMhz": 50.134,
+        "logicLevel": 8,
+        "entity": "TOP",
+        "failing": false,
+        "marginMhz": 0.134
+      }
+    ],
+    "violations": []
+  },
+  "clean": true
+}

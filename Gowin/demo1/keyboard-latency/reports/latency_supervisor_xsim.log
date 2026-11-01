@@ -1,0 +1,17 @@
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 00:58:48 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/latency_supervisor/xsim_script.tcl
+# xsim {latency_supervisor} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS latency supervisor exact parts, wrap, 32 keys, debounce cancel, zero PCM, timeout, overwrite, clear; records=34
+$finish called at time : 33980 ns : File "D:/Projects/ai/Gowin/demo1/keyboard-latency/sim/tb_latency_supervisor.v" Line 108
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 00:58:50 2026...

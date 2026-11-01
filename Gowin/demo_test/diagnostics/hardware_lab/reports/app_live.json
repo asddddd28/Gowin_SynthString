@@ -1,0 +1,1392 @@
+{
+  "source_kind": "none",
+  "source": "COM4",
+  "input_ready": false,
+  "records": 62752,
+  "scans": 1961,
+  "sequence_errors": 0,
+  "discarded_bytes": 7,
+  "queue_dropped": 0,
+  "fresh_keys": 0,
+  "raw": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "depth": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "pressed": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ],
+  "profile": "实时校准 · 10-29 03:10",
+  "calibrated_keys": 32,
+  "events": [],
+  "calibration_stage": null,
+  "calibration_covered": 0,
+  "serial_thread_alive": false,
+  "board": null,
+  "game": {
+    "game": 3,
+    "phase": 0,
+    "seconds": 15,
+    "reason": 5,
+    "score": 71,
+    "misses": 0,
+    "epoch": 8,
+    "pixels": 0,
+    "fresh": false,
+    "source": "FPGA"
+  },
+  "game_crc_errors": 0,
+  "touchpad": {
+    "boards": [
+      {
+        "board": 1,
+        "fresh": false,
+        "records": 1962,
+        "position": null,
+        "fpga": {
+          "sequence": 29533,
+          "address": 90,
+          "error": 0,
+          "lines": 5,
+          "mask": 0,
+          "fault": false,
+          "filtered": [
+            164,
+            168,
+            175,
+            178,
+            171,
+            187,
+            192,
+            200,
+            205,
+            204,
+            193,
+            186
+          ],
+          "baseline": [
+            164,
+            168,
+            172,
+            176,
+            168,
+            184,
+            192,
+            196,
+            204,
+            200,
+            192,
+            184
+          ],
+          "delta": [
+            0,
+            0,
+            -3,
+            -2,
+            -3,
+            -3,
+            0,
+            -4,
+            -1,
+            -4,
+            -1,
+            -2
+          ],
+          "raw": "00000000a400a800af00b200ab00bb00c000c800cd00cc00c100ba000000292a2b2c2a2e30313332302e"
+        }
+      },
+      {
+        "board": 2,
+        "fresh": false,
+        "records": 1962,
+        "position": null,
+        "fpga": {
+          "sequence": 31045,
+          "address": 90,
+          "error": 0,
+          "lines": 1,
+          "mask": 0,
+          "fault": false,
+          "filtered": [
+            170,
+            173,
+            181,
+            184,
+            177,
+            193,
+            199,
+            206,
+            212,
+            210,
+            200,
+            191
+          ],
+          "baseline": [
+            168,
+            172,
+            180,
+            184,
+            176,
+            192,
+            196,
+            204,
+            212,
+            208,
+            196,
+            188
+          ],
+          "delta": [
+            -2,
+            -1,
+            -1,
+            0,
+            -1,
+            -1,
+            -3,
+            -2,
+            0,
+            -2,
+            -4,
+            -3
+          ],
+          "raw": "00000000aa00ad00b500b800b100c100c700ce00d400d200c800bf0000002a2b2d2e2c3031333534312f"
+        }
+      }
+    ],
+    "frame_errors": 0,
+    "display_mapping": {
+      "swap_boards": false,
+      "transpose": true,
+      "flip_x": false,
+      "flip_y": false
+    },
+    "display_positions": [
+      null,
+      null
+    ]
+  },
+  "guitar": {
+    "enabled": true,
+    "active": true,
+    "source": "FPGA G1",
+    "counts": [
+      60,
+      65,
+      69,
+      77,
+      68,
+      61
+    ],
+    "total": 400,
+    "events": [
+      {
+        "string": 2,
+        "board": 0,
+        "direction": -1,
+        "time": 167881.125,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": -1,
+        "time": 167881.14,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 0,
+        "board": 0,
+        "direction": -1,
+        "time": 167881.171,
+        "delay": 0.0,
+        "note": "E2"
+      },
+      {
+        "string": 0,
+        "board": 0,
+        "direction": 1,
+        "time": 167881.343,
+        "delay": 0.0,
+        "note": "E2"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": 1,
+        "time": 167881.359,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": 1,
+        "time": 167881.375,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167881.406,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": 1,
+        "time": 167881.453,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 5,
+        "board": 1,
+        "direction": 1,
+        "time": 167881.484,
+        "delay": 0.0,
+        "note": "E4"
+      },
+      {
+        "string": 5,
+        "board": 1,
+        "direction": -1,
+        "time": 167881.64,
+        "delay": 0.0,
+        "note": "E4"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": -1,
+        "time": 167881.656,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": -1,
+        "time": 167881.671,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": -1,
+        "time": 167881.703,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": -1,
+        "time": 167881.718,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": 1,
+        "time": 167881.796,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": 1,
+        "time": 167881.828,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167881.875,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": 1,
+        "time": 167881.906,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": -1,
+        "time": 167881.968,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": -1,
+        "time": 167881.984,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": -1,
+        "time": 167882.031,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": 1,
+        "time": 167882.078,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167882.125,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": -1,
+        "time": 167882.25,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": -1,
+        "time": 167882.265,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167882.375,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": -1,
+        "time": 167882.484,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": -1,
+        "time": 167882.5,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": -1,
+        "time": 167882.531,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": 1,
+        "time": 167882.609,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167882.656,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": 1,
+        "time": 167882.687,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": -1,
+        "time": 167882.75,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": -1,
+        "time": 167882.781,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167882.89,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 5,
+        "board": 1,
+        "direction": -1,
+        "time": 167883.046,
+        "delay": 0.0,
+        "note": "E4"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": -1,
+        "time": 167883.062,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": -1,
+        "time": 167883.062,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": -1,
+        "time": 167883.093,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": -1,
+        "time": 167883.125,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 0,
+        "board": 0,
+        "direction": -1,
+        "time": 167883.218,
+        "delay": 0.0,
+        "note": "E2"
+      },
+      {
+        "string": 0,
+        "board": 0,
+        "direction": 1,
+        "time": 167883.312,
+        "delay": 0.0,
+        "note": "E2"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": 1,
+        "time": 167883.328,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": 1,
+        "time": 167883.343,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167883.39,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": 1,
+        "time": 167883.421,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 5,
+        "board": 1,
+        "direction": 1,
+        "time": 167883.453,
+        "delay": 0.0,
+        "note": "E4"
+      },
+      {
+        "string": 5,
+        "board": 1,
+        "direction": -1,
+        "time": 167885.015,
+        "delay": 0.0,
+        "note": "E4"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167886.375,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167887.156,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": -1,
+        "time": 167887.812,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": -1,
+        "time": 167888.062,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": 1,
+        "time": 167888.5,
+        "delay": 0.0,
+        "note": "D3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167888.796,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": 1,
+        "time": 167889.031,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 5,
+        "board": 1,
+        "direction": 1,
+        "time": 167889.171,
+        "delay": 0.0,
+        "note": "E4"
+      },
+      {
+        "string": 5,
+        "board": 1,
+        "direction": -1,
+        "time": 167889.765,
+        "delay": 0.0,
+        "note": "E4"
+      },
+      {
+        "string": 4,
+        "board": 1,
+        "direction": -1,
+        "time": 167890.046,
+        "delay": 0.0,
+        "note": "B3"
+      },
+      {
+        "string": 3,
+        "board": 1,
+        "direction": 1,
+        "time": 167891.062,
+        "delay": 0.0,
+        "note": "G3"
+      },
+      {
+        "string": 0,
+        "board": 0,
+        "direction": 1,
+        "time": 167892.078,
+        "delay": 0.0,
+        "note": "E2"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": 1,
+        "time": 167892.171,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 0,
+        "board": 0,
+        "direction": 1,
+        "time": 167893.453,
+        "delay": 0.0,
+        "note": "E2"
+      },
+      {
+        "string": 1,
+        "board": 0,
+        "direction": 1,
+        "time": 167893.515,
+        "delay": 0.0,
+        "note": "A2"
+      },
+      {
+        "string": 2,
+        "board": 0,
+        "direction": 1,
+        "time": 167893.578,
+        "delay": 0.0,
+        "note": "D3"
+      }
+    ],
+    "boards": [
+      {
+        "board": 1,
+        "packet": 7829,
+        "sample": 29598,
+        "milliseconds": 762320,
+        "flags": 2,
+        "mask": 0,
+        "x": 1023,
+        "y": 1023,
+        "dropped": 0
+      },
+      {
+        "board": 2,
+        "packet": 7842,
+        "sample": 31111,
+        "milliseconds": 762273,
+        "flags": 2,
+        "mask": 0,
+        "x": 1023,
+        "y": 1023,
+        "dropped": 0
+      }
+    ],
+    "sample_hz": [
+      214.28571428571428,
+      212.12121212121212
+    ],
+    "packet_gaps": 0,
+    "stale_events": 0,
+    "audio": {
+      "ready": false,
+      "status": "电脑音频就绪",
+      "error": "",
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "volume": 0.3,
+      "plucks": 400,
+      "underflows": 0,
+      "dropped": 0,
+      "blocks": 50222,
+      "nonzero_blocks": 11326
+    }
+  },
+  "protocol": "hub",
+  "hardware": {
+    "identity": {
+      "capabilities": 127,
+      "build": 256
+    },
+    "fresh": true,
+    "frames": 785,
+    "errors": 0
+  },
+  "serial_tx_bytes": 0,
+  "encoders": {
+    "records": 9810,
+    "frame_errors": 1,
+    "sequence_errors": 0,
+    "channels": [
+      {
+        "channel": 1,
+        "physical": 5,
+        "fresh": false,
+        "direction": "数据超时",
+        "edges": -16,
+        "detents": -4.0,
+        "positive": 60,
+        "negative": 76,
+        "invalid": 0,
+        "discontinuities": 0,
+        "samples": 1960,
+        "fpga": {
+          "channel": 1,
+          "raw": 3,
+          "filtered": 3,
+          "q": 4,
+          "positive": 420,
+          "negative": 416,
+          "invalid": 0
+        }
+      },
+      {
+        "channel": 2,
+        "physical": 4,
+        "fresh": false,
+        "direction": "数据超时",
+        "edges": 28,
+        "detents": 7.0,
+        "positive": 112,
+        "negative": 84,
+        "invalid": 0,
+        "discontinuities": 0,
+        "samples": 1961,
+        "fpga": {
+          "channel": 2,
+          "raw": 3,
+          "filtered": 3,
+          "q": 392,
+          "positive": 782,
+          "negative": 390,
+          "invalid": 0
+        }
+      },
+      {
+        "channel": 3,
+        "physical": 3,
+        "fresh": false,
+        "direction": "数据超时",
+        "edges": -56,
+        "detents": -14.0,
+        "positive": 115,
+        "negative": 171,
+        "invalid": 0,
+        "discontinuities": 0,
+        "samples": 1961,
+        "fpga": {
+          "channel": 3,
+          "raw": 3,
+          "filtered": 3,
+          "q": 70,
+          "positive": 20751,
+          "negative": 20681,
+          "invalid": 3
+        }
+      },
+      {
+        "channel": 4,
+        "physical": 2,
+        "fresh": false,
+        "direction": "数据超时",
+        "edges": 0,
+        "detents": 0.0,
+        "positive": 408,
+        "negative": 408,
+        "invalid": 0,
+        "discontinuities": 0,
+        "samples": 1961,
+        "fpga": {
+          "channel": 4,
+          "raw": 3,
+          "filtered": 3,
+          "q": 2,
+          "positive": 1698,
+          "negative": 1696,
+          "invalid": 1
+        }
+      },
+      {
+        "channel": 5,
+        "physical": 1,
+        "fresh": false,
+        "direction": "数据超时",
+        "edges": -32,
+        "detents": -8.0,
+        "positive": 32,
+        "negative": 64,
+        "invalid": 0,
+        "discontinuities": 0,
+        "samples": 1961,
+        "fpga": {
+          "channel": 5,
+          "raw": 3,
+          "filtered": 3,
+          "q": 16,
+          "positive": 647,
+          "negative": 631,
+          "invalid": 4
+        }
+      }
+    ]
+  },
+  "joystick": {
+    "fresh": false,
+    "records": 3921,
+    "changes": 55,
+    "recent_transitions": [
+      {
+        "received_monotonic": 167712.843,
+        "sequence": 11319,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167835.937,
+        "sequence": 13781,
+        "raw": 17,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167836.093,
+        "sequence": 13784,
+        "raw": 16,
+        "filtered": 16,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167836.14,
+        "sequence": 13785,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167836.531,
+        "sequence": 13793,
+        "raw": 29,
+        "filtered": 29,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167836.593,
+        "sequence": 13794,
+        "raw": 31,
+        "filtered": 31,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167836.796,
+        "sequence": 13798,
+        "raw": 19,
+        "filtered": 19,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167837.046,
+        "sequence": 13803,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167837.14,
+        "sequence": 13805,
+        "raw": 20,
+        "filtered": 20,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167837.203,
+        "sequence": 13806,
+        "raw": 28,
+        "filtered": 28,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167837.328,
+        "sequence": 13809,
+        "raw": 29,
+        "filtered": 29,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167837.39,
+        "sequence": 13810,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167838.281,
+        "sequence": 13828,
+        "raw": 20,
+        "filtered": 20,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167838.546,
+        "sequence": 13833,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167839.187,
+        "sequence": 13846,
+        "raw": 20,
+        "filtered": 20,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167839.296,
+        "sequence": 13848,
+        "raw": 16,
+        "filtered": 16,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167839.703,
+        "sequence": 13856,
+        "raw": 17,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167839.937,
+        "sequence": 13861,
+        "raw": 19,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167839.984,
+        "sequence": 13862,
+        "raw": 19,
+        "filtered": 19,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167840.656,
+        "sequence": 13875,
+        "raw": 17,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167840.734,
+        "sequence": 13877,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167840.89,
+        "sequence": 13880,
+        "raw": 29,
+        "filtered": 29,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167841.187,
+        "sequence": 13886,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167841.343,
+        "sequence": 13889,
+        "raw": 17,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167841.64,
+        "sequence": 13895,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167841.843,
+        "sequence": 13899,
+        "raw": 16,
+        "filtered": 16,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.203,
+        "sequence": 13906,
+        "raw": 20,
+        "filtered": 20,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.25,
+        "sequence": 13907,
+        "raw": 28,
+        "filtered": 28,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.39,
+        "sequence": 13910,
+        "raw": 29,
+        "filtered": 29,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.484,
+        "sequence": 13912,
+        "raw": 31,
+        "filtered": 31,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.687,
+        "sequence": 13916,
+        "raw": 23,
+        "filtered": 23,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.734,
+        "sequence": 13917,
+        "raw": 19,
+        "filtered": 19,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.89,
+        "sequence": 13920,
+        "raw": 17,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167842.937,
+        "sequence": 13921,
+        "raw": 16,
+        "filtered": 16,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.093,
+        "sequence": 13924,
+        "raw": 28,
+        "filtered": 20,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.156,
+        "sequence": 13925,
+        "raw": 28,
+        "filtered": 28,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.281,
+        "sequence": 13928,
+        "raw": 29,
+        "filtered": 29,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.328,
+        "sequence": 13929,
+        "raw": 31,
+        "filtered": 31,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.593,
+        "sequence": 13934,
+        "raw": 23,
+        "filtered": 23,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.64,
+        "sequence": 13935,
+        "raw": 19,
+        "filtered": 19,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.796,
+        "sequence": 13938,
+        "raw": 17,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167843.843,
+        "sequence": 13939,
+        "raw": 16,
+        "filtered": 16,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167844.0,
+        "sequence": 13942,
+        "raw": 20,
+        "filtered": 20,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167844.046,
+        "sequence": 13943,
+        "raw": 28,
+        "filtered": 28,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167844.234,
+        "sequence": 13947,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167844.39,
+        "sequence": 13950,
+        "raw": 23,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167844.437,
+        "sequence": 13951,
+        "raw": 31,
+        "filtered": 31,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167844.75,
+        "sequence": 13957,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167844.953,
+        "sequence": 13961,
+        "raw": 31,
+        "filtered": 31,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167845.39,
+        "sequence": 13970,
+        "raw": 29,
+        "filtered": 29,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167845.593,
+        "sequence": 13974,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167845.703,
+        "sequence": 13976,
+        "raw": 23,
+        "filtered": 23,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167846.14,
+        "sequence": 13985,
+        "raw": 19,
+        "filtered": 19,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167846.25,
+        "sequence": 13987,
+        "raw": 17,
+        "filtered": 17,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167846.343,
+        "sequence": 13989,
+        "raw": 16,
+        "filtered": 16,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167846.734,
+        "sequence": 13997,
+        "raw": 20,
+        "filtered": 20,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167846.843,
+        "sequence": 13999,
+        "raw": 28,
+        "filtered": 28,
+        "presses": 0
+      },
+      {
+        "received_monotonic": 167847.453,
+        "sequence": 14011,
+        "raw": 21,
+        "filtered": 21,
+        "presses": 0
+      }
+    ],
+    "fpga": {
+      "sequence": 15239,
+      "raw": 21,
+      "filtered": 21,
+      "presses": 0
+    },
+    "x": 0,
+    "y": 0,
+    "pressed": false,
+    "frame_errors": 0,
+    "sequence_errors": 0,
+    "display_mapping": {
+      "swap": false,
+      "flip_x": false,
+      "flip_y": true
+    },
+    "display_direction": "中心"
+  }
+}

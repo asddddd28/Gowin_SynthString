@@ -1,0 +1,6 @@
+/* System fonts keep the laboratory usable fully offline. No remote assets. */
+button,
+select,
+input {
+  font-family: inherit;
+}

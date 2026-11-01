@@ -1,0 +1,25 @@
+PASS drum_low latency_us 47.52
+PASS drum_tom latency_us 43.32
+PASS drum_wood latency_us 32.18
+PASS drum_metal latency_us 33.88
+PASS bass_sub latency_us 36.26
+PASS bass_saw latency_us 38.26
+PASS bass_fm latency_us 48.3
+PASS pad_warm latency_us 487.96
+PASS pad_strings latency_us 1181.72
+PASS pad_soft latency_us 1075.3
+PASS key_ep latency_us 39.7
+PASS key_bell latency_us 39.76
+PASS key_pluck latency_us 48.58
+PASS chord_stab latency_us 33.92
+PASS chord_ep latency_us 37.42
+PASS chord_pad latency_us 735.86
+PASS chord C_major
+PASS chord C_minor
+Traceback (most recent call last):
+  File "D:\Projects\ai\Gowin\demo1\keyboard-timbres\live_foundations.py", line 81, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "D:\Projects\ai\Gowin\demo1\keyboard-timbres\live_foundations.py", line 60, in main
+    assert board.bad==0,f'{board.bad} incomplete or invalid telemetry packets'
+AssertionError: 3 incomplete or invalid telemetry packets

@@ -1,0 +1,24 @@
+{
+  "signal": [
+    {
+      "name": "frame_tick",
+      "wave": "010...10."
+    },
+    {
+      "name": "pixels",
+      "wave": "x.=.=... ",
+      "data": [
+        "imageA",
+        "imageB"
+      ]
+    },
+    {
+      "name": "snapshot",
+      "wave": "x.=...=..",
+      "data": [
+        "imageA",
+        "imageB"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p......."
+    },
+    {
+      "name": "snapshot",
+      "wave": "010....."
+    },
+    {
+      "name": "checksum",
+      "wave": "0.1.0..."
+    },
+    {
+      "name": "uart_busy",
+      "wave": "0...1..0"
+    }
+  ]
+}

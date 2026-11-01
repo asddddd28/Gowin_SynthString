@@ -1,0 +1,35 @@
+   Compiling tang-hardware-lab v2.0.0 (D:\Projects\ai\Gowin\demo_test\desktop-tauri\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 4.93s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\tang_hardware_lab-9667584a7b350442.exe)
+
+running 3 tests
+test synth_studio::tests::precise_step ... ok
+test synth_studio::tests::crc_and_payload ... ok
+test synth_studio::tests::foundation_library_matches_independent_profile_model ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 15 filtered out; finished in 0.00s
+
+     Running unittests src\bin\hardware-probe.rs (src-tauri\target\debug\deps\hardware_probe-39dc37268fda0427.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\bin\synth-debug.rs (src-tauri\target\debug\deps\synth_debug-7040c00e2c583cda.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\tang_hardware_lab-8835bcd883f6662d.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\compatibility.rs (src-tauri\target\debug\deps\compatibility-56efd15929bf7348.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 5 filtered out; finished in 0.00s
+

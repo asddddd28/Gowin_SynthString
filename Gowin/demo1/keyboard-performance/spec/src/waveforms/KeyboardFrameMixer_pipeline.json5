@@ -1,0 +1,37 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "start",
+      "wave": "010......."
+    },
+    {
+      "name": "busy",
+      "wave": "01......0."
+    },
+    {
+      "name": "stage",
+      "wave": "x2345678x.",
+      "data": [
+        "Mphase",
+        "Mwave",
+        "Cphase",
+        "Cwave",
+        "ADSR",
+        "AM",
+        "Tail"
+      ]
+    },
+    {
+      "name": "pcm_valid",
+      "wave": "0......10."
+    },
+    {
+      "name": "pcm_ready",
+      "wave": "1........."
+    }
+  ]
+}

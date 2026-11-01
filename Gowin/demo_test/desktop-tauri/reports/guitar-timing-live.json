@@ -1,0 +1,422 @@
+[
+  {
+    "now": 139.5724108,
+    "age_ms": [
+      4.810200000008535,
+      5.727900000010777
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 141.0458804,
+    "age_ms": [
+      18.67990000002351,
+      14.903599999996686
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 142.0408546,
+    "age_ms": [
+      3.1018000000244683,
+      17.93470000001207
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 143.1407048,
+    "age_ms": [
+      7.257499999980155,
+      6.438500000001568
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 144.1456118,
+    "age_ms": [
+      9.119899999973313,
+      7.022900000009713
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 145.1650397,
+    "age_ms": [
+      10.959099999979571,
+      11.302400000005264
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 146.1552014,
+    "age_ms": [
+      20.175099999988788,
+      14.8441000000048
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 147.158397,
+    "age_ms": [
+      20.424399999996012,
+      17.853999999999814
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 148.1583512,
+    "age_ms": [
+      5.957299999977295,
+      5.370400000003883
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 149.3906287,
+    "age_ms": [
+      12.774899999982381,
+      14.675299999993285
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 150.3902741,
+    "age_ms": [
+      16.736899999983734,
+      15.503099999989445
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 151.5630035,
+    "age_ms": [
+      7.168000000007169,
+      3.7369000000069263
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 151.5630035,
+    "age_ms": [
+      7.168000000007169,
+      3.7369000000069263
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 152.563206,
+    "age_ms": [
+      10.306099999979779,
+      10.915100000005395
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  },
+  {
+    "now": 154.1252843,
+    "age_ms": [
+      4.55609999997364,
+      1.6021000000137064
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stale": 0,
+    "audio": {
+      "ready": true,
+      "device": "扬声器 (Realtek(R) Audio)",
+      "sample_rate": 48000,
+      "channels": 2,
+      "buffer_frames": 256,
+      "error": "",
+      "played": 0,
+      "dropped": 0
+    },
+    "errors": 0,
+    "fresh_count": 40
+  }
+]

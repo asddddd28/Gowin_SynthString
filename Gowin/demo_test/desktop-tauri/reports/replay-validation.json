@@ -1,0 +1,1597 @@
+{
+  "now": 13.0876312,
+  "connection": "replay_done",
+  "port": "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/reports/live_serial.bin",
+  "protocol": "hub",
+  "message": "历史回放结束",
+  "identity": {
+    "capabilities": 127,
+    "build": 256
+  },
+  "identity_updated": 13.0139759,
+  "keys": [
+    {
+      "raw": 907,
+      "filtered": 908.1848209437801,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0265396
+    },
+    {
+      "raw": 850,
+      "filtered": 849.7879496905033,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0265396
+    },
+    {
+      "raw": 838,
+      "filtered": 839.5733102934021,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0265396
+    },
+    {
+      "raw": 841,
+      "filtered": 841.6814705034169,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 875,
+      "filtered": 873.688891200406,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 981,
+      "filtered": 980.3814704305964,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 973,
+      "filtered": 971.2455322493896,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 795,
+      "filtered": 794.9366421339869,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 949,
+      "filtered": 949.7727385272437,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 974,
+      "filtered": 972.3193619738738,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 965,
+      "filtered": 966.5818404162271,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 938,
+      "filtered": 938.9418323874442,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 990,
+      "filtered": 988.0322279304453,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 1014,
+      "filtered": 1016.7985589454026,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 1059,
+      "filtered": 1058.9882058226071,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0391665
+    },
+    {
+      "raw": 837,
+      "filtered": 835.9638964905746,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 926,
+      "filtered": 926.0925327383665,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 953,
+      "filtered": 952.3490945777315,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 922,
+      "filtered": 922.2029036727705,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 907,
+      "filtered": 907.9193830770582,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 958,
+      "filtered": 959.3705778290526,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 1058,
+      "filtered": 1061.6889269518515,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 1083,
+      "filtered": 1082.3600447368867,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 811,
+      "filtered": 811.6853272261238,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 802,
+      "filtered": 801.7943781193406,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 781,
+      "filtered": 782.0491436604649,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.050463
+    },
+    {
+      "raw": 813,
+      "filtered": 810.9273719756671,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.0628997
+    },
+    {
+      "raw": 813,
+      "filtered": 814.917676806348,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.074773
+    },
+    {
+      "raw": 864,
+      "filtered": 866.1030447285585,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.074773
+    },
+    {
+      "raw": 990,
+      "filtered": 991.5959538097565,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.074773
+    },
+    {
+      "raw": 1010,
+      "filtered": 1009.4441803428055,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.074773
+    },
+    {
+      "raw": 748,
+      "filtered": 747.5760984776907,
+      "depth": null,
+      "fresh": false,
+      "pressed": false,
+      "updated": 13.074773
+    }
+  ],
+  "encoders": [
+    {
+      "record": {
+        "channel": 1,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": false,
+      "updated": 13.0017292,
+      "moved": 0.0,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 2,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": false,
+      "updated": 13.0139759,
+      "moved": 0.0,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 3,
+        "raw": 2,
+        "filtered": 2,
+        "q": 1,
+        "positive": 2498,
+        "negative": 2497,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 825,
+      "negative": 825,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": false,
+      "updated": 13.0265396,
+      "moved": 13.0265396,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 4,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": false,
+      "updated": 13.0265396,
+      "moved": 0.0,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 5,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": false,
+      "updated": 13.0391665,
+      "moved": 0.0,
+      "motion": 0
+    }
+  ],
+  "joystick": {
+    "record": {
+      "sequence": 970,
+      "raw": 21,
+      "filtered": 21,
+      "presses": 0
+    },
+    "x": null,
+    "y": null,
+    "pressed": false,
+    "fresh": false,
+    "updated": 13.050463
+  },
+  "pads": [
+    {
+      "record": {
+        "board": 1,
+        "sequence": 10315,
+        "address": 90,
+        "error": 0,
+        "lines": 3,
+        "mask": 0,
+        "fault": false,
+        "filtered": [
+          163,
+          167,
+          174,
+          177,
+          170,
+          187,
+          192,
+          198,
+          203,
+          202,
+          193,
+          184
+        ],
+        "baseline": [
+          160,
+          164,
+          172,
+          176,
+          168,
+          184,
+          188,
+          196,
+          200,
+          200,
+          192,
+          184
+        ],
+        "delta": [
+          -3,
+          -3,
+          -2,
+          -1,
+          -2,
+          -3,
+          -4,
+          -2,
+          -3,
+          -2,
+          -1,
+          0
+        ]
+      },
+      "position": null,
+      "fresh": false,
+      "updated": 13.0628997,
+      "advanced": 13.0628997
+    },
+    {
+      "record": {
+        "board": 2,
+        "sequence": 10304,
+        "address": 90,
+        "error": 0,
+        "lines": 5,
+        "mask": 0,
+        "fault": false,
+        "filtered": [
+          166,
+          169,
+          177,
+          179,
+          173,
+          189,
+          195,
+          202,
+          207,
+          206,
+          195,
+          186
+        ],
+        "baseline": [
+          164,
+          168,
+          176,
+          176,
+          172,
+          188,
+          192,
+          200,
+          204,
+          204,
+          192,
+          184
+        ],
+        "delta": [
+          -2,
+          -1,
+          -1,
+          -3,
+          -1,
+          -1,
+          -3,
+          -2,
+          -3,
+          -2,
+          -3,
+          -2
+        ]
+      },
+      "position": null,
+      "fresh": false,
+      "updated": 13.0139759,
+      "advanced": 13.0139759
+    }
+  ],
+  "guitar": {
+    "records": [
+      {
+        "board": 1,
+        "packet": 485,
+        "sample": 10317,
+        "milliseconds": 48557,
+        "flags": 2,
+        "mask": 0,
+        "x": 1023,
+        "y": 1023,
+        "dropped": 0
+      },
+      {
+        "board": 2,
+        "packet": 484,
+        "sample": 10307,
+        "milliseconds": 48510,
+        "flags": 2,
+        "mask": 0,
+        "x": 1023,
+        "y": 1023,
+        "dropped": 0
+      }
+    ],
+    "received": [
+      13.074773,
+      13.0265396
+    ],
+    "sample_hz": [
+      212.12121212121212,
+      212.12121212121212
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "last_hits": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "packet_gaps": 0,
+    "stale_events": 0,
+    "duplicates": 0
+  },
+  "board": {
+    "seq": 255,
+    "result": 128,
+    "configured": true,
+    "mode": 4,
+    "direction": 0,
+    "generation": 1,
+    "pressed": 0
+  },
+  "board_updated": 13.074773,
+  "game": {
+    "game": 3,
+    "phase": 0,
+    "seconds": 3,
+    "reason": 5,
+    "score": 0,
+    "misses": 0,
+    "epoch": 3,
+    "colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "game_updated": 13.074773,
+  "profile": {
+    "format": "TangKeyboardCalibration",
+    "version": 1,
+    "name": "实时校准 · 10-29 03:10",
+    "source": "COM4 / 115200 / endpoint calibration",
+    "press_threshold": 0.9,
+    "release_threshold": 0.5,
+    "keys": [
+      {
+        "key": 1,
+        "calibration": {
+          "rest": 846.0,
+          "bottom": 130.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 2,
+        "calibration": {
+          "rest": 847.0,
+          "bottom": 129.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 3,
+        "calibration": {
+          "rest": 866.5,
+          "bottom": 121.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 4,
+        "calibration": {
+          "rest": 889.0,
+          "bottom": 124.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 5,
+        "calibration": {
+          "rest": 884.0,
+          "bottom": 125.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 6,
+        "calibration": {
+          "rest": 994.0,
+          "bottom": 123.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 7,
+        "calibration": {
+          "rest": 986.0,
+          "bottom": 120.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 8,
+        "calibration": {
+          "rest": 793.0,
+          "bottom": 117.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 9,
+        "calibration": {
+          "rest": 830.0,
+          "bottom": 128.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 10,
+        "calibration": {
+          "rest": 918.0,
+          "bottom": 125.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 11,
+        "calibration": {
+          "rest": 962.0,
+          "bottom": 127.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 12,
+        "calibration": {
+          "rest": 942.0,
+          "bottom": 124.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 13,
+        "calibration": {
+          "rest": 985.0,
+          "bottom": 127.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 14,
+        "calibration": {
+          "rest": 1004.0,
+          "bottom": 131.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 15,
+        "calibration": {
+          "rest": 1033.0,
+          "bottom": 122.0,
+          "noise": 9.0
+        }
+      },
+      {
+        "key": 16,
+        "calibration": {
+          "rest": 827.0,
+          "bottom": 132.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 17,
+        "calibration": {
+          "rest": 817.0,
+          "bottom": 129.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 18,
+        "calibration": {
+          "rest": 888.0,
+          "bottom": 120.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 19,
+        "calibration": {
+          "rest": 908.0,
+          "bottom": 117.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 20,
+        "calibration": {
+          "rest": 897.0,
+          "bottom": 121.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 21,
+        "calibration": {
+          "rest": 920.0,
+          "bottom": 123.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 22,
+        "calibration": {
+          "rest": 1016.0,
+          "bottom": 121.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 23,
+        "calibration": {
+          "rest": 1042.0,
+          "bottom": 127.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 24,
+        "calibration": {
+          "rest": 806.0,
+          "bottom": 123.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 25,
+        "calibration": {
+          "rest": 767.0,
+          "bottom": 131.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 26,
+        "calibration": {
+          "rest": 783.0,
+          "bottom": 122.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 27,
+        "calibration": {
+          "rest": 823.0,
+          "bottom": 123.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 28,
+        "calibration": {
+          "rest": 796.0,
+          "bottom": 121.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 29,
+        "calibration": {
+          "rest": 814.0,
+          "bottom": 125.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 30,
+        "calibration": {
+          "rest": 895.0,
+          "bottom": 127.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 31,
+        "calibration": {
+          "rest": 912.0,
+          "bottom": 125.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 32,
+        "calibration": {
+          "rest": 734.0,
+          "bottom": 125.0,
+          "noise": 8.0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "joystick": {
+      "swap": false,
+      "flip_x": false,
+      "flip_y": true
+    },
+    "pad": {
+      "swap_boards": false,
+      "transpose": true,
+      "flip_x": false,
+      "flip_y": false
+    },
+    "effect": 2,
+    "direction": 0,
+    "volume": 0.3,
+    "guitar_enabled": true
+  },
+  "calibration": null,
+  "transfer": {
+    "busy": false,
+    "completed": 0,
+    "total": 0,
+    "failures": 0,
+    "message": ""
+  },
+  "counts": [
+    5142,
+    209,
+    161,
+    800,
+    321,
+    321,
+    321,
+    64
+  ],
+  "rates": [
+    385.49888999289846,
+    12.983123238102799,
+    12.983123238102799,
+    61.91951082787489,
+    24.967544688659228,
+    24.967544688659228,
+    23.968842901112858,
+    4.993508937731845
+  ],
+  "rx_bytes": 135921,
+  "tx_bytes": 0,
+  "errors": 0,
+  "sequence_errors": 0,
+  "discarded": 0,
+  "fresh_count": 0,
+  "recording": null,
+  "replay_progress": 1.0,
+  "audio": {
+    "ready": true,
+    "device": "扬声器 (Realtek(R) Audio)",
+    "sample_rate": 48000,
+    "channels": 2,
+    "buffer_frames": 256,
+    "error": "",
+    "played": 0,
+    "dropped": 0
+  },
+  "logs": [
+    {
+      "time": 0.183773,
+      "kind": "ok",
+      "text": "已识别综合硬件固件 · H1 / 0x007F"
+    },
+    {
+      "time": 9.5e-6,
+      "kind": "info",
+      "text": "回放：D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/reports/live_serial.bin"
+    },
+    {
+      "time": 0.0,
+      "kind": "ok",
+      "text": "已沿用旧版 32 键校准及方向配置；原文件保留"
+    }
+  ],
+  "settings_path": "C:\\Users\\asddddd28\\AppData\\Local\\TangHardwareLab",
+  "chart": [
+    [
+      0.0500017,
+      911.0
+    ],
+    [
+      0.136444,
+      910.0
+    ],
+    [
+      0.2080963,
+      915.0
+    ],
+    [
+      0.2928591,
+      909.0
+    ],
+    [
+      0.3658501,
+      912.0
+    ],
+    [
+      0.4535191,
+      912.0
+    ],
+    [
+      0.52962,
+      910.0
+    ],
+    [
+      0.6125765,
+      911.0
+    ],
+    [
+      0.6987717,
+      913.0
+    ],
+    [
+      0.7731815,
+      911.0
+    ],
+    [
+      0.8569277,
+      909.0
+    ],
+    [
+      0.9302852,
+      910.0
+    ],
+    [
+      1.0172559,
+      911.0
+    ],
+    [
+      1.0916948,
+      908.0
+    ],
+    [
+      1.1790767,
+      907.0
+    ],
+    [
+      1.2537153,
+      907.0
+    ],
+    [
+      1.339177,
+      911.0
+    ],
+    [
+      1.4249295,
+      912.0
+    ],
+    [
+      1.4993832,
+      911.0
+    ],
+    [
+      1.5855381,
+      911.0
+    ],
+    [
+      1.6749303,
+      911.0
+    ],
+    [
+      1.7609471,
+      916.0
+    ],
+    [
+      1.859272,
+      908.0
+    ],
+    [
+      1.9595327,
+      916.0
+    ],
+    [
+      2.0464577,
+      912.0
+    ],
+    [
+      2.1449683999999998,
+      905.0
+    ],
+    [
+      2.2440472,
+      912.0
+    ],
+    [
+      2.3318632,
+      915.0
+    ],
+    [
+      2.4049984,
+      911.0
+    ],
+    [
+      2.4921285,
+      908.0
+    ],
+    [
+      2.5656103,
+      912.0
+    ],
+    [
+      2.6524195,
+      911.0
+    ],
+    [
+      2.7384483,
+      908.0
+    ],
+    [
+      2.8142874,
+      911.0
+    ],
+    [
+      2.9001118999999997,
+      908.0
+    ],
+    [
+      2.9853237,
+      910.0
+    ],
+    [
+      3.0570231,
+      911.0
+    ],
+    [
+      3.1451657,
+      910.0
+    ],
+    [
+      3.2319728,
+      912.0
+    ],
+    [
+      3.3069508,
+      912.0
+    ],
+    [
+      3.394174,
+      909.0
+    ],
+    [
+      3.4804797,
+      910.0
+    ],
+    [
+      3.5540379,
+      913.0
+    ],
+    [
+      3.6394263000000002,
+      914.0
+    ],
+    [
+      3.7161263,
+      910.0
+    ],
+    [
+      3.8043834,
+      905.0
+    ],
+    [
+      3.8793162,
+      907.0
+    ],
+    [
+      3.9657071,
+      908.0
+    ],
+    [
+      4.0514901,
+      907.0
+    ],
+    [
+      4.1262248,
+      909.0
+    ],
+    [
+      4.2140392,
+      911.0
+    ],
+    [
+      4.2867495,
+      906.0
+    ],
+    [
+      4.3735368,
+      910.0
+    ],
+    [
+      4.4461883,
+      908.0
+    ],
+    [
+      4.5343160000000005,
+      912.0
+    ],
+    [
+      4.6224872999999995,
+      910.0
+    ],
+    [
+      4.6972481,
+      911.0
+    ],
+    [
+      4.7841317,
+      911.0
+    ],
+    [
+      4.8552543,
+      912.0
+    ],
+    [
+      4.942211,
+      910.0
+    ],
+    [
+      5.0177464,
+      906.0
+    ],
+    [
+      5.1041812,
+      908.0
+    ],
+    [
+      5.1945182,
+      915.0
+    ],
+    [
+      5.2700847,
+      909.0
+    ],
+    [
+      5.3557628,
+      910.0
+    ],
+    [
+      5.4280147,
+      908.0
+    ],
+    [
+      5.5141479,
+      910.0
+    ],
+    [
+      5.5897673,
+      910.0
+    ],
+    [
+      5.6769124,
+      910.0
+    ],
+    [
+      5.7627559,
+      910.0
+    ],
+    [
+      5.8359293,
+      909.0
+    ],
+    [
+      5.9265234,
+      912.0
+    ],
+    [
+      6.000218,
+      911.0
+    ],
+    [
+      6.0852509,
+      913.0
+    ],
+    [
+      6.1601246,
+      910.0
+    ],
+    [
+      6.245845,
+      908.0
+    ],
+    [
+      6.3211996,
+      908.0
+    ],
+    [
+      6.409503,
+      911.0
+    ],
+    [
+      6.4968708,
+      910.0
+    ],
+    [
+      6.5680496999999995,
+      913.0
+    ],
+    [
+      6.6516867,
+      910.0
+    ],
+    [
+      6.7236629,
+      912.0
+    ],
+    [
+      6.8088706,
+      910.0
+    ],
+    [
+      6.8818543,
+      909.0
+    ],
+    [
+      6.9665821999999995,
+      908.0
+    ],
+    [
+      7.0384563,
+      909.0
+    ],
+    [
+      7.1248015,
+      907.0
+    ],
+    [
+      7.2118373,
+      907.0
+    ],
+    [
+      7.2872354,
+      905.0
+    ],
+    [
+      7.3719139,
+      911.0
+    ],
+    [
+      7.4445428,
+      908.0
+    ],
+    [
+      7.5291348,
+      910.0
+    ],
+    [
+      7.6034814,
+      911.0
+    ],
+    [
+      7.6878995,
+      909.0
+    ],
+    [
+      7.7750261,
+      907.0
+    ],
+    [
+      7.8629543,
+      911.0
+    ],
+    [
+      7.9378929,
+      908.0
+    ],
+    [
+      8.0235368,
+      911.0
+    ],
+    [
+      8.0984959,
+      911.0
+    ],
+    [
+      8.1724251,
+      909.0
+    ],
+    [
+      8.258251,
+      912.0
+    ],
+    [
+      8.34477,
+      908.0
+    ],
+    [
+      8.4319717,
+      910.0
+    ],
+    [
+      8.5069998,
+      916.0
+    ],
+    [
+      8.5796152,
+      910.0
+    ],
+    [
+      8.6663136,
+      909.0
+    ],
+    [
+      8.7528303,
+      909.0
+    ],
+    [
+      8.8282607,
+      909.0
+    ],
+    [
+      8.9143401,
+      913.0
+    ],
+    [
+      8.9912199,
+      911.0
+    ],
+    [
+      9.0779079,
+      914.0
+    ],
+    [
+      9.1617201,
+      910.0
+    ],
+    [
+      9.2357315,
+      912.0
+    ],
+    [
+      9.3237507,
+      905.0
+    ],
+    [
+      9.398432,
+      910.0
+    ],
+    [
+      9.4824749,
+      910.0
+    ],
+    [
+      9.5588879,
+      909.0
+    ],
+    [
+      9.6457847,
+      910.0
+    ],
+    [
+      9.7322101,
+      915.0
+    ],
+    [
+      9.8065204,
+      911.0
+    ],
+    [
+      9.8926398,
+      911.0
+    ],
+    [
+      9.9669471,
+      911.0
+    ],
+    [
+      10.0530605,
+      906.0
+    ],
+    [
+      10.1251055,
+      910.0
+    ],
+    [
+      10.196856499999999,
+      913.0
+    ],
+    [
+      10.2924827,
+      906.0
+    ],
+    [
+      10.3649709,
+      909.0
+    ],
+    [
+      10.4510778,
+      914.0
+    ],
+    [
+      10.5246454,
+      908.0
+    ],
+    [
+      10.5960416,
+      908.0
+    ],
+    [
+      10.6798951,
+      907.0
+    ],
+    [
+      10.763019,
+      910.0
+    ],
+    [
+      10.8341741,
+      908.0
+    ],
+    [
+      10.9198971,
+      910.0
+    ],
+    [
+      10.9952491,
+      911.0
+    ],
+    [
+      11.0817268,
+      910.0
+    ],
+    [
+      11.1678048,
+      909.0
+    ],
+    [
+      11.2416634,
+      906.0
+    ],
+    [
+      11.3284622,
+      911.0
+    ],
+    [
+      11.4022501,
+      910.0
+    ],
+    [
+      11.4860588,
+      913.0
+    ],
+    [
+      11.5587912,
+      910.0
+    ],
+    [
+      11.6457269,
+      910.0
+    ],
+    [
+      11.7327617,
+      910.0
+    ],
+    [
+      11.8067912,
+      913.0
+    ],
+    [
+      11.8915486,
+      910.0
+    ],
+    [
+      11.965046,
+      912.0
+    ],
+    [
+      12.0522267,
+      910.0
+    ],
+    [
+      12.1267221,
+      912.0
+    ],
+    [
+      12.2128861,
+      913.0
+    ],
+    [
+      12.2977189,
+      911.0
+    ],
+    [
+      12.3715309,
+      915.0
+    ],
+    [
+      12.4587269,
+      910.0
+    ],
+    [
+      12.5337255,
+      912.0
+    ],
+    [
+      12.6197703,
+      907.0
+    ],
+    [
+      12.6958926,
+      914.0
+    ],
+    [
+      12.7809042,
+      905.0
+    ],
+    [
+      12.8658673,
+      909.0
+    ],
+    [
+      12.9389622,
+      909.0
+    ],
+    [
+      13.0265396,
+      907.0
+    ]
+  ]
+}

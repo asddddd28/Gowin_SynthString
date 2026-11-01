@@ -1,0 +1,20 @@
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 00:59:07 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/latency_keyboard_audio/xsim_script.tcl
+# xsim {latency_keyboard_audio} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS keyboard ADC -> 32 voice AXIS -> PT8211 frames=15586 serial=15585 nonzero=12708 uart_packets=260 conversions=70931 Studio dual-envelope cycles=385
+PASS latency full chain records=37 physical=32 remote=5 min=1721 max=30797 last=1721 qualify=0 queue=5 compute=547 onset=0 output=1169
+$finish called at time : 319191060 ns : File "D:/Projects/ai/Gowin/demo1/keyboard-latency/sim/tb_latency_keyboard_audio.v" Line 151
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:08:46 . Memory (MB): peak = 192.699 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 12612 KB (Peak: 12612 KB), Simulation CPU Usage: 517062 ms
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 01:07:55 2026...

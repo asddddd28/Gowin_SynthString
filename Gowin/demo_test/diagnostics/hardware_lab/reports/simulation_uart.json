@@ -1,0 +1,103 @@
+{
+  "key_records": 1856,
+  "key_scans": 58,
+  "key_sequence_errors": 0,
+  "encoder_frames": 195,
+  "encoder_sequence_errors": 0,
+  "joystick_frames": 78,
+  "joystick_sequence_errors": 0,
+  "touch_frames": 117,
+  "guitar_frames": 119,
+  "identity_frames": 30,
+  "status_frames": 112,
+  "game_frames": 58,
+  "errors": {
+    "status": 0,
+    "game": 0,
+    "encoder": 0,
+    "joystick": 0,
+    "touch": 0,
+    "guitar": 0,
+    "identity": 0
+  },
+  "guitar_events": [
+    {
+      "board": 1,
+      "packet": 2,
+      "sample": 28,
+      "milliseconds": 8,
+      "flags": 15,
+      "mask": 15,
+      "x": 922,
+      "y": 512,
+      "dropped": 0
+    },
+    {
+      "board": 2,
+      "packet": 1,
+      "sample": 28,
+      "milliseconds": 8,
+      "flags": 15,
+      "mask": 15,
+      "x": 922,
+      "y": 512,
+      "dropped": 0
+    }
+  ],
+  "encoder_latest": [
+    {
+      "channel": 1,
+      "raw": 3,
+      "filtered": 3,
+      "q": -4,
+      "positive": 0,
+      "negative": 4,
+      "invalid": 0
+    },
+    {
+      "channel": 2,
+      "raw": 3,
+      "filtered": 3,
+      "q": -4,
+      "positive": 0,
+      "negative": 4,
+      "invalid": 0
+    },
+    {
+      "channel": 3,
+      "raw": 3,
+      "filtered": 3,
+      "q": -4,
+      "positive": 0,
+      "negative": 4,
+      "invalid": 0
+    },
+    {
+      "channel": 4,
+      "raw": 3,
+      "filtered": 3,
+      "q": -4,
+      "positive": 0,
+      "negative": 4,
+      "invalid": 0
+    },
+    {
+      "channel": 5,
+      "raw": 3,
+      "filtered": 3,
+      "q": -4,
+      "positive": 0,
+      "negative": 4,
+      "invalid": 0
+    }
+  ],
+  "joystick_latest": [
+    {
+      "sequence": 77,
+      "raw": 16,
+      "filtered": 16,
+      "presses": 1
+    }
+  ],
+  "tail": 0
+}

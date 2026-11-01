@@ -1,0 +1,518 @@
+{
+  "name": "fpga_guitar",
+  "modules": [
+    {
+      "name": "MprScanner",
+      "rtl_path": "src/MprScanner.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; see behavior contract"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; see behavior contract"
+          },
+          {
+            "name": "io_scl",
+            "direction": "inout",
+            "width": 1,
+            "role": "data",
+            "description": "io_scl; see behavior contract"
+          },
+          {
+            "name": "io_sda",
+            "direction": "inout",
+            "width": 1,
+            "role": "data",
+            "description": "io_sda; see behavior contract"
+          },
+          {
+            "name": "o_raw",
+            "direction": "output",
+            "width": 336,
+            "role": "data",
+            "description": "o_raw; see behavior contract"
+          },
+          {
+            "name": "o_sequence",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "o_sequence; see behavior contract"
+          },
+          {
+            "name": "o_address",
+            "direction": "output",
+            "width": 7,
+            "role": "data",
+            "description": "o_address; see behavior contract"
+          },
+          {
+            "name": "o_error",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_error; see behavior contract"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Two-cycle synchronized release"
+      },
+      "behavior": [
+        "Configure 5C=10,5D=20,5E=8C; read 42 bytes continuously and atomically commit into FPGA registers.",
+        "Verify configuration at initialization and every 128 samples; immediate error and retry on NACK/timeout."
+      ],
+      "constraints": [
+        "50MHz;100kHz nominal I2C; external edge quality requires live validation."
+      ],
+      "corner_cases": [
+        "One missing sensor does not block the other.",
+        "Clock stuck low returns timeout; stale payload never implies valid touch.",
+        "Reset aborts UART and releases both buses."
+      ],
+      "verification_cases": [
+        "Behavioral dual-sensor scan, NACK, stuck bus, ECR repair."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transaction",
+          "title": "Register read",
+          "scenario": "burst",
+          "description": "Conceptual START-write-address-register-repeatedSTART-read-data-NACK-STOP; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clock",
+                "wave": "p........."
+              },
+              {
+                "name": "start",
+                "wave": "010......."
+              },
+              {
+                "name": "busy",
+                "wave": "01......0."
+              },
+              {
+                "name": "read_valid",
+                "wave": "0....1010."
+              },
+              {
+                "name": "done",
+                "wave": "0.......10"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GuitarTracker",
+      "rtl_path": "src/GuitarTracker.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_milliseconds",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_milliseconds; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 336,
+            "role": "data",
+            "description": "i_raw; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_sequence",
+            "direction": "input",
+            "width": 16,
+            "role": "data",
+            "description": "i_sequence; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_error",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_error; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_event",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_event; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_mask",
+            "direction": "output",
+            "width": 6,
+            "role": "data",
+            "description": "o_mask; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_flags",
+            "direction": "output",
+            "width": 4,
+            "role": "data",
+            "description": "o_flags; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_x",
+            "direction": "output",
+            "width": 10,
+            "role": "data",
+            "description": "o_x; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_y",
+            "direction": "output",
+            "width": 10,
+            "role": "data",
+            "description": "o_y; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_sequence",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "o_sequence; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_time",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_time; detailed fields in requirements.md"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Asynchronous assertion, top synchronizes release"
+      },
+      "behavior": [
+        "On each new sequence, scan12 electrodes and compute two weighted centroids with 10-cycle restoring division.",
+        "Accept one contiguous cluster on each axis; no initial-contact event. Hysteresis20/1024,12ms cooldown,40ms continuity timeout.",
+        "Emit all crossed lines256/512/768 as a6bit mask with two direction flags. Processing finishes within50 clocks."
+      ],
+      "constraints": [
+        "Single clock domain; bounded finite registers; source protocol in requirements.md"
+      ],
+      "corner_cases": [
+        "Reset clears pending events; invalid samples invalidate contact; simultaneous left/right events preserved."
+      ],
+      "verification_cases": [
+        "tb_guitar_tracker: centroid, multi-line, reverse, dwell, lift, faults; tb_guitar_queue: full simultaneous operation; tb_touchpad_guitar: pin-level I2C/UART."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "sample",
+          "title": "Sample to event",
+          "scenario": "crossing",
+          "description": "Conceptual pipeline, compressed computation interval, not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "new_sample",
+                "wave": "010....."
+              },
+              {
+                "name": "compute",
+                "wave": "01...0.."
+              },
+              {
+                "name": "event",
+                "wave": "0....10."
+              },
+              {
+                "name": "mask",
+                "wave": "x....3.x",
+                "data": [
+                  "crossed"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GuitarEventQueue",
+      "rtl_path": "src/GuitarEventQueue.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_push",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_push; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_data",
+            "direction": "input",
+            "width": 96,
+            "role": "data",
+            "description": "i_data; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_pop",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_pop; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_empty",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_empty; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_data",
+            "direction": "output",
+            "width": 96,
+            "role": "data",
+            "description": "o_data; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_dropped",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "o_dropped; detailed fields in requirements.md"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Asynchronous assertion, top synchronizes release"
+      },
+      "behavior": [
+        "16 entries per board; preserve FIFO order, allow simultaneous full pop/push, saturating16bit overflow count."
+      ],
+      "constraints": [
+        "Single clock domain; bounded finite registers; source protocol in requirements.md"
+      ],
+      "corner_cases": [
+        "Reset clears pending events; invalid samples invalidate contact; simultaneous left/right events preserved."
+      ],
+      "verification_cases": [
+        "tb_guitar_tracker: centroid, multi-line, reverse, dwell, lift, faults; tb_guitar_queue: full simultaneous operation; tb_touchpad_guitar: pin-level I2C/UART."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "sample",
+          "title": "Sample to event",
+          "scenario": "crossing",
+          "description": "Conceptual pipeline, compressed computation interval, not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "new_sample",
+                "wave": "010....."
+              },
+              {
+                "name": "compute",
+                "wave": "01...0.."
+              },
+              {
+                "name": "event",
+                "wave": "0....10."
+              },
+              {
+                "name": "mask",
+                "wave": "x....3.x",
+                "data": [
+                  "crossed"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TouchpadGuitar",
+      "rtl_path": "src/TouchpadGuitar.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; detailed fields in requirements.md"
+          },
+          {
+            "name": "i_irq",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "i_irq; detailed fields in requirements.md"
+          },
+          {
+            "name": "io_scl",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_scl; detailed fields in requirements.md"
+          },
+          {
+            "name": "io_sda",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_sda; detailed fields in requirements.md"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_uart_tx; detailed fields in requirements.md"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Asynchronous assertion, top synchronizes release"
+      },
+      "behavior": [
+        "Parallel independent I2C100kHz,50MHz clock, G1 37byte hardware event and compatible T100byte raw frame with CRC8.",
+        "Event queues take priority at UART frame boundary; round-robin among boards; periodic T then G heartbeat.",
+        "1152008N1,37byte event takes3.22ms; maximum in-flight T blocking8.69ms, excluding queue/back-end transport."
+      ],
+      "constraints": [
+        "Single clock domain; bounded finite registers; source protocol in requirements.md"
+      ],
+      "corner_cases": [
+        "Reset clears pending events; invalid samples invalidate contact; simultaneous left/right events preserved."
+      ],
+      "verification_cases": [
+        "tb_guitar_tracker: centroid, multi-line, reverse, dwell, lift, faults; tb_guitar_queue: full simultaneous operation; tb_touchpad_guitar: pin-level I2C/UART."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "sample",
+          "title": "Sample to event",
+          "scenario": "crossing",
+          "description": "Conceptual pipeline, compressed computation interval, not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "new_sample",
+                "wave": "010....."
+              },
+              {
+                "name": "compute",
+                "wave": "01...0.."
+              },
+              {
+                "name": "event",
+                "wave": "0....10."
+              },
+              {
+                "name": "mask",
+                "wave": "x....3.x",
+                "data": [
+                  "crossed"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

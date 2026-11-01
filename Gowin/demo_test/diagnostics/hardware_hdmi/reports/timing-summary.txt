@@ -1,0 +1,38 @@
+Build: hardware_hdmi  (GW5AT-60, GW5AT-LV60PG484AC1/I0)
+Tool:  V1.9.11.03 Education
+Built: Sun Nov  1 23:44:22 2026   PnR 0h 1m 26s   peak 1756MB
+
+Resources
+  Logic: 15338/59904 (26%)
+    LUT 12901, ALU 1933, ROM16 0
+  CLS: 11684/29952 (39%)
+  Register: 9909/60780 (17%)
+  BSRAM: 11/118 (10%)
+  DSP: 9.5/118 (9%)
+  I/O Port: 43/297 (15%)
+
+Timing: CLEAN — no violations
+
+fMax per clock
+  pixel_clk: 73.994 MHz vs 73.333 MHz constraint (+0.661) [ok]
+  clk: 59.164 MHz vs 50 MHz constraint (+9.164) [ok]
+  (no timing paths: serial_clk)
+
+Build: hardware_hdmi  (GW5AT-60, GW5AT-LV60PG484AC1/I0)
+Tool:  V1.9.11.03 Education
+Built: Sun Nov  1 23:44:22 2026   PnR 0h 1m 26s   peak 1756MB
+
+fMax per clock
+  pixel_clk: 73.994 MHz vs 73.333 MHz constraint (+0.661) [ok]
+  clk: 59.164 MHz vs 50 MHz constraint (+9.164) [ok]
+  (no timing paths: serial_clk)
+
+Timing: CLEAN — no violations
+Worst setup paths
+      0.122 ns  pixel_clk->pixel_clk  Telemetry_Inst/reg_line[1]_4_s0/Q -> Telemetry_Inst/cnt_age_8_s1/CE  (delay 13.213, relation 13.636)
+      0.122 ns  pixel_clk->pixel_clk  Telemetry_Inst/reg_line[1]_4_s0/Q -> Telemetry_Inst/cnt_age_17_s1/CE  (delay 13.213, relation 13.636)
+      0.122 ns  pixel_clk->pixel_clk  Telemetry_Inst/reg_line[1]_4_s0/Q -> Telemetry_Inst/cnt_age_21_s1/CE  (delay 13.213, relation 13.636)
+Worst hold paths
+      0.071 ns  clk->clk  HardwareLab_Inst/touchpad/left_tracker/mask_o_4_s0/Q -> HardwareLab_Inst/touchpad/left_queue/gowin_add_SDPB_memory_memory_0_0_s/DI[8]  (delay 0.305, relation 0)
+      0.094 ns  clk->clk  HardwareLab_Inst/touchpad/left_tracker/mask_o_0_s0/Q -> HardwareLab_Inst/touchpad/left_queue/gowin_add_SDPB_memory_memory_0_0_s/DI[4]  (delay 0.328, relation 0)
+      0.098 ns  clk->clk  HardwareLab_Inst/touchpad/left_tracker/y_o_5_s0/Q -> HardwareLab_Inst/touchpad/left_queue/memory_memory_0_0_s/DI[5]  (delay 0.332, relation 0)

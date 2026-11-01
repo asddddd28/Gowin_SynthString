@@ -1,0 +1,191 @@
+{
+  "modules": [
+    {
+      "name": "LatencyAxisTop",
+      "rtl_path": "src/LatencyAxisTop.v",
+      "description": "完整实体键ADC→双确认判键→参数桥→多核合成→响度→PT8211，监测器只观察。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "50MHz统一计算时钟",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "低有效复位，异步置位同步释放",
+            "role": "reset"
+          },
+          {
+            "name": "i_adc_dout",
+            "width": 1,
+            "direction": "input",
+            "description": "外部ADC串行数据",
+            "role": "data"
+          },
+          {
+            "name": "i_uart_rx",
+            "width": 1,
+            "direction": "input",
+            "description": "调试命令输入",
+            "role": "data"
+          },
+          {
+            "name": "o_mux_sel",
+            "width": 3,
+            "direction": "output",
+            "description": "模拟多路选择",
+            "role": "data"
+          },
+          {
+            "name": "o_mux_en",
+            "width": 1,
+            "direction": "output",
+            "description": "多路器使能",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC片选",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_sclk",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC时钟",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_din",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC命令",
+            "role": "data"
+          },
+          {
+            "name": "o_uart_tx",
+            "width": 1,
+            "direction": "output",
+            "description": "调试快照",
+            "role": "data"
+          },
+          {
+            "name": "HP_BCK",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211位时钟",
+            "role": "data"
+          },
+          {
+            "name": "HP_WS",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211声道选择",
+            "role": "data"
+          },
+          {
+            "name": "HP_DIN",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211音频数据",
+            "role": "data"
+          },
+          {
+            "name": "PA_EN",
+            "width": 1,
+            "direction": "output",
+            "description": "低有效功放使能",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "完整实体键ADC→双确认判键→参数桥→多核合成→响度→PT8211，监测器只观察。",
+        "首次门限候选/二次确认/取消由判键模块提供；远程起点为FPGA有效gate上升沿。",
+        "六种核心数量保持1/2/3/1/1/1；50MHz计算，1024拍输出一帧。",
+        "L仅清零延迟统计和监测事务，不复位声音引擎或更改音色。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，异步低有效复位，顶层同步释放。",
+        "监测无音频控制反馈；一次事件窗口小于32位时间戳周期，默认1秒超时。"
+      ],
+      "corner_cases": [
+        "32键同时完成",
+        "计数回绕",
+        "候选取消",
+        "静音与慢起音",
+        "覆盖与超时并发",
+        "清零时仍按住键"
+      ],
+      "verification_cases": [
+        "独立时间差模型",
+        "逐分段确定值比较",
+        "真实ADC和PT8211 WS边沿关联",
+        "协议4全部分包边界及坏包恢复",
+        "Gowin时序与板上串口/听感"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "onset",
+          "title": "采集到数字起音",
+          "scenario": "onset",
+          "description": "概念时序，扫描等待与音频帧间隔被压缩；所有时间戳来自同一50MHz计数器。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p..........."
+              },
+              {
+                "name": "ADC candidate",
+                "wave": "010........."
+              },
+              {
+                "name": "ADC confirm",
+                "wave": "0...10......"
+              },
+              {
+                "name": "note commit",
+                "wave": "0....10....."
+              },
+              {
+                "name": "voice nonzero",
+                "wave": "0......10..."
+              },
+              {
+                "name": "PCM valid",
+                "wave": "0.......10.."
+              },
+              {
+                "name": "frame load",
+                "wave": "0........10."
+              },
+              {
+                "name": "DAC left latch",
+                "wave": "0.........10"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

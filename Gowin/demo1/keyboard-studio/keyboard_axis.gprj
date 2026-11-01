@@ -1,0 +1,42 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
+    <FileList>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/system/AxisWaveLookup.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisFixedCore.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisPhaseFm.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisWaveSample.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisAdsr.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisAmplitudeMod.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisVoiceChain.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisSvfSample.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/axis/AxisVoiceVca.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/synth/EnvelopePrecision.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/synth/WavetablePairRead.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/synth/WavetablePairCache.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/synth/SurgeSvfSample.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/synth/SurgeVoiceVca.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/audio/I2sTx.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/rtl/audio/PcmRounder.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/KeyboardSampler.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardAudioSystem.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardAxisTop.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardSynthEngine.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardSynthTelemetry.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardThresholds.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardVoiceBridge.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardLoudness.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardFrameMixer.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/StudioControl.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/StudioOscMixer.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-studio/src/StudioVoiceStore.v" type="file.verilog" enable="1"/>
+<File path="src/keyboard_axis.cst" type="file.cst" enable="1"/>
+<File path="src/keyboard_axis.sdc" type="file.sdc" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/constraints/surge_svf_sample.gsc" type="file.gsc" enable="1"/>
+</FileList>
+</Project>

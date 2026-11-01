@@ -1,0 +1,184 @@
+{
+  "modules": [
+    {
+      "name": "LatencyI2sTx",
+      "rtl_path": "src/LatencyI2sTx.v",
+      "description": "沿用原PT8211/I2S音频位流、舍入和待播放缓冲；观察口不影响功能。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "i clk",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i rstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_sample_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "i sample valid",
+            "role": "data"
+          },
+          {
+            "name": "i_left",
+            "width": 24,
+            "direction": "input",
+            "description": "i left",
+            "role": "data"
+          },
+          {
+            "name": "i_right",
+            "width": 24,
+            "direction": "input",
+            "description": "i right",
+            "role": "data"
+          },
+          {
+            "name": "o_sample_tick",
+            "width": 1,
+            "direction": "output",
+            "description": "o sample tick",
+            "role": "data"
+          },
+          {
+            "name": "o_bclk",
+            "width": 1,
+            "direction": "output",
+            "description": "o bclk",
+            "role": "data"
+          },
+          {
+            "name": "o_lrclk",
+            "width": 1,
+            "direction": "output",
+            "description": "o lrclk",
+            "role": "data"
+          },
+          {
+            "name": "o_sdata",
+            "width": 1,
+            "direction": "output",
+            "description": "o sdata",
+            "role": "data"
+          },
+          {
+            "name": "o_frame_load",
+            "width": 1,
+            "direction": "output",
+            "description": "o frame load",
+            "role": "data"
+          },
+          {
+            "name": "o_dac_left_latch",
+            "width": 1,
+            "direction": "output",
+            "description": "o dac left latch",
+            "role": "data"
+          },
+          {
+            "name": "o_mclk",
+            "width": 1,
+            "direction": "output",
+            "description": "o mclk",
+            "role": "data"
+          },
+          {
+            "name": "o_underrun",
+            "width": 1,
+            "direction": "output",
+            "description": "o underrun",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "沿用原PT8211/I2S音频位流、舍入和待播放缓冲；观察口不影响功能。",
+        "o_frame_load在真实帧边界且有新PCM可加载时有效，含同拍旁路。",
+        "PT8211模式下o_dac_left_latch在cnt_frame=512-C_FRAME_STEP且该播放帧有效时有效；这个沿使WS从高转低。",
+        "板级只使用PT8211、C_FRAME_STEP=1；锁存是数字终点，不代表模拟输出无额外延迟。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，异步低有效复位，顶层同步释放。",
+        "监测无音频控制反馈；一次事件窗口小于32位时间戳周期，默认1秒超时。"
+      ],
+      "corner_cases": [
+        "32键同时完成",
+        "计数回绕",
+        "候选取消",
+        "静音与慢起音",
+        "覆盖与超时并发",
+        "清零时仍按住键"
+      ],
+      "verification_cases": [
+        "独立时间差模型",
+        "逐分段确定值比较",
+        "真实ADC和PT8211 WS边沿关联",
+        "协议4全部分包边界及坏包恢复",
+        "Gowin时序与板上串口/听感"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "onset",
+          "title": "采集到数字起音",
+          "scenario": "onset",
+          "description": "概念时序，扫描等待与音频帧间隔被压缩；所有时间戳来自同一50MHz计数器。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p..........."
+              },
+              {
+                "name": "ADC candidate",
+                "wave": "010........."
+              },
+              {
+                "name": "ADC confirm",
+                "wave": "0...10......"
+              },
+              {
+                "name": "note commit",
+                "wave": "0....10....."
+              },
+              {
+                "name": "voice nonzero",
+                "wave": "0......10..."
+              },
+              {
+                "name": "PCM valid",
+                "wave": "0.......10.."
+              },
+              {
+                "name": "frame load",
+                "wave": "0........10."
+              },
+              {
+                "name": "DAC left latch",
+                "wave": "0.........10"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

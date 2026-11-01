@@ -1,0 +1,173 @@
+{
+  "modules": [
+    {
+      "name": "StudioVoiceStore",
+      "rtl_path": "src/StudioVoiceStore.v",
+      "description": "参数512位及384位状态按字段分同步RAM；读延迟一拍，调度器至少等待两拍预取。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "i clk",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i rstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_cfg_write",
+            "width": 1,
+            "direction": "input",
+            "description": "i cfg write",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_voice",
+            "width": 5,
+            "direction": "input",
+            "description": "i cfg voice",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_data",
+            "width": 512,
+            "direction": "input",
+            "description": "i cfg data",
+            "role": "data"
+          },
+          {
+            "name": "i_read_voice",
+            "width": 5,
+            "direction": "input",
+            "description": "i read voice",
+            "role": "data"
+          },
+          {
+            "name": "o_profile",
+            "width": 512,
+            "direction": "output",
+            "description": "o profile",
+            "role": "data"
+          },
+          {
+            "name": "o_state",
+            "width": 384,
+            "direction": "output",
+            "description": "o state",
+            "role": "data"
+          },
+          {
+            "name": "i_write",
+            "width": 1,
+            "direction": "input",
+            "description": "i write",
+            "role": "data"
+          },
+          {
+            "name": "i_write_voice",
+            "width": 5,
+            "direction": "input",
+            "description": "i write voice",
+            "role": "data"
+          },
+          {
+            "name": "i_write_stage",
+            "width": 3,
+            "direction": "input",
+            "description": "i write stage",
+            "role": "data"
+          },
+          {
+            "name": "i_write_data",
+            "width": 192,
+            "direction": "input",
+            "description": "i write data",
+            "role": "data"
+          },
+          {
+            "name": "i_event_consume",
+            "width": 1,
+            "direction": "input",
+            "description": "i event consume",
+            "role": "data"
+          },
+          {
+            "name": "i_event_voice",
+            "width": 5,
+            "direction": "input",
+            "description": "i event voice",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "参数512位及384位状态按字段分同步RAM；读延迟一拍，调度器至少等待两拍预取。",
+        "写回先寄存，再写RAM。每个状态字段仅一个写口；不复位RAM本体，启动配置bit482清零状态。",
+        "bit483只写事件并保留发声参数。调制包络先读事件，振幅包络发射后消费一次性事件。"
+      ],
+      "constraints": [
+        "50MHz单时钟域；异步低有效复位，板级同步释放。",
+        "新固件协议与旧96kHz Studio不兼容，必须核对版本3。"
+      ],
+      "corner_cases": [
+        "复位取消旧任务",
+        "输出背压",
+        "32键复音",
+        "CRC失败与残包",
+        "参数在释音中更新"
+      ],
+      "verification_cases": [
+        "完整ADC/UART/PT8211闭环",
+        "400个混合整数向量",
+        "配置ACK及短演奏包",
+        "无覆盖的活动参数快照",
+        "Gowin综合实现时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "commit",
+          "title": "参数与任务提交",
+          "scenario": "handshake",
+          "description": "有效期间保持完整事务，接受后才发射或确认；算术延迟见行为合同。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......"
+              },
+              {
+                "name": "valid",
+                "wave": "01..0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0..10.."
+              },
+              {
+                "name": "commit",
+                "wave": "0...10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

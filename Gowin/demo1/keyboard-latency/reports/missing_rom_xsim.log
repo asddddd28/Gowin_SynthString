@@ -1,0 +1,21 @@
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 00:27:36 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/latency_keyboard_audio/xsim_script.tcl
+# xsim {latency_keyboard_audio} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+WARNING: File rtl/synth/sine.mem referenced on D:/Projects/ai/Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v at line 18 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+WARNING: File rtl/synth/sine.mem referenced on D:/Projects/ai/Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v at line 18 cannot be opened for reading. Please ensure that this file is available in the current working directory or parent directory of xsim.dir location specified via -xsimdir switch.
+Fatal: physical keys produced no DAC samples
+Time: 4986900 ns  Iteration: 0  Process: /tb_latency_keyboard_audio/Initial99_562  Scope: tb_latency_keyboard_audio  File: D:/Projects/ai/Gowin/demo1/keyboard-latency/sim/tb_latency_keyboard_audio.v Line: 108
+$finish called at time : 4986900 ns
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:08 . Memory (MB): peak = 192.336 ; gain = 0.000
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 00:27:46 2026...

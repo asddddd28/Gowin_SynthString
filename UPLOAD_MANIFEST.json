@@ -1,5 +1,17 @@
 [
   {
+    "path": ".gitattributes",
+    "category": "support",
+    "bytes": 64,
+    "sha256": "862be2a9c831a8a35d9e6a5153ef22389e0376565bea0a96f56f58bf42317d24"
+  },
+  {
+    "path": ".gitignore",
+    "category": "support",
+    "bytes": 481,
+    "sha256": "4ad6895171b1deeaad48c84cec69b3d858cb4e8abefe465c2729bbd3e8ed8298"
+  },
+  {
     "path": "Gowin/demo1/board/SIPEEd-LICENSE.txt",
     "category": "rtl",
     "bytes": 590,
@@ -22,6 +34,36 @@
     "category": "rtl",
     "bytes": 15848,
     "sha256": "3fc6bef9a7086f0920bfa47265b1766854a53f6ca1c0f75084eaf6b6ef4d6258"
+  },
+  {
+    "path": "Gowin/demo1/constraints/board.cst",
+    "category": "fpga-project",
+    "bytes": 790,
+    "sha256": "a67c45b486d21046ba1bae8e0414cd7c6ebb64f76f7a7209a5f3e089ea0025f8"
+  },
+  {
+    "path": "Gowin/demo1/constraints/surge_svf_sample.gsc",
+    "category": "fpga-project",
+    "bytes": 204,
+    "sha256": "a6cc49538e581a946a7f8cb9ccad75d348d6a03b840a543d84e7e28a51d9a9fe"
+  },
+  {
+    "path": "Gowin/demo1/constraints/timing.sdc",
+    "category": "fpga-project",
+    "bytes": 1067,
+    "sha256": "62eaf695d29efc011d05afec8e31e18dc5485026cac5c26669996957eb0c814a"
+  },
+  {
+    "path": "Gowin/demo1/constraints/uart_31002.cst",
+    "category": "fpga-project",
+    "bytes": 1017,
+    "sha256": "94f697669ac16458ae005480955f352a06f781d39bafd13b3fe7d731e7710eba"
+  },
+  {
+    "path": "Gowin/demo1/constraints/uart_31004.cst",
+    "category": "fpga-project",
+    "bytes": 1017,
+    "sha256": "77175cc6d4acc8dabfdd3c8f4a09ea84cc092470f6b7f1722de29ce852604e76"
   },
   {
     "path": "Gowin/demo1/desktop-tauri/.gitignore",
@@ -8022,6 +8064,2100 @@
     "sha256": "a41f17396c6558f65c3eaa00983902427f64c804e9d68d960972e820b5db928c"
   },
   {
+    "path": "Gowin/demo1/keyboard-latency/README.md",
+    "category": "documentation",
+    "bytes": 9786,
+    "sha256": "edad2c69ee2169e590283ba6756072e58fc9ba5aee4c634939f93890b5803cdb"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/baseline_sources.json",
+    "category": "support",
+    "bytes": 2437,
+    "sha256": "b2f6e815420e774d0ec0728e818a9e73bc59e33f1912c7dd0f1d2d14d0e32c9a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/build.tcl",
+    "category": "fpga-project",
+    "bytes": 198,
+    "sha256": "30cf16ba7e7871fe56f8dd1ebee9d806c38fdef35d35e3946609f2ce0a37eba9"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/calibration.json",
+    "category": "support",
+    "bytes": 4703,
+    "sha256": "954715056080b34ad0bdc255e900ddc5a912df06d5c3c62bcd5604e8404e2314"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency.fs",
+    "category": "firmware",
+    "bytes": 20199860,
+    "sha256": "3a75079156d8297e54b693b39644fd1981deadba368cbdc0e5d5e6e1047d02ec"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency.pin.html",
+    "category": "validation",
+    "bytes": 102994,
+    "sha256": "6cf30398ee0792cf46a319033ba294d7ec2f0e9c5459ecd9b5c26b6f83398c8d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency.power.html",
+    "category": "validation",
+    "bytes": 14039,
+    "sha256": "978d950f80148f4456400ca26bf0dc3abfefbe0dae2ed070a3cf25b87651f4fa"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency.rpt.html",
+    "category": "validation",
+    "bytes": 109449,
+    "sha256": "fd66ad0cc11c781886dfb557255e3614dd50f1c01ba001886fc26e4a35a099e2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency.rpt.txt",
+    "category": "validation",
+    "bytes": 87275,
+    "sha256": "2af9725b1d58f20524bc46d1e1963629d1a076584916d40f0ce4d17adf3aa478"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency.tr.html",
+    "category": "validation",
+    "bytes": 367,
+    "sha256": "eeaa979e7fa00a85268eea22acb223a10dfe638c72b20311f40058f5937423a6"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency_tr_cata.html",
+    "category": "validation",
+    "bytes": 8027,
+    "sha256": "22db559a02f785b1a669ed8e9d0c34d22845b0cb5df51d484efaa2308ccf7d94"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency_tr_content.html",
+    "category": "validation",
+    "bytes": 518104,
+    "sha256": "291b3c187643c293820b5f9ca99d266e5703b7e63e91d74e63dc4e2c153b59af"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/key_thresholds.hex",
+    "category": "rtl",
+    "bytes": 288,
+    "sha256": "08744000960c115a7df7751499ac37671e40ee962e11d90509e54dd8ee2fa4be"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/keyboard_latency.gprj",
+    "category": "fpga-project",
+    "bytes": 5176,
+    "sha256": "fed777efae2cd5edeb3f2af8c45f9612df5612287b5cedf1d57974dc09d0374f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/latency_model.py",
+    "category": "support",
+    "bytes": 3430,
+    "sha256": "4598e7dff90d062d34c4c761d17060a967fb46d3787449515b19370ed3c38f85"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/live_latency.py",
+    "category": "support",
+    "bytes": 7955,
+    "sha256": "1820a0e1631e0d1b8ed24f9493a8e9b0631f58f1b7918a5334a93c65a27b0453"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/note_profiles.hex",
+    "category": "rtl",
+    "bytes": 4160,
+    "sha256": "ccbcf0a6ae8aa0996495f4bafd5de45581ca6524f898a4b3cf1dc8a9979f69cb"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/prepare_latency.py",
+    "category": "support",
+    "bytes": 6686,
+    "sha256": "e17d5500daacd482243193cedb744986b0e045fddee3d2a00e390877ec3b0c17"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/program_verified.py",
+    "category": "support",
+    "bytes": 3625,
+    "sha256": "701b365411ec75ea025a092989c980579b7ec8c25778988938e6e53610c2b5ce"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/raw_bottom.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "092ebf43f16a96a185a6e3d2523d5bba78efab4ad5b03563c6cc4c954ebde12f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/raw_rest.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "26b83817f2a6e4e952210fa5f3150c89296e6ffc3ab79ba47abb396bffb121d8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/LatencyAudioSystem_spec.log",
+    "category": "validation",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/LatencyAxisTop_spec.log",
+    "category": "validation",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/LatencyI2sTx_spec.log",
+    "category": "validation",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/LatencyKeyThresholds_spec.log",
+    "category": "validation",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/LatencySupervisor_spec.log",
+    "category": "validation",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/LatencySynthTelemetry_spec.log",
+    "category": "validation",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/app_build.log",
+    "category": "validation",
+    "bytes": 160,
+    "sha256": "b562dca0d577d81aa15994f7860a73beef94cc8b2c5e4e9fab4dd1957e53aa4c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/app_validation.json",
+    "category": "validation",
+    "bytes": 3206,
+    "sha256": "3f7d53564cbe476a57ac087b36617f72bebe9a1e99a544d49784d91889f1eae8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/baseline_hashes.json",
+    "category": "validation",
+    "bytes": 4885,
+    "sha256": "1b79a0648c6828843f795270f5b5b4fabb84a44555f04b778fe6b77f48084765"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/board_before.log",
+    "category": "validation",
+    "bytes": 254,
+    "sha256": "24153bf8f38597231ad78a004563b504347b47d0bb560bfb37030f1723a90b8b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/build.log",
+    "category": "validation",
+    "bytes": 18176,
+    "sha256": "8cf925ce3d7369030d45750e5ada8a864db20dc33a2e60fc2901edabdf869483"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/design_contract.json",
+    "category": "validation",
+    "bytes": 7611,
+    "sha256": "1ac745952409915518219cfbfe891bda1c17e8caa90f456083fdbdd3706d4603"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/gowin_summary.json",
+    "category": "validation",
+    "bytes": 1930,
+    "sha256": "94da6c4daae1261d0e22017f618ee0baeec0d4b56b30ff4ff5f7a8a12216df60"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/interrupted_build.log",
+    "category": "validation",
+    "bytes": 16912,
+    "sha256": "55f3028233dcd3e151eaa0925121e25ad6e2daadb3158db6c08dff84a688d929"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_keyboard_audio.json",
+    "category": "validation",
+    "bytes": 6350,
+    "sha256": "2ee8362ee99b1c1562b2039d7a4a14dabc804146dc38b2f50ef05800aebb826d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_keyboard_audio_xelab.log",
+    "category": "validation",
+    "bytes": 2752,
+    "sha256": "292979378dcbf90cb6315dfda9b1cab1f9cd975afd90d515699f4123cbefa459"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_keyboard_audio_xsim.log",
+    "category": "validation",
+    "bytes": 1247,
+    "sha256": "9abeebff7dfa3d378b0fbc9eea1d63a3f512686af43a350a7a8e8b47382fa037"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_keyboard_audio_xvlog.log",
+    "category": "validation",
+    "bytes": 7836,
+    "sha256": "aa43fbddfdf13ee01348c3ffe0ff68881088fea0d796a74c484fbb83915b1b62"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_supervisor.json",
+    "category": "validation",
+    "bytes": 6168,
+    "sha256": "b6c44e614ebdb3fb809689c8de3104f541c05da7781d206df0fa1d7bafe8a6e1"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_supervisor_xelab.log",
+    "category": "validation",
+    "bytes": 681,
+    "sha256": "1762fd27fa9c5d593aaee965df87d155c93b83dbc0d2c886ab07f2ced11e0e77"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_supervisor_xsim.log",
+    "category": "validation",
+    "bytes": 861,
+    "sha256": "0d549f86c4324b9aa65225d9209a3f2d63324973b6feff03f7bca05f27b7b9c7"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/latency_supervisor_xvlog.log",
+    "category": "validation",
+    "bytes": 7828,
+    "sha256": "31473f39a3af28138d7b3d5a56249602e204935de50d823d5d12ade61390b13c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/live_serial.bin",
+    "category": "validation",
+    "bytes": 14248,
+    "sha256": "4781e71e0ebd3a2cae6bcacb15aac69242c123c83678d63dd75d6acb0829ffdf"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/live_test.log",
+    "category": "validation",
+    "bytes": 7348,
+    "sha256": "7345e4674a546a37b99f80e89a46d118d51cbcf7ae69487810ffe165f4d0a6b6"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/live_validation.json",
+    "category": "validation",
+    "bytes": 97238,
+    "sha256": "3d84205ff98497d1574bccf4e89fe2b86ac247a6e1bea003516b3eb8057ad000"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/missing_rom_build.log",
+    "category": "validation",
+    "bytes": 16996,
+    "sha256": "8192884b7667a768a2093c7ca30e2900a798802c6ab740dcc535ccbdbfe16540"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/missing_rom_xsim.log",
+    "category": "validation",
+    "bytes": 1630,
+    "sha256": "ee832e60e3480ab3beecd9d9df2f708364d050b3eb416b59591d3484f41c2428"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/preflash.json",
+    "category": "validation",
+    "bytes": 7916,
+    "sha256": "1db27811c7f137e8b0a65750a14ccaa0f981b3ddbd7150136dc384a66c0cf394"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/program.log",
+    "category": "validation",
+    "bytes": 6353,
+    "sha256": "fc20dd37d1fb40bd5d87b786df206207980532f2df5e002f1006ae6a46016a34"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/readability.log",
+    "category": "validation",
+    "bytes": 1072161,
+    "sha256": "d31780b20d42199c34a48f5dd73d46d494cb70326059085da0d9ef03a0ff035f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/reports/readability.md",
+    "category": "validation",
+    "bytes": 1072159,
+    "sha256": "a9c32d2c869625a5236f3cc321b45af4685e18f7dc5e966132e1bbeb1d9b4e62"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/rtl/synth/sine.mem",
+    "category": "rtl",
+    "bytes": 20480,
+    "sha256": "2522bcb0e7a75d2adb8124e0e5d6dd8a3fc30d720e432686406b56ff1037cfd0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/run_test.py",
+    "category": "support",
+    "bytes": 1480,
+    "sha256": "a727d59742265f00d2c2b64cd4c00bcb45bb74119975b180042d1fb0ead64564"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/sim/tb_latency_keyboard_audio.v",
+    "category": "rtl",
+    "bytes": 10302,
+    "sha256": "559482a141b681896cd3867dfe14824bf568e16dffd9bec2145d89b0736f09b2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/sim/tb_latency_supervisor.v",
+    "category": "rtl",
+    "bytes": 5711,
+    "sha256": "b015907882695cbc3ec4305c96e711b4be438aa3a4555b2d2b9f864988485901"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/sources.json",
+    "category": "support",
+    "bytes": 2881,
+    "sha256": "a2aa176edc9dd32ab192033565ed2500617943af0360119a6350f50fb5c3c9ad"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/LatencyAudioSystem_contract.json",
+    "category": "support",
+    "bytes": 11437,
+    "sha256": "592fffc729e855b745f508795fdc65e49583af3f399ff8d1ca52607abd5a0347"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/LatencyAxisTop_contract.json",
+    "category": "support",
+    "bytes": 5797,
+    "sha256": "a5f291027006a52ebe79c1b6cc70479eeb81dc714cec98522bc4b0175d3c55e7"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/LatencyI2sTx_contract.json",
+    "category": "support",
+    "bytes": 5513,
+    "sha256": "b06aa0e868d51e119a5edf863250becf30d1d9866de0b6a5635f7914a7640719"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/LatencyKeyThresholds_contract.json",
+    "category": "support",
+    "bytes": 4531,
+    "sha256": "5f6ca6074e79ecbe0de8ca31e5df05683dae6f0f4e20db995e1f967c19fce7c8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/LatencySupervisor_contract.json",
+    "category": "support",
+    "bytes": 8273,
+    "sha256": "d38508ebac2d408b9a5a2836d1597e3e16470a006deb061f6eb49c0cb3e8151a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/LatencySynthTelemetry_contract.json",
+    "category": "support",
+    "bytes": 8719,
+    "sha256": "a11fbfa988b2c907f9438a2b0daf55baa954c2714a95182018f4649e1d0de168"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/LatencyAudioSystem_spec.md",
+    "category": "documentation",
+    "bytes": 5278,
+    "sha256": "9055eb91706a91db8623b22dfe5cc6a774f1e4068883424078af5ac1fdfa81c1"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/LatencyAxisTop_spec.md",
+    "category": "documentation",
+    "bytes": 3110,
+    "sha256": "4057c26c2d2ed7ec6b5a52c8032a1be2fd6cd09abcacee23bedf025fa1538cb2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/LatencyI2sTx_spec.md",
+    "category": "documentation",
+    "bytes": 2946,
+    "sha256": "f33398498a71bfb1e67092fc8efaac6762202806d4c61409a9bedfb36fd87e7e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/LatencyKeyThresholds_spec.md",
+    "category": "documentation",
+    "bytes": 2542,
+    "sha256": "d360d75750c056b015ecd58b81e6e9ceb862e66db76f3b83a4c0a0f613cd881e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/LatencySupervisor_spec.md",
+    "category": "documentation",
+    "bytes": 4637,
+    "sha256": "74567dfe0b68bc61878b60e4d9985b3753584f3de9af18ae6fd0aca8c0b50eaf"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/LatencySynthTelemetry_spec.md",
+    "category": "documentation",
+    "bytes": 4126,
+    "sha256": "e96ee290fd4a49933ff7a0fbeef762f81a33fa24890e50b6b9c26c7b0c18c1bc"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyAudioSystem_onset.json5",
+    "category": "support",
+    "bytes": 621,
+    "sha256": "990783013bbe969e0fe0e9cb5d080f27d159e6ee019227722be0d6fd530a42c4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyAudioSystem_onset.svg",
+    "category": "support",
+    "bytes": 65759,
+    "sha256": "19319a9e19b77818450c53359ccc2a695650792e116caddd7ec9e86496aaea56"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyAxisTop_onset.json5",
+    "category": "support",
+    "bytes": 621,
+    "sha256": "990783013bbe969e0fe0e9cb5d080f27d159e6ee019227722be0d6fd530a42c4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyAxisTop_onset.svg",
+    "category": "support",
+    "bytes": 65759,
+    "sha256": "19319a9e19b77818450c53359ccc2a695650792e116caddd7ec9e86496aaea56"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyI2sTx_onset.json5",
+    "category": "support",
+    "bytes": 621,
+    "sha256": "990783013bbe969e0fe0e9cb5d080f27d159e6ee019227722be0d6fd530a42c4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyI2sTx_onset.svg",
+    "category": "support",
+    "bytes": 65759,
+    "sha256": "19319a9e19b77818450c53359ccc2a695650792e116caddd7ec9e86496aaea56"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyKeyThresholds_onset.json5",
+    "category": "support",
+    "bytes": 621,
+    "sha256": "990783013bbe969e0fe0e9cb5d080f27d159e6ee019227722be0d6fd530a42c4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencyKeyThresholds_onset.svg",
+    "category": "support",
+    "bytes": 65759,
+    "sha256": "19319a9e19b77818450c53359ccc2a695650792e116caddd7ec9e86496aaea56"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencySupervisor_onset.json5",
+    "category": "support",
+    "bytes": 621,
+    "sha256": "990783013bbe969e0fe0e9cb5d080f27d159e6ee019227722be0d6fd530a42c4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencySupervisor_onset.svg",
+    "category": "support",
+    "bytes": 65759,
+    "sha256": "19319a9e19b77818450c53359ccc2a695650792e116caddd7ec9e86496aaea56"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencySynthTelemetry_onset.json5",
+    "category": "support",
+    "bytes": 621,
+    "sha256": "990783013bbe969e0fe0e9cb5d080f27d159e6ee019227722be0d6fd530a42c4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/spec/src/waveforms/LatencySynthTelemetry_onset.svg",
+    "category": "support",
+    "bytes": 65759,
+    "sha256": "19319a9e19b77818450c53359ccc2a695650792e116caddd7ec9e86496aaea56"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/src/LatencyAudioSystem.v",
+    "category": "rtl",
+    "bytes": 5443,
+    "sha256": "c797d39a0b245ae635e7e0bbf272b9112fb3b8169c8202cb6f71d267ea455377"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/src/LatencyAxisTop.v",
+    "category": "rtl",
+    "bytes": 8640,
+    "sha256": "c6c9e143981217826b212a3fd7775f349bba2cccb115881e40b198c7814a72f0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/src/LatencyI2sTx.v",
+    "category": "rtl",
+    "bytes": 3832,
+    "sha256": "8f297a611df40fcc8ea8e557b0fb4f41ddbdc295893cc5087298290b661c86d4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/src/LatencyKeyThresholds.v",
+    "category": "rtl",
+    "bytes": 1646,
+    "sha256": "636c8b762b91c0239d48b645e6b4297048a113fe6eabda78823c990a3af43ba0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/src/LatencySupervisor.v",
+    "category": "rtl",
+    "bytes": 17718,
+    "sha256": "a1bb2a0ae67a2b4a87d6356526be9ce726f6735e299feaaedf0dd47a3694a9e1"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/src/LatencySynthTelemetry.v",
+    "category": "rtl",
+    "bytes": 2972,
+    "sha256": "1a22697bfdd362b8256c3a83314bb579f46c1f44d9186cd39d38deb4881ca7d5"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/studio_packets.hex",
+    "category": "rtl",
+    "bytes": 3692,
+    "sha256": "5d568134f2f12f0cf4ee81e5892e4e744249357b300226ecbd948a9065a821b3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/summarize_board.py",
+    "category": "support",
+    "bytes": 2893,
+    "sha256": "55bf7be74346317bc92fdc8366ddef95b326777c99291a32cb4f97599f0ed3f4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/workflow-state.json",
+    "category": "support",
+    "bytes": 2290,
+    "sha256": "cf8b4f370d101265084be30cd9e3c81d6ffbece503e390ff7f94fdaceb3c573d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-latency/write_latency_specs.py",
+    "category": "support",
+    "bytes": 7322,
+    "sha256": "190728289d0d0837672297154d7c579197dd52573fad77ab81add63379d51487"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/README.md",
+    "category": "documentation",
+    "bytes": 9505,
+    "sha256": "1796499938f7b61fb5143c0efade003c0a48f6da26432b05beb111935198c009"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/baseline_sources.json",
+    "category": "support",
+    "bytes": 1986,
+    "sha256": "61ff3f9ed3c0a1e4118374a43c5c22184982f2f616dbe6ccef935ac15059224d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/build.tcl",
+    "category": "fpga-project",
+    "bytes": 201,
+    "sha256": "e4c9e2508610a646840ac68ec6847e1e84d4e225fd4985b088b8d5a3d56fd2ba"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/calibration.json",
+    "category": "support",
+    "bytes": 4703,
+    "sha256": "954715056080b34ad0bdc255e900ddc5a912df06d5c3c62bcd5604e8404e2314"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/configure_cores.py",
+    "category": "support",
+    "bytes": 1984,
+    "sha256": "be0b44c3368eb0ecafa702e9a745f415769d9acc629551de10a5c91a8ce91ebe"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/core_counts.json",
+    "category": "support",
+    "bytes": 93,
+    "sha256": "2c65c9ad4bbd322751f76c92f478f7f2b2fafa6641f94ea4356ebc423a547d2a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/equivalence_profiles.hex",
+    "category": "rtl",
+    "bytes": 4160,
+    "sha256": "1a57a3f7459746f55dfa1b18396266e95b3c7feac6a9a2bcfa6064b0e57029d4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/equivalence_waves.hex",
+    "category": "rtl",
+    "bytes": 12288,
+    "sha256": "3278020f9f945ad6ea3b8133f328265e924597a7f3f36e905bc69cfaa970dee3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/key_thresholds.hex",
+    "category": "rtl",
+    "bytes": 288,
+    "sha256": "08744000960c115a7df7751499ac37671e40ee962e11d90509e54dd8ee2fa4be"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/keyboard_parallel.gprj",
+    "category": "fpga-project",
+    "bytes": 4486,
+    "sha256": "31eb237234d9f8ffa6c644195fd3403d56e29abd7d910f5d00b6267ab203faca"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/note_profiles.hex",
+    "category": "rtl",
+    "bytes": 4160,
+    "sha256": "ccbcf0a6ae8aa0996495f4bafd5de45581ca6524f898a4b3cf1dc8a9979f69cb"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/parallel_model.py",
+    "category": "support",
+    "bytes": 3295,
+    "sha256": "25b32396a85e79432b5bc948bf68b74e71d0f68e71c77f14a4e0f506d5d6e70b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/prepare_parallel.py",
+    "category": "support",
+    "bytes": 7217,
+    "sha256": "005e40179fc187bda8158b7d1d898f51d45a3809b76ac5d603b97ed48b14f1a1"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/program_verified.py",
+    "category": "support",
+    "bytes": 3857,
+    "sha256": "1c2552bbaa7a59b655216db7e0028bba13ba4f430b0eb42fbabda0a05e9a104f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/raw_bottom.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "092ebf43f16a96a185a6e3d2523d5bba78efab4ad5b03563c6cc4c954ebde12f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/raw_rest.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "26b83817f2a6e4e952210fa5f3150c89296e6ffc3ab79ba47abb396bffb121d8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/rtl/synth/sine.mem",
+    "category": "rtl",
+    "bytes": 20480,
+    "sha256": "2522bcb0e7a75d2adb8124e0e5d6dd8a3fc30d720e432686406b56ff1037cfd0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/run_matrix.py",
+    "category": "support",
+    "bytes": 1271,
+    "sha256": "8b4096a3f136b8296b9f080e289d69699cdb381e9988a6fd87f76294cdf6db22"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/run_test.py",
+    "category": "support",
+    "bytes": 1480,
+    "sha256": "a727d59742265f00d2c2b64cd4c00bcb45bb74119975b180042d1fb0ead64564"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_baseline_cycles.v",
+    "category": "rtl",
+    "bytes": 1367,
+    "sha256": "f413e8d1efd1f631084821a62fb0442aca4f544567344f900a43c10f7beee79e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_parallel_cores_1.v",
+    "category": "rtl",
+    "bytes": 5632,
+    "sha256": "544caaaf790bc0ce3ea09ed64ab2d213c1a86c6f7f547e05ac30662dc3f36c1a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_parallel_cores_2.v",
+    "category": "rtl",
+    "bytes": 5632,
+    "sha256": "2283364b88184ef423ad0d65498580f8730bec736e44047e3f0ce699afc579f2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_parallel_cores_3.v",
+    "category": "rtl",
+    "bytes": 5632,
+    "sha256": "4576091c9790477807b13a807ad533b6105f753ce7354040e9eb76bfad3f0742"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_parallel_cores_4.v",
+    "category": "rtl",
+    "bytes": 5632,
+    "sha256": "3d5d3d94275f412544b7533051e1b1c48585cce9d439948e69906f190625319f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_parallel_cycles.v",
+    "category": "rtl",
+    "bytes": 1397,
+    "sha256": "1035f2975a13eec3e076eb4b5c034a1810e47c003a2dd8169e1f41046cf1fa89"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_parallel_equivalence.v",
+    "category": "rtl",
+    "bytes": 5541,
+    "sha256": "65a30660e090426ed853b497ccd2ae8f3a0bc138ca10afa045cf4a79432130b4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_parallel_keyboard_audio.v",
+    "category": "rtl",
+    "bytes": 7798,
+    "sha256": "965a3b1dbb0cf19c47c18cf4c803b40102e6fce3e8c015ee95209acc4f711470"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sim/tb_pool_backpressure.v",
+    "category": "rtl",
+    "bytes": 3202,
+    "sha256": "fae35c87d70de4f1b3c3e1220663e655c1e83e573026d0ef94be3e83dad5fbfa"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/sources.json",
+    "category": "support",
+    "bytes": 2437,
+    "sha256": "b2f6e815420e774d0ec0728e818a9e73bc59e33f1912c7dd0f1d2d14d0e32c9a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/AxisComputePool_contract.json",
+    "category": "support",
+    "bytes": 6120,
+    "sha256": "6704b73e00a327fb461edab70a81d28cb3ec2c152a6386ae7002a206e9625c47"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/ParallelAudioSystem_contract.json",
+    "category": "support",
+    "bytes": 10800,
+    "sha256": "fa0a490c1a0dc299d1bc224223dc5be88b2aaac38a8492a32695d0b9ba9709b2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/ParallelAxisTop_contract.json",
+    "category": "support",
+    "bytes": 5740,
+    "sha256": "8f9cd4a39fdb3a20bf5d6ef8abf96c0ad41a5e6646dba6f7c7ffb765f60aec73"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/ParallelSynthEngine_contract.json",
+    "category": "support",
+    "bytes": 9121,
+    "sha256": "0a35bb86efe79509bccf3a8628e4c7d2134c67a2a9753bd1b2e4bac40865f57e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/ParallelVoiceChain_contract.json",
+    "category": "support",
+    "bytes": 4921,
+    "sha256": "d04f12d98dba769ee7a8ce86310d3c3d35472f62aee0efa8ade4ee33a030aadd"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/SynthTaskPrefetch_contract.json",
+    "category": "support",
+    "bytes": 5519,
+    "sha256": "d964af46d0163b6919530b89d967a70f9123c6a4e6f6f470f43d5f2ad5b4bf6a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/AxisComputePool_spec.md",
+    "category": "documentation",
+    "bytes": 3727,
+    "sha256": "fb0f7ca52015a1ca5a25bb00eddfb5f025ce792fb385f78267154d6eefa03f48"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/ParallelAudioSystem_spec.md",
+    "category": "documentation",
+    "bytes": 5348,
+    "sha256": "f11b8d86abe6030474c6632abe1f5f0e5053dfa2084b6ef20a5a76f96f463077"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/ParallelAxisTop_spec.md",
+    "category": "documentation",
+    "bytes": 3379,
+    "sha256": "2f558e51e5f216e4f706ae1e60c0e3f31af63439145cf090bc5b1f50125f3f43"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/ParallelSynthEngine_spec.md",
+    "category": "documentation",
+    "bytes": 4951,
+    "sha256": "885b884f19b0a1bc533b9b14027ea3f8ab6b0745e8823a2d1364bb673019b6be"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/ParallelVoiceChain_spec.md",
+    "category": "documentation",
+    "bytes": 3089,
+    "sha256": "4d740de5457dafbbfc9063704bee6bc9938755c0bc174b2dcdcb3ec8c96ef4f2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/SynthTaskPrefetch_spec.md",
+    "category": "documentation",
+    "bytes": 3289,
+    "sha256": "399c89cfa891716d433fe7267120bca65624dd3c479f29449c30eb331bd3598f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/AxisComputePool_handshake.json5",
+    "category": "support",
+    "bytes": 402,
+    "sha256": "d3e70f022577f4c45d199037a868a4efea7a7f25ad7f2154f7f432cdd4bb28f4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/AxisComputePool_handshake.svg",
+    "category": "support",
+    "bytes": 57568,
+    "sha256": "0707fbdd2a97692b2167d2a84429a7a3d03baff50ea5a4c98de6556eb56cdde3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelAudioSystem_handshake.json5",
+    "category": "support",
+    "bytes": 396,
+    "sha256": "fcc6793b69ee8d6dec4a6adc3ca388c9297fe08491a9bd8dc1b4fb2238dca8f8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelAudioSystem_handshake.svg",
+    "category": "support",
+    "bytes": 57561,
+    "sha256": "7937380a6d1c759caf9a14d31c4d93545f9be5a9e30dad549cf7f8b1944c519a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelAxisTop_handshake.json5",
+    "category": "support",
+    "bytes": 396,
+    "sha256": "fcc6793b69ee8d6dec4a6adc3ca388c9297fe08491a9bd8dc1b4fb2238dca8f8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelAxisTop_handshake.svg",
+    "category": "support",
+    "bytes": 57561,
+    "sha256": "7937380a6d1c759caf9a14d31c4d93545f9be5a9e30dad549cf7f8b1944c519a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelSynthEngine_handshake.json5",
+    "category": "support",
+    "bytes": 396,
+    "sha256": "fcc6793b69ee8d6dec4a6adc3ca388c9297fe08491a9bd8dc1b4fb2238dca8f8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelSynthEngine_handshake.svg",
+    "category": "support",
+    "bytes": 57561,
+    "sha256": "7937380a6d1c759caf9a14d31c4d93545f9be5a9e30dad549cf7f8b1944c519a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelVoiceChain_handshake.json5",
+    "category": "support",
+    "bytes": 402,
+    "sha256": "d3e70f022577f4c45d199037a868a4efea7a7f25ad7f2154f7f432cdd4bb28f4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/ParallelVoiceChain_handshake.svg",
+    "category": "support",
+    "bytes": 57568,
+    "sha256": "0707fbdd2a97692b2167d2a84429a7a3d03baff50ea5a4c98de6556eb56cdde3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/SynthTaskPrefetch_handshake.json5",
+    "category": "support",
+    "bytes": 396,
+    "sha256": "fcc6793b69ee8d6dec4a6adc3ca388c9297fe08491a9bd8dc1b4fb2238dca8f8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/spec/src/waveforms/SynthTaskPrefetch_handshake.svg",
+    "category": "support",
+    "bytes": 57561,
+    "sha256": "7937380a6d1c759caf9a14d31c4d93545f9be5a9e30dad549cf7f8b1944c519a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/src/AxisComputePool.v",
+    "category": "rtl",
+    "bytes": 5516,
+    "sha256": "b7aeaaa090d425d76af88c9bd569c0e0effb48ceb48dd9c7bb1492bda3a16fb6"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/src/ParallelAudioSystem.v",
+    "category": "rtl",
+    "bytes": 5146,
+    "sha256": "44634524fd4c0e96b0e619e07286f3f0dca8f5b74190bff69fa428a4d29e2265"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/src/ParallelAxisTop.v",
+    "category": "rtl",
+    "bytes": 7361,
+    "sha256": "78ca00c09a0afad7aa690844f68028b7532266e794d466309a7d7b742115c605"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/src/ParallelSynthEngine.v",
+    "category": "rtl",
+    "bytes": 14453,
+    "sha256": "14b8e1ba7b66d83465fadce9a0b50bc2c0203eb16ec68ce3d40bf6a49affb87a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/src/ParallelVoiceChain.v",
+    "category": "rtl",
+    "bytes": 7301,
+    "sha256": "939446c41c44a4617644de5624af340932c2fc0320b252b371ef5c3b97590ecf"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/src/SynthTaskPrefetch.v",
+    "category": "rtl",
+    "bytes": 3660,
+    "sha256": "5ea7fbe162044411d86360ca1036ca12802caa34922bb1f415db8e0c8a900a56"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/studio_packets.hex",
+    "category": "rtl",
+    "bytes": 3692,
+    "sha256": "5d568134f2f12f0cf4ee81e5892e4e744249357b300226ecbd948a9065a821b3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/verify_flash.py",
+    "category": "support",
+    "bytes": 4175,
+    "sha256": "5a3f6925caf220651c648e847ba2816b50a196a7e14a508ced080289266bab82"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/workflow-state.json",
+    "category": "support",
+    "bytes": 1774,
+    "sha256": "a73718eae463e3d234620bd1f3532966951b8552f97794757bc79e5102aa511e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-parallel/write_parallel_specs.py",
+    "category": "support",
+    "bytes": 7927,
+    "sha256": "827d19f7993c7ebdb8eb54ff7518f0e339f8e4f24463c8dfcd513fefe9d9e3bf"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/README.md",
+    "category": "documentation",
+    "bytes": 5009,
+    "sha256": "df7f735c9b3012d38bc000a9cb4ff36fd7749e930599db4429cf1f606512886c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/build.tcl",
+    "category": "fpga-project",
+    "bytes": 264,
+    "sha256": "f1bd385bfd7a0ec2865255e941455bcaa5ddec256693530e5b37b46f8e06a21c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/calibration.json",
+    "category": "support",
+    "bytes": 4703,
+    "sha256": "954715056080b34ad0bdc255e900ddc5a912df06d5c3c62bcd5604e8404e2314"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/document.py",
+    "category": "support",
+    "bytes": 6397,
+    "sha256": "0ffd5201e0775e1d7267a5b78522eef54fb253d79a4353bf79159cee25fb9e80"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/key_thresholds.hex",
+    "category": "rtl",
+    "bytes": 288,
+    "sha256": "08744000960c115a7df7751499ac37671e40ee962e11d90509e54dd8ee2fa4be"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/keyboard_axis.gprj",
+    "category": "fpga-project",
+    "bytes": 3531,
+    "sha256": "656a5f4c13151e01d9decde4051d4c8465a64fff7a831de587164265c96903b0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/loudness_vectors.txt",
+    "category": "support",
+    "bytes": 1637775,
+    "sha256": "e8cf689a357b9c4dfd8eb2befaef53bd548eec3e61895c2a911eb6f6c06ba914"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/model.py",
+    "category": "support",
+    "bytes": 5177,
+    "sha256": "0d5d7b2ac1c29600fdb8e3b9f7e042d1615d54746f7b79a22481919033e8a01f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/normalization_case.txt",
+    "category": "support",
+    "bytes": 985,
+    "sha256": "37f71066a1e5f52974d91737d7d700c911ab300e642f968e9c0ff36c21aabdf4"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/note_profiles.hex",
+    "category": "rtl",
+    "bytes": 3072,
+    "sha256": "06b37ae3b911ff200a606e91189bcfbede657bf80ca0904c00ba93067ca4e78e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/pipeline_repair.py",
+    "category": "support",
+    "bytes": 2523,
+    "sha256": "49d054ec43d4431f5ec9d59cf63d25fc2dca69cf0bf3d78db0beae9329c80750"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/prepare.py",
+    "category": "support",
+    "bytes": 8235,
+    "sha256": "5d96e253a168fe90fd9e11ec15c7ffcfa138a1f020ae36b4a5ccf55dc8682819"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/prepare_tests.py",
+    "category": "support",
+    "bytes": 2424,
+    "sha256": "61b93b3f57a8a6377716bc94bf6e244747acd8b9d496091aaa9b3d0b13bf059c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/program_verified.py",
+    "category": "support",
+    "bytes": 1422,
+    "sha256": "5272966a70fed8cda05fb14e3c8ca4c9ccd023e9653bd1feeda947a06b36637a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/raw_bottom.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "092ebf43f16a96a185a6e3d2523d5bba78efab4ad5b03563c6cc4c954ebde12f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/raw_rest.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "26b83817f2a6e4e952210fa5f3150c89296e6ffc3ab79ba47abb396bffb121d8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/rtl/synth/sine.mem",
+    "category": "rtl",
+    "bytes": 20480,
+    "sha256": "2522bcb0e7a75d2adb8124e0e5d6dd8a3fc30d720e432686406b56ff1037cfd0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/run_sim.py",
+    "category": "support",
+    "bytes": 1831,
+    "sha256": "69e2e81cdb7808ce3a51305a8fae23c7677da86d50b9f56a14fa9ddf8f1b774b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/sim/tb_keyboard_audio.v",
+    "category": "rtl",
+    "bytes": 6181,
+    "sha256": "ca9dc1e49b630e23a2ad59cc3d202ec2bb3258f015a8c49bbf80cd6aea16959f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/sim/tb_keyboard_loudness.v",
+    "category": "rtl",
+    "bytes": 1782,
+    "sha256": "2b1755852447cda7588a8ca163c12ff7452f1c435eff0c6d32a0d06f78346c8c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/sim/tb_keyboard_mixer.v",
+    "category": "rtl",
+    "bytes": 1866,
+    "sha256": "b7fa8d469d46ffb81ce8d3eb80b558ac45adddf644cc129328d7fe2fc9b85ff2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/sources.json",
+    "category": "support",
+    "bytes": 1877,
+    "sha256": "e02dd3d03649128163441027bea6bbe9a9873f84a767f63f24bd86484d17ecae"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardAudioSystem_contract.json",
+    "category": "support",
+    "bytes": 11321,
+    "sha256": "e859439e5b9f802992c249e2a5a29745dd135b28d87bdab688e2dfa46961b0b8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardAxisTop_contract.json",
+    "category": "support",
+    "bytes": 5552,
+    "sha256": "ca336151488e590f9da350f7f4c261d6ca9140cf69ff70bf5405df6537bb3da9"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardFrameMixer_contract.json",
+    "category": "support",
+    "bytes": 5619,
+    "sha256": "2945b6aedbb74b117ddb70ed1d6ebe200bd648216196fabd034fc12b8e8958e3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardLoudness_contract.json",
+    "category": "support",
+    "bytes": 4937,
+    "sha256": "36f8a7ea4433a569196989a3472fd6e6489fcb78b1f81ff6e7e0c819a1bbbaf1"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardSynthEngine_contract.json",
+    "category": "support",
+    "bytes": 9363,
+    "sha256": "dc9ed3ac83d8bf847948d5fc8e909d982dd50c2828c426927c04d9ed0e26b8c7"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardSynthTelemetry_contract.json",
+    "category": "support",
+    "bytes": 6767,
+    "sha256": "3bb7e7c7b6d1b8417f28bebf3c991f777c20b01dcda5504e9b7de6ce0b52a79a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardThresholds_contract.json",
+    "category": "support",
+    "bytes": 3417,
+    "sha256": "1cb5604dcb6fcf315bf1773a2e4c769b451722fc5a9f779355d148c2b26bfe03"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/KeyboardVoiceBridge_contract.json",
+    "category": "support",
+    "bytes": 4672,
+    "sha256": "c3b6163aeca8bbf7a0d7342e34a094cdf1956401b32dc12df15be41960df14aa"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/sim/tb_keyboard_audio_spec.md",
+    "category": "documentation",
+    "bytes": 1991,
+    "sha256": "2b67983b87a72beb488b2cfa77fd1b708fbac6a2956590c1d18d0116dbf3409b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/sim/tb_keyboard_loudness_spec.md",
+    "category": "documentation",
+    "bytes": 2184,
+    "sha256": "eb1f49e1dff587fa6e005f4d3f7fbab8a791afdaf7c4fe1a90633dfc056427cd"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/sim/waveforms/tb_keyboard_audio_pipeline.json5",
+    "category": "support",
+    "bytes": 232,
+    "sha256": "b5db13138f1cf15818d6c788602c8891fc83421c4d72a25ed464fb3bc1f2546e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/sim/waveforms/tb_keyboard_audio_pipeline.svg",
+    "category": "support",
+    "bytes": 54804,
+    "sha256": "db0284059e8708ab9c646bc494beb66312d8e6097e1298c3a29d44ccf8c76b10"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/sim/waveforms/tb_keyboard_loudness_pipeline.json5",
+    "category": "support",
+    "bytes": 219,
+    "sha256": "9470588859a06d9d63924e920b95309d8366f9bdb5f48c81ab0680f62c11996c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/sim/waveforms/tb_keyboard_loudness_pipeline.svg",
+    "category": "support",
+    "bytes": 54339,
+    "sha256": "4d398bc6d815b8caab33e74e33aa5e6cd219396cd7984308a57424d70642145b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardAudioSystem_spec.md",
+    "category": "documentation",
+    "bytes": 5554,
+    "sha256": "46c23d9c1ebf889267d86f6b41a063511a6ddc603d1fd44c2ab51f1de8b2ce9a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardAxisTop_spec.md",
+    "category": "documentation",
+    "bytes": 3257,
+    "sha256": "b6313f248e429aa36f537891e473f2e48b18c1126bd38b299a980cffa12f888a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardFrameMixer_spec.md",
+    "category": "documentation",
+    "bytes": 3478,
+    "sha256": "2911ce4466ff466db49259f7dddc0d69443e8da1d2584cfb9ceb060c556af563"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardLoudness_spec.md",
+    "category": "documentation",
+    "bytes": 3009,
+    "sha256": "6b530433e75b080862039de9937dfe4b5d8b7c05f9f1ce95635592925a676b4e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardSynthEngine_spec.md",
+    "category": "documentation",
+    "bytes": 4887,
+    "sha256": "b0e2be768c64d0852ecf3ee24a37311ce12e35112c0cee4319e85a548c272647"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardSynthTelemetry_spec.md",
+    "category": "documentation",
+    "bytes": 3608,
+    "sha256": "29d451f6d03e84b1d961de6b673662281b460caed8eadadd88aa04e3c45b02fa"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardThresholds_spec.md",
+    "category": "documentation",
+    "bytes": 2307,
+    "sha256": "291b76b1a7a44e3fa4f9a744e9481dbd43848797f4199d4b714e481b7422713e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/KeyboardVoiceBridge_spec.md",
+    "category": "documentation",
+    "bytes": 2813,
+    "sha256": "211aecd40eccd1f4687323bc1ad4af37e88ae20f037e8b1db073afb3009e1e92"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardAudioSystem_pipeline.json5",
+    "category": "support",
+    "bytes": 581,
+    "sha256": "d6975feab34ed5f2edb0138f1e030ff2f93f68b51b1441326a4a0b0b21d99e4b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardAudioSystem_pipeline.svg",
+    "category": "support",
+    "bytes": 61338,
+    "sha256": "0eb75246b725e557daec7e282a1bdafb62d41a8e629c24765ffe45853499526f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardAxisTop_pipeline.json5",
+    "category": "support",
+    "bytes": 358,
+    "sha256": "724938c192ca981ec68015362b60e4778c6f58eb58d8a1aed34204472000b9c2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardAxisTop_pipeline.svg",
+    "category": "support",
+    "bytes": 57422,
+    "sha256": "6cb50b464629918d4e23d6d83ff9678ea39fd12a320dea0069eb9e6b1f2722c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardFrameMixer_pipeline.json5",
+    "category": "support",
+    "bytes": 581,
+    "sha256": "d6975feab34ed5f2edb0138f1e030ff2f93f68b51b1441326a4a0b0b21d99e4b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardFrameMixer_pipeline.svg",
+    "category": "support",
+    "bytes": 61338,
+    "sha256": "0eb75246b725e557daec7e282a1bdafb62d41a8e629c24765ffe45853499526f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardLoudness_pipeline.json5",
+    "category": "support",
+    "bytes": 219,
+    "sha256": "9470588859a06d9d63924e920b95309d8366f9bdb5f48c81ab0680f62c11996c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardLoudness_pipeline.svg",
+    "category": "support",
+    "bytes": 54339,
+    "sha256": "4d398bc6d815b8caab33e74e33aa5e6cd219396cd7984308a57424d70642145b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardSynthEngine_pipeline.json5",
+    "category": "support",
+    "bytes": 581,
+    "sha256": "d6975feab34ed5f2edb0138f1e030ff2f93f68b51b1441326a4a0b0b21d99e4b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardSynthEngine_pipeline.svg",
+    "category": "support",
+    "bytes": 61338,
+    "sha256": "0eb75246b725e557daec7e282a1bdafb62d41a8e629c24765ffe45853499526f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardSynthTelemetry_pipeline.json5",
+    "category": "support",
+    "bytes": 293,
+    "sha256": "52518c2b953f42d3de498c22d2ba09e1aab22219159c4f96a882b0623b5327ac"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardSynthTelemetry_pipeline.svg",
+    "category": "support",
+    "bytes": 56116,
+    "sha256": "0714ad7243bdf6e08a667f7265e97c045b4d33bdba92b5177eb4215cdb3ee411"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardThresholds_pipeline.json5",
+    "category": "support",
+    "bytes": 304,
+    "sha256": "bbe43104f8ba05b47826ae95ac8afa26ac65175dc133990fd7db11c86f8784b3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardThresholds_pipeline.svg",
+    "category": "support",
+    "bytes": 56127,
+    "sha256": "8de2fd4232a2bd67eb71a750987593f63d4e175828656fc33232a5426f34718f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardVoiceBridge_pipeline.json5",
+    "category": "support",
+    "bytes": 359,
+    "sha256": "00ed02e569373afe364e79c1cbb2f493b76625d0b2222f5fa13ecedbd51e6507"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/src/waveforms/KeyboardVoiceBridge_pipeline.svg",
+    "category": "support",
+    "bytes": 57423,
+    "sha256": "2bde4d01ead2a62db38db928bba600a27afdc73e07fa585d37638d8ba44049ae"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/tb_keyboard_audio_contract.json",
+    "category": "support",
+    "bytes": 2344,
+    "sha256": "d032a5d0cfc6b6009ec11640c7b17672c829fe159196a28060ebea9db54236ab"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/spec/tb_keyboard_loudness_contract.json",
+    "category": "support",
+    "bytes": 2532,
+    "sha256": "17c998389cb602ae9c63659d016b1346aa88cb9e18b11c94a72c4635ef5b5031"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardAudioSystem.v",
+    "category": "rtl",
+    "bytes": 4828,
+    "sha256": "6827748fbac6768edf8879367ca2bd566439282b80282183f2b90e0cbb817712"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardAxisTop.v",
+    "category": "rtl",
+    "bytes": 5647,
+    "sha256": "4e2958da5b06047b7096aff9741d6836a4970de043d2b3d0b1b03bb69d4bd0aa"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardFrameMixer.v",
+    "category": "rtl",
+    "bytes": 1499,
+    "sha256": "ea055302651df466f33c6cc2dbf463e78525154d559e6a7b1982835ef71738f2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardLoudness.v",
+    "category": "rtl",
+    "bytes": 4683,
+    "sha256": "a0c760c42674515811b19b11186e89a832b2e40f0c37e23fdb06c71f451afae0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardSynthEngine.v",
+    "category": "rtl",
+    "bytes": 14609,
+    "sha256": "c08d147cde2d2f92f1d3b1816949882402aee874d0cf834f848c72aef47de469"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardSynthTelemetry.v",
+    "category": "rtl",
+    "bytes": 2739,
+    "sha256": "519275c8240461365594889b31e4ef350332da5b79b9f5561f3c631200400178"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardThresholds.v",
+    "category": "rtl",
+    "bytes": 1299,
+    "sha256": "a31ee4a90d2bb4c26602801701de3f7f7c1fb4cad6629df1cb3eefa25a850b6e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/KeyboardVoiceBridge.v",
+    "category": "rtl",
+    "bytes": 2555,
+    "sha256": "11bd8bdaeb06ea5ec7fec9eae7dd2ac6664e971194cf476750baab5001aaa292"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/keyboard_axis.cst",
+    "category": "fpga-project",
+    "bytes": 1484,
+    "sha256": "9a728dc93f8714b3d4651d44da8c1acdd0eadf752f34653f79ca261243539fd9"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/src/keyboard_axis.sdc",
+    "category": "fpga-project",
+    "bytes": 63,
+    "sha256": "7c00f9b9fc58a81469a359608d512c41196d605d39ed9bcac055433e8fb03bc3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/verify_board.py",
+    "category": "support",
+    "bytes": 2896,
+    "sha256": "6a3e40397d22f5f053903b2f4f572d42ea45ca543980705ecb436769444aee24"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/workflow-state.json",
+    "category": "support",
+    "bytes": 4182,
+    "sha256": "8abfe67d3ca9b1cc1e051c9bc6073d62226d39ac05053f247d13d7a27758fe2d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-performance/write_specs.py",
+    "category": "support",
+    "bytes": 6029,
+    "sha256": "1b681f4e69cf427f80d8ddadc4e215f13454844335b574e68387ebea28ff0dca"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/build.tcl",
+    "category": "fpga-project",
+    "bytes": 259,
+    "sha256": "d2015fee78ca1097fe4eaa6647c47bddcb8f07bde364c3cbc3ef03a4fbb99080"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/calibration.json",
+    "category": "support",
+    "bytes": 4703,
+    "sha256": "954715056080b34ad0bdc255e900ddc5a912df06d5c3c62bcd5604e8404e2314"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/connect_control.py",
+    "category": "support",
+    "bytes": 3375,
+    "sha256": "69295195df9a1acececbec6fe99a7a34cd581d44790f062b748e115cd929dd1f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/control_packets.hex",
+    "category": "rtl",
+    "bytes": 19092,
+    "sha256": "af88f01f5fc36b4f09cce8789a2391cea5b038f2701c6be5dda7932228346123"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/generate_core.py",
+    "category": "support",
+    "bytes": 12105,
+    "sha256": "ad769315c5ca2e6a06f02acc4010b10c4dc4d424d1bcca33965997edf14fcc3d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/key_thresholds.hex",
+    "category": "rtl",
+    "bytes": 288,
+    "sha256": "08744000960c115a7df7751499ac37671e40ee962e11d90509e54dd8ee2fa4be"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/keyboard_axis.gprj",
+    "category": "fpga-project",
+    "bytes": 3703,
+    "sha256": "9f1353598f89eac92cfc07ea13a96e921a0a7b71f94ac799d44ec74849c12e25"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/mix_vectors.hex",
+    "category": "rtl",
+    "bytes": 17600,
+    "sha256": "81063f9647b1369cd598494e95e897b534da06c1e65bd254f422fd662f67fa83"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/note_profiles.hex",
+    "category": "rtl",
+    "bytes": 4160,
+    "sha256": "ccbcf0a6ae8aa0996495f4bafd5de45581ca6524f898a4b3cf1dc8a9979f69cb"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/prepare_studio_tests.py",
+    "category": "support",
+    "bytes": 3971,
+    "sha256": "72ba331f981fee1d1da9c0055bbc439c103ea80330cda0b0e8bea728c52eb7c0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/program_verified.py",
+    "category": "support",
+    "bytes": 1593,
+    "sha256": "6cef66152bb71461cf38b0c14f82983e312a5e288b697046f1784796e49f7d4a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/raw_bottom.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "092ebf43f16a96a185a6e3d2523d5bba78efab4ad5b03563c6cc4c954ebde12f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/raw_rest.hex",
+    "category": "rtl",
+    "bytes": 160,
+    "sha256": "26b83817f2a6e4e952210fa5f3150c89296e6ffc3ab79ba47abb396bffb121d8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/refine_studio.py",
+    "category": "support",
+    "bytes": 3315,
+    "sha256": "beb5ce1713e82905c6dec2ea07b0ab5d78aa1fefa03e5054e47c5b4a26616d69"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/rtl/synth/sine.mem",
+    "category": "rtl",
+    "bytes": 20480,
+    "sha256": "2522bcb0e7a75d2adb8124e0e5d6dd8a3fc30d720e432686406b56ff1037cfd0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/run_sim.py",
+    "category": "support",
+    "bytes": 1831,
+    "sha256": "69e2e81cdb7808ce3a51305a8fae23c7677da86d50b9f56a14fa9ddf8f1b774b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/run_unit.py",
+    "category": "support",
+    "bytes": 781,
+    "sha256": "d0fddeba449f295a5a2666cce5e50f53f922fee767885c8fb90d44a07e85833e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/sim/tb_keyboard_audio.v",
+    "category": "rtl",
+    "bytes": 7789,
+    "sha256": "04c00e5c09463179c241f1482474dd6f438daf141cacabd8f9b5fc3414484c25"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/sim/tb_keyboard_loudness.v",
+    "category": "rtl",
+    "bytes": 1782,
+    "sha256": "2b1755852447cda7588a8ca163c12ff7452f1c435eff0c6d32a0d06f78346c8c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/sim/tb_keyboard_mixer.v",
+    "category": "rtl",
+    "bytes": 1866,
+    "sha256": "b7fa8d469d46ffb81ce8d3eb80b558ac45adddf644cc129328d7fe2fc9b85ff2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/sim/tb_studio_control.v",
+    "category": "rtl",
+    "bytes": 2846,
+    "sha256": "45e60bd35735735f534bf69ea6524f638d19b5b19e32cf22284a0a60925ff447"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/sim/tb_studio_mixer.v",
+    "category": "rtl",
+    "bytes": 1296,
+    "sha256": "962fd6c74936fed61dd288691a0c7629983126151c798f260734447ada219e5a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/sources.json",
+    "category": "support",
+    "bytes": 1986,
+    "sha256": "61ff3f9ed3c0a1e4118374a43c5c22184982f2f616dbe6ccef935ac15059224d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardAudioSystem_contract.json",
+    "category": "support",
+    "bytes": 10257,
+    "sha256": "a1906d4ff2926f0f969c8040a50adae0c894f05c240982793d775a355a2558b6"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardAxisTop_contract.json",
+    "category": "support",
+    "bytes": 5095,
+    "sha256": "9375757ec8e816daeb1a91feaeb85c9fb4878f230e3844b4dc95eb33e1655662"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardFrameMixer_contract.json",
+    "category": "support",
+    "bytes": 5619,
+    "sha256": "2945b6aedbb74b117ddb70ed1d6ebe200bd648216196fabd034fc12b8e8958e3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardLoudness_contract.json",
+    "category": "support",
+    "bytes": 4937,
+    "sha256": "36f8a7ea4433a569196989a3472fd6e6489fcb78b1f81ff6e7e0c819a1bbbaf1"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardSynthEngine_contract.json",
+    "category": "support",
+    "bytes": 8434,
+    "sha256": "f9959a1a61764e8f10317bad35a3531099446e3f275c983ff9aad0a31f557c6a"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardSynthTelemetry_contract.json",
+    "category": "support",
+    "bytes": 7928,
+    "sha256": "3fd188e0ac980921dbd4ada10a7c0341ee4fa50ab8badbb3a059fd2ccbe01e63"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardThresholds_contract.json",
+    "category": "support",
+    "bytes": 3417,
+    "sha256": "1cb5604dcb6fcf315bf1773a2e4c769b451722fc5a9f779355d148c2b26bfe03"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/KeyboardVoiceBridge_contract.json",
+    "category": "support",
+    "bytes": 5664,
+    "sha256": "9da7963347d7798d5c591434a23ded6624976580b5afd53a0a54eec2c8d7eeae"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/StudioControl_contract.json",
+    "category": "support",
+    "bytes": 7661,
+    "sha256": "36b13cd97ae41ea488e7c9d665c970444523f94e1ec2985f2d70a7e5559fd7cf"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/StudioOscMixer_contract.json",
+    "category": "support",
+    "bytes": 4414,
+    "sha256": "4e0460ac5d2fd282539bbb9aba42eff3d2857d52457d0d9e7b979a53eceec619"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/StudioVoiceStore_contract.json",
+    "category": "support",
+    "bytes": 5114,
+    "sha256": "94dbd614f7edd2363f26c120207bf739a6ad5d8d65993b522c191280ffd89fb8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/sim/tb_keyboard_audio_spec.md",
+    "category": "documentation",
+    "bytes": 1991,
+    "sha256": "2b67983b87a72beb488b2cfa77fd1b708fbac6a2956590c1d18d0116dbf3409b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/sim/tb_keyboard_loudness_spec.md",
+    "category": "documentation",
+    "bytes": 2184,
+    "sha256": "eb1f49e1dff587fa6e005f4d3f7fbab8a791afdaf7c4fe1a90633dfc056427cd"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/sim/waveforms/tb_keyboard_audio_pipeline.json5",
+    "category": "support",
+    "bytes": 232,
+    "sha256": "b5db13138f1cf15818d6c788602c8891fc83421c4d72a25ed464fb3bc1f2546e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/sim/waveforms/tb_keyboard_audio_pipeline.svg",
+    "category": "support",
+    "bytes": 54804,
+    "sha256": "db0284059e8708ab9c646bc494beb66312d8e6097e1298c3a29d44ccf8c76b10"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/sim/waveforms/tb_keyboard_loudness_pipeline.json5",
+    "category": "support",
+    "bytes": 219,
+    "sha256": "9470588859a06d9d63924e920b95309d8366f9bdb5f48c81ab0680f62c11996c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/sim/waveforms/tb_keyboard_loudness_pipeline.svg",
+    "category": "support",
+    "bytes": 54339,
+    "sha256": "4d398bc6d815b8caab33e74e33aa5e6cd219396cd7984308a57424d70642145b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardAudioSystem_spec.md",
+    "category": "documentation",
+    "bytes": 4999,
+    "sha256": "ad821f1a4fbb123e28300f988d14faa25a6b907d7e08198da8389a135ec95a92"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardAxisTop_spec.md",
+    "category": "documentation",
+    "bytes": 2937,
+    "sha256": "eddd16c7d26b321f509bf2b90f079410992a74e3c8af9097829a2f343803ba20"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardFrameMixer_spec.md",
+    "category": "documentation",
+    "bytes": 3478,
+    "sha256": "2911ce4466ff466db49259f7dddc0d69443e8da1d2584cfb9ceb060c556af563"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardLoudness_spec.md",
+    "category": "documentation",
+    "bytes": 3009,
+    "sha256": "6b530433e75b080862039de9937dfe4b5d8b7c05f9f1ce95635592925a676b4e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardSynthEngine_spec.md",
+    "category": "documentation",
+    "bytes": 4467,
+    "sha256": "e49fa605361a5bc40f009fb834a91492d0d3730681590d05388968e9d49e9639"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardSynthTelemetry_spec.md",
+    "category": "documentation",
+    "bytes": 3985,
+    "sha256": "126febce1bc8054dff46ade951deca30000b9096fac98579e57daa2230e2f9b2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardThresholds_spec.md",
+    "category": "documentation",
+    "bytes": 2307,
+    "sha256": "291b76b1a7a44e3fa4f9a744e9481dbd43848797f4199d4b714e481b7422713e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/KeyboardVoiceBridge_spec.md",
+    "category": "documentation",
+    "bytes": 3257,
+    "sha256": "020b1e5cec7a300f932b55c8710ccc2eaf0542b68ded9f3ab0a1954371711b7d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/StudioControl_spec.md",
+    "category": "documentation",
+    "bytes": 3915,
+    "sha256": "b347d0f5c61d6f4a3fc9f6698c0bd9e0caa8f183de6f073913ac6682666c87f8"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/StudioOscMixer_spec.md",
+    "category": "documentation",
+    "bytes": 2765,
+    "sha256": "4690bc8803eeb515c078c5b1c926c42e6d7256c40d5cbaaf43d1fe38840fa149"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/StudioVoiceStore_spec.md",
+    "category": "documentation",
+    "bytes": 2961,
+    "sha256": "116ed43ce002fed4e47a7c712b4839cd65a67dda23552ac31e4a0644550060ca"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAudioSystem_handshake.json5",
+    "category": "support",
+    "bytes": 282,
+    "sha256": "d25538f92d10df155777d140adf2bcb7bac4debf787d287ba0a62ba64090cace"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAudioSystem_handshake.svg",
+    "category": "support",
+    "bytes": 55525,
+    "sha256": "3dc6a97cebf51cdaeda24ea28df645e0322e13c7646b9ecd92b3f886043301c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAudioSystem_pipeline.json5",
+    "category": "support",
+    "bytes": 581,
+    "sha256": "d6975feab34ed5f2edb0138f1e030ff2f93f68b51b1441326a4a0b0b21d99e4b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAudioSystem_pipeline.svg",
+    "category": "support",
+    "bytes": 61338,
+    "sha256": "0eb75246b725e557daec7e282a1bdafb62d41a8e629c24765ffe45853499526f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAxisTop_handshake.json5",
+    "category": "support",
+    "bytes": 282,
+    "sha256": "d25538f92d10df155777d140adf2bcb7bac4debf787d287ba0a62ba64090cace"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAxisTop_handshake.svg",
+    "category": "support",
+    "bytes": 55525,
+    "sha256": "3dc6a97cebf51cdaeda24ea28df645e0322e13c7646b9ecd92b3f886043301c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAxisTop_pipeline.json5",
+    "category": "support",
+    "bytes": 358,
+    "sha256": "724938c192ca981ec68015362b60e4778c6f58eb58d8a1aed34204472000b9c2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardAxisTop_pipeline.svg",
+    "category": "support",
+    "bytes": 57422,
+    "sha256": "6cb50b464629918d4e23d6d83ff9678ea39fd12a320dea0069eb9e6b1f2722c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardFrameMixer_pipeline.json5",
+    "category": "support",
+    "bytes": 581,
+    "sha256": "d6975feab34ed5f2edb0138f1e030ff2f93f68b51b1441326a4a0b0b21d99e4b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardFrameMixer_pipeline.svg",
+    "category": "support",
+    "bytes": 61338,
+    "sha256": "0eb75246b725e557daec7e282a1bdafb62d41a8e629c24765ffe45853499526f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardLoudness_pipeline.json5",
+    "category": "support",
+    "bytes": 219,
+    "sha256": "9470588859a06d9d63924e920b95309d8366f9bdb5f48c81ab0680f62c11996c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardLoudness_pipeline.svg",
+    "category": "support",
+    "bytes": 54339,
+    "sha256": "4d398bc6d815b8caab33e74e33aa5e6cd219396cd7984308a57424d70642145b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthEngine_handshake.json5",
+    "category": "support",
+    "bytes": 282,
+    "sha256": "d25538f92d10df155777d140adf2bcb7bac4debf787d287ba0a62ba64090cace"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthEngine_handshake.svg",
+    "category": "support",
+    "bytes": 55525,
+    "sha256": "3dc6a97cebf51cdaeda24ea28df645e0322e13c7646b9ecd92b3f886043301c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthEngine_pipeline.json5",
+    "category": "support",
+    "bytes": 581,
+    "sha256": "d6975feab34ed5f2edb0138f1e030ff2f93f68b51b1441326a4a0b0b21d99e4b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthEngine_pipeline.svg",
+    "category": "support",
+    "bytes": 61338,
+    "sha256": "0eb75246b725e557daec7e282a1bdafb62d41a8e629c24765ffe45853499526f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthTelemetry_handshake.json5",
+    "category": "support",
+    "bytes": 282,
+    "sha256": "d25538f92d10df155777d140adf2bcb7bac4debf787d287ba0a62ba64090cace"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthTelemetry_handshake.svg",
+    "category": "support",
+    "bytes": 55525,
+    "sha256": "3dc6a97cebf51cdaeda24ea28df645e0322e13c7646b9ecd92b3f886043301c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthTelemetry_pipeline.json5",
+    "category": "support",
+    "bytes": 293,
+    "sha256": "52518c2b953f42d3de498c22d2ba09e1aab22219159c4f96a882b0623b5327ac"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardSynthTelemetry_pipeline.svg",
+    "category": "support",
+    "bytes": 56116,
+    "sha256": "0714ad7243bdf6e08a667f7265e97c045b4d33bdba92b5177eb4215cdb3ee411"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardThresholds_pipeline.json5",
+    "category": "support",
+    "bytes": 304,
+    "sha256": "bbe43104f8ba05b47826ae95ac8afa26ac65175dc133990fd7db11c86f8784b3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardThresholds_pipeline.svg",
+    "category": "support",
+    "bytes": 56127,
+    "sha256": "8de2fd4232a2bd67eb71a750987593f63d4e175828656fc33232a5426f34718f"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardVoiceBridge_handshake.json5",
+    "category": "support",
+    "bytes": 282,
+    "sha256": "d25538f92d10df155777d140adf2bcb7bac4debf787d287ba0a62ba64090cace"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardVoiceBridge_handshake.svg",
+    "category": "support",
+    "bytes": 55525,
+    "sha256": "3dc6a97cebf51cdaeda24ea28df645e0322e13c7646b9ecd92b3f886043301c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardVoiceBridge_pipeline.json5",
+    "category": "support",
+    "bytes": 359,
+    "sha256": "00ed02e569373afe364e79c1cbb2f493b76625d0b2222f5fa13ecedbd51e6507"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/KeyboardVoiceBridge_pipeline.svg",
+    "category": "support",
+    "bytes": 57423,
+    "sha256": "2bde4d01ead2a62db38db928bba600a27afdc73e07fa585d37638d8ba44049ae"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/StudioControl_handshake.json5",
+    "category": "support",
+    "bytes": 282,
+    "sha256": "d25538f92d10df155777d140adf2bcb7bac4debf787d287ba0a62ba64090cace"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/StudioControl_handshake.svg",
+    "category": "support",
+    "bytes": 55525,
+    "sha256": "3dc6a97cebf51cdaeda24ea28df645e0322e13c7646b9ecd92b3f886043301c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/StudioOscMixer_handshake.json5",
+    "category": "support",
+    "bytes": 288,
+    "sha256": "9f3c9a1877bf72b6973fbdf5554e9af6fc7922992139b422b1b1108944758fa5"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/StudioOscMixer_handshake.svg",
+    "category": "support",
+    "bytes": 55532,
+    "sha256": "27b491fadf3f430aa0713b3f3234be1c496fc7f7f947d21ff2ecebbbf126959c"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/StudioVoiceStore_handshake.json5",
+    "category": "support",
+    "bytes": 282,
+    "sha256": "d25538f92d10df155777d140adf2bcb7bac4debf787d287ba0a62ba64090cace"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/src/waveforms/StudioVoiceStore_handshake.svg",
+    "category": "support",
+    "bytes": 55525,
+    "sha256": "3dc6a97cebf51cdaeda24ea28df645e0322e13c7646b9ecd92b3f886043301c3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/tb_keyboard_audio_contract.json",
+    "category": "support",
+    "bytes": 2344,
+    "sha256": "d032a5d0cfc6b6009ec11640c7b17672c829fe159196a28060ebea9db54236ab"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/spec/tb_keyboard_loudness_contract.json",
+    "category": "support",
+    "bytes": 2532,
+    "sha256": "17c998389cb602ae9c63659d016b1346aa88cb9e18b11c94a72c4635ef5b5031"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardAudioSystem.v",
+    "category": "rtl",
+    "bytes": 4828,
+    "sha256": "9d8d7b8e39f7c42e13bc8a223583b425768c213479a82bfa679fde8a4a4e1566"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardAxisTop.v",
+    "category": "rtl",
+    "bytes": 7040,
+    "sha256": "475f4cb77620caa658cf34742808be25cd683a304de32c98a8a9c9faf048db3d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardFrameMixer.v",
+    "category": "rtl",
+    "bytes": 1499,
+    "sha256": "ea055302651df466f33c6cc2dbf463e78525154d559e6a7b1982835ef71738f2"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardLoudness.v",
+    "category": "rtl",
+    "bytes": 4683,
+    "sha256": "a0c760c42674515811b19b11186e89a832b2e40f0c37e23fdb06c71f451afae0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardSynthEngine.v",
+    "category": "rtl",
+    "bytes": 15452,
+    "sha256": "79fa2fc1a533a9cb5ad4b9586360dde0fe70253ddda21043b933691a893d290b"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardSynthTelemetry.v",
+    "category": "rtl",
+    "bytes": 2923,
+    "sha256": "212cb7d2928da9e1568bdf4e132d84693a7d9a3621c7a90c49af913ff7aaa26d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardThresholds.v",
+    "category": "rtl",
+    "bytes": 1299,
+    "sha256": "a31ee4a90d2bb4c26602801701de3f7f7c1fb4cad6629df1cb3eefa25a850b6e"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/KeyboardVoiceBridge.v",
+    "category": "rtl",
+    "bytes": 2859,
+    "sha256": "7e866da8e6e070193771908a2041665b539bfb4eab83ec541c85a1375f8a4224"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/StudioControl.v",
+    "category": "rtl",
+    "bytes": 6143,
+    "sha256": "44b80a0f0543314c193193e6d8e0ad3877bc2fa420a4a4097c3b1ad7c2c7dab6"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/StudioOscMixer.v",
+    "category": "rtl",
+    "bytes": 2792,
+    "sha256": "e7829e645d00ebab95ed346ab621b36bacaca5bd7fca72b4dbe20cfb00e0abd9"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/StudioVoiceStore.v",
+    "category": "rtl",
+    "bytes": 4275,
+    "sha256": "b15a246ce419700db07e8d14377d86144aef7f981efe10695292a896b724b063"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/keyboard_axis.cst",
+    "category": "fpga-project",
+    "bytes": 1484,
+    "sha256": "9a728dc93f8714b3d4651d44da8c1acdd0eadf752f34653f79ca261243539fd9"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/src/keyboard_axis.sdc",
+    "category": "fpga-project",
+    "bytes": 63,
+    "sha256": "7c00f9b9fc58a81469a359608d512c41196d605d39ed9bcac055433e8fb03bc3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/studio_model.py",
+    "category": "support",
+    "bytes": 3419,
+    "sha256": "3b0fada4b5afee72311e08bae04b3e66ab09fb215f29ccf5ed02a37a4edcd374"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/studio_packets.hex",
+    "category": "rtl",
+    "bytes": 3692,
+    "sha256": "5d568134f2f12f0cf4ee81e5892e4e744249357b300226ecbd948a9065a821b3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/update_app_backend.py",
+    "category": "support",
+    "bytes": 6087,
+    "sha256": "deb21c36497d4ce02c3d43380bb956b237e8369d8293176040a75e97db768429"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/verify_flash.py",
+    "category": "support",
+    "bytes": 3997,
+    "sha256": "87386a6c4d3d6d9a7765b2e2e3046a509844c5237b6543845cade7bec74ec73d"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/workflow-state.json",
+    "category": "support",
+    "bytes": 1602,
+    "sha256": "ff4a666c7d416b3106091976631d7fa6c47b809c4768478a0d7eb035b68ba5d0"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/write_specs.py",
+    "category": "support",
+    "bytes": 6029,
+    "sha256": "1b681f4e69cf427f80d8ddadc4e215f13454844335b574e68387ebea28ff0dca"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-studio/write_studio_specs.py",
+    "category": "support",
+    "bytes": 7003,
+    "sha256": "ec081276e487e029c5532702908b4ec3713c79f7f1509079e8c82c9efb975db5"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/README.md",
+    "category": "documentation",
+    "bytes": 5845,
+    "sha256": "fb466fb5ef6c2ec6100312a232710a712404ab155226793d8ea96b857924d2e9"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/app/TangSynthStudio.exe",
+    "category": "app-binary",
+    "bytes": 9539072,
+    "sha256": "739e8661c907cd29f6930bda01d15af84292aad66eb7c9bf84052f339076d069"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/banks/FiveFamilies-bank.json",
+    "category": "support",
+    "bytes": 18207,
+    "sha256": "7ad2d8f828ac0435d058df5e2099a4e53301f3d2269acdae9f4c035a6c7356ea"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/live_foundations.py",
+    "category": "support",
+    "bytes": 5023,
+    "sha256": "f327ae5bb1e4e0c6cf2197fc4c6a0b3bf20e9941cbb17c35fe447a944fc38bb1"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/prepare_library.py",
+    "category": "support",
+    "bytes": 3650,
+    "sha256": "c4f243efa26d22c1d6a0917cd64608d759caa090617339d86bfd712e4b843f94"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/probe_serial.py",
+    "category": "support",
+    "bytes": 2047,
+    "sha256": "5f4b50b6d493fd38468e0d0194a6ea87216dd49ad3cd98d90fc439873d417612"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/app_build.log",
+    "category": "validation",
+    "bytes": 430,
+    "sha256": "19465df26a5c170c434b66ad647d6f4deb1fe2380de04e5153ba5573919f0763"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/library.json",
+    "category": "validation",
+    "bytes": 498,
+    "sha256": "ee9eafdc5e65dcfb4a303b9f7feb8107877ae686651202801d62bfca66339ad7"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/live_foundations.json",
+    "category": "validation",
+    "bytes": 396069,
+    "sha256": "c84eb7f006ed4d2c8435f0e3ab7222b2c5677b2bfa26428692c48a3568c40983"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/live_serial.bin",
+    "category": "validation",
+    "bytes": 61218,
+    "sha256": "3d4b115def1c194340c6b000b000bcd585513f4d5f18c4ee788d4fdad2af12eb"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/live_test.log",
+    "category": "validation",
+    "bytes": 997,
+    "sha256": "337ead2dba6a557cd472bfbfd9e83e67020883ed0e7c1304ad0c5316ad1d85bf"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/profile_tests.log",
+    "category": "validation",
+    "bytes": 1482,
+    "sha256": "195af8ee28d58d5172391e17e21e5af71e4de51a1096e636ccd485ab7b7c2a08"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/release_build.log",
+    "category": "validation",
+    "bytes": 160,
+    "sha256": "e52155ee4948c812bedd44e0cec31953790e596b43b5291e76d93e5ff1e389e6"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/serial_probe.bin",
+    "category": "validation",
+    "bytes": 52800,
+    "sha256": "aa37d8b4d47c6511ecbd8b137c2bcf3ad6b5e2c446ab1d23e6253c0d1ca437b3"
+  },
+  {
+    "path": "Gowin/demo1/keyboard-timbres/reports/serial_probe.json",
+    "category": "validation",
+    "bytes": 95191,
+    "sha256": "9b3425470298dcd7a26cedc09bb62c212616716d83d4f834e3e6c8d59dc1e6c7"
+  },
+  {
     "path": "Gowin/demo1/licenses/SST-Filters-GPL-3.0.txt",
     "category": "app-resource-or-license",
     "bytes": 35789,
@@ -8614,6 +10750,456 @@
     "category": "rtl",
     "bytes": 15848,
     "sha256": "3fc6bef9a7086f0920bfa47265b1766854a53f6ca1c0f75084eaf6b6ef4d6258"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/README.md",
+    "category": "app-source",
+    "bytes": 5173,
+    "sha256": "88c395a4ec2c260617400382828f22464dc949be0d4b822916be0f9ce7ca6fc9"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/build.ps1",
+    "category": "app-source",
+    "bytes": 512,
+    "sha256": "abea00dd9333695ba1e8b06ae07f8f85ea142b66a66966e9638fcbf2a32fdce6"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/index.html",
+    "category": "app-source",
+    "bytes": 266,
+    "sha256": "c54e28021308c9dfdf20b182b3e7b11150c99e0452f8936d1f30a58c4a28ef26"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/package-lock.json",
+    "category": "app-source",
+    "bytes": 36793,
+    "sha256": "52e8c2a5304d9b78c2ab8782b5ff62aef21713f07bd9cb8206007317318e2f18"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/package.json",
+    "category": "app-source",
+    "bytes": 781,
+    "sha256": "e9bab931305a25e64757bb56e2bf816cd5430ada6afdaa9b6541ca1ac813a1af"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/release/TangHardwareLab.exe",
+    "category": "app-binary",
+    "bytes": 9998848,
+    "sha256": "904d3e57d4250e6e20f914243fc93ffe34cee49ebab6945fa083d6a2c077962c"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/app-ui.json",
+    "category": "validation",
+    "bytes": 24735,
+    "sha256": "39a92df24118e324746b80bbe3def11b8c9486885dc627d27fe83bbcb9759797"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/calibration-ui-tests.log",
+    "category": "validation",
+    "bytes": 573,
+    "sha256": "148c3217c81d2de570645d77c7d4cbfdc0886c9728d7bcb89360d8ca8047cf35"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/current-serial.bin",
+    "category": "validation",
+    "bytes": 8610,
+    "sha256": "81aec9389acd01969917003459b2442f395419b737a597c1a352afa3151c77c2"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/guitar-audible-verified.json",
+    "category": "validation",
+    "bytes": 596,
+    "sha256": "08055162b90d7cc300970ad4996826d194503008eb69f5514b149e9cb6f05f05"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/guitar-silent-before.json",
+    "category": "validation",
+    "bytes": 25426,
+    "sha256": "f1ab4a5b4c5c9cf95828c2578582b821adf89764c90b5b6b152418db173dc73c"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/guitar-timing-build.log",
+    "category": "validation",
+    "bytes": 926,
+    "sha256": "b58fa9dd548a7bcad6d4034328f2c703d936e99628afd37f1418ef7eb7f80de6"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/guitar-timing-live.json",
+    "category": "validation",
+    "bytes": 7352,
+    "sha256": "b9091a6631edd17b1263325e5254f094805a11298e810dd5f905e8e09764a0fd"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/guitar-timing-tests.log",
+    "category": "validation",
+    "bytes": 2311,
+    "sha256": "a98aca6780c4d073c322ac5a4e4c410056a9d994b14b94586684a6cd2ae9463a"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/live-validation.json",
+    "category": "validation",
+    "bytes": 22952,
+    "sha256": "35fb9559a81e72dc14ab01e3163645b79762d850d7e2ee2469c29b287f0b1074"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/program-hardware-sram.log",
+    "category": "validation",
+    "bytes": 6453,
+    "sha256": "d58b9492dac41e8ece251367899d051a349a5243da58ef42945f4c088ba6a1f0"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/release-build.log",
+    "category": "validation",
+    "bytes": 926,
+    "sha256": "3941594f7be03581cf8ff941d3de6766d6a3f343176842e1b1fd4038dc6b93a5"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/replay-validation.json",
+    "category": "validation",
+    "bytes": 24398,
+    "sha256": "c2e67805200ab9f99c996ef160ebf5412aebbf8fa55620def6b6810e25a5186b"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/rust-tests.log",
+    "category": "validation",
+    "bytes": 2152,
+    "sha256": "5aff04fe1515306bda3d2a84c5220b17e5838f9dd580228d8c35be4f67d1ea79"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/scroll-calibration-build.log",
+    "category": "validation",
+    "bytes": 926,
+    "sha256": "18e78ef2e71b9f7f1a28047dabfa4fe853343599c5c4d6c78f418842ab45a275"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/reports/touchpad-highlight-build.log",
+    "category": "validation",
+    "bytes": 926,
+    "sha256": "10f5597f4a94525e88d77d5fc3e357fec818c70d68c6bd986ebf091dd43f992f"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/scripts/golden.py",
+    "category": "app-source",
+    "bytes": 2076,
+    "sha256": "aa988e25ecd20a1bcebf00ebf8db4a11de1080df150be6abbe63396b17fbf99e"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/scripts/icon.py",
+    "category": "app-source",
+    "bytes": 559,
+    "sha256": "be7ad9069f5011b39ab0854d805c4c21b60ae0c992a11ce5023b4695283edb3b"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/scripts/split_ui.py",
+    "category": "app-source",
+    "bytes": 3659,
+    "sha256": "49b846de3f21802ed8991e0bc910916d57914b817d67d7a7c6850d8f3f90b88b"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/Cargo.lock",
+    "category": "app-source",
+    "bytes": 117647,
+    "sha256": "331210edfc6825802a55297acf58c3cc81f2c1ef72f14864351696db1b7d7553"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/Cargo.toml",
+    "category": "app-source",
+    "bytes": 710,
+    "sha256": "63a54bdb9d0314608cdd63b54ff9afcb1ebede0d40750ae49d0962b8004b956b"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/build.rs",
+    "category": "app-source",
+    "bytes": 39,
+    "sha256": "487059eaf8a947b80f20a9aacac038a5047b2ad69d2401b827376c67d6fe847f"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/capabilities/default.json",
+    "category": "app-source",
+    "bytes": 121,
+    "sha256": "159fa409af058bf6f21508f66883f769c3c18eebf4e5bd146abab0e1ee19362f"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/icons/icon.ico",
+    "category": "app-source",
+    "bytes": 11446,
+    "sha256": "dae19868175e9b37c2ef89e07b0006c6e05aa9d545d627c885f70d4928f5775e"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/icons/icon.png",
+    "category": "app-source",
+    "bytes": 1537,
+    "sha256": "3eb1b584c254bd651144e5cc366341ee15c47ad5c245a38f7f4ba53cd0e32e43"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/audio.rs",
+    "category": "app-source",
+    "bytes": 9671,
+    "sha256": "e4023422a63b9be6afe1824e3c7811936f6e5745c6b5dd430306d938d3b24525"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/bin/hardware-probe.rs",
+    "category": "app-source",
+    "bytes": 4442,
+    "sha256": "d097e5dbcaeb63ac14479e58e64ef20498b9571b4c9757db46255d05ec0bf123"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/bin/synth-debug.rs",
+    "category": "app-source",
+    "bytes": 117,
+    "sha256": "56a665b8a3462e04b6ffe629f56c7126a72791e935b169c326a844e0a025d383"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/calibration.rs",
+    "category": "app-source",
+    "bytes": 11660,
+    "sha256": "f7e8531b64a6dc6a17f3fa4d30740667d37e8f3caf1f80859c38fce1b13003bc"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/lib.rs",
+    "category": "app-source",
+    "bytes": 4691,
+    "sha256": "13b7f919443561d3ecbff9bf4327ae0b3bd9213fbea3c353ceae819957940e8c"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/link.rs",
+    "category": "app-source",
+    "bytes": 4521,
+    "sha256": "53faea1d68d030b7e6c104dfb2a9024a224f5b3c260bd9bddde6b316b5bd5a07"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/main.rs",
+    "category": "app-source",
+    "bytes": 111,
+    "sha256": "4e5572d86dda995fa54b588383832640be2c2e378812c188e9995aada6b399fb"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/model.rs",
+    "category": "app-source",
+    "bytes": 23098,
+    "sha256": "8ae3bb0b899d436643467c958206d6dacb67c2148334f5ebec974d7493f6b184"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/protocol.rs",
+    "category": "app-source",
+    "bytes": 11386,
+    "sha256": "2a99df98b82eb438d982febcde8d1f446b2bd727f50a9f1e192e8b62b8c466af"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/runtime.rs",
+    "category": "app-source",
+    "bytes": 28280,
+    "sha256": "71c47db8f0bbbd0ea5828ea68172743ebcbd18d940af9f5e2714b298b6662685"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/synth_debug.rs",
+    "category": "app-source",
+    "bytes": 13045,
+    "sha256": "9874123c3bb4b2d41634157ff0763fddea5f971a9373be64c63083c6288dd1cf"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/synth_midi.rs",
+    "category": "app-source",
+    "bytes": 1615,
+    "sha256": "c31cd61372e5f74b1279949d7954a11005c8098003abda8b460daa5bff4faf6e"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/synth_studio.rs",
+    "category": "app-source",
+    "bytes": 6281,
+    "sha256": "50e33e19b9658ae8003de1fab589573f442ffb87abe0a6bad35586357e4bfac9"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/tauri.conf.json",
+    "category": "app-source",
+    "bytes": 725,
+    "sha256": "acfef8d207f0e36006d395878ad1813e7f49312743ab677918c6245a0776c47d"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/tests/compatibility.rs",
+    "category": "app-source",
+    "bytes": 4509,
+    "sha256": "7c2c6bc7582dcae7d104155d75a859af35593544d027772f125a4e8ce2f03e4b"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/tests/fixtures/commands.json",
+    "category": "app-source",
+    "bytes": 1125,
+    "sha256": "859628b23bf7d98d07a491139c0ba1b1d9505f90d371eb2cbddcbb7857221a5b"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/tests/fixtures/expected.json",
+    "category": "app-source",
+    "bytes": 3403,
+    "sha256": "1fbe5062d482a8689cf2199ac39c636b529350d0177bacbeaa4152d842c8266d"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/tests/fixtures/hardware_live.bin",
+    "category": "app-source",
+    "bytes": 135921,
+    "sha256": "082fdacd8fd8098231d2c63789dff927be5a5d4a6fcd50c4bec348c9c8508d1f"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/tests/fixtures/legacy_calibration.json",
+    "category": "app-source",
+    "bytes": 4566,
+    "sha256": "397532b4220bce60bb480e6311424812089e4876d37f80f154736636d9e611a7"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/App.tsx",
+    "category": "app-source",
+    "bytes": 14719,
+    "sha256": "56935d172349436fc200f9b1e7069911323c22f1ec1df8f31c3b00033d54e916"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/LatencyPanel.tsx",
+    "category": "app-source",
+    "bytes": 4681,
+    "sha256": "6272ec00c31628aa4f5e428a46e77d12645c5388b0409f2e409eb4f50ee54fee"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/StudioEditor.tsx",
+    "category": "app-source",
+    "bytes": 24731,
+    "sha256": "29c850ae3cec575e203838503cee8e9f41c0179d42e6d2522e7df2e071424400"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/SynthDebug.tsx",
+    "category": "app-source",
+    "bytes": 5373,
+    "sha256": "cac7606cc32d0c1448421a0ff4988821cd235a9655eb9dc10864aba2de66aeae"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/calibrationUi.ts",
+    "category": "app-source",
+    "bytes": 1882,
+    "sha256": "dc354b0f131cdd69ac3237ad9e28f457b5fc0cb4cf601d3041f2b8cc4f342036"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/components.tsx",
+    "category": "app-source",
+    "bytes": 12819,
+    "sha256": "5c8953a37474c5383ba81fd23a8eafaa93c1d498c69f716346e279b275f5f66b"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/config.ts",
+    "category": "app-source",
+    "bytes": 1835,
+    "sha256": "838a2f59710fadf4ff5a2b5aa0bb66227f5b3a9b709ca73a0e1360ef2282cdff"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/data/foundation-library.json",
+    "category": "app-source",
+    "bytes": 15440,
+    "sha256": "0a40954b71038652aec8f770f989c0c893a7610fc0c45ece0010ab9997a74ca4"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/latency-panel.css",
+    "category": "app-source",
+    "bytes": 1500,
+    "sha256": "ac1a1c66382e8624444b122f562c7b5ef1763ce2e47f36ac21836f2e14f11229"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/main.tsx",
+    "category": "app-source",
+    "bytes": 301,
+    "sha256": "4e541569ddd70f1bd0b88d82929bfe02febe90a85f68f2f14fa8325aca0bc046"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/pages/EncodersPage.tsx",
+    "category": "app-source",
+    "bytes": 3784,
+    "sha256": "19cd80d1917bbf6a89ac5e7b37aca4081e281fe4b03ad14e75f4c95d9ba93531"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/pages/GamesPage.tsx",
+    "category": "app-source",
+    "bytes": 4880,
+    "sha256": "aa2aeb3cb499e2767e4fbd5ba6dacb8b8e45fde21271d82a9eef6252c595e7c7"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/pages/GuitarPage.tsx",
+    "category": "app-source",
+    "bytes": 4779,
+    "sha256": "a7a6f4ea5d498c4fee48612104c0327c563a379db9373e165f023733335397a4"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/pages/JoystickPage.tsx",
+    "category": "app-source",
+    "bytes": 3255,
+    "sha256": "b7a78013a0989f791335adba0123b3086546b74fbcad649d41dca0590c33d1ba"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/pages/KeyboardPage.tsx",
+    "category": "app-source",
+    "bytes": 12511,
+    "sha256": "bcc4f2bb406781d2f2dacd8870ea061f1cbce6d8ed485a1e82ad1d5deee7dbce"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/pages/Overview.tsx",
+    "category": "app-source",
+    "bytes": 6408,
+    "sha256": "1db9592938c6c0bcf34c35b06eebf99ccd1dac1c6b0484897aa155cae9037a42"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/pages/TouchpadPage.tsx",
+    "category": "app-source",
+    "bytes": 5914,
+    "sha256": "6abff207c3759960be76b0d030c0342b9d272db029f58ba3182f11f5aeb35196"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/studio-editor.css",
+    "category": "app-source",
+    "bytes": 5484,
+    "sha256": "d14322b9f0a3e4c8d1e16d88d3cb2e5745e7e77a70f9ffd6a67942a53de03f02"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/studio-foundations.ts",
+    "category": "app-source",
+    "bytes": 1229,
+    "sha256": "d5adb2f93a2e7cb41d3da28221a1a9243602c34b417ce98eca1928d7c3d9d42f"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/style.css",
+    "category": "app-source",
+    "bytes": 47295,
+    "sha256": "541ac0df53ad3f071f1f68effd6f4a82b271ee490dcc6e06138e268d627309a0"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/synth-debug.css",
+    "category": "app-source",
+    "bytes": 1744,
+    "sha256": "73087bb272f63e51b48d58ae46bcd8c8b3ddcb7c303497d07201a89503df2ea7"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/type.css",
+    "category": "app-source",
+    "bytes": 129,
+    "sha256": "6b327628b24dbc0705879b5214cc651d7a2ca8be47ca85362cd8d8d664caf80f"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/types.ts",
+    "category": "app-source",
+    "bytes": 3829,
+    "sha256": "f9f9b4110fbc7d458e5e7bf897f597930c0e9e3a667f3ef3e5360efe6fb5a95a"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/tests/calibration-ui.test.mjs",
+    "category": "app-source",
+    "bytes": 2159,
+    "sha256": "1e082c1c38c5d0545939b77df2b1fc13f5be62c77b2a34f750f3baa55e27f500"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/tests/data/foundation-profiles.json",
+    "category": "app-source",
+    "bytes": 9554,
+    "sha256": "8d009a0baa0f226a925cc586d00e74823054daac0d4552df1fa51ca48fbf0c65"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/tsconfig.json",
+    "category": "app-source",
+    "bytes": 267,
+    "sha256": "c16750f08c9ba56eef5cc8e6a4051e2fc8e808cc66e9882041983efba9520832"
   },
   {
     "path": "Gowin/demo_test/desktop/.gitignore",
@@ -14856,10 +17442,118 @@
     "sha256": "24bca682bb904070204c02d2feaa8b349d10b7aca287c9b6bd397c30c8aa0424"
   },
   {
+    "path": "Gowin/demo_test/diagnostics/encoder/README.md",
+    "category": "documentation",
+    "bytes": 9736,
+    "sha256": "b8541a1bdab2f71b50f2647e22c98249364862fe17de1e7b6eb8facb64113980"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/build.tcl",
+    "category": "fpga-project",
+    "bytes": 188,
+    "sha256": "9698e1f9a39c27e5c2267ad0d09eba525edc646ad850ba186fa7d3c3ff1bc5de"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/capture_encoder.ps1",
+    "category": "support",
+    "bytes": 3997,
+    "sha256": "0c07df5f868365e2bd70f98204fc1e01728f264a2065dca6a7ffdad802c4cd47"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/capture_encoder_live.py",
+    "category": "support",
+    "bytes": 5164,
+    "sha256": "0bcacce5f8f6348dc014ab9ff62e22e129a400d81ceafb1e88a6cb6df125e45a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/encoder.gprj",
+    "category": "fpga-project",
+    "bytes": 561,
+    "sha256": "a852c1e8f807c35859e584c3c37264083a4df6c74fbc7339822229d12f1df524"
+  },
+  {
     "path": "Gowin/demo_test/diagnostics/encoder/impl/pnr/encoder.fs",
     "category": "firmware",
     "bytes": 17311868,
     "sha256": "7ca490dcb1ed5cb705b8450ce16a0c11d803ca45cedc2421af930fd861b54ce2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/sim/reference_model.py",
+    "category": "support",
+    "bytes": 830,
+    "sha256": "3753f3ab7290dd1579e38c7c16b60dcd77558893bd61046538c17d8af9f425c4"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/sim/tb_encoder_debug.v",
+    "category": "rtl",
+    "bytes": 4362,
+    "sha256": "504df5ceb589b1f456ecb1976443a8a6bac5a04b820411683849d90e3bce9a77"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/encoder_contract.json",
+    "category": "support",
+    "bytes": 10881,
+    "sha256": "1369909afba11b1f1dbab1fc07e1d499a94d1e96cd34fa9487524afdfe6c31a2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/requirements.txt",
+    "category": "support",
+    "bytes": 1249,
+    "sha256": "dd5780e89e5e15067c45e409b602a98f9ff33c9b157663533b4cbf0575a8dea7"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/EncoderChannel_spec.md",
+    "category": "documentation",
+    "bytes": 2747,
+    "sha256": "543d7cd0ab84df3bf2c835eabd441c8e35b5fc0fd00f2108269d02cc427b6456"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/EncoderDebug_spec.md",
+    "category": "documentation",
+    "bytes": 2427,
+    "sha256": "51d0ee4f8a919b3e6ed1463106b8390f36adf2982ff7efb20a742429566d1836"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/EncoderUartTx_spec.md",
+    "category": "documentation",
+    "bytes": 2407,
+    "sha256": "56a80bf3073fd2226c5f6382b06cce64852970ea58fabce1a21e613c33954419"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/waveforms/EncoderChannel_operation.json5",
+    "category": "support",
+    "bytes": 285,
+    "sha256": "24222b8cd607680e9215deaeb29f49f2ef55f75f93ac61bdbae3e787f2418c81"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/waveforms/EncoderChannel_operation.svg",
+    "category": "support",
+    "bytes": 54817,
+    "sha256": "10948e4d470f4165247f388dfb96fa331ae58c83dfa9b816b2871dd94074e3c2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/waveforms/EncoderDebug_operation.json5",
+    "category": "support",
+    "bytes": 285,
+    "sha256": "24222b8cd607680e9215deaeb29f49f2ef55f75f93ac61bdbae3e787f2418c81"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/waveforms/EncoderDebug_operation.svg",
+    "category": "support",
+    "bytes": 54817,
+    "sha256": "10948e4d470f4165247f388dfb96fa331ae58c83dfa9b816b2871dd94074e3c2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/waveforms/EncoderUartTx_operation.json5",
+    "category": "support",
+    "bytes": 285,
+    "sha256": "24222b8cd607680e9215deaeb29f49f2ef55f75f93ac61bdbae3e787f2418c81"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/spec/src/waveforms/EncoderUartTx_operation.svg",
+    "category": "support",
+    "bytes": 54817,
+    "sha256": "10948e4d470f4165247f388dfb96fa331ae58c83dfa9b816b2871dd94074e3c2"
   },
   {
     "path": "Gowin/demo_test/diagnostics/encoder/src/EncoderChannel.v",
@@ -14880,10 +17574,694 @@
     "sha256": "f621123c5d9bb2edc2429fdff144a2c2095d7ab4e8844e6eb3fcd52a34372e9f"
   },
   {
+    "path": "Gowin/demo_test/diagnostics/encoder/src/encoder.cst",
+    "category": "fpga-project",
+    "bytes": 1283,
+    "sha256": "3a3292e5713dbc7b2346f1b06bcc9345eb4a636af99d0fb085f2005d8b477924"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/src/encoder.sdc",
+    "category": "fpga-project",
+    "bytes": 423,
+    "sha256": "519a4676c85e1c75b20dffff21c01c1cf7e3b25b35abad5aeaec8bfd7d0b3501"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/encoder/workflow-state.json",
+    "category": "support",
+    "bytes": 398,
+    "sha256": "994fdc2d035c5f2fa1f0e36638b742835e5a0411ec63da4ed52bdfa5c20e7429"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/README.md",
+    "category": "documentation",
+    "bytes": 5412,
+    "sha256": "909f5b78566dd73b753cc3ed1e58a0e5ccfb75237750210b11380f31541e5792"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/build.tcl",
+    "category": "fpga-project",
+    "bytes": 293,
+    "sha256": "5380920c3825d6bd5e040fcf2870e186e4327db2b92a3e550f4821b1ac8d841f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/hardware_hdmi.gprj",
+    "category": "fpga-project",
+    "bytes": 2943,
+    "sha256": "3a0fc7f9430fedd75a307cccf8ea8286fc40b08fa6f4448f78391884881f3b9e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi.fs",
+    "category": "firmware",
+    "bytes": 18035928,
+    "sha256": "cae3436f173edcbfd88775a8c2cb458f1cb8132a56d23827d3fe8503ead6873f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi.pin.html",
+    "category": "validation",
+    "bytes": 111090,
+    "sha256": "d89d1ad21f10eac5c2a971f8bf37f59718f6c495b65ec0a7f0f62236259bb1f0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi.power.html",
+    "category": "validation",
+    "bytes": 12807,
+    "sha256": "d7282d8895a4a868525063b6a8961c0b0f165f087ade18086c5bead85e2ed0e6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi.rpt.html",
+    "category": "validation",
+    "bytes": 118066,
+    "sha256": "82aa93375ccde230a4521965b07205f7ae8728d24688b41e5b2715842cb1410e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi.rpt.txt",
+    "category": "validation",
+    "bytes": 94610,
+    "sha256": "220d032be179a861f8c00f6c6760c1806b134210667115a6ac619007953ca889"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi.tr.html",
+    "category": "validation",
+    "bytes": 361,
+    "sha256": "eabb46c10c08c4e92eae62d03263f8c7bab86e8540abac59f669e879a58d7b76"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi_tr_cata.html",
+    "category": "validation",
+    "bytes": 7946,
+    "sha256": "543b25fbe4c8767c46c7acea520ba6f3eaf9728bebf9257b8ca3f3ab2a46f2b4"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi_tr_content.html",
+    "category": "validation",
+    "bytes": 489223,
+    "sha256": "62fe759d2f736e0d28c9884223851bb4e15d87e5a8dfefdcf68d396edc2399fd"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/optimize_text.py",
+    "category": "support",
+    "bytes": 1053,
+    "sha256": "9fa2cb576697c7a747c34c298092c02728e932157dcdaf3af83b4afd418f8e4a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/prepare_assets.py",
+    "category": "support",
+    "bytes": 10198,
+    "sha256": "f726a98c19cd2a771845a3ace3949f40aef62ec6aa2d1c442cb00c6c64f12561"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/prepare_sim.py",
+    "category": "support",
+    "bytes": 5205,
+    "sha256": "9b43fa9a1441f8ced46cb387c502ed5576dfbfd3a024743ef637c59442faf882"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/app-live.json",
+    "category": "validation",
+    "bytes": 25132,
+    "sha256": "3c8d38d1f8721d04503f906da0fb13ea3a708b081777b89598e30c125cf384e7"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/app-verification-snapshot.json",
+    "category": "validation",
+    "bytes": 25253,
+    "sha256": "06fdf71474536b40051b081d3afa659e75551719109e60d8d1be8caa556a659d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/build-initial.log",
+    "category": "validation",
+    "bytes": 42501,
+    "sha256": "decf3fd8f0dd5191368a5867e316dcdf359af9a4222a00d253d88fcb59f06c8f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/build-key-path.log",
+    "category": "validation",
+    "bytes": 43603,
+    "sha256": "e2b90bbd87406dc1b9fb48164ffb87b2a97f4f26be850375adae4375615c62dd"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/build.log",
+    "category": "validation",
+    "bytes": 43761,
+    "sha256": "32daf736dd912bc22b67ba44259f83f9036459fc20b7792e500aaa474b6ec76c"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/live-first-open.bin",
+    "category": "validation",
+    "bytes": 74763,
+    "sha256": "2f6355789311c1e9fbe595a74719b8e6368c716a6dc67162e90e5540048884c0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/live-first-open.json",
+    "category": "validation",
+    "bytes": 1053,
+    "sha256": "7b12f8678b7645d00da701df4f166709d04d066d8f64d4d826b2c76bd5357f27"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/live_records.json",
+    "category": "validation",
+    "bytes": 424773,
+    "sha256": "1eeb71069a6e593593b64fd21ba6671ad9e1085591212e5ded11bae72b52968a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/live_serial.bin",
+    "category": "validation",
+    "bytes": 67280,
+    "sha256": "6cfd93f97df43020310977f13a868fc1286ef2d5513610858213bdf4e7be7ec2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/live_validation.json",
+    "category": "validation",
+    "bytes": 1053,
+    "sha256": "6fd34320c856936bd99653a157f617d844ff53670fd3417d31d42f875f8e3576"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/live_warmup.bin",
+    "category": "validation",
+    "bytes": 15922,
+    "sha256": "fce5f3afa40e1d3d7823734baca646e955d95a0af579a186445fcda5a1af539d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/program_sram.log",
+    "category": "validation",
+    "bytes": 6452,
+    "sha256": "16e9a51b04092cb4a5f78d487b59e1478b6632ea74873580e9b295e970ca29df"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/readable.log",
+    "category": "validation",
+    "bytes": 279459,
+    "sha256": "25211837525d2ec838016c409a5078f6e59ffe87284c20642da7968d00357824"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/readable.md",
+    "category": "validation",
+    "bytes": 985917,
+    "sha256": "6d756efcc3fd5dfa2935668f268b00376eadb254afe0e17de1c2222897f6393c"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/rtl-preview.png",
+    "category": "validation",
+    "bytes": 11671,
+    "sha256": "1a17bf57406e2d518102e98966dc34f05ef1e826831a282e86ee17d335cc9426"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/source-manifest.json",
+    "category": "validation",
+    "bytes": 6205,
+    "sha256": "1fadde34d8d135c6be3bd46ca37f7df7e01bc9562beb4aa097998e55f41ac65e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/timing-summary.txt",
+    "category": "validation",
+    "bytes": 1876,
+    "sha256": "588b6441768a63316099a8044d9a08280b448250879d6f979878f913e44bfe72"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/reports/validation.md",
+    "category": "validation",
+    "bytes": 3762,
+    "sha256": "9e530b704c4c8026976b01f02b5fcef945fd81d6532361a0fbde1120ef2dac7d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/sim/compile.f",
+    "category": "support",
+    "bytes": 397,
+    "sha256": "03cea682b1c68dbd81bbc2664a8b26b2b4f5513da7928b55a156288a99f6d6a9"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/sim/tb_dashboard.v",
+    "category": "rtl",
+    "bytes": 33414,
+    "sha256": "62f2c32d9e87beb5ff5d677beee21242dbd85632fe5c1bcbfe9f158a288a8667"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/spec/DashboardFont_spec.md",
+    "category": "documentation",
+    "bytes": 377,
+    "sha256": "a38c2428fa27448257ac4066a08bca29b711f87fd46615fb2f3deaa1f313aa54"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/spec/DashboardTelemetry_spec.md",
+    "category": "documentation",
+    "bytes": 639,
+    "sha256": "c6b3550772879fa6420a2b90a6a88afc0e9252b9b7ee788c8850f09150f868e9"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/spec/DashboardVideo_spec.md",
+    "category": "documentation",
+    "bytes": 579,
+    "sha256": "02700c4de9a615e06b3f2e1a636e394ee3c4c806692380868ac3539a9634550d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/spec/HardwareHdmi_spec.md",
+    "category": "documentation",
+    "bytes": 652,
+    "sha256": "2dc3960bfe28f794c8d9c261aaaccf5daba391b984b2ba93fb2c330494fec11a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/spec/requirements.json",
+    "category": "support",
+    "bytes": 773,
+    "sha256": "bc067f2f84e9939aa087af1b7222c8356f405d25c908c6fe31ab64363437d1a3"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/spec/semantic_model.py",
+    "category": "support",
+    "bytes": 581,
+    "sha256": "b5564d8298a08233cc30dd1fab63a04c27c10fe396d2bdbb0fdd9cba01ab4339"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardFont.v",
+    "category": "rtl",
+    "bytes": 3567,
+    "sha256": "caf7188685f8d509e8b25292eef159bdbde4f83b434c0fad59d604c17f41115e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardTelemetry.v",
+    "category": "rtl",
+    "bytes": 7482,
+    "sha256": "e6f60e4b52c60b0034c02d1dc4dd9e19116668369aff2ab971227ec4e6d8b7f6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardVideo.v",
+    "category": "rtl",
+    "bytes": 18951,
+    "sha256": "34329b1b73a2acc7819cb02974d81145a38261195f10949fd35f3b0ba1e3a76c"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/src/HardwareHdmi.v",
+    "category": "rtl",
+    "bytes": 3726,
+    "sha256": "648993c784713d5c04013d217909afea07d795504d3d982968d167127186d337"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/src/hdmi.cst",
+    "category": "fpga-project",
+    "bytes": 3837,
+    "sha256": "da886fc76e96ccb2425638ab8c7b466a186a721c64d1b3ecc7fe0f61431e21a5"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/src/hdmi.sdc",
+    "category": "fpga-project",
+    "bytes": 648,
+    "sha256": "ec123f8df341245615fd43a0b3a4b034f960d569f8c2377026c8e7ca846d02be"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/src/layout.hex",
+    "category": "rtl",
+    "bytes": 16384,
+    "sha256": "483c247a82684b71aa8731455060632a8ab581eba6647611159dbe3887f05e54"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/vendor/DVI_TX_Top.v",
+    "category": "rtl",
+    "bytes": 84845,
+    "sha256": "a2dc2f338438864307dc8da6c8f50b582d412eeb5ea899af9f047a8d6b46815f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/vendor/SIPEEd-LICENSE.txt",
+    "category": "support",
+    "bytes": 590,
+    "sha256": "8934c44d142cef6753acbe993d8755078890cf79c4633e84d957befc280e4180"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/vendor/TMDS_PLL.v",
+    "category": "rtl",
+    "bytes": 4454,
+    "sha256": "93f75ddfc086df167e245b840d6b07f016d281bc14a2b707a1e1c264ebc2d7bf"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_hdmi/verify_live.py",
+    "category": "support",
+    "bytes": 3070,
+    "sha256": "e05fa74f66443f991240bfa3157968f293f575bafda81714a6a6d4407f10c728"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/README.md",
+    "category": "documentation",
+    "bytes": 2721,
+    "sha256": "fe23def99ca65d9f1fc1a17c8106d3cda6cb79756efd48db6effb02ef515f6ad"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/build.tcl",
+    "category": "fpga-project",
+    "bytes": 290,
+    "sha256": "4786d7e69db42319d7332be6dff25de7a888b8c1d54ec4407e2838fb4b0428c4"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/hardware_lab.gprj",
+    "category": "fpga-project",
+    "bytes": 2369,
+    "sha256": "9efc0ffe3a45f725133ec96263ff5c598277365d8dfd215ad4fa9e93d98dbab0"
+  },
+  {
     "path": "Gowin/demo_test/diagnostics/hardware_lab/impl/pnr/hardware_lab.fs",
     "category": "firmware",
     "bytes": 17818084,
     "sha256": "9dd746798871ef065fd4ac33e153381f6718b1197253ac88087c48c630efec21"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/prepare_sim.py",
+    "category": "support",
+    "bytes": 3083,
+    "sha256": "e3c9c2b8dfdf3a5d48aeab81be0af3f051403dacc5226e6943afd70d68b8cd0a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/prepare_sources.py",
+    "category": "support",
+    "bytes": 6967,
+    "sha256": "232ab8e1e02aec626df5f948cb28786d24d9cc9315d5486a9cb31507be46f318"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/app_live.json",
+    "category": "validation",
+    "bytes": 28282,
+    "sha256": "acf61e9601b51a257161d5808ebdc88322c8924b897ffcf570bc725049012b45"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/build.log",
+    "category": "validation",
+    "bytes": 40964,
+    "sha256": "1f6e78c590f4c03f736a125145ce06c642759c68b9434ea0401f68cd95357ea6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/live_check.log",
+    "category": "validation",
+    "bytes": 1247,
+    "sha256": "a337b7d968e60d9d8b47d11f15b89f0d57e62d01257b9a775301dd1389c12482"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/live_records.json",
+    "category": "validation",
+    "bytes": 975398,
+    "sha256": "104f3b7a8e5377c7e803533c946497d8242a6c726a9ac4a5e4eed0bdb6930eaa"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/live_serial.bin",
+    "category": "validation",
+    "bytes": 135921,
+    "sha256": "082fdacd8fd8098231d2c63789dff927be5a5d4a6fcd50c4bec348c9c8508d1f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/live_validation.json",
+    "category": "validation",
+    "bytes": 1727,
+    "sha256": "1828efc09233660cb7f3c680d2665024e344af1a269006770a65674a59fe234e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/manifest.json",
+    "category": "validation",
+    "bytes": 1739,
+    "sha256": "80d3d9a72a70e72cd8051e810a33f6f541e3147e98d7321b16f9c1363206948d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/previous_board_state.json",
+    "category": "validation",
+    "bytes": 1001,
+    "sha256": "076aafd5081a38f0a47eb4134f404f1af1ed450c7de375ae9f6160e56593396e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/program_sram.log",
+    "category": "validation",
+    "bytes": 6452,
+    "sha256": "13a37bb9a818472f366b729f24c4ac993dd8ff1f7d5775b527997bf47ce72b38"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/readability.log",
+    "category": "validation",
+    "bytes": 407137,
+    "sha256": "9cddcf5df764910a546c0a1117352d1b1794bba14efe9c1dbe4567e22e25dfb3"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/simulation_uart.json",
+    "category": "validation",
+    "bytes": 1825,
+    "sha256": "9aaf4dbc775877a1b6b48a5b69d18ed00358d24c7f8a2b0bfba46f13298de978"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/reports/spec_generation.log",
+    "category": "validation",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/sim/command_vectors.hex",
+    "category": "rtl",
+    "bytes": 2860,
+    "sha256": "caad464ff8bb79c35b4bf358de1e16ef58d2d14f194040db9f624f63c665eb84"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/sim/tb_hardware_flow.v",
+    "category": "rtl",
+    "bytes": 1675,
+    "sha256": "c1f4a12c10d48f016d8c0ca6d750919b4c0d8e00ad06fcd0196470fa65b34f5e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/sim/tb_hardware_lab.v",
+    "category": "rtl",
+    "bytes": 12661,
+    "sha256": "f9d3ecc2ea010dfa2bc1d4d0567c167f603596ca4a4628cbfcdfd019b429bd8e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/sim/tb_telemetry_mux.v",
+    "category": "rtl",
+    "bytes": 1641,
+    "sha256": "6de951d5a5b6235417a9b6a0d3ddfa6ae87f1bb106427a754aa8270b7ae06bb9"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/hardware_contract.json",
+    "category": "support",
+    "bytes": 56366,
+    "sha256": "70356f6cc74fb3da07e3735556fbae034383b65b79b2c6d42060c30018f92503"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/model.py",
+    "category": "support",
+    "bytes": 1244,
+    "sha256": "66bc106f751b998358274b95779f5dd04967bed934ab65c9d1d423ae09b28deb"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/requirements.md",
+    "category": "documentation",
+    "bytes": 2225,
+    "sha256": "23da77c0a3ad107f2c06b49c2ed5f4776364ad424b3d544072dcd676d12e8046"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareEncoders_spec.md",
+    "category": "documentation",
+    "bytes": 2614,
+    "sha256": "66613d0abd74afaf2fac81feaa277be8b289f71bfa3c685b74fcbe59f2417ed4"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareIdentity_spec.md",
+    "category": "documentation",
+    "bytes": 2263,
+    "sha256": "3fd2faa1ede091dfe220d07ad59fded60a8d0c3e4ed68be4b7d6d9d5317bed42"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareJoystick_spec.md",
+    "category": "documentation",
+    "bytes": 2445,
+    "sha256": "c6d7f58f52680c83b51468b4fee79925a8d38c7eaa3f6b50cf15e20ab22d8004"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareKeyController_spec.md",
+    "category": "documentation",
+    "bytes": 4304,
+    "sha256": "8cfbf17a74f9435b3a554b38b7685649f679afa9c0d3495780669b608b7913bb"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareKeyLightEffects_spec.md",
+    "category": "documentation",
+    "bytes": 2840,
+    "sha256": "b30262475d0f28eb6aeb24ed1d3ae02b128f54f8addd86144cc2c5f101daf911"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareKeyboardTelemetry_spec.md",
+    "category": "documentation",
+    "bytes": 3955,
+    "sha256": "5925f4d192b02de229a8f6f2ddec34d7b401625ac56bc3339ae7deb41974f225"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareKeyboard_spec.md",
+    "category": "documentation",
+    "bytes": 3327,
+    "sha256": "beb7e6c20fbf5f1830b3b7f40559cb260a62d8e62a3c15cf12af7eac736c00c6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareLab_spec.md",
+    "category": "documentation",
+    "bytes": 3724,
+    "sha256": "71189c4086f52c51ca855d999234b428fc664fff637f7a220f3e7c07f6cf3b86"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/HardwareTouchpad_spec.md",
+    "category": "documentation",
+    "bytes": 2833,
+    "sha256": "6405403f8b2f49cf57dba2a023ffd82c076029566f5e27a73ae2359c09d7a3a8"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/KeyboardSnapshot_spec.md",
+    "category": "documentation",
+    "bytes": 2821,
+    "sha256": "71549bd5880bd21d71b9f98c660179e01b04d0500c78ca1aff74bb6ee54ce511"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/TelemetryByte_spec.md",
+    "category": "documentation",
+    "bytes": 2567,
+    "sha256": "bea7dda98bc3fc45a4b05253948a64e7f1ea9f2050b74aee6216ec7663670b27"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/TelemetryMux_spec.md",
+    "category": "documentation",
+    "bytes": 2565,
+    "sha256": "0d0ae2f51c87a75330c1ca57c035e07068a1771f1799a81c2a0ea7dcd8f204d2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareEncoders_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareEncoders_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareIdentity_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareIdentity_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareJoystick_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareJoystick_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyController_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyController_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyLightEffects_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyLightEffects_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyboardTelemetry_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyboardTelemetry_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyboard_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareKeyboard_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareLab_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareLab_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareTouchpad_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/HardwareTouchpad_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/KeyboardSnapshot_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/KeyboardSnapshot_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/TelemetryByte_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/TelemetryByte_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/TelemetryMux_backpressure.json5",
+    "category": "support",
+    "bytes": 325,
+    "sha256": "44b1e16eb599f89995b03099bd520f5056b9c7956c39dbcbe87d4ba2866baa40"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/spec/src/waveforms/TelemetryMux_backpressure.svg",
+    "category": "support",
+    "bytes": 56249,
+    "sha256": "5d75ce549ce396eb04ffd58711a1e3b1a2d58feaa97e2349b281c5edf88d94d0"
   },
   {
     "path": "Gowin/demo_test/diagnostics/hardware_lab/src/HardwareEncoders.v",
@@ -14958,6 +18336,30 @@
     "sha256": "6f5ecf18cf7dc5be8a17ca4b1678b94bd32b6c4ac412c731573c120dc6a9ba33"
   },
   {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/src/hardware.cst",
+    "category": "fpga-project",
+    "bytes": 3321,
+    "sha256": "9b9299ffb24221d0303dc0bb94216200b2b4cf6d31571f96a66f5320e1e0bd3f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/src/hardware.sdc",
+    "category": "fpga-project",
+    "bytes": 59,
+    "sha256": "e639085a9ddb8b777083b34a163be700830ae9cf1f18fc87d368274f26bfd2ba"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/verify_live.py",
+    "category": "support",
+    "bytes": 4899,
+    "sha256": "491a8a27a736ebf1ced7503f11cc64ed3e31baceb79de96aabbafa34b1ce5d06"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/hardware_lab/workflow-state.json",
+    "category": "support",
+    "bytes": 399,
+    "sha256": "22ecd9357e7c790d4e9e2cd4bc9af3587e1333a1a79fab12c23ccbb54b23cec1"
+  },
+  {
     "path": "Gowin/demo_test/diagnostics/internal_uart/impl/pnr/internal_uart.fs",
     "category": "firmware",
     "bytes": 17311868,
@@ -14994,10 +18396,268 @@
     "sha256": "800ee90b36c5f2ded66bfc3129adcedfafb671359d4f924b5cad506ddc698adf"
   },
   {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/README.md",
+    "category": "documentation",
+    "bytes": 6328,
+    "sha256": "b78f734949d72edcaded7f7f679c32da73b0be2bb550adde29ac7a0005f1a0fe"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/build.tcl",
+    "category": "fpga-project",
+    "bytes": 230,
+    "sha256": "57e1f41992cc8e9f5c470908423b2cd2b3dee523c6c03a43fdd0fefa922c8119"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/contract.json",
+    "category": "support",
+    "bytes": 44943,
+    "sha256": "fa19bcbe45019fdb62d6d1699e2dfb7b571989f7bd5285028207eb771d5e7495"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/finalize_report.py",
+    "category": "support",
+    "bytes": 4847,
+    "sha256": "419d191ceb855bd58ec66425fe12d9cdc00b72a2be41c628d9301d4cd69a87ca"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/game_model.py",
+    "category": "support",
+    "bytes": 1374,
+    "sha256": "1ab7028b9b6d648b431449303ce2e5cb111af8b513d30dd075c17d5b6e732ab9"
+  },
+  {
     "path": "Gowin/demo_test/diagnostics/keyboard_games/impl/pnr/keyboard_games.fs",
     "category": "firmware",
     "bytes": 17311868,
     "sha256": "ea3b3887e2a764bc766a588b1a4608875f8a13bd5fc15d78bed11a69f0144777"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/keyboard.cst",
+    "category": "fpga-project",
+    "bytes": 1219,
+    "sha256": "daae6cc2be6be4dc1a39bfeacd580cb8b125d135e1c5bdd026635ad338c623c6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/keyboard_games.gprj",
+    "category": "fpga-project",
+    "bytes": 1005,
+    "sha256": "02fa02d5535a0139ff85682f74bbca52b0cc392daedf95d18194db7ca87a4f16"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/make_contract.py",
+    "category": "support",
+    "bytes": 5710,
+    "sha256": "ee45fec8c9f2b2f4e6298a2556cc0f852d43870003e6a71bf52ed1511869542a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/make_integration_test.py",
+    "category": "support",
+    "bytes": 2995,
+    "sha256": "ab328aa9d9ece4971410294cc08832444c9adf456de1ac743910fe8a4dc7a1a8"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/requirements.txt",
+    "category": "support",
+    "bytes": 3462,
+    "sha256": "eaf6526f85bffdb526ebf8dbc37d6e98688ef6e3feb1e6c0db1e58b5b46c3cb8"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/sim/command_vectors.hex",
+    "category": "rtl",
+    "bytes": 2860,
+    "sha256": "caad464ff8bb79c35b4bf358de1e16ef58d2d14f194040db9f624f63c665eb84"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/sim/tb_game_engine.v",
+    "category": "rtl",
+    "bytes": 7908,
+    "sha256": "667324ed1322bffaa399eb63e78e817be4f15ee37c7af88edbaa13c96e606267"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/sim/tb_keyboard_games.v",
+    "category": "rtl",
+    "bytes": 9134,
+    "sha256": "e33609a1a95ee3fae81520ca914725d325a3924c931107d60832de93b41e1506"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/CommandFrameRx_spec.md",
+    "category": "documentation",
+    "bytes": 2339,
+    "sha256": "f18d9c0b7a0ebb5335ff76afc3a2d1bd96f54ecf674913e5e6ca681c46860757"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/GameDisplay_spec.md",
+    "category": "documentation",
+    "bytes": 2150,
+    "sha256": "6f12d5b6f52d8dab949bb4429075663baf882bbc62a4c260119164d42161bdf6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/GameEngine_spec.md",
+    "category": "documentation",
+    "bytes": 3555,
+    "sha256": "577cb5df274f4e44c58e3802c8779896fe6fa481bb0e72ad4911cf4726cda1b1"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/KeyController_spec.md",
+    "category": "documentation",
+    "bytes": 4040,
+    "sha256": "aa78aa77ff82636f04017f01fb5832fd176d3acae3d7a6def882c8e226f9cbe1"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/KeyLightEffects_spec.md",
+    "category": "documentation",
+    "bytes": 2800,
+    "sha256": "1b40c2662e57dcc3d27e207a1c29be977ce7f7e9490c33f6f40cf3da22afc10e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/KeyboardGames_spec.md",
+    "category": "documentation",
+    "bytes": 2850,
+    "sha256": "d0d03a0d1130fd39c4b3c4b9ba81567a79c1f70a9375a6270e9a6402034c0dfe"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/KeyboardSampler_spec.md",
+    "category": "documentation",
+    "bytes": 2671,
+    "sha256": "b5989b7ed9e2973a4269937d4347b4f415f987e1ee0fe5ee2ad047c95c9429c2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/KeyboardTelemetry_spec.md",
+    "category": "documentation",
+    "bytes": 3274,
+    "sha256": "0549c82d594680ac657c16ea522a15735c5fc5821ff0783e49dba73003132aa8"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/LedFrameTx_spec.md",
+    "category": "documentation",
+    "bytes": 2296,
+    "sha256": "127693ef549bcba575fd3c4d2228cadfa57666b495294910c2883becee35d76c"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/UartRx_spec.md",
+    "category": "documentation",
+    "bytes": 2139,
+    "sha256": "ccfcdfbcde17d661b0641e2f348e48904b545e044b3ee2882d5e82dfb89534f3"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/CommandFrameRx_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/CommandFrameRx_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/GameDisplay_operation.json5",
+    "category": "support",
+    "bytes": 360,
+    "sha256": "4f96b7a9acc2ac049856f17fa254739b61c328603c41e6af8f013bd8bcaa35d4"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/GameDisplay_operation.svg",
+    "category": "support",
+    "bytes": 55809,
+    "sha256": "4fc22f56e70e8b974e3810f7472803289deb9572f4a238c733083834e6bde395"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/GameEngine_operation.json5",
+    "category": "support",
+    "bytes": 332,
+    "sha256": "fa4d525f1aae521b7789c83af2b0b4264aace6960bc16c443c798f9259511750"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/GameEngine_operation.svg",
+    "category": "support",
+    "bytes": 55339,
+    "sha256": "c70b4cf83664bf531956fa2e65cf1dd7b151a60b895f9ed321decddc3e0a4ebb"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyController_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyController_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyLightEffects_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyLightEffects_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyboardGames_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyboardGames_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyboardSampler_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyboardSampler_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyboardTelemetry_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/KeyboardTelemetry_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/LedFrameTx_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/LedFrameTx_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/UartRx_operation.json5",
+    "category": "support",
+    "bytes": 305,
+    "sha256": "3a173d73dd0a2046303562e734da4dba15fe2d74691792a9b6218139205c006e"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/spec/src/waveforms/UartRx_operation.svg",
+    "category": "support",
+    "bytes": 55208,
+    "sha256": "59853641bf7d3642fbb68242b1c8eb35ad25e8dfcfe580862e7f3040e17c02db"
   },
   {
     "path": "Gowin/demo_test/diagnostics/keyboard_games/src/CommandFrameRx.v",
@@ -15058,6 +18718,24 @@
     "category": "rtl",
     "bytes": 2233,
     "sha256": "e2624eeaa0cb6a67df40c786e82954e064f5d42bb77cdb7bede58d9729475f76"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/verify_board.py",
+    "category": "support",
+    "bytes": 4347,
+    "sha256": "f6de38c3dee029e35ff4d4250e002e8c183c2e5f5732320924ca66d6d1a04344"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/watch_gui.py",
+    "category": "support",
+    "bytes": 709,
+    "sha256": "a8c15a6e9ce1fc12872017e9c584b4e8ab08db409a71932b097f7b068c60bfe6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/keyboard_games/workflow-state.json",
+    "category": "support",
+    "bytes": 399,
+    "sha256": "10477b093f391f339483b27c824a2211a437353c7b59e6551cac11bc4bdb125b"
   },
   {
     "path": "Gowin/demo_test/diagnostics/keyboard_high_impedance/impl/pnr/keyboard_high_impedance.fs",
@@ -15144,10 +18822,178 @@
     "sha256": "02b4a7422f370864ffc49812677d450e72a0e78a0a6b5df1adba205f2799e027"
   },
   {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/README.md",
+    "category": "documentation",
+    "bytes": 3493,
+    "sha256": "74f00403fc5924d7b9d7b956de5f28b00de496f9fe1bc25a238674cae2a24b12"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/preflight.json",
+    "category": "validation",
+    "bytes": 249,
+    "sha256": "a385f1b32a39cbe08ea941e553a79163e72d6dcdf7f42a84ac5775a077a47900"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/program_sram.log",
+    "category": "validation",
+    "bytes": 6453,
+    "sha256": "4793ea2e33968dcf45b794df27987755c5d381cfe5081f488a9f8ca74c9fb64f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/speaker_volume_1.bin",
+    "category": "validation",
+    "bytes": 9984,
+    "sha256": "065f9929c79252570bad6b3990460a44cc7a03e7e22af50813a4c807842c7797"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/speaker_volume_1.json",
+    "category": "validation",
+    "bytes": 65817,
+    "sha256": "81213975bbe8e6fd5c664778c5415ddddf2bb7a8737351f07b931bb9fe40d09d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/speaker_volume_3.bin",
+    "category": "validation",
+    "bytes": 9984,
+    "sha256": "e6b9f623e10fcf773f5c29e61a2a51f3e3f8a0fa89fd69e53fe2239cad346cb6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/speaker_volume_3.json",
+    "category": "validation",
+    "bytes": 66181,
+    "sha256": "975b32fb382a96b8ec58dca622339c78a88ee9f8182bd7f8787592268393d42a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/speaker_volume_6.bin",
+    "category": "validation",
+    "bytes": 10176,
+    "sha256": "0e7675b98be40057ad4111497aa375b743e98de75e31afd9fbdddf4eef3c5091"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/speaker_volume_6.json",
+    "category": "validation",
+    "bytes": 67325,
+    "sha256": "4454813c832d2501023041c4d3582123e0dca2bb1a1d4d507bb6a1ca2724bfc6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/test_volume_1.log",
+    "category": "validation",
+    "bytes": 3300,
+    "sha256": "042e37c6d5d828ac6ec19eff7cfe58ca111baa069677afbae5755b0e75aaa9cf"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/test_volume_3.log",
+    "category": "validation",
+    "bytes": 3343,
+    "sha256": "69692ed8c000246397f19a5c9426943659ebbfbd066585aef75333c18f8fc4c0"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/reports/test_volume_6.log",
+    "category": "validation",
+    "bytes": 3343,
+    "sha256": "9ee78639a831fabff71bd86d8ce96b7e0ae8de012437d9ee2125ed3f783966af"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/speaker_test/test_speaker.py",
+    "category": "support",
+    "bytes": 5557,
+    "sha256": "32cb97cd7a9ce83791507d94e2f07422da6ee6f356087e94c969c8db39a5562a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/build.tcl",
+    "category": "fpga-project",
+    "bytes": 284,
+    "sha256": "c6fdf311ba419a639d1411fa6761117c08b1886efc5489e7aa3f7446ccf7ffa3"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/capture.py",
+    "category": "support",
+    "bytes": 2061,
+    "sha256": "59a6f6da472013ce4e47ef1800a8faf993ed29e827dc00f9f6b30415839792f6"
+  },
+  {
     "path": "Gowin/demo_test/diagnostics/touchpad/impl/pnr/touchpad.fs",
     "category": "firmware",
     "bytes": 17457188,
     "sha256": "73440c6747fba606857921d68ac3da04c0ede203f0d09422c63ea862d8dcdf22"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/sim/tb_touchpad.v",
+    "category": "rtl",
+    "bytes": 4678,
+    "sha256": "6baecb6f3b560a806de654358dcd9dc36268f87b4721b72513edb7c89e1334c6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/intent.json",
+    "category": "support",
+    "bytes": 2052,
+    "sha256": "461b6eaa3ecb80f65f4eb032b639df23bd838a5450c6cb83d7a984ba048c61a6"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/model.py",
+    "category": "support",
+    "bytes": 1085,
+    "sha256": "ac4c6ed609969f2911b160d3b899907b8501670dc1b72281f642aef6e39edb67"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/I2cRegister_spec.md",
+    "category": "documentation",
+    "bytes": 3366,
+    "sha256": "4a9718204a37e3e594ba822b26cdf9e27c2e79507f6021b0850a42e7cf4e2c68"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/MprScanner_spec.md",
+    "category": "documentation",
+    "bytes": 3091,
+    "sha256": "465d871a97bfb41557118d8674f278e3926bfe47a7d8c066b309fd977085191c"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/TouchpadDebug_spec.md",
+    "category": "documentation",
+    "bytes": 2854,
+    "sha256": "9b1e0bd21d023df65633335c0966cd3ddbf1cd4d466df1023dd3e37f9d130907"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/waveforms/I2cRegister_burst.json5",
+    "category": "support",
+    "bytes": 363,
+    "sha256": "1d034a83f333fa79821c39d149a64714090f4b74de4bfdce5db58f4cfccf515a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/waveforms/I2cRegister_burst.svg",
+    "category": "support",
+    "bytes": 58840,
+    "sha256": "3929876be760f4fe5040040905c0b5b26f36c27ee0a300cd6e8bbbc79b99980d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/waveforms/MprScanner_burst.json5",
+    "category": "support",
+    "bytes": 363,
+    "sha256": "1d034a83f333fa79821c39d149a64714090f4b74de4bfdce5db58f4cfccf515a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/waveforms/MprScanner_burst.svg",
+    "category": "support",
+    "bytes": 58840,
+    "sha256": "3929876be760f4fe5040040905c0b5b26f36c27ee0a300cd6e8bbbc79b99980d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/waveforms/TouchpadDebug_burst.json5",
+    "category": "support",
+    "bytes": 363,
+    "sha256": "1d034a83f333fa79821c39d149a64714090f4b74de4bfdce5db58f4cfccf515a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/src/waveforms/TouchpadDebug_burst.svg",
+    "category": "support",
+    "bytes": 58840,
+    "sha256": "3929876be760f4fe5040040905c0b5b26f36c27ee0a300cd6e8bbbc79b99980d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/spec/touchpad_contract.json",
+    "category": "support",
+    "bytes": 14329,
+    "sha256": "f0d2264810bfa257c06d4f333703ba37ea02b0688d59e720118fe8bdfeaece62"
   },
   {
     "path": "Gowin/demo_test/diagnostics/touchpad/src/I2cRegister.v",
@@ -15168,10 +19014,172 @@
     "sha256": "ecd4c9e8ad9cb6daebc718c839f7ac744257de393275613680104b53734360da"
   },
   {
+    "path": "Gowin/demo_test/diagnostics/touchpad/src/touchpad.cst",
+    "category": "fpga-project",
+    "bytes": 819,
+    "sha256": "406d4525841782c04a366fc4183f10c511a07a8f419f5564dc73d680433baa85"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/src/touchpad.sdc",
+    "category": "fpga-project",
+    "bytes": 59,
+    "sha256": "e639085a9ddb8b777083b34a163be700830ae9cf1f18fc87d368274f26bfd2ba"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/touchpad.gprj",
+    "category": "fpga-project",
+    "bytes": 778,
+    "sha256": "3338439da79226ba820c3a1bf36ecfaeafaa58d664962ab50288f58de7d55fcb"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_bit_ctrl.v",
+    "category": "rtl",
+    "bytes": 21121,
+    "sha256": "1f9e5988d047897d5322a06095e209750d21712d2d2c6936703cb8fc802ca527"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_byte_ctrl.v",
+    "category": "rtl",
+    "bytes": 10547,
+    "sha256": "fabdde9ac23c96333eda6de38d5c96c979075e064954d6f3ff0eab221dc060f4"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_defines.v",
+    "category": "rtl",
+    "bytes": 3011,
+    "sha256": "64fa14fb58af069c5b497cbefca28945761d69ba2ce3482a557170026de39d16"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad/vendor/timescale.v",
+    "category": "rtl",
+    "bytes": 23,
+    "sha256": "51d0bd23e68fff1dc81b7e51aed20d46b743807bbadc1265bdbd34c1f1465c8f"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/build.tcl",
+    "category": "fpga-project",
+    "bytes": 292,
+    "sha256": "971f4c8a1d3d3b7e056c24acaa4ae22a503f862b70de837853d55d03d9e68050"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/capture.py",
+    "category": "support",
+    "bytes": 2177,
+    "sha256": "f6f15f0ebbac31a0ce3511f4ee277418a51a386c5fbd28d3618c1b06d8832bdc"
+  },
+  {
     "path": "Gowin/demo_test/diagnostics/touchpad_guitar/impl/pnr/touchpad_guitar.fs",
     "category": "firmware",
     "bytes": 17746380,
     "sha256": "4e1c190219a2a8c6976767aecaaec281a32a253247e8bd236e2b19bfce287aa8"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/sim/tb_guitar_queue.v",
+    "category": "rtl",
+    "bytes": 915,
+    "sha256": "e075eb804976fba5e01c8dc8828b7eb0edc223329ececf9078f8ad28d1e7fc25"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/sim/tb_guitar_tracker.v",
+    "category": "rtl",
+    "bytes": 2281,
+    "sha256": "f9002334405a7dc242e9fb94a3d25fd9dfcf8f3c29c0ed36a89dcaeaf3b9ffc2"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/sim/tb_touchpad_guitar.v",
+    "category": "rtl",
+    "bytes": 5205,
+    "sha256": "a08345f314011dac90361abefa910675f77133782a1a078217133aebd8d8af28"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/guitar_contract.json",
+    "category": "support",
+    "bytes": 16389,
+    "sha256": "a9a64ed7641a93af1cfcb8f9d2aed237ffcce70dd2f3a772d5b30a743e4d4ef7"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/model.py",
+    "category": "support",
+    "bytes": 1788,
+    "sha256": "acde13a026f9c1ba78caf7b0740ef7fd2f2514327468ac477e125bee9adb2e3a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/requirements.md",
+    "category": "documentation",
+    "bytes": 2104,
+    "sha256": "15cf610a56587e8bb1af9f0b560e09cd76d737141887c7816c0de02d0b6709e4"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/GuitarEventQueue_spec.md",
+    "category": "documentation",
+    "bytes": 2418,
+    "sha256": "93e1875e48c4e7d963b10317f940130fef9208d12db5258f18539c58c44c7fcf"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/GuitarTracker_spec.md",
+    "category": "documentation",
+    "bytes": 3118,
+    "sha256": "68798a41e743e6a9efef7c275dd6f76ae9b09316c9c6f7dfbc6d7f1ace907364"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/MprScanner_spec.md",
+    "category": "documentation",
+    "bytes": 2323,
+    "sha256": "a6131f30aa79143faf928441f34a27678bfb690e7a88f8f9c56582a80fe3469a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/TouchpadGuitar_spec.md",
+    "category": "documentation",
+    "bytes": 2442,
+    "sha256": "17c99433eec23b5f8372869c8288ab22a368ed3f4b5daf5e23080dc3d38809a3"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/GuitarEventQueue_crossing.json5",
+    "category": "support",
+    "bytes": 400,
+    "sha256": "49ac62ba338c2922c1e6e7f82c720b259aa69f7088886ec830446e06fc782d61"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/GuitarEventQueue_crossing.svg",
+    "category": "support",
+    "bytes": 57558,
+    "sha256": "c322c02e082423281d96b2f5fc70dbcd1a6e60aaac88f6d714ec4d44ae535111"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/GuitarTracker_crossing.json5",
+    "category": "support",
+    "bytes": 400,
+    "sha256": "49ac62ba338c2922c1e6e7f82c720b259aa69f7088886ec830446e06fc782d61"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/GuitarTracker_crossing.svg",
+    "category": "support",
+    "bytes": 57558,
+    "sha256": "c322c02e082423281d96b2f5fc70dbcd1a6e60aaac88f6d714ec4d44ae535111"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/MprScanner_burst.json5",
+    "category": "support",
+    "bytes": 363,
+    "sha256": "1d034a83f333fa79821c39d149a64714090f4b74de4bfdce5db58f4cfccf515a"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/MprScanner_burst.svg",
+    "category": "support",
+    "bytes": 58840,
+    "sha256": "3929876be760f4fe5040040905c0b5b26f36c27ee0a300cd6e8bbbc79b99980d"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/TouchpadGuitar_crossing.json5",
+    "category": "support",
+    "bytes": 400,
+    "sha256": "49ac62ba338c2922c1e6e7f82c720b259aa69f7088886ec830446e06fc782d61"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/spec/src/waveforms/TouchpadGuitar_crossing.svg",
+    "category": "support",
+    "bytes": 57558,
+    "sha256": "c322c02e082423281d96b2f5fc70dbcd1a6e60aaac88f6d714ec4d44ae535111"
   },
   {
     "path": "Gowin/demo_test/diagnostics/touchpad_guitar/src/GuitarEventQueue.v",
@@ -15196,6 +19204,30 @@
     "category": "rtl",
     "bytes": 7728,
     "sha256": "796f08b1dd51e371726151ec46de251bc12b6231f7e9d5a8bbedb3f34825cdfc"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/src/touchpad.cst",
+    "category": "fpga-project",
+    "bytes": 819,
+    "sha256": "406d4525841782c04a366fc4183f10c511a07a8f419f5564dc73d680433baa85"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/src/touchpad.sdc",
+    "category": "fpga-project",
+    "bytes": 59,
+    "sha256": "e639085a9ddb8b777083b34a163be700830ae9cf1f18fc87d368274f26bfd2ba"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/touchpad_guitar.gprj",
+    "category": "fpga-project",
+    "bytes": 940,
+    "sha256": "afd66e894f5060d714a5e02c3e9793e95711f70d66b4cd159b44f5aa3a599544"
+  },
+  {
+    "path": "Gowin/demo_test/diagnostics/touchpad_guitar/workflow-state.json",
+    "category": "support",
+    "bytes": 570,
+    "sha256": "adb00feee0f075b5fe3e08326c92c0015e7035e411f94251b15850261881842a"
   },
   {
     "path": "Gowin/demo_test/diagnostics/uart_clock/impl/pnr/uart_clock.fs",
@@ -15226,5 +19258,23 @@
     "category": "rtl",
     "bytes": 6584,
     "sha256": "0a1dc58be60fd7feaf5eca5655cac6c8331852ffd975849711f3975ab2158c4d"
+  },
+  {
+    "path": "Gowin/demo_test/src/keyboard.sdc",
+    "category": "fpga-project",
+    "bytes": 586,
+    "sha256": "d022eaf3598255a37425376d10eaeeab2364e071b205e5d126e39275430ad297"
+  },
+  {
+    "path": "README.md",
+    "category": "documentation",
+    "bytes": 5715,
+    "sha256": "798e0688ab4e25f05525929bd04e601e60b6a6d0a56cb83e62839c660c6a68cb"
+  },
+  {
+    "path": "tools/verify_snapshot.py",
+    "category": "support",
+    "bytes": 2150,
+    "sha256": "9e023dabfca8d002c3e50d523db326dafb350db4f58a11d828715e5924501586"
   }
 ]

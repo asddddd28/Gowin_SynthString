@@ -1,0 +1,32 @@
+[package]
+name = "tang-hardware-lab"
+version = "2.0.0"
+description = "Tang Mega 60K integrated hardware laboratory"
+edition = "2021"
+default-run = "tang-hardware-lab"
+
+[lib]
+name = "tang_hardware_lab"
+crate-type = ["rlib"]
+
+[features]
+custom-protocol = ["tauri/custom-protocol"]
+
+[build-dependencies]
+tauri-build = { version = "2.7", features = [] }
+
+[dependencies]
+tauri = { version = "2.12", features = [] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+serialport = "4.10"
+midir = "0.11"
+cpal = "0.16"
+crossbeam-channel = "0.5"
+rfd = { version = "0.16", default-features = false }
+tempfile = "3"
+
+[profile.release]
+opt-level = 3
+strip = true
+lto = "thin"

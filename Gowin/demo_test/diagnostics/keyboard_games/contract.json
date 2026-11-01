@@ -1,0 +1,1425 @@
+{
+  "name": "keyboard_games",
+  "modules": [
+    {
+      "name": "CommandFrameRx",
+      "rtl_path": "src/CommandFrameRx.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_byte",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "byte"
+          },
+          {
+            "name": "i_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "valid"
+          },
+          {
+            "name": "i_error",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "error"
+          },
+          {
+            "name": "o_payload",
+            "direction": "output",
+            "width": 80,
+            "role": "data",
+            "description": "payload"
+          },
+          {
+            "name": "o_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "valid"
+          },
+          {
+            "name": "o_crc_error",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "crc error"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "Parse !20HEX*CRC8 LF; CRC8/07 init0 over ten packed payload bytes.",
+        "o_valid pulses for one cycle after newline; o_crc_error accompanies failed CRC.",
+        "New start marker restarts parser. UART error or 100 ms interbyte timeout drops partial frame."
+      ],
+      "constraints": [
+        "Bytes and strobes synchronous to i_clk; no backpressure.",
+        "Malformed syntax does not dispatch a command."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "Bytes and strobes synchronous to i_clk; no backpressure.",
+        "Malformed syntax does not dispatch a command."
+      ],
+      "verification_cases": [
+        "Partial timeout recovery and CRC rejection in tb_keyboard_reactive."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "CommandFrameRx operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "KeyController",
+      "rtl_path": "src/KeyController.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_command",
+            "direction": "input",
+            "width": 80,
+            "role": "data",
+            "description": "command"
+          },
+          {
+            "name": "i_command_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "command valid"
+          },
+          {
+            "name": "i_crc_error",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "crc error"
+          },
+          {
+            "name": "i_key",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "key"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 12,
+            "role": "data",
+            "description": "raw"
+          },
+          {
+            "name": "i_sample_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "sample valid"
+          },
+          {
+            "name": "o_ack",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "ack"
+          },
+          {
+            "name": "o_ack_seq",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "ack seq"
+          },
+          {
+            "name": "o_ack_result",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "ack result"
+          },
+          {
+            "name": "o_configured",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "configured"
+          },
+          {
+            "name": "o_generation",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "generation"
+          },
+          {
+            "name": "o_mode",
+            "direction": "output",
+            "width": 4,
+            "role": "data",
+            "description": "mode"
+          },
+          {
+            "name": "o_direction",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "direction"
+          },
+          {
+            "name": "o_pressed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "pressed"
+          },
+          {
+            "name": "o_press_pulse",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "press pulse"
+          },
+          {
+            "name": "o_clear_effect",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "clear effect"
+          },
+          {
+            "name": "o_game_start",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "One-cycle start for a fresh accepted command41"
+          },
+          {
+            "name": "o_game_stop",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "One-cycle stop on42, ordinary effect or calibration commit"
+          },
+          {
+            "name": "o_game_type",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "1snake2mole3piano"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "BEGIN resets inactive-bank write mask; KEY writes one validated calibration; COMMIT swaps only a complete bank.",
+        "Increasing/decreasing ADC polarities; hysteresis with two consecutive threshold-crossing samples.",
+        "Press pulse only on qualified released-to-pressed transition. Commit clears all recognition state.",
+        "Last identical sequence/payload returns cached result without executing again; collision returns error7.",
+        "Commands produce a one-cycle ACK; mode change clears effects.",
+        "Command41 starts selected game and mode5 only after calibration. Duplicate replay does not restart.",
+        "Command42 restores chosen ordinary mode0..4; normal EFFECT/COMMIT stop current game."
+      ],
+      "constraints": [
+        "All32 valid records required; endpoint span >=100; thresholds ordered inside endpoints.",
+        "Active bank remains valid while staging; no nonvolatile storage; memories ignored before configured.",
+        "Stop-and-wait host protocol. Commit overrides same-cycle sample."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "All32 valid records required; endpoint span >=100; thresholds ordered inside endpoints.",
+        "Active bank remains valid while staging; no nonvolatile storage; memories ignored before configured.",
+        "Stop-and-wait host protocol. Commit overrides same-cycle sample."
+      ],
+      "verification_cases": [
+        "Invalid/incomplete commit, duplicate retry, both polarities, single spike, held-key no-repeat, hysteresis, reset."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "KeyController operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "KeyboardSampler",
+      "rtl_path": "src/KeyboardSampler.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_adc_dout",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "adc dout"
+          },
+          {
+            "name": "i_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "ready"
+          },
+          {
+            "name": "o_mux_sel",
+            "direction": "output",
+            "width": 3,
+            "role": "data",
+            "description": "mux sel"
+          },
+          {
+            "name": "o_mux_en",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "mux en"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "adc cs n"
+          },
+          {
+            "name": "o_adc_sclk",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "adc sclk"
+          },
+          {
+            "name": "o_adc_din",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "adc din"
+          },
+          {
+            "name": "o_key",
+            "direction": "output",
+            "width": 5,
+            "role": "data",
+            "description": "key"
+          },
+          {
+            "name": "o_raw",
+            "direction": "output",
+            "width": 12,
+            "role": "data",
+            "description": "raw"
+          },
+          {
+            "name": "o_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "valid"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "Scan row-major 32 keys. Column select order4,5,6,7,3,2,1,0.",
+        "Wait10000 cycles for mux settle; two16-clock ADC conversions per key, discard first pipelined conversion.",
+        "SPI half-period6 cycles. Hold sample/key/valid until ready; then advance."
+      ],
+      "constraints": [
+        "ADC pins match existing KeyboardDebug; 50MHz only.",
+        "C_SETTLE_CYCLES>=1; C_HALF_CYCLES>=4; DOUT sampled after external falling edge settling."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "ADC pins match existing KeyboardDebug; 50MHz only.",
+        "C_SETTLE_CYCLES>=1; C_HALF_CYCLES>=4; DOUT sampled after external falling edge settling."
+      ],
+      "verification_cases": [
+        "ADC behavioral model includes30ns delay; 623 raw records, mux/channel order and reset."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "KeyboardSampler operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "KeyboardTelemetry",
+      "rtl_path": "src/KeyboardTelemetry.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_key",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "key"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 12,
+            "role": "data",
+            "description": "raw"
+          },
+          {
+            "name": "i_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "valid"
+          },
+          {
+            "name": "i_ack",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "ack"
+          },
+          {
+            "name": "i_ack_seq",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "ack seq"
+          },
+          {
+            "name": "i_ack_result",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "ack result"
+          },
+          {
+            "name": "i_configured",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "configured"
+          },
+          {
+            "name": "i_generation",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "generation"
+          },
+          {
+            "name": "i_mode",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "mode"
+          },
+          {
+            "name": "i_direction",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "direction"
+          },
+          {
+            "name": "i_pressed",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "pressed"
+          },
+          {
+            "name": "o_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "ready"
+          },
+          {
+            "name": "o_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "tx"
+          },
+          {
+            "name": "i_game_status",
+            "direction": "input",
+            "width": 128,
+            "role": "data",
+            "description": "Game metadata and32 two-bit pixels"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "Arbitrate whole UART records: command ACK before periodic state before raw sample.",
+        "Raw K01:ABC CRLF format retained; one CRC-protected state per scan.",
+        "Response @18HEX*CRC LF; capture ACK state after controller update; stop-and-wait one-slot pending.",
+        "434 cycles/bit at50MHz, 8N1; ready transfers sample only when idle and no queued state.",
+        "Every scan includes #32HEX*CRC LF game status, CRC over16bytes.",
+        "ACK > normal status > game status > raw; game payload snapshotted before CRC/serialization."
+      ],
+      "constraints": [
+        "C_UART_CYCLES>=4; one outstanding host command.",
+        "Backpressure pauses scanner without dropping or reordering raw samples."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "C_UART_CYCLES>=4; one outstanding host command.",
+        "Backpressure pauses scanner without dropping or reordering raw samples."
+      ],
+      "verification_cases": [
+        "Wire-level UART decoder checks start/stop, raw order, reply CRC and returned mode/generation/pressed mask.",
+        "Integrated UART CRC128 decoder, game epoch/mode/score and calibrated ADC piano play."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "KeyboardTelemetry operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "KeyLightEffects",
+      "rtl_path": "src/KeyLightEffects.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_press",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "press"
+          },
+          {
+            "name": "i_clear",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "clear"
+          },
+          {
+            "name": "i_mode",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "mode"
+          },
+          {
+            "name": "i_direction",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "direction"
+          },
+          {
+            "name": "i_frame_tick",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "frame tick"
+          },
+          {
+            "name": "i_pixel",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "pixel"
+          },
+          {
+            "name": "o_grb",
+            "direction": "output",
+            "width": 24,
+            "role": "data",
+            "description": "grb"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "At frame tick snapshot animation state; combinational GRB lookup stays consistent throughout frame.",
+        "Mode1 uses32 independent50-frame timers. New press restarts its timer; holding does not repeat.",
+        "Mode2 Manhattan ripple and mode4 same-row/column cross: age/3 radius, one-cell trail,36-frame lifetime.",
+        "Mode3 global sweep uses age/2, horizontal22-frame or vertical14-frame lifetime.",
+        "New press interrupts modes2/3/4, advances color; simultaneous event bits use highest index center."
+      ],
+      "constraints": [
+        "Mode0 off; all colors <=32/255; frame tick50Hz for one-second timers.",
+        "Clear removes active effects; out-of-bounds propagation clips at matrix edge."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "Mode0 off; all colors <=32/255; frame tick50Hz for one-second timers.",
+        "Clear removes active effects; out-of-bounds propagation clips at matrix edge."
+      ],
+      "verification_cases": [
+        "Independent Python pixel oracle checks215 frames/6880 pixels, retrigger, interruption, both sweep axes, boundary clipping and off."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "KeyLightEffects operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "LedFrameTx",
+      "rtl_path": "src/LedFrameTx.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_grb",
+            "direction": "input",
+            "width": 24,
+            "role": "data",
+            "description": "grb"
+          },
+          {
+            "name": "o_pixel",
+            "direction": "output",
+            "width": 5,
+            "role": "data",
+            "description": "pixel"
+          },
+          {
+            "name": "o_frame_tick",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "frame tick"
+          },
+          {
+            "name": "o_data",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "Emit32 GRB24-bit pixels MSB-first; zero high15 clocks, one high42, bit period63.",
+        "Frame tick allows source snapshot one cycle before pixel load.",
+        "Two-clock gap between pixels; frame-period counter starts a frame every configured interval."
+      ],
+      "constraints": [
+        "50MHz only; C_FRAME_CYCLES>=65000; default1000000 gives50Hz.",
+        "At minimum period latch low remains above300us; reset immediately forces low."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "50MHz only; C_FRAME_CYCLES>=65000; default1000000 gives50Hz.",
+        "At minimum period latch low remains above300us; reset immediately forces low."
+      ],
+      "verification_cases": [
+        "165120 decoded pulses check widths, interpixel period1300ns, bit1260ns, frame interval and reset midpulse."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "LedFrameTx operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "KeyboardGames",
+      "rtl_path": "src/KeyboardGames.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_adc_dout",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "adc dout"
+          },
+          {
+            "name": "i_uart_rx",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "uart rx"
+          },
+          {
+            "name": "o_mux_sel",
+            "direction": "output",
+            "width": 3,
+            "role": "data",
+            "description": "mux sel"
+          },
+          {
+            "name": "o_mux_en",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "mux en"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "adc cs n"
+          },
+          {
+            "name": "o_adc_sclk",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "adc sclk"
+          },
+          {
+            "name": "o_adc_din",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "adc din"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "uart tx"
+          },
+          {
+            "name": "o_rgb",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "rgb"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "Top synchronizes reset release through two flops; acquisition, command RX, controller, telemetry and RGB run concurrently.",
+        "Calibration/thresholds arrive byUART; FPGA owns pressed state and all effect timing.",
+        "GameEngine owns all game rules and timers; GameDisplay snapshots its palette image.",
+        "App disconnect never resets games; telemetry shares UART at record boundaries."
+      ],
+      "constraints": [
+        "Tang Mega NEO60K Dock31004, GW5AT-60B,50MHz. RXV14 TXU15 RGBR19; original keyboard pin mapping retained.",
+        "SRAM-only deployment; no external Flash or debugger configuration changes."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "Tang Mega NEO60K Dock31004, GW5AT-60B,50MHz. RXV14 TXU15 RGBR19; original keyboard pin mapping retained.",
+        "SRAM-only deployment; no external Flash or debugger configuration changes."
+      ],
+      "verification_cases": [
+        "Integrated ADC+UART test, Gowin50MHz timing, SRAM download and real serial ACK evidence are separate gates."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "KeyboardReactive operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "UartRx",
+      "rtl_path": "src/UartRx.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50 MHz rising-edge clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset; top synchronizes release"
+          },
+          {
+            "name": "i_rx",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "rx"
+          },
+          {
+            "name": "o_byte",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "byte"
+          },
+          {
+            "name": "o_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "valid"
+          },
+          {
+            "name": "o_error",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "error"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Async assertion; synchronous release provided by top"
+      },
+      "behavior": [
+        "Reuse validated demo1 receiver unchanged. Synchronize asynchronous RX then sample8N1 at configured baud.",
+        "One-cycle valid on completed byte; framing failure raises error."
+      ],
+      "constraints": [
+        "C_CLOCK_HZ=50MHz equivalent434*115200 for exact434 cycles/bit; baud115200.",
+        "Asynchronous input only crosses through receiver synchronizer."
+      ],
+      "corner_cases": [
+        "Reset aborts active operation; valid/configured state cleared.",
+        "C_CLOCK_HZ=50MHz equivalent434*115200 for exact434 cycles/bit; baud115200.",
+        "Asynchronous input only crosses through receiver synchronizer."
+      ],
+      "verification_cases": [
+        "Real UART command traffic and accelerated wire-level integration test."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "UartRx operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; exact cycle contract and verification are specified above.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "reset_n",
+                "wave": "01......"
+              },
+              {
+                "name": "phase",
+                "wave": "x.=.=.=.",
+                "data": [
+                  "accept",
+                  "process",
+                  "publish"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GameEngine",
+      "rtl_path": "src/GameEngine.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50MHz clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset"
+          },
+          {
+            "name": "i_start",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "Start selected game"
+          },
+          {
+            "name": "i_stop",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "Stop, priority over start"
+          },
+          {
+            "name": "i_game",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "1snake2mole3piano"
+          },
+          {
+            "name": "i_frame_tick",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "50Hz enable pulse"
+          },
+          {
+            "name": "i_press",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "Qualified rising press pulses"
+          },
+          {
+            "name": "i_pressed",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "Held key bitmap"
+          },
+          {
+            "name": "o_pixels",
+            "direction": "output",
+            "width": 64,
+            "role": "data",
+            "description": "Key0bits1:0; palette0black1green2red3cyan"
+          },
+          {
+            "name": "o_status",
+            "direction": "output",
+            "width": 128,
+            "role": "data",
+            "description": "game,phase,seconds,reason,score16,misses,epoch,pixels64"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top provides synchronized release"
+      },
+      "behavior": [
+        "Three-second countdown; game state advances entirely on FPGA clock and50Hz frame enables.",
+        "Snake uses28-cell arena excluding K23/K30/K31/K32 controls; green body, red apple, collision and full-board win detection.",
+        "Only one direction queued per movement, no reversal; exactly coincident direction input queues for next move.",
+        "Mole lasts3000 frame ticks: green10/80ticks, red30/45ticks, cyan20/60ticks; spawn30ticks, held cells excluded.",
+        "Mole simultaneous scores/expiries use balanced reduction trees; hit wins expiry, final deadline suppresses hits.",
+        "Piano bottom keys only; successful press shifts notes and adds1; wrong/multiple/expired press ends. Deadline90ticks down to25.",
+        "Failure flashes red at2.5Hz for2seconds; success/timeout settlement green. Score retained until next game.",
+        "LFSR free-runs; free-cell placement probes one cell per clock to avoid long combinational search."
+      ],
+      "constraints": [
+        "i_frame_tick must be50Hz for wall-clock durations.",
+        "Start requires calibrated configuration, enforced by KeyController.",
+        "Palette and4x8 physical mapping fixed; no internet, CPU or App timing dependency."
+      ],
+      "corner_cases": [
+        "Reset clears all game state and pixels.",
+        "i_frame_tick must be50Hz for wall-clock durations.",
+        "Start requires calibrated configuration, enforced by KeyController.",
+        "Palette and4x8 physical mapping fixed; no internet, CPU or App timing dependency."
+      ],
+      "verification_cases": [
+        "tb_game_engine: countdown, growth, queued turns, reverse rejection, wall/self/tail/full-board, color scores, concurrent hits, expiry, held exclusion, exact60seconds, piano shift/errors/timeout/last-tick hit, stop/reset.",
+        "tb_keyboard_games: actualUART game command/CRC/epoch plus ADC-qualified piano input."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "GameEngine",
+          "scenario": "operation",
+          "description": "Conceptual phases; frame tick is50Hz in hardware.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "phase",
+                "wave": "=.=.=.=.",
+                "data": [
+                  "start",
+                  "countdown3s",
+                  "running",
+                  "result"
+                ]
+              },
+              {
+                "name": "frame_tick",
+                "wave": "01010101"
+              },
+              {
+                "name": "press",
+                "wave": "0...10.."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "GameDisplay",
+      "rtl_path": "src/GameDisplay.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50MHz clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset"
+          },
+          {
+            "name": "i_enable",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "Game owns LEDs"
+          },
+          {
+            "name": "i_frame_tick",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "Capture whole frame"
+          },
+          {
+            "name": "i_pixels",
+            "direction": "input",
+            "width": 64,
+            "role": "data",
+            "description": "32palette pixels"
+          },
+          {
+            "name": "i_pixel",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "LED index"
+          },
+          {
+            "name": "o_active",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "Frame-frozen source selection"
+          },
+          {
+            "name": "o_grb",
+            "direction": "output",
+            "width": 24,
+            "role": "data",
+            "description": "Palette GRB data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top provides synchronized release"
+      },
+      "behavior": [
+        "Capture enable and all64pixel bits on frame tick; hold until next tick.",
+        "Palette uses green/red/cyan at32/255 channel level. Top source mux uses captured ownership."
+      ],
+      "constraints": [
+        "Source pixels must be synchronous; LED transmitter loads after snapshot cycle."
+      ],
+      "corner_cases": [
+        "Reset clears all game state and pixels.",
+        "Source pixels must be synchronous; LED transmitter loads after snapshot cycle."
+      ],
+      "verification_cases": [
+        "All four palette values, enable/image changes between ticks do not tear frame, reset clears source."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "GameDisplay",
+          "scenario": "operation",
+          "description": "Conceptual phases; frame tick is50Hz in hardware.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "frame_tick",
+                "wave": "010...10"
+              },
+              {
+                "name": "pixels",
+                "wave": "x.=.=... ",
+                "data": [
+                  "imageA",
+                  "imageB"
+                ]
+              },
+              {
+                "name": "snapshot",
+                "wave": "x.=...=.",
+                "data": [
+                  "imageA",
+                  "imageB"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

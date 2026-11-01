@@ -1,0 +1,5 @@
+"D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardTelemetry.v"
+"D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardVideo.v"
+"D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardFont.v"
+"D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v"
+"D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/sim/tb_dashboard.v"

@@ -1,0 +1,27 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p......."
+    },
+    {
+      "name": "new_sample",
+      "wave": "010....."
+    },
+    {
+      "name": "compute",
+      "wave": "01...0.."
+    },
+    {
+      "name": "event",
+      "wave": "0....10."
+    },
+    {
+      "name": "mask",
+      "wave": "x....3.x",
+      "data": [
+        "crossed"
+      ]
+    }
+  ]
+}

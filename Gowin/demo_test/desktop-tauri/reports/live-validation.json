@@ -1,0 +1,1347 @@
+{
+  "now": 9.4781132,
+  "connection": "live",
+  "port": "COM4",
+  "protocol": "hub",
+  "message": "串口已打开，等待有效遥测",
+  "identity": {
+    "capabilities": 127,
+    "build": 256
+  },
+  "identity_updated": 9.4705911,
+  "keys": [
+    {
+      "raw": 852,
+      "filtered": 849.3918919374147,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4705911
+    },
+    {
+      "raw": 778,
+      "filtered": 773.9766852950555,
+      "depth": 0.10170378092610652,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4705911
+    },
+    {
+      "raw": 842,
+      "filtered": 735.4868788863455,
+      "depth": 0.17573859304313147,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 138,
+      "filtered": 299.0293759794961,
+      "depth": 0.771203430092162,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 816,
+      "filtered": 835.5218255534909,
+      "depth": 0.06387111257774587,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 895,
+      "filtered": 903.248238652845,
+      "depth": 0.10419260774644665,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 779,
+      "filtered": 779.462914014886,
+      "depth": 0.23849548035232565,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 778,
+      "filtered": 776.1272178114425,
+      "depth": 0.024959736965321735,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 753,
+      "filtered": 753.5883724569276,
+      "depth": 0.10884847228357895,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 800,
+      "filtered": 799.9576076184701,
+      "depth": 0.14885547589095827,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 943,
+      "filtered": 945.9303978684263,
+      "depth": 0.019245032492902603,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 878,
+      "filtered": 882.8778371173476,
+      "depth": 0.07227648274162891,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 954,
+      "filtered": 962.5711262234354,
+      "depth": 0.026140878527464585,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 936,
+      "filtered": 941.2185620225964,
+      "depth": 0.07191459103940846,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 838,
+      "filtered": 838.824174595459,
+      "depth": 0.21314580176129638,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 765,
+      "filtered": 765.0892697811528,
+      "depth": 0.0890801873652478,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.386909
+    },
+    {
+      "raw": 751,
+      "filtered": 752.66616430178,
+      "depth": 0.09350848211950584,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 758,
+      "filtered": 757.6976478055315,
+      "depth": 0.1696645210865476,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 911,
+      "filtered": 913.7626713690061,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 976,
+      "filtered": 985.2068733501277,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 936,
+      "filtered": 941.9462547964176,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 957,
+      "filtered": 956.0272889535311,
+      "depth": 0.06700861569437869,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 817,
+      "filtered": 816.1997931386275,
+      "depth": 0.2467761823621558,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 736,
+      "filtered": 735.760204817029,
+      "depth": 0.10284011007755632,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 755,
+      "filtered": 755.1146243647776,
+      "depth": 0.018687697539657912,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 711,
+      "filtered": 710.1159380860345,
+      "depth": 0.11026333118602953,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 879,
+      "filtered": 883.6140852795534,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 876,
+      "filtered": 886.420247837344,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.4046877
+    },
+    {
+      "raw": 888,
+      "filtered": 899.3444305514207,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.419446
+    },
+    {
+      "raw": 930,
+      "filtered": 936.9122226093086,
+      "depth": 0.0,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.419446
+    },
+    {
+      "raw": 804,
+      "filtered": 806.3680909011921,
+      "depth": 0.13422097725388552,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.419446
+    },
+    {
+      "raw": 724,
+      "filtered": 722.7336101162832,
+      "depth": 0.01849981918508503,
+      "fresh": true,
+      "pressed": false,
+      "updated": 9.419446
+    }
+  ],
+  "encoders": [
+    {
+      "record": {
+        "channel": 1,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": true,
+      "updated": 9.453634,
+      "moved": 0.0,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 2,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": true,
+      "updated": 9.4705911,
+      "moved": 0.0,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 3,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": true,
+      "updated": 9.4705911,
+      "moved": 0.0,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 4,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": true,
+      "updated": 9.386909,
+      "moved": 0.0,
+      "motion": 0
+    },
+    {
+      "record": {
+        "channel": 5,
+        "raw": 3,
+        "filtered": 3,
+        "q": 0,
+        "positive": 0,
+        "negative": 0,
+        "invalid": 0
+      },
+      "edges": 0,
+      "positive": 0,
+      "negative": 0,
+      "invalid": 0,
+      "discontinuities": 0,
+      "fresh": true,
+      "updated": 9.386909,
+      "moved": 0.0,
+      "motion": 0
+    }
+  ],
+  "joystick": {
+    "record": {
+      "sequence": 509,
+      "raw": 21,
+      "filtered": 21,
+      "presses": 0
+    },
+    "x": 0,
+    "y": 0,
+    "pressed": false,
+    "fresh": true,
+    "updated": 9.453634
+  },
+  "pads": [
+    {
+      "record": {
+        "board": 1,
+        "sequence": 5400,
+        "address": 90,
+        "error": 0,
+        "lines": 1,
+        "mask": 0,
+        "fault": false,
+        "filtered": [
+          164,
+          168,
+          174,
+          177,
+          170,
+          187,
+          192,
+          199,
+          204,
+          202,
+          193,
+          184
+        ],
+        "baseline": [
+          160,
+          164,
+          172,
+          176,
+          168,
+          184,
+          188,
+          196,
+          204,
+          200,
+          192,
+          184
+        ],
+        "delta": [
+          -4,
+          -4,
+          -2,
+          -1,
+          -2,
+          -3,
+          -4,
+          -3,
+          0,
+          -2,
+          -1,
+          0
+        ]
+      },
+      "position": null,
+      "fresh": true,
+      "updated": 9.419446,
+      "advanced": 9.419446
+    },
+    {
+      "record": {
+        "board": 2,
+        "sequence": 5410,
+        "address": 90,
+        "error": 0,
+        "lines": 3,
+        "mask": 0,
+        "fault": false,
+        "filtered": [
+          166,
+          169,
+          177,
+          179,
+          173,
+          189,
+          194,
+          202,
+          207,
+          205,
+          195,
+          186
+        ],
+        "baseline": [
+          164,
+          168,
+          176,
+          176,
+          172,
+          188,
+          192,
+          200,
+          204,
+          204,
+          192,
+          184
+        ],
+        "delta": [
+          -2,
+          -1,
+          -1,
+          -3,
+          -1,
+          -1,
+          -2,
+          -2,
+          -3,
+          -1,
+          -3,
+          -2
+        ]
+      },
+      "position": null,
+      "fresh": true,
+      "updated": 9.4705911,
+      "advanced": 9.4705911
+    }
+  ],
+  "guitar": {
+    "records": [
+      {
+        "board": 1,
+        "packet": 254,
+        "sample": 5402,
+        "milliseconds": 25458,
+        "flags": 2,
+        "mask": 0,
+        "x": 1023,
+        "y": 1023,
+        "dropped": 0
+      },
+      {
+        "board": 2,
+        "packet": 254,
+        "sample": 5413,
+        "milliseconds": 25510,
+        "flags": 2,
+        "mask": 0,
+        "x": 1023,
+        "y": 1023,
+        "dropped": 0
+      }
+    ],
+    "received": [
+      9.419446,
+      9.4705911
+    ],
+    "sample_hz": [
+      213.59223300970874,
+      212.12121212121212
+    ],
+    "counts": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "last_hits": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "packet_gaps": 0,
+    "stale_events": 0,
+    "duplicates": 0
+  },
+  "board": {
+    "seq": 255,
+    "result": 128,
+    "configured": true,
+    "mode": 2,
+    "direction": 0,
+    "generation": 2,
+    "pressed": 0
+  },
+  "board_updated": 9.419446,
+  "game": {
+    "game": 3,
+    "phase": 0,
+    "seconds": 3,
+    "reason": 5,
+    "score": 0,
+    "misses": 0,
+    "epoch": 3,
+    "colors": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "game_updated": 9.419446,
+  "profile": {
+    "format": "TangKeyboardCalibration",
+    "version": 1,
+    "name": "实时校准 · 10-29 03:10",
+    "source": "COM4 / 115200 / endpoint calibration",
+    "press_threshold": 0.9,
+    "release_threshold": 0.5,
+    "keys": [
+      {
+        "key": 1,
+        "calibration": {
+          "rest": 846.0,
+          "bottom": 130.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 2,
+        "calibration": {
+          "rest": 847.0,
+          "bottom": 129.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 3,
+        "calibration": {
+          "rest": 866.5,
+          "bottom": 121.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 4,
+        "calibration": {
+          "rest": 889.0,
+          "bottom": 124.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 5,
+        "calibration": {
+          "rest": 884.0,
+          "bottom": 125.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 6,
+        "calibration": {
+          "rest": 994.0,
+          "bottom": 123.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 7,
+        "calibration": {
+          "rest": 986.0,
+          "bottom": 120.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 8,
+        "calibration": {
+          "rest": 793.0,
+          "bottom": 117.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 9,
+        "calibration": {
+          "rest": 830.0,
+          "bottom": 128.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 10,
+        "calibration": {
+          "rest": 918.0,
+          "bottom": 125.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 11,
+        "calibration": {
+          "rest": 962.0,
+          "bottom": 127.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 12,
+        "calibration": {
+          "rest": 942.0,
+          "bottom": 124.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 13,
+        "calibration": {
+          "rest": 985.0,
+          "bottom": 127.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 14,
+        "calibration": {
+          "rest": 1004.0,
+          "bottom": 131.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 15,
+        "calibration": {
+          "rest": 1033.0,
+          "bottom": 122.0,
+          "noise": 9.0
+        }
+      },
+      {
+        "key": 16,
+        "calibration": {
+          "rest": 827.0,
+          "bottom": 132.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 17,
+        "calibration": {
+          "rest": 817.0,
+          "bottom": 129.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 18,
+        "calibration": {
+          "rest": 888.0,
+          "bottom": 120.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 19,
+        "calibration": {
+          "rest": 908.0,
+          "bottom": 117.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 20,
+        "calibration": {
+          "rest": 897.0,
+          "bottom": 121.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 21,
+        "calibration": {
+          "rest": 920.0,
+          "bottom": 123.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 22,
+        "calibration": {
+          "rest": 1016.0,
+          "bottom": 121.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 23,
+        "calibration": {
+          "rest": 1042.0,
+          "bottom": 127.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 24,
+        "calibration": {
+          "rest": 806.0,
+          "bottom": 123.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 25,
+        "calibration": {
+          "rest": 767.0,
+          "bottom": 131.0,
+          "noise": 8.0
+        }
+      },
+      {
+        "key": 26,
+        "calibration": {
+          "rest": 783.0,
+          "bottom": 122.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 27,
+        "calibration": {
+          "rest": 823.0,
+          "bottom": 123.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 28,
+        "calibration": {
+          "rest": 796.0,
+          "bottom": 121.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 29,
+        "calibration": {
+          "rest": 814.0,
+          "bottom": 125.0,
+          "noise": 6.0
+        }
+      },
+      {
+        "key": 30,
+        "calibration": {
+          "rest": 895.0,
+          "bottom": 127.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 31,
+        "calibration": {
+          "rest": 912.0,
+          "bottom": 125.0,
+          "noise": 7.0
+        }
+      },
+      {
+        "key": 32,
+        "calibration": {
+          "rest": 734.0,
+          "bottom": 125.0,
+          "noise": 8.0
+        }
+      }
+    ]
+  },
+  "settings": {
+    "joystick": {
+      "swap": false,
+      "flip_x": false,
+      "flip_y": true
+    },
+    "pad": {
+      "swap_boards": false,
+      "transpose": true,
+      "flip_x": false,
+      "flip_y": false
+    },
+    "effect": 2,
+    "direction": 0,
+    "volume": 0.3,
+    "guitar_enabled": true
+  },
+  "calibration": null,
+  "transfer": {
+    "busy": false,
+    "completed": 1,
+    "total": 1,
+    "failures": 0,
+    "message": "切换灯效 · 已确认 1/1"
+  },
+  "counts": [
+    2380,
+    158,
+    75,
+    373,
+    150,
+    150,
+    150,
+    30
+  ],
+  "rates": [
+    321.2066196494656,
+    9.975360858679057,
+    9.975360858679057,
+    49.87680429339528,
+    19.950721717358114,
+    19.950721717358114,
+    20.948257803226017,
+    3.9901443434716226
+  ],
+  "rx_bytes": 64669,
+  "tx_bytes": 2075,
+  "errors": 1,
+  "sequence_errors": 0,
+  "discarded": 5,
+  "fresh_count": 40,
+  "recording": null,
+  "replay_progress": 0.0,
+  "audio": {
+    "ready": true,
+    "device": "扬声器 (Realtek(R) Audio)",
+    "sample_rate": 48000,
+    "channels": 2,
+    "buffer_frames": 256,
+    "error": "",
+    "played": 0,
+    "dropped": 0
+  },
+  "logs": [
+    {
+      "time": 9.4781132,
+      "kind": "ok",
+      "text": "录制已保存：C:\\Users\\asddddd28\\AppData\\Local\\TangHardwareLab\\recordings\\hardware-1793537383674.bin"
+    },
+    {
+      "time": 4.4753608,
+      "kind": "info",
+      "text": "开始录制全部原始帧：C:\\Users\\asddddd28\\AppData\\Local\\TangHardwareLab\\recordings\\hardware-1793537383674.bin"
+    },
+    {
+      "time": 4.4402437,
+      "kind": "ok",
+      "text": "切换灯效 · 已确认 1/1"
+    },
+    {
+      "time": 4.3891042,
+      "kind": "ok",
+      "text": "结束游戏 · 已确认 1/1"
+    },
+    {
+      "time": 4.2362662,
+      "kind": "ok",
+      "text": "开始游戏 · 已确认 1/1"
+    },
+    {
+      "time": 4.1853506,
+      "kind": "ok",
+      "text": "结束游戏 · 已确认 1/1"
+    },
+    {
+      "time": 4.1343579,
+      "kind": "ok",
+      "text": "开始游戏 · 已确认 1/1"
+    },
+    {
+      "time": 4.0821331,
+      "kind": "ok",
+      "text": "结束游戏 · 已确认 1/1"
+    },
+    {
+      "time": 3.9802066,
+      "kind": "ok",
+      "text": "开始游戏 · 已确认 1/1"
+    },
+    {
+      "time": 3.9288119999999997,
+      "kind": "ok",
+      "text": "切换灯效 · 已确认 1/1"
+    },
+    {
+      "time": 3.8777253,
+      "kind": "ok",
+      "text": "切换灯效 · 已确认 1/1"
+    },
+    {
+      "time": 3.8273398,
+      "kind": "ok",
+      "text": "切换灯效 · 已确认 1/1"
+    },
+    {
+      "time": 3.7764135,
+      "kind": "ok",
+      "text": "切换灯效 · 已确认 1/1"
+    },
+    {
+      "time": 3.7260894,
+      "kind": "ok",
+      "text": "切换灯效 · 已确认 1/1"
+    },
+    {
+      "time": 3.6586682,
+      "kind": "ok",
+      "text": "切换灯效 · 已确认 1/1"
+    },
+    {
+      "time": 3.5720444000000002,
+      "kind": "ok",
+      "text": "校准、阈值与灯效 · 已确认 35/35"
+    },
+    {
+      "time": 2.94463,
+      "kind": "ok",
+      "text": "校准、阈值与灯效 · 已确认 35/35"
+    },
+    {
+      "time": 2.2128404,
+      "kind": "ok",
+      "text": "已识别综合硬件固件 · H1 / 0x007F"
+    },
+    {
+      "time": 2.0026154,
+      "kind": "ok",
+      "text": "串口已就绪 · 115200 / 8N1"
+    },
+    {
+      "time": 0.0000258,
+      "kind": "info",
+      "text": "连接 COM4"
+    },
+    {
+      "time": 0.0,
+      "kind": "ok",
+      "text": "已沿用旧版 32 键校准及方向配置；原文件保留"
+    }
+  ],
+  "settings_path": "C:\\Users\\asddddd28\\AppData\\Local\\TangHardwareLab",
+  "chart": [
+    [
+      2.058907,
+      848.0
+    ],
+    [
+      2.1616963,
+      848.0
+    ],
+    [
+      2.2633453,
+      849.0
+    ],
+    [
+      2.3661264,
+      851.0
+    ],
+    [
+      2.4690138,
+      847.0
+    ],
+    [
+      2.5694137,
+      846.0
+    ],
+    [
+      2.6710743,
+      851.0
+    ],
+    [
+      2.7742976,
+      852.0
+    ],
+    [
+      2.87649,
+      846.0
+    ],
+    [
+      2.9770035,
+      847.0
+    ],
+    [
+      3.0636045,
+      845.0
+    ],
+    [
+      3.1656304,
+      850.0
+    ],
+    [
+      3.2672872,
+      846.0
+    ],
+    [
+      3.3684894,
+      852.0
+    ],
+    [
+      3.4700619,
+      849.0
+    ],
+    [
+      3.5720444000000002,
+      846.0
+    ],
+    [
+      3.6744303,
+      850.0
+    ],
+    [
+      3.7764135,
+      851.0
+    ],
+    [
+      3.8628935,
+      848.0
+    ],
+    [
+      3.9625917,
+      850.0
+    ],
+    [
+      4.0665035,
+      845.0
+    ],
+    [
+      4.1678584,
+      846.0
+    ],
+    [
+      4.270523,
+      850.0
+    ],
+    [
+      4.3721926,
+      847.0
+    ],
+    [
+      4.4728279,
+      852.0
+    ],
+    [
+      4.5764599,
+      850.0
+    ],
+    [
+      4.6618417,
+      852.0
+    ],
+    [
+      4.7623429999999995,
+      850.0
+    ],
+    [
+      4.865181,
+      853.0
+    ],
+    [
+      4.9675602,
+      850.0
+    ],
+    [
+      5.0678514,
+      846.0
+    ],
+    [
+      5.170738,
+      846.0
+    ],
+    [
+      5.2729406,
+      850.0
+    ],
+    [
+      5.3752031,
+      851.0
+    ],
+    [
+      5.4761423,
+      849.0
+    ],
+    [
+      5.5607995,
+      853.0
+    ],
+    [
+      5.6627989,
+      853.0
+    ],
+    [
+      5.7646408000000005,
+      852.0
+    ],
+    [
+      5.8675471,
+      849.0
+    ],
+    [
+      5.9694738,
+      848.0
+    ],
+    [
+      6.0716169,
+      847.0
+    ],
+    [
+      6.1746161,
+      844.0
+    ],
+    [
+      6.2759579,
+      846.0
+    ],
+    [
+      6.3600113,
+      846.0
+    ],
+    [
+      6.4629879,
+      843.0
+    ],
+    [
+      6.5647703,
+      847.0
+    ],
+    [
+      6.6663925,
+      848.0
+    ],
+    [
+      6.767748,
+      847.0
+    ],
+    [
+      6.8702586,
+      850.0
+    ],
+    [
+      6.973261,
+      850.0
+    ],
+    [
+      7.0735579,
+      848.0
+    ],
+    [
+      7.1760297,
+      845.0
+    ],
+    [
+      7.2617523,
+      846.0
+    ],
+    [
+      7.362469,
+      848.0
+    ],
+    [
+      7.4659144,
+      850.0
+    ],
+    [
+      7.5666142,
+      846.0
+    ],
+    [
+      7.6687589,
+      845.0
+    ],
+    [
+      7.772014,
+      131.0
+    ],
+    [
+      7.8724908,
+      842.0
+    ],
+    [
+      7.974603,
+      848.0
+    ],
+    [
+      8.0609301,
+      849.0
+    ],
+    [
+      8.1621949,
+      846.0
+    ],
+    [
+      8.2650149,
+      851.0
+    ],
+    [
+      8.3663156,
+      853.0
+    ],
+    [
+      8.4689179,
+      847.0
+    ],
+    [
+      8.5711617,
+      850.0
+    ],
+    [
+      8.6712456,
+      848.0
+    ],
+    [
+      8.7750644,
+      849.0
+    ],
+    [
+      8.8764947,
+      848.0
+    ],
+    [
+      8.9624765,
+      847.0
+    ],
+    [
+      9.0645688,
+      848.0
+    ],
+    [
+      9.1669377,
+      849.0
+    ],
+    [
+      9.2668335,
+      848.0
+    ],
+    [
+      9.3691639,
+      847.0
+    ],
+    [
+      9.4705911,
+      852.0
+    ]
+  ]
+}

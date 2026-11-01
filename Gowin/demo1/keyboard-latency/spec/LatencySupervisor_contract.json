@@ -1,0 +1,246 @@
+{
+  "modules": [
+    {
+      "name": "LatencySupervisor",
+      "rtl_path": "src/LatencySupervisor.v",
+      "description": "每键一个监测事务，8状态：空闲、扫描确认、等待提交、等待非零声部、等待非零PCM、等待加载、等待DAC左字锁存、完成。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "i clk",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i rstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_clear",
+            "width": 1,
+            "direction": "input",
+            "description": "i clear",
+            "role": "data"
+          },
+          {
+            "name": "i_initialized",
+            "width": 1,
+            "direction": "input",
+            "description": "i initialized",
+            "role": "data"
+          },
+          {
+            "name": "i_sample_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "i sample valid",
+            "role": "data"
+          },
+          {
+            "name": "i_sample_key",
+            "width": 5,
+            "direction": "input",
+            "description": "i sample key",
+            "role": "data"
+          },
+          {
+            "name": "i_candidate",
+            "width": 1,
+            "direction": "input",
+            "description": "i candidate",
+            "role": "data"
+          },
+          {
+            "name": "i_confirm",
+            "width": 1,
+            "direction": "input",
+            "description": "i confirm",
+            "role": "data"
+          },
+          {
+            "name": "i_cancel",
+            "width": 1,
+            "direction": "input",
+            "description": "i cancel",
+            "role": "data"
+          },
+          {
+            "name": "i_physical",
+            "width": 32,
+            "direction": "input",
+            "description": "i physical",
+            "role": "data"
+          },
+          {
+            "name": "i_effective",
+            "width": 32,
+            "direction": "input",
+            "description": "i effective",
+            "role": "data"
+          },
+          {
+            "name": "i_commit",
+            "width": 1,
+            "direction": "input",
+            "description": "i commit",
+            "role": "data"
+          },
+          {
+            "name": "i_commit_key",
+            "width": 5,
+            "direction": "input",
+            "description": "i commit key",
+            "role": "data"
+          },
+          {
+            "name": "i_result_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "i result valid",
+            "role": "data"
+          },
+          {
+            "name": "i_result_key",
+            "width": 5,
+            "direction": "input",
+            "description": "i result key",
+            "role": "data"
+          },
+          {
+            "name": "i_result_sample",
+            "width": 32,
+            "direction": "input",
+            "description": "i result sample",
+            "role": "data"
+          },
+          {
+            "name": "i_pcm_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "i pcm valid",
+            "role": "data"
+          },
+          {
+            "name": "i_pcm_nonzero",
+            "width": 1,
+            "direction": "input",
+            "description": "i pcm nonzero",
+            "role": "data"
+          },
+          {
+            "name": "i_frame_load",
+            "width": 1,
+            "direction": "input",
+            "description": "i frame load",
+            "role": "data"
+          },
+          {
+            "name": "i_dac_left_latch",
+            "width": 1,
+            "direction": "input",
+            "description": "i dac left latch",
+            "role": "data"
+          },
+          {
+            "name": "o_payload",
+            "width": 880,
+            "direction": "output",
+            "description": "o payload",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "每键一个监测事务，8状态：空闲、扫描确认、等待提交、等待非零声部、等待非零PCM、等待加载、等待DAC左字锁存、完成。",
+        "物理起点为首次ADC越过按下门限，确认在第二次扫描；远程起点为FPGA内部有效gate上升沿，不含主机/串口时间。",
+        "记录第一次声部返回和后续选中的非零返回；零PCM继续等待，实际加载该帧后在PT8211左声道锁存沿结束。",
+        "分段总和=扫描确认+事件排队+首次计算+非零起音等待+输出等待；输出等待中包含单独列出的混音耗时。",
+        "32位50MHz时间戳模减，约85.9秒回绕；事务1秒超时。默认预算10ms，不改变音频节拍。",
+        "全部事件与原始时间戳先寄存一拍；逐键快照→差值计算→发布；代号校验丢弃旧事务。32键同时完成最多36拍发布完；统计读出时间不计入延迟。",
+        "扫描周期使用共享减法器；PCM/DAC时间戳按帧共享，完成批次必须在下一次相隔1024拍的DAC左字锁存前排空。",
+        "新起音覆盖未完成旧事务并累计覆盖计数；每键8位覆盖暂存计数饱和255，每32拍汇总一次。",
+        "最小、最大、64位和、完成数、物理/远程数、超预算、超时、取消候选及pending位图通过固定小端字段发布。",
+        "没有声学回采；其他声部的混音和非零数据不能保证目标音符已达到可闻响度。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，异步低有效复位，顶层同步释放。",
+        "监测无音频控制反馈；一次事件窗口小于32位时间戳周期，默认1秒超时。"
+      ],
+      "corner_cases": [
+        "32键同时完成",
+        "计数回绕",
+        "候选取消",
+        "静音与慢起音",
+        "覆盖与超时并发",
+        "清零时仍按住键"
+      ],
+      "verification_cases": [
+        "独立时间差模型",
+        "逐分段确定值比较",
+        "真实ADC和PT8211 WS边沿关联",
+        "协议4全部分包边界及坏包恢复",
+        "Gowin时序与板上串口/听感"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "onset",
+          "title": "采集到数字起音",
+          "scenario": "onset",
+          "description": "概念时序，扫描等待与音频帧间隔被压缩；所有时间戳来自同一50MHz计数器。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p..........."
+              },
+              {
+                "name": "ADC candidate",
+                "wave": "010........."
+              },
+              {
+                "name": "ADC confirm",
+                "wave": "0...10......"
+              },
+              {
+                "name": "note commit",
+                "wave": "0....10....."
+              },
+              {
+                "name": "voice nonzero",
+                "wave": "0......10..."
+              },
+              {
+                "name": "PCM valid",
+                "wave": "0.......10.."
+              },
+              {
+                "name": "frame load",
+                "wave": "0........10."
+              },
+              {
+                "name": "DAC left latch",
+                "wave": "0.........10"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

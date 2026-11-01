@@ -1,0 +1,176 @@
+{
+  "modules": [
+    {
+      "name": "SynthTaskPrefetch",
+      "rtl_path": "src/SynthTaskPrefetch.v",
+      "description": "调用方提供同步一拍RAM读；边沿N发起读，N+1寄存任务和深度乘法，N+2写入队列。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "i clk",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i rstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_begin",
+            "width": 1,
+            "direction": "input",
+            "description": "i begin",
+            "role": "data"
+          },
+          {
+            "name": "i_run",
+            "width": 1,
+            "direction": "input",
+            "description": "i run",
+            "role": "data"
+          },
+          {
+            "name": "i_stage",
+            "width": 3,
+            "direction": "input",
+            "description": "i stage",
+            "role": "data"
+          },
+          {
+            "name": "i_epoch",
+            "width": 16,
+            "direction": "input",
+            "description": "i epoch",
+            "role": "data"
+          },
+          {
+            "name": "o_read_voice",
+            "width": 5,
+            "direction": "output",
+            "description": "o read voice",
+            "role": "data"
+          },
+          {
+            "name": "i_profile",
+            "width": 512,
+            "direction": "input",
+            "description": "i profile",
+            "role": "data"
+          },
+          {
+            "name": "i_state",
+            "width": 384,
+            "direction": "input",
+            "description": "i state",
+            "role": "data"
+          },
+          {
+            "name": "o_valid",
+            "width": 1,
+            "direction": "output",
+            "description": "o valid",
+            "role": "data"
+          },
+          {
+            "name": "i_ready",
+            "width": 1,
+            "direction": "input",
+            "description": "i ready",
+            "role": "data"
+          },
+          {
+            "name": "o_data",
+            "width": 352,
+            "direction": "output",
+            "description": "o data",
+            "role": "data"
+          },
+          {
+            "name": "o_user",
+            "width": 21,
+            "direction": "output",
+            "description": "o user",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "调用方提供同步一拍RAM读；边沿N发起读，N+1寄存任务和深度乘法，N+2写入队列。",
+        "默认C_QUEUE_BITS=3，8槽队列；cnt_reserved同时覆盖读流水和队列，接受一个下游任务才返还一个信用。",
+        "352位任务按阶段打包，标签为16位epoch+5位voice；FM/AM深度乘调制包络后右移18位。",
+        "i_begin清空队列有效性、读写游标及在途有效位；阶段/epoch在运行该阶段期间保持不变。",
+        "每阶段固定发射C_VOICES个任务；board仅使用32；背压时输出队首保持不变。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，低有效复位；板级复位同步释放。",
+        "C_*_CORES是综合期参数，1..4；任意配置需要独立验证资源和时序，只有默认配置有本板实现证据。",
+        "一个issue和一个retire端口；仍保留阶段屏障，不是任意连接的多发射计算图。"
+      ],
+      "corner_cases": [
+        "全满背压及同时接受/返回",
+        "非2次幂核心数游标回绕",
+        "处理中复位",
+        "wave副本写一致性",
+        "note-off保留旧参数"
+      ],
+      "verification_cases": [
+        "原引擎逐声部及PCM等值比较",
+        "各池1/2/3/4核配置",
+        "输入输出停顿及复位",
+        "真实ADC/UART/PT8211引脚闭环",
+        "Gowin综合与50MHz时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "ordered",
+          "title": "背压与有序返回",
+          "scenario": "handshake",
+          "description": "示意ready为0时保持队首；箭头不代表固定核心算术延迟。实际周期见各核心和阶段统计。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "task",
+                "wave": "x2...x..",
+                "data": [
+                  "voice n"
+                ]
+              },
+              {
+                "name": "accept",
+                "wave": "0...10.."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

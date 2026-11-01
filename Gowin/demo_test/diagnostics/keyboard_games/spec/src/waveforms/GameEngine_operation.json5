@@ -1,0 +1,22 @@
+{
+  "signal": [
+    {
+      "name": "phase",
+      "wave": "=.=.=.=.",
+      "data": [
+        "start",
+        "countdown3s",
+        "running",
+        "result"
+      ]
+    },
+    {
+      "name": "frame_tick",
+      "wave": "01010101"
+    },
+    {
+      "name": "press",
+      "wave": "0...10.."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "presets": 16,
+  "keys": 32,
+  "categories": {
+    "Drum": 4,
+    "Bass": 3,
+    "Pad": 3,
+    "Key": 3,
+    "Chord": 3
+  },
+  "source": "D:\\Projects\\ai\\Gowin\\demo_test\\desktop-tauri\\src\\data\\foundation-library.json",
+  "sha256": "0a40954b71038652aec8f770f989c0c893a7610fc0c45ece0010ab9997a74ca4",
+  "reference_scope": "64-byte command payload only; does not prove audio similarity or hardware playback",
+  "firmware": "Existing Studio protocol 3/4; bitstream unchanged"
+}

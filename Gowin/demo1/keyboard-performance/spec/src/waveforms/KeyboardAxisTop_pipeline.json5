@@ -1,0 +1,24 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p......."
+    },
+    {
+      "name": "adc_valid",
+      "wave": "01010..."
+    },
+    {
+      "name": "key_on",
+      "wave": "0..1...."
+    },
+    {
+      "name": "cfg_transfer",
+      "wave": "0...10.."
+    },
+    {
+      "name": "pcm",
+      "wave": "0.....10"
+    }
+  ]
+}

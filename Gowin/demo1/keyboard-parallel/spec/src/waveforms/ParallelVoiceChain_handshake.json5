@@ -1,0 +1,27 @@
+{
+  "signal": [
+    {
+      "name": "i_axis_aclk",
+      "wave": "p......."
+    },
+    {
+      "name": "valid",
+      "wave": "01...0.."
+    },
+    {
+      "name": "ready",
+      "wave": "0...10.."
+    },
+    {
+      "name": "task",
+      "wave": "x2...x..",
+      "data": [
+        "voice n"
+      ]
+    },
+    {
+      "name": "accept",
+      "wave": "0...10.."
+    }
+  ]
+}
