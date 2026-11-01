@@ -1,0 +1,224 @@
+﻿% 常用正文组件库（UTF-8，LaTeX 语法）
+% 按需要复制某一段到 chapter/ 下的章节文件中，不要把整个文件载入正式报告。
+% 保留用户指定的 .text 扩展名；它是片段库，不是独立编译入口。
+% 以下环境所需的宏包已在 custom.sty 与 main.tex 中配置。
+% 每次复制后修改标签，保证整份报告中的 label 唯一。
+% 图片放入 graphics/；示例中的 logo.png 请替换为实际图片文件名。
+% 图片、表格及代码中的 caption 是标题，label 用于正文交叉引用。
+% 图表位置 h/t/b/p 分别表示尽量当前位置、页顶、页底、浮动页。
+% 图表目录依赖 caption 自动生成，至少编译两次更新编号及页码。
+
+% ==================== 01 单张图片 ====================
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\linewidth]{logo.png}
+  \caption{系统整体框图}
+  \label{fig:component-system}
+\end{figure}
+系统结构如图~\ref{fig:component-system} 所示。
+
+% ==================== 02 并排子图 ====================
+% 分别引用子图时，使用总图编号与 subref 组合。
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}[b]{0.47\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{logo.png}
+    \caption{系统正面}
+    \label{fig:component-front}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}[b]{0.47\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{logo.png}
+    \caption{系统侧面}
+    \label{fig:component-side}
+  \end{subfigure}
+  \caption{系统实物照片}
+  \label{fig:component-photos}
+\end{figure}
+正面照片见图~\ref{fig:component-photos}(\subref{fig:component-front})。
+
+% ==================== 03 无实际图片时的占位框 ====================
+\begin{figure}[htbp]
+  \centering
+  \fbox{\parbox[c][35mm][c]{0.85\linewidth}{\centering 在此插入模块框图}}
+  \caption{模块结构（待替换）}
+  \label{fig:component-placeholder}
+\end{figure}
+
+% ==================== 04 三线表 ====================
+% X 列会自动换行，表格总宽度与正文一致。
+\begin{table}[htbp]
+  \centering
+  \caption{性能测试结果（示例数据）}
+  \label{tab:component-performance}
+  \begin{tabularx}{\linewidth}{Xlll}
+    \toprule
+    指标 & 目标值 & 实测值 & 单位 \\
+    \midrule
+    工作频率 & 100 & 100 & \unit{\mega\hertz} \\
+    处理延迟 & 10 & 8 & 时钟周期 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+测试结果见表~\ref{tab:component-performance}。
+
+% ==================== 05 接口说明表 ====================
+\begin{table}[htbp]
+  \centering
+  \caption{模块接口定义}
+  \label{tab:component-interface}
+  \begin{tabularx}{\linewidth}{lllX}
+    \toprule
+    信号 & 方向 & 位宽 & 说明 \\
+    \midrule
+    \texttt{clk} & 输入 & 1 & 系统时钟 \\
+    \texttt{rst\_n} & 输入 & 1 & 低电平有效复位 \\
+    \texttt{data\_out} & 输出 & 16 & 输出数据，有效条件由接口协议规定 \\
+    \bottomrule
+  \end{tabularx}
+\end{table}
+
+% ==================== 06 跨页表格 ====================
+% longtable 不要放在 table 环境中；增加数据行后会自动跨页并重复表头。
+% 分组用于将字号与列间距的修改限制在此表内。
+\begingroup
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{p{.18\textwidth}p{.20\textwidth}p{.48\textwidth}}
+  \caption{测试用例记录}\label{tab:component-cases}\\
+  \toprule
+  编号 & 测试项目 & 预期结果 \\
+  \midrule
+  \endfirsthead
+  \multicolumn{3}{c}{表~\thetable（续）}\\
+  \toprule
+  编号 & 测试项目 & 预期结果 \\
+  \midrule
+  \endhead
+  \midrule
+  \multicolumn{3}{r}{续下页}\\
+  \endfoot
+  \bottomrule
+  \endlastfoot
+  01 & 复位测试 & 输出回到初始状态 \\
+  02 & 正常输入 & 输出与参考模型一致 \\
+  03 & 边界输入 & 边界行为符合设计要求 \\
+\end{longtable}
+\endgroup
+
+% ==================== 07 行内公式与单位 ====================
+时钟周期为 \(T=1/f\)，其中工作频率 \(f=\qty{100}{\mega\hertz}\)，
+对应周期为 \(T=\qty{10}{\nano\second}\)。
+% 普通文本中的特殊符号需转义，例如：50\%、data\_in、A\&B、\#1。
+
+% ==================== 08 带编号公式 ====================
+\begin{equation}
+  R = \frac{N}{t}
+  \label{eq:component-throughput}
+\end{equation}
+式~\eqref{eq:component-throughput} 中，\(N\) 为处理的数据量，\(t\) 为耗时。
+
+% ==================== 09 多行对齐公式 ====================
+% align 中每行独立编号，& 标记对齐位置。
+\begin{align}
+  T_{\mathrm{clk}} &= \frac{1}{f_{\mathrm{clk}}},
+  \label{eq:component-clock}\\
+  t_{\mathrm{latency}} &= L\,T_{\mathrm{clk}}.
+  \label{eq:component-latency}
+\end{align}
+% 若多行共用一个编号，使用 equation + aligned。
+\begin{equation}
+  \begin{aligned}
+    y[n] &= \sum_{k=0}^{M-1}h[k]x[n-k],\\
+    H(z) &= \sum_{k=0}^{M-1}h[k]z^{-k}.
+  \end{aligned}
+  \label{eq:component-filter}
+\end{equation}
+
+% ==================== 10 分段函数、矩阵与无编号公式 ====================
+\begin{equation}
+  y = \begin{cases}
+    0, & x < 0,\\
+    x, & x \geq 0.
+  \end{cases}
+  \label{eq:component-piecewise}
+\end{equation}
+\[
+  \symbf{A}=\begin{bmatrix} a & b \\ c & d \end{bmatrix},
+  \qquad \symbf{y}=\symbf{A}\symbf{x}.
+\]
+
+% ==================== 11 HDL 代码块 ====================
+% caption 自动编号；label 支持交叉引用。代码保留原文及缩进。
+\begin{lstlisting}[language=Verilog,caption={流水寄存器示例},label={lst:component-register}]
+always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
+        data_out <= 16'd0;
+    else if (valid_in)
+        data_out <= data_in;
+end
+\end{lstlisting}
+寄存器更新过程见代码~\ref{lst:component-register}。
+
+% ==================== 12 从文件载入代码 ====================
+% 先替换为真实存在的文件路径，再取消下面两行的注释。
+% 路径相对于 main.tex 所在目录；不会自动去 src/ 外的其他位置查找。
+% \lstinputlisting[language=Verilog,caption={顶层模块},
+%   label={lst:component-top},firstline=1,lastline=40]{src/top.v}
+
+% ==================== 13 有序列表与无序列表 ====================
+\begin{enumerate}
+  \item 需求分析与指标确定。
+  \item 模块设计与仿真验证。
+  \item 系统集成与实测。
+\end{enumerate}
+\begin{itemize}
+  \item 功能特性：待填写。
+  \item 性能指标：待填写。
+\end{itemize}
+\begin{description}
+  \item[输入条件] 说明测试输入与约束。
+  \item[预期结果] 说明通过测试的判据。
+\end{description}
+
+% ==================== 14 文字引用块 ====================
+% 用于引用规范、要求或其他原文；正式使用时必须注明真实来源。
+\begin{quote}
+  此处替换为需要引用的原文，并在段末注明来源。
+\end{quote}
+
+% ==================== 15 提示块与脚注 ====================
+\begin{quote}
+  \textbf{测试条件：}在此填写供电、时钟、温度、输入信号及仪器配置。
+\end{quote}
+此项结果在指定条件下测得\footnote{补充测试条件或说明，避免在图表标题中直接插入脚注。}。
+
+% ==================== 16 章节、图表与页码交叉引用 ====================
+% 章节标签紧接在对应标题后。将下面片段复制到需要的位置时取消注释。
+% \section{测试方法}
+% \label{sec:component-method}
+% 测试方法见第~\ref{sec:component-method} 节。
+图~\ref{fig:component-system} 位于第~\pageref{fig:component-system} 页。
+% 不要手写图号、表号、公式号，它们会随内容增删自动更新。
+
+% ==================== 17 文献引用及文献条目 ====================
+% 先将真实文献录入 references.bib，再在正文中使用下面的命令。
+% 单篇引用：\cite{文献键}
+% 多篇引用：\cite{文献键一,文献键二}
+% 提及作者：\textcite{文献键}
+% 以下是 .bib 条目结构，复制时去掉每行开头的百分号并填写真实资料：
+% @manual{device-manual,
+%   title = {器件技术手册名称},
+%   organization = {发行机构},
+%   date = {2026},
+%   url = {https://example.com/manual},
+%   urldate = {2026-11-01}
+% }
+% 官方限制参考文献不超过 20 篇；引用后运行 Biber，再运行两次 XeLaTeX。
+
+% ==================== 18 超链接与等宽文本 ====================
+% 替换为真实地址；不要在报告中填写暴露参赛者院校或单位的链接。
+\href{https://example.com}{技术资料链接（待替换）}。
+信号名用等宽字体表示：\texttt{valid\_in}、\texttt{data\_out}。
+

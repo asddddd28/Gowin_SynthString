@@ -1,0 +1,43 @@
+﻿% !TeX program = xelatex
+% !TeX encoding = UTF-8
+\documentclass[UTF8,a4paper,zihao=-4,fontset=windows,oneside,openany]{ctexbook}
+\usepackage{custom}
+\usepackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\usepackage[unicode,hidelinks]{hyperref}
+% 仅填写作品、编号及队员，不填写院校或单位。
+\newcommand{\worktitle}{SynthString}
+\newcommand{\teamnumber}{待填写}
+\newcommand{\teammembers}{李昊阳，唐楠睿，吴昊}
+\hypersetup{pdftitle={\worktitle},pdfauthor={},pdfsubject={嵌入式设计竞赛 FPGA 赛道作品报告}}
+\graphicspath{{graphics/}}
+\begin{document}
+\begin{titlepage}
+\thispagestyle{cover}
+\centering
+\vspace*{42mm}
+{\heiti\zihao{1}\worktitle\par}
+\vfill
+{\zihao{3}队伍编号：\teamnumber\par}
+\vspace{10mm}
+{\zihao{3}参赛队员：\teammembers\par}
+\vspace*{38mm}
+\end{titlepage}
+\frontmatter
+\include{chapter/00-abstract}
+\tableofcontents
+\mainmatter
+\include{chapter/01-introduction}
+\include{chapter/02-design}
+\include{chapter/03-analysis}
+\include{chapter/04-conclusion}
+% 官方第五部分，正式报告限 20 篇以内。
+\include{chapter/05-references}
+\appendix
+\include{chapter/06-appendix-a}
+\include{chapter/07-appendix-b}
+\include{chapter/08-appendix-c}
+\end{document}
+
+
+
