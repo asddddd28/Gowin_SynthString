@@ -16,3 +16,7 @@
 **/dist_*/
 **/dist-*/
 Gowin/demo1/desktop-tauri/src-tauri/gen/
+
+*.log
+*.tmp
+**/xsim.dir/

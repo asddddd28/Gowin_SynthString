@@ -1,4 +1,4 @@
-param([string]$Python='', [string]$Destination='release_games')
+param([string]$Python='', [string]$Destination='release_joystick_visual')
 $ErrorActionPreference='Stop'
 $desktopRoot=$PSScriptRoot
 if (-not $Python) {
@@ -13,7 +13,7 @@ try {
     & $Python -m unittest discover -s . -p 'test_*.py' -v
     if ($LASTEXITCODE -ne 0) {throw 'Tests failed'}
     & $Python -m PyInstaller --noconfirm --windowed --onedir --name TangKeyboardLab `
-      --distpath (Join-Path $desktopRoot $Destination) --workpath (Join-Path $desktopRoot 'build_games') `
+      --distpath (Join-Path $desktopRoot $Destination) --workpath (Join-Path $desktopRoot 'build_joystick') `
       --add-data 'measured_profile.json;.' app.py
     if ($LASTEXITCODE -ne 0) {throw 'Packaging failed'}
     Copy-Item -LiteralPath (Join-Path $desktopRoot 'README.md') -Destination (Join-Path $desktopRoot "$Destination\TangKeyboardLab\README.md") -Force

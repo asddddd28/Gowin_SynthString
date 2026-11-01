@@ -68,6 +68,6 @@ class GameAppTests(unittest.TestCase):
         self.assertIn('结算',panel.message.cget('text'))
         panel.refresh(decode_game_status(wire()),False,False,False)
         self.assertIn('最后收到',panel.message.cget('text'))
-        self.assertEqual(len(self.app.notebook.tabs()),2)
+        self.assertEqual(len(self.app.notebook.tabs()),6)
 
 if __name__=='__main__':unittest.main()

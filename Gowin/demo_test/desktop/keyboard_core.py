@@ -11,6 +11,12 @@ from collections import deque
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from board_protocol import decode_status, decode_game_status
+from encoder_core import decode_encoder, FRAME_SIZE
+from joystick_core import decode_joystick, FRAME_SIZE as JOYSTICK_FRAME_SIZE
+
+from touchpad_core import decode_touchpad, FRAME_SIZE as TOUCHPAD_FRAME_SIZE
+from fpga_guitar import decode_guitar, FRAME_SIZE as GUITAR_FRAME_SIZE
+from hardware_core import decode_hardware, FRAME_SIZE as HARDWARE_FRAME_SIZE
 
 KEYS = 32
 STALE_SECONDS = 0.6
@@ -27,12 +33,24 @@ class StreamParser:
         self.status_errors = 0
         self.game_statuses = deque(maxlen=256)
         self.game_errors = 0
+        self.encoder_samples = deque()
+        self.encoder_records = self.encoder_errors = self.encoder_sequence_errors = 0
+        self.encoder_previous = None
+        self.joystick_samples = deque()
+        self.joystick_records = self.joystick_errors = self.joystick_sequence_errors = 0
+        self.joystick_previous = None
+        self.touchpad_samples = deque()
+        self.touchpad_records = self.touchpad_errors = 0
+        self.guitar_samples = deque()
+        self.guitar_records = self.guitar_errors = 0
+        self.hardware_identities = deque(maxlen=16)
+        self.hardware_records = self.hardware_errors = 0
 
     def feed(self, data: bytes):
         self.buffer.extend(data)
         result = []
         while self.buffer:
-            markers = [p for p in (self.buffer.find(b"K"), self.buffer.find(b"@"), self.buffer.find(b"#")) if p >= 0]
+            markers = [p for p in (self.buffer.find(b"K"), self.buffer.find(b"@"), self.buffer.find(b"#"), self.buffer.find(b"E"), self.buffer.find(b"J"), self.buffer.find(b"T"), self.buffer.find(b"G"), self.buffer.find(b"H")) if p >= 0]
             marker = min(markers) if markers else -1
             if marker < 0:
                 self.discarded += len(self.buffer)
@@ -41,6 +59,70 @@ class StreamParser:
             if marker:
                 self.discarded += marker
                 del self.buffer[:marker]
+            if self.buffer[:1] == b'H':
+                if len(self.buffer)<HARDWARE_FRAME_SIZE: break
+                try: identity=decode_hardware(bytes(self.buffer[:HARDWARE_FRAME_SIZE]))
+                except ValueError:
+                    self.hardware_errors+=1;self.discarded+=1;del self.buffer[0];continue
+                self.hardware_identities.append(identity);self.hardware_records+=1
+                del self.buffer[:HARDWARE_FRAME_SIZE]
+                continue
+            if self.buffer[:1] == b'G':
+                if len(self.buffer)<GUITAR_FRAME_SIZE: break
+                try: record=decode_guitar(bytes(self.buffer[:GUITAR_FRAME_SIZE]))
+                except ValueError:
+                    self.guitar_errors+=1;self.discarded+=1;del self.buffer[0];continue
+                self.guitar_samples.append(record);self.guitar_records+=1
+                del self.buffer[:GUITAR_FRAME_SIZE]
+                continue
+            if self.buffer[:1] == b'T':
+                if len(self.buffer) < TOUCHPAD_FRAME_SIZE:
+                    break
+                try:
+                    record = decode_touchpad(bytes(self.buffer[:TOUCHPAD_FRAME_SIZE]))
+                except ValueError:
+                    self.touchpad_errors += 1
+                    self.discarded += 1
+                    del self.buffer[0]
+                    continue
+                self.touchpad_samples.append(record)
+                self.touchpad_records += 1
+                del self.buffer[:TOUCHPAD_FRAME_SIZE]
+                continue
+            if self.buffer[:1] == b'J':
+                if len(self.buffer) < JOYSTICK_FRAME_SIZE:
+                    break
+                try:
+                    record = decode_joystick(bytes(self.buffer[:JOYSTICK_FRAME_SIZE]))
+                except ValueError:
+                    self.joystick_errors += 1
+                    self.discarded += 1
+                    del self.buffer[0]
+                    continue
+                if self.joystick_previous is not None and record.sequence != (self.joystick_previous + 1) & 65535:
+                    self.joystick_sequence_errors += 1
+                self.joystick_previous = record.sequence
+                self.joystick_samples.append(record)
+                self.joystick_records += 1
+                del self.buffer[:JOYSTICK_FRAME_SIZE]
+                continue
+            if self.buffer[:1] == b'E':
+                if len(self.buffer) < FRAME_SIZE:
+                    break
+                try:
+                    record = decode_encoder(bytes(self.buffer[:FRAME_SIZE]))
+                except ValueError:
+                    self.encoder_errors += 1
+                    self.discarded += 1
+                    del self.buffer[0]
+                    continue
+                if self.encoder_previous is not None and record.channel != self.encoder_previous % 5 + 1:
+                    self.encoder_sequence_errors += 1
+                self.encoder_previous = record.channel
+                self.encoder_samples.append(record)
+                self.encoder_records += 1
+                del self.buffer[:FRAME_SIZE]
+                continue
             if self.buffer[:1] == b'#':
                 if len(self.buffer) < 37:
                     break

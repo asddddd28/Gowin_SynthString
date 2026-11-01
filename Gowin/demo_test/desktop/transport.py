@@ -5,6 +5,7 @@ import time
 from pathlib import Path
 
 import serial
+from fpga_guitar import GuitarStream
 from serial.tools import list_ports
 
 
@@ -15,7 +16,7 @@ def ports():
 
 
 class Reader:
-    def __init__(self, port=None, replay=None):
+    def __init__(self, port=None, replay=None, guitar_callback=None):
         self.port, self.replay = port, replay
         self.data = queue.Queue(maxsize=256)
         self.status = queue.Queue()
@@ -24,6 +25,7 @@ class Reader:
         self.stop_event = threading.Event()
         self.handle = None
         self.dropped = 0
+        self.guitar_stream = GuitarStream(guitar_callback) if guitar_callback and not replay else None
         self.thread = threading.Thread(target=self.run, daemon=True, name="keyboard-input")
 
     def start(self):
@@ -58,7 +60,7 @@ class Reader:
                         self.stop_event.wait(.0317)
             else:
                 port = serial.Serial(port=None, baudrate=115200, bytesize=8, parity="N", stopbits=1,
-                                     timeout=.02, write_timeout=.5, xonxoff=False, rtscts=False, dsrdtr=False)
+                                     timeout=.005, write_timeout=.5, xonxoff=False, rtscts=False, dsrdtr=False)
                 self.handle = port
                 port.dtr = False
                 port.rts = False
@@ -84,6 +86,8 @@ class Reader:
                         self.tx_bytes += written
                     data = port.read(min(4096, max(1, port.in_waiting)))
                     if data:
+                        if self.guitar_stream:
+                            self.guitar_stream.feed(data,time.monotonic())
                         self.emit(data)
         except Exception as exc:
             if not self.stop_event.is_set():

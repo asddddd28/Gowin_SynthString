@@ -17,6 +17,16 @@ from keyboard_core import CalibrationSession, KeyboardState, Profile, StreamPars
 from transport import Reader, ports
 from board_protocol import BoardLink, calibration_commands, EFFECT, QUERY, GAME_START, GAME_STOP
 from games_ui import GamesPanel
+from encoder_core import EncoderState
+from encoder_ui import EncoderPanel
+from joystick_core import JoystickState, JoystickMapping
+from joystick_ui import JoystickPanel
+from touchpad_core import TouchpadState, TouchpadMapping
+from touchpad_ui import TouchpadPanel
+from guitar_core import StrumDetector, display_point
+from guitar_audio import GuitarAudio
+from fpga_guitar import FpgaGuitarState
+from hardware_ui import HardwarePanel
 
 BG = "#0b1220"
 PANEL = "#111d30"
@@ -29,6 +39,8 @@ GREEN = "#73e6a6"
 AMBER = "#ffc473"
 FONT = "Microsoft YaHei UI"
 EFFECTS = ['0 · 关闭灯光', '1 · 单键亮起约1秒（并行）', '2 · 彩色涟漪扩散（打断）', '3 · 快速整板流水（打断）', '4 · 十字扩散（打断）']
+EFFECT_MODES=(0,1,2,3,4,6)
+EFFECTS += ['6 · 连续彩色流水']
 
 
 def resource(name):
@@ -102,7 +114,7 @@ class Matrix(tk.Canvas):
 class KeyboardApp:
     def __init__(self, root, args):
         self.root, self.args = root, args
-        self.root.title("Tang Keyboard Lab · 键盘校准")
+        self.root.title("Tang Keyboard Lab · 硬件调试")
         width = min(1360, self.root.winfo_screenwidth() - 80)
         height = min(850, self.root.winfo_screenheight() - 100)
         self.root.geometry(f"{width}x{height}")
@@ -121,6 +133,19 @@ class KeyboardApp:
                 self.profile_message = f"配置未加载：{exc}"
         self.model = KeyboardState(profile)
         self.parser = StreamParser()
+        self.encoders = EncoderState()
+        self.joystick = JoystickState()
+        self.touchpad = TouchpadState()
+        self.guitar_audio = GuitarAudio()
+        self.guitar = FpgaGuitarState(self.guitar_audio)
+        self.guitar_active = False
+        self.guitar_enabled = True
+        self.previous_joystick_records = self.joystick_rate = 0
+        self.protocol = 'unknown'
+        self.hardware_identity = None
+        self.hardware_updated = float('-inf')
+        self.previous_encoder_records = 0
+        self.encoder_rate = 0
         self.reader = None
         self.input_kind = "none"
         self.source_label = "未连接"
@@ -131,6 +156,7 @@ class KeyboardApp:
         self.rate_records = self.rate_scans = 0
         self.record_file = self.csv_writer = None
         self.record_start = 0
+        self.record_protocol = None
         self.closing = False
         self.board = None
         self.need_sync = False
@@ -138,9 +164,23 @@ class KeyboardApp:
         self.game_status = None
         self.game_updated = float('-inf')
         self.effect_settings = {'mode': 1, 'direction': 0}
+        self.joystick_mapping_path = self.state_dir / 'joystick_mapping.json'
+        self.joystick_mapping = JoystickMapping()
+        self.touchpad_mapping_path = self.state_dir / 'touchpad_mapping.json'
+        self.touchpad_mapping = TouchpadMapping()
+        if self.touchpad_mapping_path.exists():
+            try:
+                self.touchpad_mapping = TouchpadMapping.load(self.touchpad_mapping_path)
+            except (OSError, ValueError, TypeError) as exc:
+                self.profile_message = f'触摸板显示配置未加载：{exc}'
+        if self.joystick_mapping_path.exists():
+            try:
+                self.joystick_mapping = JoystickMapping.load(self.joystick_mapping_path)
+            except (OSError, ValueError, TypeError) as exc:
+                self.profile_message = f'摇杆显示配置未加载：{exc}'
         try:
             settings = json.loads((self.state_dir / 'effects.json').read_text(encoding='utf-8'))
-            if type(settings.get('mode')) is int and settings['mode'] in range(5) and type(settings.get('direction')) is int and settings['direction'] in (0, 1):
+            if type(settings.get('mode')) is int and settings['mode'] in EFFECT_MODES and type(settings.get('direction')) is int and settings['direction'] in (0, 1):
                 self.effect_settings = settings
         except (OSError, ValueError, TypeError, AttributeError):
             pass
@@ -148,11 +188,17 @@ class KeyboardApp:
         self._build()
         if getattr(args,'games',False):
             self.notebook.select(self.games_page)
+        if getattr(args, 'encoders', False):
+            self.notebook.select(self.encoders_page)
+        if getattr(args, 'joystick', False):
+            self.notebook.select(self.joystick_page)
+        if getattr(args, 'touchpad', False):
+            self.notebook.select(self.touchpad_page)
         self.refresh_ports()
         self.update_profile_label()
         self.root.protocol("WM_DELETE_WINDOW", self.close)
         self.root.report_callback_exception = self.callback_error
-        self.root.after(35, self.tick)
+        self.tick_id = self.root.after(35, self.tick)
         if args.port:
             self.root.after(300, lambda: self.connect(args.port))
         elif args.replay:
@@ -187,9 +233,9 @@ class KeyboardApp:
     def _build(self):
         header = tk.Frame(self.root, bg=BG)
         header.pack(fill="x", padx=26, pady=(18, 12))
-        self.label(header, "TANG  /  KEYBOARD LAB", 10, CYAN).pack(anchor="w")
-        self.label(header, "键盘实验室 · 校准 / 灯效 / 小游戏", 23).pack(side="left", pady=(5, 0))
-        self.label(header, "32 KEYS   ·   HALL SENSOR   ·   12-BIT ADC", 10, MUTED).pack(side="right", pady=(10, 0))
+        self.label(header, "TANG  /  HARDWARE LAB", 10, CYAN).pack(anchor="w")
+        self.label(header, "硬件实验室 · 综合调试", 23).pack(side="left", pady=(5, 0))
+        self.label(header, "KEYS  ·  RGB  ·  ENCODERS  ·  JOYSTICK  ·  TOUCH", 9, MUTED).pack(side="right", pady=(10, 0))
         toolbar = tk.Frame(self.root, bg=PANEL, padx=14, pady=10)
         toolbar.pack(fill="x", padx=26)
         self.connection_label = self.label(toolbar, "● 未连接", 10, MUTED, PANEL, width=16, anchor="w")
@@ -205,10 +251,19 @@ class KeyboardApp:
         self.record_button.pack(side="right", padx=(8, 0))
         ttk.Button(toolbar, text="打开历史回放", command=self.choose_replay).pack(side="right")
         self.notebook = ttk.Notebook(self.root)
+        self.hardware_page = HardwarePanel(self.notebook,self.navigate_hardware)
+        self.notebook.add(self.hardware_page,text='综合总览')
         self.calibration_page = tk.Frame(self.notebook,bg=BG)
         self.notebook.add(self.calibration_page,text='校准与灯效')
         self.games_page = GamesPanel(self.notebook,self.start_game,self.stop_game)
         self.notebook.add(self.games_page,text='小游戏')
+        self.encoders_page = EncoderPanel(self.notebook, self.zero_encoders)
+        self.notebook.add(self.encoders_page, text='编码器')
+        self.joystick_page = JoystickPanel(self.notebook, self.joystick_mapping, self.save_joystick_mapping)
+        self.notebook.add(self.joystick_page, text='摇杆')
+        self.touchpad_page = TouchpadPanel(self.notebook, self.touchpad_mapping, self.save_touchpad_mapping,
+                                           self.set_guitar, self.guitar_panic)
+        self.notebook.add(self.touchpad_page, text='触摸板')
         content = tk.Frame(self.calibration_page, bg=BG)
         content.pack(fill="both", expand=True, pady=(12,0))
         content.columnconfigure(0, weight=1)
@@ -258,7 +313,7 @@ class KeyboardApp:
                 self.rail_canvas.yview_scroll(-int(event.delta / 120), "units")
         self.root.bind("<MouseWheel>", scroll_rail, add="+")
         self.label(side, 'FPGA 按键灯效', 16, TEXT, PANEL, anchor='w').pack(fill='x')
-        self.effect_var = tk.StringVar(value=EFFECTS[self.effect_settings['mode']])
+        self.effect_var = tk.StringVar(value=EFFECTS[EFFECT_MODES.index(self.effect_settings['mode'])])
         ttk.Combobox(side, textvariable=self.effect_var, values=EFFECTS, state='readonly').pack(fill='x', pady=(9, 5))
         self.direction_var = tk.StringVar(value=['从左到右', '从上到下'][self.effect_settings['direction']])
         ttk.Combobox(side, textvariable=self.direction_var, values=['从左到右', '从上到下'], state='readonly').pack(fill='x', pady=4)
@@ -321,6 +376,87 @@ class KeyboardApp:
     def select_key(self, index):
         self.selected = index
 
+    def zero_encoders(self):
+        self.encoders.zero()
+        self.notice_var.set('已将 App 相对位置归零；FPGA 原始累计计数保持不变。')
+
+    def save_touchpad_mapping(self, mapping):
+        self.guitar_panic()
+        try:
+            mapping.save(self.touchpad_mapping_path)
+            self.touchpad_mapping = mapping
+            self.notice_var.set('两块触摸板的显示方向已保存，下次启动自动沿用。')
+        except OSError as exc:
+            self.notice_var.set(f'当前显示已改变，但配置保存失败：{exc}')
+
+    def set_guitar(self, enabled, volume):
+        if self.guitar_enabled != enabled:
+            self.guitar_panic()
+        self.guitar_enabled = enabled
+        self.guitar_audio.volume = max(0, min(1, volume))
+
+    def guitar_panic(self):
+        self.guitar.configure(False,self.touchpad_mapping)
+        self.guitar.reset()
+        self.guitar_audio.silence()
+
+    def guitar_allowed(self):
+        return (self.guitar_enabled and self.input_kind == 'live' and self.input_ready
+                and self.protocol in ('touchpad','hub') and self.notebook.select() == str(self.touchpad_page))
+
+    def guitar_sample(self, record, timestamp):
+        # T帧仅供显示。G1事件已由串口线程直接提交音频。
+        pass
+
+    def guitar_tick(self, now):
+        active = self.guitar_allowed() and any(self.touchpad.fresh(i, now) for i in range(2))
+        if active:
+            self.guitar_audio.start()
+        elif self.guitar_active:
+            self.guitar_panic()
+        self.guitar_active = active
+        self.guitar.configure(active,self.touchpad_page.mapping())
+        self.guitar.expire(now)
+
+    def save_joystick_mapping(self, mapping):
+        try:
+            mapping.save(self.joystick_mapping_path)
+            self.joystick_mapping = mapping
+            self.notice_var.set('摇杆显示方向已保存，下次启动自动沿用。')
+        except OSError as exc:
+            self.notice_var.set(f'当前显示已改变，但配置保存失败：{exc}')
+
+    def detect_protocol(self, protocol):
+        # Each connection is bound to its first valid telemetry family. A different
+        # bitstream requires reconnecting so queued commands cannot cross firmware.
+        if self.protocol == 'hub':
+            return True
+        if protocol == 'hub':
+            self.protocol='hub'
+            self.auto_sync_pending=self.input_kind=='live'
+            self.need_sync=False
+            self.notebook.select(self.hardware_page)
+            self.notice_var.set('已识别综合调试固件：键盘、灯效、游戏、编码器、摇杆及双Pad同时运行。')
+            if self.board and not self.board.busy:
+                self.board.start([dict(code=QUERY)],'确认综合固件键盘配置')
+            return True
+        if self.protocol != 'unknown':
+            return self.protocol == protocol
+        self.protocol = protocol
+        if protocol in ('encoder', 'joystick', 'touchpad'):
+            self.auto_sync_pending = self.need_sync = False
+            self.notebook.select({'encoder': self.encoders_page, 'joystick': self.joystick_page, 'touchpad': self.touchpad_page}[protocol])
+            self.notice_var.set('已识别编码器固件。转动旋钮即可观察五路状态；显示归零仅在 App 生效。'
+                                if protocol == 'encoder' else '已识别双触摸板固件，正在独立采集两块 MPR121。' if protocol == 'touchpad' else '已识别摇杆固件。显示四路比较器输出和低有效按压状态。')
+        elif self.board:
+            self.board.start([dict(code=QUERY)], '查询键盘板卡协议')
+            self.notice_var.set('已识别键盘数据，正在确认配置协议。')
+        return True
+
+    def navigate_hardware(self,key):
+        self.notebook.select({'keyboard':self.calibration_page,'encoder':self.encoders_page,
+            'joystick':self.joystick_page,'touchpad':self.touchpad_page,'games':self.games_page}[key])
+
     def refresh_ports(self):
         try:
             self.port_choices = {f"{p.device}  ·  {p.description}": p.device for p in ports()}
@@ -345,6 +481,15 @@ class KeyboardApp:
         self.disconnect(quiet=True)
         self.model.reset_stream()
         self.parser = StreamParser()
+        self.encoders = EncoderState()
+        self.joystick = JoystickState()
+        self.touchpad = TouchpadState()
+        self.previous_joystick_records = self.joystick_rate = 0
+        self.protocol = 'unknown'
+        self.hardware_identity=None
+        self.hardware_updated=float('-inf')
+        self.previous_encoder_records = self.encoder_rate = 0
+        self.game_status = None
         self.previous_records = self.previous_scans = self.queue_dropped = 0
         self.last_rate = time.monotonic()
         self.rate_records = self.rate_scans = 0
@@ -359,7 +504,8 @@ class KeyboardApp:
         reader.start()
 
     def connect(self, port):
-        self._start_reader(Reader(port=port), "live", port)
+        self.guitar.reconnect()
+        self._start_reader(Reader(port=port,guitar_callback=self.guitar.receive), "live", port)
 
     def disconnect(self, quiet=False):
         if self.reader:
@@ -374,6 +520,10 @@ class KeyboardApp:
         self.input_ready = False
         self.input_kind = "none"
         self.model.reset_stream()
+        self.encoders.invalidate()
+        self.joystick.updated = float('-inf')
+        self.touchpad.invalidate()
+        self.guitar_panic()
         self.stop_recording()
         self.connect_button.configure(text="连接")
         self.port_combo.configure(state="readonly")
@@ -381,7 +531,7 @@ class KeyboardApp:
             self.notice_var.set("已断开，按下状态已清除，串口已释放。")
 
     def choose_replay(self):
-        path = filedialog.askopenfilename(parent=self.root, title="打开历史采集（回放，不连接FPGA）", filetypes=[("键盘原始数据", "*.bin *.txt"), ("所有文件", "*.*")])
+        path = filedialog.askopenfilename(parent=self.root, title="打开历史采集（回放，不连接FPGA）", filetypes=[("键盘 / 编码器原始数据", "*.bin *.txt"), ("所有文件", "*.*")])
         if path:
             self.open_replay(Path(path))
 
@@ -477,7 +627,7 @@ class KeyboardApp:
                 self.notice_var.set(f"配置未加载，原配置保留：{exc}")
 
     def selected_effect(self):
-        return EFFECTS.index(self.effect_var.get()), ['从左到右', '从上到下'].index(self.direction_var.get())
+        return EFFECT_MODES[EFFECTS.index(self.effect_var.get())], ['从左到右', '从上到下'].index(self.direction_var.get())
 
     def game_mode(self):
         return bool(self.board and self.board.last_status and self.board.last_status.mode==5)
@@ -510,6 +660,8 @@ class KeyboardApp:
             if not self.board or not self.board.supported or self.input_kind != 'live':
                 raise ValueError('请先连接支持配置协议的板卡')
             mode, direction = self.selected_effect()
+            if mode==6 and self.protocol!='hub':
+                raise ValueError('连续彩色流水需要综合调试固件')
             if self.board.busy:
                 raise ValueError('正在等待板卡确认，请稍候')
             self.effect_settings = dict(mode=mode, direction=direction)
@@ -524,6 +676,11 @@ class KeyboardApp:
 
     def poll_board(self, now):
         board = self.board
+        if self.protocol in ('encoder', 'joystick', 'touchpad') or (self.protocol == 'unknown' and not (board and board.supported)):
+            self.board_label.configure(text='调试固件 · 仅接收状态' if self.protocol in ('encoder', 'joystick', 'touchpad') else '等待识别串口数据')
+            self.effect_button.configure(state='disabled')
+            self.sync_button.configure(state='disabled')
+            return
         if board is None or not self.input_ready:
             self.board_label.configure(text='未连接实时板卡' if self.input_kind != 'replay' else '历史回放 · 禁止下发配置')
             self.effect_button.configure(state='disabled')
@@ -540,6 +697,7 @@ class KeyboardApp:
             if self.need_sync and board.supported and not board.busy and not self.model.session and not self.game_mode():
                 self.need_sync = False
                 mode, direction = self.selected_effect()
+                if mode==6 and self.protocol!='hub':mode=0
                 plan = calibration_commands(self.model.profile) + [dict(code=EFFECT, mode=mode, direction=direction)]
                 board.start(plan, '校准、阈值与灯效下发')
             board.tick(now)
@@ -553,7 +711,7 @@ class KeyboardApp:
         state = board.last_status
         suffix = ''
         if state:
-            effect_name='5 · 板上小游戏' if state.mode==5 else EFFECTS[state.mode]
+            effect_name='5 · 板上小游戏' if state.mode==5 else EFFECTS[EFFECT_MODES.index(state.mode)]
             suffix = f'\nFPGA：{effect_name}\n' + (f'配置已生效 #{state.generation}' if state.configured else '等待完整校准配置')
             if now - board.updated > .6:
                 suffix += ' · 应答超时'
@@ -562,17 +720,25 @@ class KeyboardApp:
     def toggle_recording(self):
         if self.record_file:
             self.stop_recording()
-            self.notice_var.set("CSV记录已保存。")
+            self.notice_var.set("数据记录已保存。")
             return
-        if not self.reader or not self.input_ready:
+        if not self.reader or not self.input_ready or self.protocol == 'unknown':
             self.notice_var.set("先连接串口或打开回放，再录制数据。")
             return
-        path = filedialog.asksaveasfilename(parent=self.root, title="录制原始值和软件按键状态", defaultextension=".csv", initialfile="keyboard_" + datetime.now().strftime("%Y%m%d_%H%M%S") + ".csv", filetypes=[("CSV数据", "*.csv")])
+        extension='.bin' if self.protocol=='hub' else '.csv'
+        path = filedialog.asksaveasfilename(parent=self.root, title="录制当前串口数据", defaultextension=extension, initialfile=self.protocol + "_" + datetime.now().strftime("%Y%m%d_%H%M%S") + extension, filetypes=[("综合原始数据" if self.protocol=='hub' else 'CSV数据', '*'+extension)])
         if path:
             try:
+                if self.protocol=='hub':
+                    self.record_file=open(path,'wb');self.csv_writer=None;self.record_protocol='hub'
+                    self.record_start=time.monotonic();self.record_button.configure(text='停止录制')
+                    self.notice_var.set('正在录制全部模块原始串口帧：'+Path(path).name)
+                    return
                 self.record_file = open(path, "w", newline="", encoding="utf-8-sig")
                 self.csv_writer = csv.writer(self.record_file)
-                self.csv_writer.writerow(["elapsed_s", "key", "raw_adc", "depth_percent", "pressed", "source"])
+                self.record_protocol = self.protocol
+                self.csv_writer.writerow(["elapsed_s", "board", "sequence", "address", "error", "lines", "mask", "raw_hex", "source"] if self.protocol == "touchpad" else ["elapsed_s", "sequence", "raw_bits", "filtered_bits", "press_count", "source"] if self.protocol == 'joystick' else ["elapsed_s", "channel", "raw_ab", "filtered_ab", "fpga_q", "fpga_p", "fpga_n", "fpga_x", "relative_edges", "source"]
+                                         if self.protocol in ('encoder', 'joystick', 'touchpad') else ["elapsed_s", "key", "raw_adc", "depth_percent", "pressed", "source"])
                 self.record_start = time.monotonic()
                 self.record_button.configure(text="停止录制")
                 self.notice_var.set("正在录制：" + Path(path).name)
@@ -583,7 +749,8 @@ class KeyboardApp:
     def stop_recording(self):
         handle = self.record_file
         self.record_file = self.csv_writer = None
-        self.record_button.configure(text="录制 CSV")
+        self.record_protocol = None
+        self.record_button.configure(text="录制数据" if self.protocol=='hub' else '录制 CSV')
         if handle:
             handle.close()
 
@@ -627,9 +794,7 @@ class KeyboardApp:
                 break
             if state == "ready":
                 self.input_ready = True
-                if self.board:
-                    self.board.start([dict(code=QUERY)], '查询板卡协议')
-                self.notice_var.set("实时串口已打开，等待有效键盘数据。" if self.input_kind == "live" else "正在回放历史数据；不代表当前硬件状态，回放不能做实时校准。")
+                self.notice_var.set("实时串口已打开，等待识别硬件调试数据。" if self.input_kind == "live" else "正在回放历史数据；不代表当前硬件状态，回放不能做实时校准。")
             elif state in ("error", "eof"):
                 self.notice_var.set(("串口异常：" if state == "error" else "") + message)
             elif state == "warmup":
@@ -642,12 +807,71 @@ class KeyboardApp:
             except queue.Empty:
                 break
             previous_errors = self.parser.sequence_errors
+            if self.record_file and self.record_protocol=='hub':
+                try:self.record_file.write(data)
+                except OSError as exc:
+                    self.stop_recording();self.notice_var.set(f'综合记录写入失败：{exc}')
+            previous_touchpad_errors = self.parser.touchpad_errors
             samples = self.parser.feed(data)
+            while self.parser.hardware_identities:
+                self.hardware_identity=self.parser.hardware_identities.popleft()
+                self.hardware_updated=timestamp
+                self.detect_protocol('hub')
+            while self.parser.guitar_samples:
+                self.parser.guitar_samples.popleft()
+                self.detect_protocol('touchpad')
+            if self.parser.touchpad_errors != previous_touchpad_errors:
+                self.guitar_panic()
+            while self.parser.touchpad_samples:
+                record = self.parser.touchpad_samples.popleft()
+                if not self.detect_protocol('touchpad'):
+                    continue
+                self.touchpad.update(record, timestamp)
+                self.guitar_sample(record, timestamp)
+                if self.csv_writer and self.record_protocol == 'touchpad':
+                    try:
+                        self.csv_writer.writerow([f'{timestamp-self.record_start:.4f}', record.board,
+                            record.sequence, record.address, record.error, record.lines, record.mask,
+                            record.raw.hex(), self.input_kind])
+                    except OSError as exc:
+                        self.stop_recording()
+                        self.notice_var.set(f'CSV写入失败：{exc}')
+            while self.parser.joystick_samples:
+                record = self.parser.joystick_samples.popleft()
+                if not self.detect_protocol('joystick'):
+                    continue
+                self.joystick.update(record, timestamp)
+                if self.csv_writer and self.record_protocol == 'joystick':
+                    try:
+                        self.csv_writer.writerow([f'{timestamp - self.record_start:.4f}', record.sequence,
+                                                  record.raw, record.filtered, record.presses, self.input_kind])
+                    except OSError as exc:
+                        self.stop_recording()
+                        self.notice_var.set(f'CSV写入失败：{exc}')
+            if samples or self.parser.statuses or self.parser.game_statuses:
+                if not self.detect_protocol('keyboard'):
+                    samples = []
+                    self.parser.statuses.clear()
+                    self.parser.game_statuses.clear()
+            while self.parser.encoder_samples:
+                record = self.parser.encoder_samples.popleft()
+                if not self.detect_protocol('encoder'):
+                    continue
+                self.encoders.update(record, timestamp)
+                if self.csv_writer and self.record_protocol == 'encoder':
+                    try:
+                        self.csv_writer.writerow([f'{timestamp - self.record_start:.4f}', record.channel,
+                                                  record.raw, record.filtered, record.q, record.positive,
+                                                  record.negative, record.invalid,
+                                                  self.encoders.channels[record.channel - 1].edges, self.input_kind])
+                    except OSError as exc:
+                        self.stop_recording()
+                        self.notice_var.set(f'CSV写入失败：{exc}')
             if self.parser.sequence_errors > previous_errors and self.model.session:
                 self.model.session.abort("扫描序列中断，候选校准取消；原配置保留")
             for key, raw in samples:
                 depth = self.model.update(key, raw, timestamp)
-                if self.csv_writer:
+                if self.csv_writer and self.record_protocol == 'keyboard':
                     try:
                         self.csv_writer.writerow([f"{timestamp - self.record_start:.4f}", key, raw,
                                                   "" if depth is None else f"{depth * 100:.3f}", int(self.model.pressed[key - 1]), self.input_kind])
@@ -666,6 +890,7 @@ class KeyboardApp:
                 self.game_status=self.parser.game_statuses.popleft()
                 self.game_updated=timestamp
         if self.reader.dropped != self.queue_dropped:
+            self.guitar_panic()
             self.queue_dropped = self.reader.dropped
             if self.model.session:
                 self.model.session.abort("接收队列发生丢弃，候选校准取消")
@@ -676,10 +901,15 @@ class KeyboardApp:
         if self.closing:
             return
         # Schedule before work so a recoverable callback error cannot silently stop updates.
-        self.root.after(33, self.tick)
+        self.tick_id = self.root.after(33, self.tick)
         self._poll()
         now = time.monotonic()
         self.poll_board(now)
+        self.encoders_page.refresh(self.encoders, now, self.input_kind, self.protocol)
+        self.joystick_page.refresh(self.joystick, now, self.input_kind, self.protocol)
+        self.guitar_tick(now)
+        self.touchpad_page.refresh(self.touchpad, now, self.input_kind, self.protocol, self.guitar, self.guitar_audio)
+        self.hardware_page.refresh(self,now)
         game_fresh=self.input_kind=='live' and now-self.game_updated<.6
         game_ready=bool(game_fresh and self.board and self.board.last_status and self.board.last_status.configured and not self.board.busy and not self.need_sync and not self.auto_sync_pending and not self.model.session)
         game_message=self.board.message if self.board and self.board.busy else ''
@@ -691,6 +921,10 @@ class KeyboardApp:
         if now - self.last_rate >= 1:
             elapsed = now - self.last_rate
             self.rate_records = (self.parser.records - self.previous_records) / elapsed
+            self.encoder_rate = (self.parser.encoder_records - self.previous_encoder_records) / elapsed
+            self.joystick_rate = (self.parser.joystick_records - self.previous_joystick_records) / elapsed
+            self.previous_joystick_records = self.parser.joystick_records
+            self.previous_encoder_records = self.parser.encoder_records
             self.rate_scans = (self.parser.scans - self.previous_scans) / elapsed
             self.previous_records, self.previous_scans = self.parser.records, self.parser.scans
             self.last_rate = now
@@ -701,9 +935,23 @@ class KeyboardApp:
                     self.stop_recording()
                     self.notice_var.set(f"CSV写入失败，录制已停止：{exc}")
         label = "实时" if self.input_kind == "live" else "历史回放" if self.input_kind == "replay" else "未连接"
+        expected = 32
+        if self.protocol == 'encoder':
+            fresh = sum(c.fresh(now) for c in self.encoders.channels)
+            expected = 5
+        elif self.protocol == 'joystick':
+            fresh = int(self.joystick.fresh(now))
+            expected = 1
+        if self.protocol == 'touchpad':
+            fresh = sum(self.touchpad.fresh(i, now) for i in range(2))
+            expected = 2
+        if self.protocol=='hub':
+            fresh=sum(self.model.fresh(i,now) for i in range(32))+sum(c.fresh(now) for c in self.encoders.channels)+int(self.joystick.fresh(now))+sum(self.touchpad.fresh(i,now) for i in range(2))
+            expected=40
+            if not self.record_file:self.record_button.configure(text='录制数据')
         if self.reader and fresh == 0:
             label += " · 等待数据"
-        self.connection_label.configure(text="● " + label, fg=GREEN if fresh == 32 and self.input_kind == "live" else AMBER if self.reader else MUTED)
+        self.connection_label.configure(text="● " + label, fg=GREEN if fresh == expected and self.input_kind == "live" else AMBER if self.reader else MUTED)
         self.matrix.refresh(self.model, self.selected, now)
         i = self.selected
         self.detail_title.configure(text=f"K{i + 1:02d} / 第{i // 8 + 1}行 · 第{i % 8 + 1}列")
@@ -739,6 +987,21 @@ class KeyboardApp:
             events = list(self.model.events)[-8:]
             self.events_label.configure(text="最近事件  " + "   ".join(f"K{k:02d} {'按下' if p else '松开'}" for _, k, p in events) if events else "按键事件会显示在这里")
         self.stats_var.set(f"{label} · {self.source_label}    新鲜数据 {fresh}/32    {self.rate_records:.0f} 条/秒 · {self.rate_scans:.1f} 轮/秒    累计 {self.parser.records:,}    序号异常 {self.parser.sequence_errors} · 丢弃字节 {self.parser.discarded + self.queue_dropped}" + ("    ● 正在录制" if self.record_file else ""))
+        if self.protocol == 'encoder':
+            self.stats_var.set(f'{label} · {self.source_label}    编码器 {fresh}/5    {self.encoder_rate:.0f} 条/秒'
+                               f'    累计 {self.parser.encoder_records:,}    帧错误 {self.parser.encoder_errors}'
+                               f' · 序号异常 {self.parser.encoder_sequence_errors} · 丢弃字节 {self.parser.discarded + self.queue_dropped}'
+                               + ('    ● 正在录制' if self.record_file else ''))
+        elif self.protocol == 'joystick':
+            self.stats_var.set(f'{label} · {self.source_label}    摇杆 {self.joystick_rate:.0f} 帧/秒    累计 {self.parser.joystick_records:,}'
+                               f'    帧错误 {self.parser.joystick_errors} · 序号异常 {self.parser.joystick_sequence_errors}'
+                               f' · 丢弃字节 {self.parser.discarded + self.queue_dropped}'
+                               + ('    ● 正在录制' if self.record_file else ''))
+        if self.protocol == 'touchpad':
+            self.stats_var.set(f'{label} · {self.source_label}    触摸板 {fresh}/2    有效帧 {self.parser.touchpad_records:,}    CRC / 格式错误 {self.parser.touchpad_errors}' + ('    ● 正在录制' if self.record_file else ''))
+        if self.protocol=='hub':
+            errors=self.parser.touchpad_errors+self.parser.guitar_errors+self.parser.hardware_errors+self.parser.status_errors+self.parser.game_errors+self.parser.encoder_errors+self.parser.joystick_errors
+            self.stats_var.set(f'{label} · {self.source_label}    综合状态 {fresh}/40    键盘 {self.rate_scans:.1f}轮/秒 · 编码器 {self.encoder_rate:.0f}条/秒 · 摇杆 {self.joystick_rate:.0f}帧/秒    帧错误 {errors}'+('    ● 正在录制全部数据' if self.record_file else ''))
         if self.args.diagnostics and now - self.last_diag >= 1:
             self.write_diagnostics(now)
             self.last_diag = now
@@ -766,6 +1029,23 @@ class KeyboardApp:
         path = self.args.diagnostics
         data['game'] = dict(**self.game_status.__dict__,fresh=now-self.game_updated<.6,source='FPGA') if self.game_status else None
         data['game_crc_errors'] = self.parser.game_errors
+        data['touchpad'] = dict(boards=self.touchpad.snapshot(now), frame_errors=self.parser.touchpad_errors,
+                               display_mapping=self.touchpad_page.mapping().__dict__,
+                               display_positions=[self.touchpad_page.mapping().apply(*point) if point else None
+                                                  for point in (self.touchpad.position(i, now) for i in range(2))])
+        data['guitar'] = dict(enabled=self.guitar_enabled, active=self.guitar_active,
+                             **self.guitar.snapshot(), audio=self.guitar_audio.snapshot())
+        data['protocol'] = self.protocol
+        data['hardware']=dict(identity=self.hardware_identity.__dict__ if self.hardware_identity else None,
+                              fresh=now-self.hardware_updated<.6,frames=self.parser.hardware_records,errors=self.parser.hardware_errors)
+        data['serial_tx_bytes'] = self.reader.tx_bytes if self.reader else 0
+        data['encoders'] = dict(records=self.parser.encoder_records, frame_errors=self.parser.encoder_errors,
+                               sequence_errors=self.parser.encoder_sequence_errors,
+                               channels=self.encoders.snapshot(now))
+        data['joystick'] = dict(**self.joystick.snapshot(now), frame_errors=self.parser.joystick_errors,
+                                sequence_errors=self.parser.joystick_sequence_errors,
+                                display_mapping=self.joystick_page.mapping().__dict__,
+                                display_direction=self.joystick_page.pad.direction)
         try:
             path.parent.mkdir(parents=True, exist_ok=True)
             temporary = path.with_suffix(".tmp")
@@ -788,9 +1068,11 @@ class KeyboardApp:
 
     def close(self):
         self.closing = True
+        self.root.after_cancel(self.tick_id)
         try:
             self.disconnect(quiet=True)
         finally:
+            self.guitar_audio.close()
             if self.args.diagnostics:
                 self.write_diagnostics(time.monotonic())
             self.root.destroy()
@@ -805,6 +1087,9 @@ def main():
     parser.add_argument("--diagnostics", type=Path)
     parser.add_argument("--quit-after", type=float)
     parser.add_argument("--games", action="store_true", help="Open the FPGA games page")
+    parser.add_argument("--encoders", action="store_true", help="Open the encoder monitor page")
+    parser.add_argument("--touchpad", action="store_true", help="Open the dual touchpad page")
+    parser.add_argument("--joystick", action="store_true", help="Open the joystick monitor page")
     args = parser.parse_args()
     if args.port and args.replay:
         parser.error("Choose either --port or --replay")

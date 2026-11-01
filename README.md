@@ -1,6 +1,6 @@
 # Gowin_SynthString
 
-Tang Mega 60K FPGA 合成器与键盘控制 App。此仓库按 2026-10-29 的选择范围导出：**RTL、FS 位流、App 源码及最新 Windows 便携程序**。
+Tang Mega 60K FPGA 合成器与键盘控制 App。此仓库按 2026-11-01 的选择范围导出：**RTL、FS 位流、App 源码及最新 Windows 便携程序**。
 
 ## 快速入口
 
@@ -13,11 +13,13 @@ Tang Mega 60K FPGA 合成器与键盘控制 App。此仓库按 2026-10-29 的选
 | Tang Synth Studio Windows 程序 | [完整便携目录](Gowin/demo1/desktop-tauri/release-performance/TangSynthStudio) |
 | 旧 Python 合成器界面与协议参考 | [Gowin/demo1/desktop](Gowin/demo1/desktop) |
 | 键盘扫描/校准/灯效/游戏 RTL 与 FS | [Gowin/demo_test/diagnostics](Gowin/demo_test/diagnostics) |
-| Tang Keyboard Lab | [源码及使用说明](Gowin/demo_test/desktop/README.md) · [最新游戏版便携目录](Gowin/demo_test/desktop/release_games/TangKeyboardLab) |
+| Tang Keyboard Lab | [源码及使用说明](Gowin/demo_test/desktop/README.md) · [最新综合硬件版便携目录](Gowin/demo_test/desktop/release_hardware_lab/TangKeyboardLab) |
+
+**2026-11-01 更新：**新增综合硬件、摇杆、触摸板与触摸吉他 RTL/FS，更新 Tang Keyboard Lab 源码及便携程序。合成器 App 与 pair FS 保留原版本。
 
 Windows App 也提供在 [Releases](https://github.com/asddddd28/Gowin_SynthString/releases) 的 ZIP 中。请下载并解压整个目录，保留资源、许可证和 `_internal` 等依赖目录，再运行 EXE。
 
-当前游戏版键盘 App 对应 `Gowin/demo_test/diagnostics/keyboard_games/impl/pnr/keyboard_games.fs`。合成器 App 使用 `demo1_pair_31002/31004.fs`；按真实底板版本选择。现有 FS 来自原项目构建，本次上传未重新综合或烧录。新 AXIS 顶层仍是候选 RTL，不能把已有 FS 视为新 AXIS 系统的位流。
+当前综合硬件版 App 对应 `Gowin/demo_test/diagnostics/hardware_lab/impl/pnr/hardware_lab.fs`，整合键盘、编码器、摇杆、双触摸板、吉他事件及游戏状态。2026-10-29 的游戏版 App 仍可从历史 Release 下载。合成器 App 使用 `demo1_pair_31002/31004.fs`；按真实底板版本选择。现有 FS 来自原项目构建，本次上传未重新综合或烧录。新 AXIS 顶层仍是候选 RTL，不能把已有 FS 视为新 AXIS 系统的位流。
 
 ## 上传范围
 

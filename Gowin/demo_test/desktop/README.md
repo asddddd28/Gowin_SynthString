@@ -1,6 +1,45 @@
 # Tang Keyboard Lab
 
-## 小游戏版（最新）
+## 摇杆造型界面（2026-11-01）
+
+新版摇杆页使用圆形底座、杆身与球形杆头显示九向状态；杆头随方向倾斜，按下变绿并下沉，断线或异常组合时取消方向高亮。过渡动画只是离散状态之间的视觉效果，不代表模拟行程或位移测量。右侧保留方向名称、SW按压次数和原始/去抖电平。
+
+“交换X/Y”“反转左右”“反转上下”现保存于 `%LOCALAPPDATA%/TangKeyboardLab/joystick_mapping.json`，重启自动恢复，不修改键盘校准。已按本板实测设置上下反转。运行 `release_joystick_visual/TangKeyboardLab/TangKeyboardLab.exe`。
+
+## 摇杆版（最新，2026-10-31）
+
+运行 `release_joystick/TangKeyboardLab/TangKeyboardLab.exe`，选择 DEBUG COM4 连接；也可用 `--joystick --port COM4` 启动。需要板上运行 `../diagnostics/joystick/impl/pnr/joystick.fs`。独立摇杆、编码器、键盘固件按当前加载的一种使用，换固件后请断开重连。旧三个页面与已有校准保持兼容。
+
+摇杆页显示 XH、XL、YH、YL、SW 原始电平和 FPGA 独立5ms去抖后的状态，50Hz回传。SW低有效，累计次数来自FPGA的16位按下计数；按住不重复计数，首次报告前按住仅作为基线。方向图是比较器低/中/高区域，不是ADC位置，不提供行程百分比。
+
+原理图中H标签的阈值为2V，L标签为3V，均接反相输入：按(H,L)顺序，00=低区、10=中心、11=高区、01=异常。实际左右/上下随装配而变，“交换X/Y”“反转左右/上下”改变并保存App显示映射，用于实测核对，不会发送硬件命令。超过0.6秒无数据时不保持按下或方向高亮。
+
+协议固定21字节：`Jssss Rrr Fff Ppppp\r\n`；s为16位帧序号，R/F为原始/去抖位图，bit0..4分别XH、XL、YH、YL、SW，P为按压次数。没有CRC，App检查帧格式、值域和序号连续性。CSV保存时间、序号、两种位图、按压次数和数据源；诊断JSON额外保留最近128次电平/计数变化。
+
+本轮用户确认实际器件是OPA189、供电3.3V，SW松开3.3V/按下0V。**OPA189规定供电最低4.5V，当前方向输出不在保证工作范围内；方向功能尚不能验收。** 不应直接升到5V，因为运放输出仍接FPGA，且输入共模范围也需核对。详情见摇杆工程README和 [TI OPA189手册](https://www.ti.com/lit/ds/symlink/opa189.pdf)。
+
+构建脚本现在默认输出 `release_joystick`；下文保留各历史版本的说明。
+
+## 编码器版（2026-10-31）
+
+运行 `release_encoder/TangKeyboardLab/TangKeyboardLab.exe`，保留同目录的 `_internal` 文件夹。新增“编码器”页，原有校准、灯效和小游戏页保留。选择 COM4（USB Debugger B）连接后自动识别当前数据格式；也可用 `--encoders --port COM4` 直接打开编码器页并连接。
+
+编码器需要板上运行 `../diagnostics/encoder/impl/pnr/encoder.fs`（EncoderDebug，User Code 7BAF）。此版本 App 同时兼容键盘游戏固件，但两种独立固件不能同时提供键盘与编码器数据。换固件后请断开并重新连接 App；App 本身不自动烧录或重启调试器。
+
+- 五张卡按实物从左到右显示：旋钮1/E5、旋钮2/E4、旋钮3/E3、旋钮4/E2、旋钮5/E1。顺序来自本板测试；E4 是剩余通道推定，修复后可通过单独转动复核。
+- 大数字是连接后相对位置，按实测 4 个有效边沿换算 1 格；顺时针为正。转动中可显示四分之一格，停止在完整卡点应接近整数。它不是轴的绝对角度。
+- 显示原始和滤波后 A/B 电平、FPGA 的 Q/P/N/X，以及本次连接的正反边沿数、非法跳变数和数据中断次数。X 是非法双位跳变，不等同于全部机械抖动；P/N 同时增长且净位移为零时显示“往返/抖动”。
+- “显示位置归零”仅归零 App 相对位置，不改变 FPGA 计数，也不清除本次连接的诊断计数。断开后旧数值变灰；重连建立新基准。
+- 超过 0.6 秒没有更新即标为超时。16 位计数回绕按模运算处理；长时间数据空白或不合理的计数跳变会重建基准并增加“中断”，不把丢失期间的未知变化算作转动。固件没有启动序号，因此不能可靠识别所有复位情形。
+- “录制 CSV”在编码器模式保存接收时间、通道、A/B、Q/P/N/X、相对边沿和来源。可回放原始 `.bin` / `.txt`；回放明确标为历史数据，按字节定速播放，不用于还原精确动作时间。
+
+编码器帧形如 `E1 A3 F3 Q0000 P0000 N0000 X0000\r\n`，每路约10帧/秒；A/F 的 bit1 为 A，bit0 为 B。Q 是有符号16位净边沿，P/N/X 是16位累计值。App 检查格式、E1至E5顺序和 `Q == P-N (mod 65536)`；此固件没有 CRC，不能将此检查称为完整传输校验。A/B 只是每100ms快照，并非逻辑分析仪波形。
+
+识别编码器时 App 仅接收状态，不发送键盘 QUERY、校准或灯效命令。串口刚打开时也不盲发命令；仅在收到有效键盘数据后启动原键盘配置流程。
+
+实现：`encoder_core.py` 负责解析后的状态与计数，`encoder_ui.py` 负责五路显示；`keyboard_core.StreamParser` 共用增量分帧。`test_encoders.py` 覆盖分片/坏帧恢复、16位回绕、超时/重建基准、三段实板记录、被动通信、CSV及最小窗口布局。验证证据见 `../reports/encoder_app_validation.json`。
+
+## 小游戏版
 
 运行 `release_games/TangKeyboardLab/TangKeyboardLab.exe`，配合 `../diagnostics/keyboard_games/impl/pnr/keyboard_games.fs`。上方新增“小游戏”页，提供贪吃蛇、打地鼠、钢琴块三个入口和结束按钮。页面显示板卡回传的得分、倒计时、结束原因和4×8游戏画面。
 
@@ -12,13 +51,13 @@
 
 所有游戏有3秒准备时间；准备时请松开按键。结束提示闪烁2秒后熄灭，分数保留到下一局。点击“结束游戏”恢复所选普通灯效。仅切换App页面或关闭窗口不会停止游戏。SPI、按键迟滞和原四种灯效保留。游戏版新增CRC保护的 `#...` 状态帧，普通固件没有该帧时小游戏入口不可用。
 
-以下说明中的 `release_reactive` / `keyboard_reactive.fs` 是保留的纯灯效版本；新游戏版也支持同样的校准和灯效操作。构建脚本默认输出 `release_games`。
+以下说明中的 `release_reactive` / `keyboard_reactive.fs` 是保留的纯灯效版本；新 App 也支持同样的校准和灯效操作。构建脚本默认输出 `release_encoder`。
 
 Windows桌面应用，用于Tang Mega 60K keyboard固件的实时原始值监控、校准、按键位置显示和四种按键灯效。App采集校准端点，并把32键的端点、触发和释放阈值发送到FPGA；FPGA独立判键并驱动灯效。
 
 ## 启动与连接
 
-运行 `release_reactive/TangKeyboardLab/TangKeyboardLab.exe`，保留同目录的 `_internal` 文件夹。选择DEBUG串口（本板为COM4，USB Debugger B序号2025030317B）后点击“连接”。固定115200、8N1、无流控；打开前将DTR/RTS设低，并连续排空2秒桥接旧缓存。随后查询固件、自动下发已有32键校准和选定灯效；所有命令逐条等待CRC应答，不发送调试器控制台命令或自动reboot。
+运行 `release_encoder/TangKeyboardLab/TangKeyboardLab.exe`，保留同目录的 `_internal` 文件夹。选择DEBUG串口（本板为COM4，USB Debugger B序号2025030317B）后点击“连接”。固定115200、8N1、无流控；打开前将DTR/RTS设低，并连续排空2秒桥接旧缓存。收到键盘数据后查询固件、自动下发已有32键校准和选定灯效；所有键盘命令逐条等待CRC应答，不发送调试器控制台命令或自动reboot。
 
 板上需要运行 `../diagnostics/keyboard_reactive/impl/pnr/keyboard_reactive.fs`。它保留 `K01:ABC\r\n` 至 `K32:ABC\r\n` 原始数据，每完整扫描附带一次带CRC的板上按键状态。旧扫描固件仍可查看数据，但配置命令不会得到确认。SRAM位流和板上校准配置在断电后丢失；重新下载、连接App后恢复。不能同时运行其他占用该串口的采集程序。
 
@@ -36,6 +75,14 @@ Windows桌面应用，用于Tang Mega 60K keyboard固件的实时原始值监控
 也可选择关闭。改变灯效会清除上一效果；保持按住的键需松开再按才触发新模式。RGB刷新50Hz，通道峰值32/255。模式保存在 `effects.json`，与校准同目录。
 
 “下发32键校准”可手动重发。连接、应用校准、改变阈值、读取配置后会自动下发；必须全部32键有效才提交。传输先写备用区，32条全部确认后一次提交，失败保留原有效配置。成功提交清除按键状态和旧灯效。FPGA按原始ADC作迟滞判定，按下/释放均需连续两次扫描满足阈值，支持ADC随按下上升或下降。配置仅保存在FPGA易失存储器；关闭App后板上判键与灯效继续工作。
+
+## 综合硬件固件
+
+`release_hardware_lab/TangKeyboardLab/TangKeyboardLab.exe` 配合 `diagnostics/hardware_lab` 固件使用。同一 COM4 / 115200 连接同时接收32键、五编码器、摇杆、双触摸板、FPGA吉他事件及游戏状态。有效的 H1 能力帧启用“综合总览”，切换页面不停止其他模块的采集。旧单功能固件仍可连接。
+
+键盘ADC连续扫描、阈值和游戏规则在FPGA运行，界面约10轮/秒显示整键盘快照；双Pad保持100kHz I²C高速采样，原始显示和心跳限速，真实划弦事件优先发送。吉他页启用时电脑按事件发声，离开该页会止音。灯效增加“6 · 连续彩色流水”，其余四种响应灯效和三款游戏保留。
+
+综合模式的“录制数据”保存包含全部帧的 `.bin`，可通过历史回放检查；回放不向板卡发送命令，也不发声。既有校准、编码器编号及摇杆/触摸板方向映射沿用。新版构建：`./build.ps1 -Destination release_hardware_lab`。
 
 ## 软件校准
 
@@ -67,7 +114,7 @@ python -m venv .venv
 .\build.ps1 -Python .\.venv\Scripts\python.exe
 ```
 
-`build.ps1`先运行测试，再生成独立应用目录；默认输出 `release_reactive`。`keyboard_core.py`负责增量协议解析、配置、校准和显示状态；`board_protocol.py`负责CRC和逐条确认/重试；`transport.py`后台收发；`app.py`在Tk主线程更新控件。`make_measured_profile.py`可重新生成历史配置。
+`build.ps1`先运行测试，再生成独立应用目录；默认输出 `release_encoder`。`keyboard_core.py`负责增量协议解析、配置、校准和显示状态；`board_protocol.py`负责CRC和逐条确认/重试；`transport.py`后台收发；`app.py`在Tk主线程更新控件。`make_measured_profile.py`可重新生成历史配置。
 
 诊断参数：`--port COM4`启动即连接，`--diagnostics <json路径>`每秒记录运行状态，`--state-dir <目录>`隔离测试配置，`--replay <原始文件>`打开回放，`--quit-after <秒>`用于自动结束冒烟测试。错误日志在配置目录下的 `errors.log`。
 

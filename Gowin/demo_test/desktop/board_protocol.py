@@ -46,7 +46,7 @@ def decode_status(line):
     raw = bytes.fromhex(line[1:19].decode())
     if crc8(raw) != int(line[20:22], 16):
         raise ValueError('板卡应答CRC错误')
-    if raw[2] not in (0, 1) or raw[3] >> 4 > 5 or raw[3] & 15 > 1:
+    if raw[2] not in (0, 1) or raw[3] >> 4 > 6 or raw[3] & 15 > 1:
         raise ValueError('板卡应答状态超出范围')
     return BoardStatus(raw[0], raw[1], bool(raw[2]), raw[3] >> 4, raw[3] & 15, raw[4], int.from_bytes(raw[5:], 'big'))
 
