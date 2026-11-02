@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="SynthSystemTop" Register="68" Alu="62" Lut="40" T_Register="23643(68)" T_Alu="5501(62)" T_Lut="20801(40)" T_MULTALU27X18="1(0)" T_MULT12X12="2(0)" T_MULT27X36="48(0)" T_Bsram="77(0)" T_Ssram="121(0)">
+ <SubModule name="Scanner_Inst" Register="93" Alu="4" Lut="217" T_Register="93(93)" T_Alu="4(4)" T_Lut="217(217)"/>
+ <SubModule name="Thresholds_Inst" Register="64" Alu="18" Lut="141" T_Register="64(64)" T_Alu="18(18)" T_Lut="141(141)"/>
+ <SubModule name="Boot_Inst" Register="404" Lut="122" Bsram="2" T_Register="404(404)" T_Lut="122(122)" T_Bsram="2(2)"/>
+ <SubModule name="Keys_Inst" Register="1255" Alu="35" Lut="795" T_Register="1255(1255)" T_Alu="35(35)" T_Lut="795(795)"/>
+ <SubModule name="Host_Inst" Register="2110" Alu="468" Lut="820" T_Register="2173(2110)" T_Alu="468(468)" T_Lut="1118(820)">
+  <SubModule name="Receiver_Inst" Register="33" Lut="55" T_Register="33(33)" T_Lut="55(55)"/>
+  <SubModule name="Transmitter_Inst" Register="30" Lut="243" T_Register="30(30)" T_Lut="243(243)"/>
+ </SubModule>
+ <SubModule name="Arbiter_Inst" Register="392" Lut="507" T_Register="392(392)" T_Lut="507(507)"/>
+ <SubModule name="Master_Inst" Register="678" Alu="94" Lut="664" T_Register="678(678)" T_Alu="94(94)" T_Lut="664(664)"/>
+ <SubModule name="Endpoint_Inst" T_Register="18410(0)" T_Alu="4749(0)" T_Lut="16970(0)" T_MULTALU27X18="1(0)" T_MULT12X12="2(0)" T_MULT27X36="48(0)" T_Bsram="75(0)" T_Ssram="121(0)">
+  <SubModule name="Endpoint_Inst" Register="2966" Alu="93" Lut="2058" Ssram="36" T_Register="18410(2966)" T_Alu="4749(93)" T_Lut="16970(2058)" T_MULTALU27X18="1(0)" T_MULT12X12="2(0)" T_MULT27X36="48(0)" T_Bsram="75(0)" T_Ssram="121(36)">
+   <SubModule name="Runtime_Inst" Register="304" Alu="102" Lut="226" Ssram="48" T_Register="15444(304)" T_Alu="4656(102)" T_Lut="14912(226)" T_MULTALU27X18="1(0)" T_MULT12X12="2(0)" T_MULT27X36="48(0)" T_Bsram="75(0)" T_Ssram="85(48)">
+    <SubModule name="Voice_Inst" Register="5113" Alu="1919" Lut="5553" MULT27X36="16" Bsram="19" T_Register="11849(5113)" T_Alu="3026(1919)" T_Lut="12103(5553)" T_MULTALU27X18="1(0)" T_MULT12X12="2(0)" T_MULT27X36="30(16)" T_Bsram="39(19)" T_Ssram="37(0)">
+     <SubModule name="Modulation_Inst" Register="4247" Alu="71" Lut="4017" MULT27X36="2" Bsram="2" Ssram="34" T_Register="4912(4247)" T_Alu="312(71)" T_Lut="4557(4017)" T_MULT27X36="5(2)" T_Bsram="6(2)" T_Ssram="37(34)">
+      <SubModule name="Lfo_Inst" Register="665" Alu="241" Lut="540" MULT27X36="3" Bsram="4" Ssram="3" T_Register="665(665)" T_Alu="241(241)" T_Lut="540(540)" T_MULT27X36="3(3)" T_Bsram="4(4)" T_Ssram="3(3)"/>
+     </SubModule>
+     <SubModule name="Operator_Inst" Register="935" Alu="461" Lut="1059" MULT27X36="7" Bsram="12" T_Register="1824(935)" T_Alu="795(461)" T_Lut="1993(1059)" T_MULTALU27X18="1(0)" T_MULT12X12="2(0)" T_MULT27X36="9(7)" T_Bsram="14(12)">
+      <SubModule name="Envelope_Inst" Register="153" Lut="237" T_Register="514(153)" T_Alu="96(0)" T_Lut="329(237)">
+       <SubModule name="Segment_Inst" Register="361" Alu="96" Lut="92" T_Register="361(361)" T_Alu="96(96)" T_Lut="92(92)"/>
+      </SubModule>
+      <SubModule name="DxEnvelope_Inst" Register="375" Alu="238" Lut="605" MULTALU27X18="1" MULT12X12="2" MULT27X36="2" Bsram="2" T_Register="375(375)" T_Alu="238(238)" T_Lut="605(605)" T_MULTALU27X18="1(1)" T_MULT12X12="2(2)" T_MULT27X36="2(2)" T_Bsram="2(2)"/>
+     </SubModule>
+    </SubModule>
+    <SubModule name="Fx_Inst" Register="1343" Alu="497" Lut="689" T_Register="3291(1343)" T_Alu="1528(497)" T_Lut="2583(689)" T_MULT27X36="18(0)" T_Bsram="36(0)">
+     <SubModule name="Delay_Inst" Register="850" Alu="632" Lut="546" MULT27X36="14" Bsram="18" T_Register="850(850)" T_Alu="632(632)" T_Lut="546(546)" T_MULT27X36="14(14)" T_Bsram="18(18)"/>
+     <SubModule name="Reverb_Inst" Register="1098" Alu="399" Lut="1348" MULT27X36="4" Bsram="18" T_Register="1098(1098)" T_Alu="399(399)" T_Lut="1348(1348)" T_MULT27X36="4(4)" T_Bsram="18(18)"/>
+    </SubModule>
+   </SubModule>
+  </SubModule>
+ </SubModule>
+ <SubModule name="Audio_Inst" Register="106" Alu="71" Lut="227" T_Register="106(106)" T_Alu="71(71)" T_Lut="227(227)"/>
+</Module>

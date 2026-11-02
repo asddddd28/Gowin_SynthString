@@ -10728,6 +10728,2340 @@
     "sha256": "6a405dd4190300b8fe886fdff2912286cffdc6765558142b8805b34360660ad5"
   },
   {
+    "path": "Gowin/demo1/voice-engine/AXI-interface.md",
+    "category": "synth_snapshot",
+    "bytes": 13317,
+    "sha256": "f44316d0b893f6c0cd737b7159571ad25494508fdb029fd21e619704cc13d4ab"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/CONTEXT-and-retries.md",
+    "category": "synth_snapshot",
+    "bytes": 11635,
+    "sha256": "3de005bb95e3efa5e6ad42cdb07906ca954b29983c552defc3d0ed75636ec947"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/ENGINE.md",
+    "category": "synth_snapshot",
+    "bytes": 15202,
+    "sha256": "6ed475fdcf52577f539b2ba80bac07ede92d7ed1a838f8f15ecfbb6809607380"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/FM1.md",
+    "category": "synth_snapshot",
+    "bytes": 7383,
+    "sha256": "45c3c1ff4c008f68eac4877a527c9beb946b1857029272258b01e1e8b4502e48"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/FM1_PLAN.md",
+    "category": "synth_snapshot",
+    "bytes": 3086,
+    "sha256": "a6cb77c133ad965791754cd7bcceb289d89309212afdbb6e1c976ac35705e419"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/FX.md",
+    "category": "synth_snapshot",
+    "bytes": 9265,
+    "sha256": "8a8e8bde758b057480c015da034a1a334180d520db666427478c83665fd0521a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/MODULATION.md",
+    "category": "synth_snapshot",
+    "bytes": 11019,
+    "sha256": "86f8d6493993216cfde62570c57ea833ad9432911211763f3f4a6480d1b812f9"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/README.md",
+    "category": "synth_snapshot",
+    "bytes": 14337,
+    "sha256": "c57f1f3061fdfc4b807e83cd8c8ca8f49ba56b7c40f9af4f007b85f1c1e0af35"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/DSP_NOTICE.txt",
+    "category": "synth_snapshot",
+    "bytes": 1079,
+    "sha256": "1eae00d003c50562246d2fb6b3a9f7f3b2286056e3cd9abb46d07b2543315643"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/SOURCE.json",
+    "category": "synth_snapshot",
+    "bytes": 477,
+    "sha256": "c95f5bacc671c0dfe917616028851134f06285b3f9d335b8d3528aad74cdbe74"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/UPSTREAM_NOTICES.md",
+    "category": "synth_snapshot",
+    "bytes": 142314,
+    "sha256": "c10451a1c0b368ec926e86b9296eb0c96c790d4d4768ad07e91b09ca9ea4bfa5"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/factory.vmem",
+    "category": "synth_snapshot",
+    "bytes": 16384,
+    "sha256": "ecad0b8620f9d784d46c8da1e3c5de02c40214649ed8dec218026431046aad25"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/factory_A.syx",
+    "category": "synth_snapshot",
+    "bytes": 4104,
+    "sha256": "6a46c1eed389a775a1747f4488261c848e9ad43fdec6250ce2c8e004020428f9"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/factory_B.syx",
+    "category": "synth_snapshot",
+    "bytes": 4104,
+    "sha256": "7b146a1dc66cbdcac6f42fe216749c64d882a48e8d082aebf6b2ceae4da4718c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/factory_C.syx",
+    "category": "synth_snapshot",
+    "bytes": 4104,
+    "sha256": "5eab4699b4c50c82986d17726ea9997230efc1c5a7745ed7d251d31313e8b99d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/factory_D.syx",
+    "category": "synth_snapshot",
+    "bytes": 4104,
+    "sha256": "8142fb69249ad1d78a4665ebb2eb33f4e1b9689d2dfabce97077cc9da5d30308"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/factory_packed.inc",
+    "category": "synth_snapshot",
+    "bytes": 36821,
+    "sha256": "b3b002d998be7e931e20b8c57b758846779ed375ef2e8ab5f7a03b9f46418d91"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/assets/fm1/library.json",
+    "category": "synth_snapshot",
+    "bytes": 79904,
+    "sha256": "db9d57bd2ec7571342091b79d46ac23b18394929d33d142bff45cb2710367e81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Chord_Pad.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 19983,
+    "sha256": "b65489ed647bb75b879740cd0e6a75b48b6c8cba846fab42a47dd59620d91c42"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Chord_Pad.json",
+    "category": "synth_snapshot",
+    "bytes": 2339,
+    "sha256": "c77a650d21f775e97c90a85ecdccca7dbe370adaec1870f9224accabd97f6d7c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/FM1_0_PIANO_2.json",
+    "category": "synth_snapshot",
+    "bytes": 3629,
+    "sha256": "80dc303fc11c4c3d1c34f01dcd716e3098961a889e94785131c95e41abd7f234"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/FM1_1_ORGAN_1.json",
+    "category": "synth_snapshot",
+    "bytes": 3531,
+    "sha256": "5bd4480d622c71792558a13b5f4f8e5c730207eeb46d14cf6848533993e1579c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/FM1_2_BASS_3.json",
+    "category": "synth_snapshot",
+    "bytes": 3568,
+    "sha256": "dd9525471a2b358de399cb74387b85d8f4f24c32039cee2425f9846008a36f80"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/FM1_3_BRASS_2.json",
+    "category": "synth_snapshot",
+    "bytes": 3607,
+    "sha256": "13f0a5b2217cca87714d3c5492ca45f3a49642cad815c7b157693438a35a4716"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/FM_Keys.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 19979,
+    "sha256": "61c7c9c8759bfeab85bcc5e8470c602b984b8a3627aa009a7fc8c2151e960083"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/FM_Keys.json",
+    "category": "synth_snapshot",
+    "bytes": 2349,
+    "sha256": "8b6ccbf9cf320742ab44b18884558a41d3ea8cd4224d37508b5dd64eb61e66ff"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/LFO_Random_FM.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 25569,
+    "sha256": "3bd22d624811d8bc98e98962afd10e0846b2e39a35166b86e23f2d0a5839d25f"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/LFO_Random_FM.json",
+    "category": "synth_snapshot",
+    "bytes": 2802,
+    "sha256": "bd3c6183dc90fbebeb7818d7cdf03f6ecb6dce36ae77b9b8371aa973cbbd9bd2"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/LFO_Tremolo_Pad.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 25557,
+    "sha256": "42b33517bc063046d30684fba20ab37650d8584253a5851d64607baa035d6871"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/LFO_Tremolo_Pad.json",
+    "category": "synth_snapshot",
+    "bytes": 2864,
+    "sha256": "cc2e634fdbab0b96462aa1c2f60f9fd6be32984b606184ef9705ee7b54094f57"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/LFO_Vibrato_Keys.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 25546,
+    "sha256": "1fe4407a1fd679fbb6e5436ef743cb71efab440c55804c3fdbf75f718e20b33b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/LFO_Vibrato_Keys.json",
+    "category": "synth_snapshot",
+    "bytes": 2811,
+    "sha256": "4256f1fa3cee09d7da08bc5e552a996f772dd5ea6e54ccc6c1b8bde1b28ffdc3"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Noise_Drum.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 19980,
+    "sha256": "4601394fae16142b4848898e2da91060d2e6f3cd80f03a380ec2e1c1e5a148d6"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Noise_Drum.json",
+    "category": "synth_snapshot",
+    "bytes": 2351,
+    "sha256": "0b8c7eb62462d6f316bc6c9f1b151b6bb38b0414925dcc438129e8080d708a86"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Round_Bass.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 19994,
+    "sha256": "42ba4ee98e03ee5c0b2c42bd2b9364a9ed6773dbf2fc5577d79e77645d372ef7"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Round_Bass.json",
+    "category": "synth_snapshot",
+    "bytes": 2352,
+    "sha256": "b720d7075a8975737fcb8155c0cfdf6608ce5c10b0dbf50a458ebc2fe01938ca"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Soft_Pad.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 19984,
+    "sha256": "1cf8001b61f7eca06d36364f72fc272eada5fcc59863a465ead395a2e4f7b5dc"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/Soft_Pad.json",
+    "category": "synth_snapshot",
+    "bytes": 2397,
+    "sha256": "f1e03fac38aa19d8cc0fab8e0a5362ac7883c02e91e0c9db6e9d06052e00df8d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/fx_pad_space.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 4355,
+    "sha256": "3445614f0c019f4eeab2cf7be5230f3a8493ed85293c7c8039e7b8e576c34a06"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/fx_pad_space.json",
+    "category": "synth_snapshot",
+    "bytes": 236,
+    "sha256": "4e54daf49e8d622bde0089da144fd7a30f2221dd2d7debe932579b0b08af158f"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/fx_room.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 4346,
+    "sha256": "ac486af64acb4a3f657463f5d9459f8d39fb1edf04621201b840966b4414d8a6"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/examples/fx_room.json",
+    "category": "synth_snapshot",
+    "bytes": 228,
+    "sha256": "e6b5f2b0f886b2e8b5f6525f64bd3c581886c2c10f77e5514782e847c5d09826"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/check_fx_capture.py",
+    "category": "synth_snapshot",
+    "bytes": 1539,
+    "sha256": "e5a376d8187c797275449c952fab989f3ecb5e15905fa5d13ae4348953763a62"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/check_fx_compiler.py",
+    "category": "synth_snapshot",
+    "bytes": 2257,
+    "sha256": "942f2eb47681cca20d38be2a41e511d27f7eef440040537b2b9030751af80d46"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/compile_fx.py",
+    "category": "synth_snapshot",
+    "bytes": 3142,
+    "sha256": "d212b678f4b56fc2de250db42366772f2eb1147c6a76da3ae4e51cc75c3b9cb0"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/compile_voice_patch.py",
+    "category": "synth_snapshot",
+    "bytes": 8702,
+    "sha256": "771d300a64379fc6c3427e71107c0a57dbf7516bb4fa8b3d3e6093abccbd27d0"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/dx7_bank.py",
+    "category": "synth_snapshot",
+    "bytes": 11678,
+    "sha256": "27a9436bdfd9a8690e6f4f92ef69a0b6fac72e7b4a1871f428ef220580d95d62"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/dx7_contracts.py",
+    "category": "synth_snapshot",
+    "bytes": 4490,
+    "sha256": "598403e82a7908ba8b955c8ae759ab95f777b5846e734ed37ead008dda6deef7"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/dx7_model.py",
+    "category": "synth_snapshot",
+    "bytes": 3953,
+    "sha256": "3152c18c34e5c9ea20d11d83ceeb07de6f9cec9eea0727833238ad8709067cb6"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/dx7_preview.py",
+    "category": "synth_snapshot",
+    "bytes": 2258,
+    "sha256": "97737ff9d1c2cea03bc12c381f30bc1cda2ce73bcbf3c965c56a0cf714bf850e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/dx7_validation.py",
+    "category": "synth_snapshot",
+    "bytes": 9919,
+    "sha256": "eb4142ab51047561d84d6e6b60cac6fc62e8b9675d418542ba701606f0dd9c33"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/engine_contracts.py",
+    "category": "synth_snapshot",
+    "bytes": 11210,
+    "sha256": "0b490bf95513ef9e5efed0fca807f63126f293daf556095a1de1c45a8d579945"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/export_app_bank.py",
+    "category": "synth_snapshot",
+    "bytes": 1588,
+    "sha256": "836551152e514ecfc567577b4a8193ddb6b54e44d7596bacc84ff4082f565c55"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/fetch_fm1.py",
+    "category": "synth_snapshot",
+    "bytes": 2187,
+    "sha256": "5a4652a3d260a0e15048bd4ceb00bd0203c0ad9cc6848b38124a43a5573e8203"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/fx_axi_testbench.py",
+    "category": "synth_snapshot",
+    "bytes": 8035,
+    "sha256": "74bc40b93476cfe26fa5ce6f3402ce1a7b92a8db0fe88a163dcf2ab160e34589"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/fx_contracts.py",
+    "category": "synth_snapshot",
+    "bytes": 7009,
+    "sha256": "b65f0cdac099dfee46a33da30dcced7a406d62fdb491fc6f5b1b53c3e68990c7"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/fx_endpoint.py",
+    "category": "synth_snapshot",
+    "bytes": 983,
+    "sha256": "ebf3fb75ad7e59b0aba8e1735c9604fa8b2464836e60cff78ca14c5dd601a160"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/fx_model.py",
+    "category": "synth_snapshot",
+    "bytes": 6034,
+    "sha256": "889aa1a08154c0e07fc562ac10186a00ab35f4736172b5d52e33c1c2e9c5bdfa"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/fx_synthesis.py",
+    "category": "synth_snapshot",
+    "bytes": 1074,
+    "sha256": "b18fe0b1843e4f03285a96d476db4dd526d7ea33b5817451ab0bacdf3516c09e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/fx_testbench.py",
+    "category": "synth_snapshot",
+    "bytes": 4522,
+    "sha256": "0f4c90331963928c80e219d1871fb67adc24bb9577e00f20e2e87232f3d3cef9"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/lfo_contracts.py",
+    "category": "synth_snapshot",
+    "bytes": 4597,
+    "sha256": "2171498b7e2a79290f05ff1349368874edbed8c0ac21c087eaa75338cb1b227d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/lfo_engine_vectors.py",
+    "category": "synth_snapshot",
+    "bytes": 4465,
+    "sha256": "0d25e8c1463dfb87370c1380464cc1957cd84d05ff63c28a9924e82b21158149"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/lfo_model.py",
+    "category": "synth_snapshot",
+    "bytes": 4378,
+    "sha256": "0b5fe2a62815de5ae6fa094d6624f6b4ad623208597df04d10892ce4f722e972"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/lookup_model.py",
+    "category": "synth_snapshot",
+    "bytes": 1289,
+    "sha256": "6bf65d6a70500894e96f05f28c190197bb621e2d5e329f6e2235e8718d5ae165"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/preset_vectors.py",
+    "category": "synth_snapshot",
+    "bytes": 1738,
+    "sha256": "fb2a364b5a4e505e1b3ff212b5cf33f109b375966193b0ac530df2fe553aeb0f"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/record_engine_verification.py",
+    "category": "synth_snapshot",
+    "bytes": 4271,
+    "sha256": "4308ab0fa13732fd2cd37a5669011a8109174df21a19ca4ed66e40925e28cf66"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/record_fx_verification.py",
+    "category": "synth_snapshot",
+    "bytes": 4236,
+    "sha256": "4ad408676c3ab1a879b1bb7384bd7470255bd452a7ab13f44696ef33c35f870f"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/record_lfo_verification.py",
+    "category": "synth_snapshot",
+    "bytes": 4526,
+    "sha256": "2a7891289281fba022f13b90af79eff350c33012574cd7df3cbdcec9b8db62cd"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/route_pipeline_model.py",
+    "category": "synth_snapshot",
+    "bytes": 1729,
+    "sha256": "1c4cc0dd0596e17030aaa675727f982b679a3137ea5b39e4125ec62cf8d83440"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/run_dx7_validation.ps1",
+    "category": "synth_snapshot",
+    "bytes": 1416,
+    "sha256": "499221bf3c0bd8100efe773e1903e2da00adb92d9a04c54187e29facca389e34"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/run_fm1_all.ps1",
+    "category": "synth_snapshot",
+    "bytes": 211,
+    "sha256": "fc08c45eaf0be0620bd0a08b03cef4f0bc7681efbd6c15ee17e52984587579c4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/run_fx_validation.ps1",
+    "category": "synth_snapshot",
+    "bytes": 1435,
+    "sha256": "fb85d3a249cbb442ba766bdab80c84e2c17c00fcb0adbaaa91f687f9c064acb1"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/voice_context_model.py",
+    "category": "synth_snapshot",
+    "bytes": 7209,
+    "sha256": "6e4fcf769c7ac7663220616e3463bc6f96116e36ddbd84708e6c6af15dac20bc"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/voice_engine_model.py",
+    "category": "synth_snapshot",
+    "bytes": 10380,
+    "sha256": "1035785f649779b49e76103345157339bd1b22fce435c552d6ecc13230d65590"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/voice_fabric_model.py",
+    "category": "synth_snapshot",
+    "bytes": 3976,
+    "sha256": "659fa6a3e5e771161aebb1ddcc1a1844f1e714420260cd204271e0236bda060e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/model/voice_operator_model.py",
+    "category": "synth_snapshot",
+    "bytes": 4555,
+    "sha256": "769936a346e89c1cf48ac04b78951892f4a24526c90dc7e29cb325a5b8a6e015"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/dx-dx_envelope-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1520,
+    "sha256": "ec0b208fb69e715fea532f71a3bd17402f35ff93c65d6644231e4a5f07c99bee"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/dx-dx_operator-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1519,
+    "sha256": "f4c32a945560ac88a1a244093cf493ebf2df0226eaf697f0cb5fffc41916fe0c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/dx-fm1_engine-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1779,
+    "sha256": "cadb21726c681c395150950e124f29e445d8eaf98d285ee1b6377df8471c2e0a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/dx-fm_operator-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1558,
+    "sha256": "72ef6f27c1dafdc51d95d8666d80790262869844a46983f71c5bebddb44841ea"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/dx-lfo_engine-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1657,
+    "sha256": "e223d4543c43115c778ca98f0630039715058ce6728da9d833cef434b3330ef1"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/dx-voice_engine-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1614,
+    "sha256": "c04620266b600081c6073f1468a87958f192d18f60ba813f1c1792341c86f651"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/dx-voice_presets-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1640,
+    "sha256": "9f21d6f376adcf109330bd0cd43d98e5ee1a2b82996aae617799bd8e4166677a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/fx-final-axi_fx-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 2052,
+    "sha256": "024cb901d6b0cea7cf4af825dd2c7108d481b5ee8be2a5af3d7fd0fe430706f6"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/fx-final-axi_lfo-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1644,
+    "sha256": "6ff9a63471023db544df4a0bd68cad9e3f4f829de247b79dfbba81f19b9d23fa"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/fx-final-axi_synth_engine-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1754,
+    "sha256": "961fcfb4d19f23ed5b3e3e01a1857c60836d288e63555d06a83914672058cf8d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/fx-final-axi_voice_endpoint-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1796,
+    "sha256": "e0e807fdbde923aebbfff7d157cde5dcfbd8ec8d247e13045ff97b48aa942350"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/fx-final-fx_delay-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1612,
+    "sha256": "c5a932420b3684470d20189192ac373a5cc833bde85ae0c7bef423bd4d7fbad3"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/reports/fx-final-fx_reverb-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1814,
+    "sha256": "00b0ee2d68da6047d4db63e3224d67ddaef9f359fdaae8771f01c0385f3bfa3b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rom/dx_exp2.hex",
+    "category": "synth_snapshot",
+    "bytes": 2560,
+    "sha256": "ae93c2e63ffd9c2ec495eb060e7fd6a6ff4266b9135782b0de1f7e5a41f07806"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rom/dx_keyscale.hex",
+    "category": "synth_snapshot",
+    "bytes": 640,
+    "sha256": "797fd54fd6f9d5fee1345f9065584d68c7992442533e63e0f9b5b83fd0caf7ab"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rom/dx_rate.hex",
+    "category": "synth_snapshot",
+    "bytes": 640,
+    "sha256": "17c98ca82caf90405e8c327ff6d7a4088782b04f8e64ba65702797c9e6425806"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rom/dx_velocity.hex",
+    "category": "synth_snapshot",
+    "bytes": 640,
+    "sha256": "e4ee8adf31b5457563103d51ea79291e5f28d07f77d13bd822eeaf6815cf7bc7"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rom/sine_q26.hex",
+    "category": "synth_snapshot",
+    "bytes": 10240,
+    "sha256": "f88541c3d8d27fce396c999378725fb573bafefb177c187ecf640bd04bf04e70"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxiSynthEndpoint.v",
+    "category": "synth_snapshot",
+    "bytes": 2956,
+    "sha256": "39feca3d7a26522d1450c6e908b5f6755b8292794e82a44ed196d9d2c6dc2851"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxiVoiceEndpoint.v",
+    "category": "synth_snapshot",
+    "bytes": 23691,
+    "sha256": "4f209b86cb0e4239f86bcd22bb535d96fa329c5b03a7f8652ac9bf1d9d41363a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisDxEnvelope.v",
+    "category": "synth_snapshot",
+    "bytes": 8930,
+    "sha256": "801b66d022ad419ddc444b44eda45e3f7e53dc893a016ebc5e59d5d1692da66b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisEnvelopeMulti.v",
+    "category": "synth_snapshot",
+    "bytes": 13967,
+    "sha256": "6febd53fb81a060f32f54dbd9afa74c1e54f480fb6d8f1c2e34f80f81c852bd7"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisEnvelopeSegment.v",
+    "category": "synth_snapshot",
+    "bytes": 13486,
+    "sha256": "8f01fffa6523a4770ea94e0c0b51d94105368acc595d1b433703b5e888e04a61"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisFmOperator.v",
+    "category": "synth_snapshot",
+    "bytes": 11755,
+    "sha256": "bf8558f76a7954e680c7edc855d72f308e7b938cb10ec02cad3d4c00f9801f02"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisFxEngine.v",
+    "category": "synth_snapshot",
+    "bytes": 10691,
+    "sha256": "7cd143b6c8d3d3316b68749cfedb5b0d8c3f1acddf20be48befd009fbf0e60fa"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisGainMix.v",
+    "category": "synth_snapshot",
+    "bytes": 10402,
+    "sha256": "90acbe2e1c9a28e989de5551f594bb605662c27049cd12026a9ae48aecd1dff4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisLfoStep.v",
+    "category": "synth_snapshot",
+    "bytes": 5962,
+    "sha256": "adbe8dcb0a658f60fc540bdc47092e66e88dfe76f472fff341e7c91eafaf157a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisNoiseStep.v",
+    "category": "synth_snapshot",
+    "bytes": 9183,
+    "sha256": "6a6f7bdbdba0929b70d70893bc300df20a1bdb5f34ba7c58376bbbdce1e14074"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisPhasePm.v",
+    "category": "synth_snapshot",
+    "bytes": 8897,
+    "sha256": "c5ae183e532a6d4114b336a12d60b53eb9997c8e9d980500c467a273a982ddde"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisSchroederReverb.v",
+    "category": "synth_snapshot",
+    "bytes": 11654,
+    "sha256": "bd793f3ef76c66f6a95c409da6c65d73230e23cb0f141478a7d70231d95d82d8"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisStereoDelay.v",
+    "category": "synth_snapshot",
+    "bytes": 9757,
+    "sha256": "d34f8000b3eb45b78db051f962e8dcb8d15a913e4e32b5f46b2798b4e71883f1"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisSynthSystem.v",
+    "category": "synth_snapshot",
+    "bytes": 9242,
+    "sha256": "118a128e140708aa5583d584e05b43fcdc23a1d9b82ac894eeba85901f788cc4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisVoiceFabric.v",
+    "category": "synth_snapshot",
+    "bytes": 25089,
+    "sha256": "e4737d873d206ddcff81ad156d55a48640029d2b5ab4ec3fdc2f9221af45781f"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/AxisVoiceRuntime.v",
+    "category": "synth_snapshot",
+    "bytes": 18777,
+    "sha256": "4e8c8cfc6e446a1efb871707493b42947c1c938bc36e89d0d7061611da270090"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/VoiceModulation.v",
+    "category": "synth_snapshot",
+    "bytes": 8888,
+    "sha256": "21d045f7d60e4605bb25209b2672dacb1b7677883f7a1527bf9756d2f7447929"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/rtl/VoiceSynthEngine.v",
+    "category": "synth_snapshot",
+    "bytes": 32609,
+    "sha256": "14e37a1ff0b7a17b8ccbf84de3d71531fe05612a2161b3c3e0eb88f05da04605"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_axi_fx.v",
+    "category": "synth_snapshot",
+    "bytes": 18013,
+    "sha256": "1f7026b32c30c55b8965b20fc09ab831fbdcaa0151f5886a982564f23ef06b64"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_axi_lfo.v",
+    "category": "synth_snapshot",
+    "bytes": 13794,
+    "sha256": "6c823b9ee947cf1cff2ee2c75924c9a16138872fcc815ffd1b05630d4bfc50be"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_axi_synth_engine.v",
+    "category": "synth_snapshot",
+    "bytes": 13556,
+    "sha256": "ab4569475879e67232c25c255aff65acbdaa22b91c11b5b513330453480fdfd4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_axi_voice_endpoint.v",
+    "category": "synth_snapshot",
+    "bytes": 20877,
+    "sha256": "606a521f9f5c3274b14016629f9c6acb016bbbb3fb67a00ad3a91ec6d2c4be9c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_dx_envelope.v",
+    "category": "synth_snapshot",
+    "bytes": 1982,
+    "sha256": "e33bb384b671c3982454a3684756f3cb2bf1b8890feaaad4ca416810f6eeb722"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_dx_operator.v",
+    "category": "synth_snapshot",
+    "bytes": 2071,
+    "sha256": "d639ccc473f0a97f77bdb786f9322c99fd3958ed2a86f5dd2bf37a8de8d59848"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_fm1_engine.v",
+    "category": "synth_snapshot",
+    "bytes": 3030,
+    "sha256": "015de2423b322a05989fbd7b97661f828fa04ce333d9730558d1807b67192add"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_fm_operator.v",
+    "category": "synth_snapshot",
+    "bytes": 3549,
+    "sha256": "7e860300e87d9ce32d40ed0f20096ec188298e98b876f14e2757a9142581df87"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_fx_delay.v",
+    "category": "synth_snapshot",
+    "bytes": 3954,
+    "sha256": "b7dd928c9f587336db04b721e83b18f9d457d09f24ed5ce6290aed62ab95ae67"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_fx_reverb.v",
+    "category": "synth_snapshot",
+    "bytes": 3963,
+    "sha256": "07eeb9c32dba60de76bbab389a3d6fa8a918169c0d71a603ea820d112b759ef9"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_keyboard_hold.v",
+    "category": "synth_snapshot",
+    "bytes": 3121,
+    "sha256": "c353cf1bc792dd3cc0e34d6b96fe6ba61531004c8cfea4c52a05c43d3556e20e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_lfo_engine.v",
+    "category": "synth_snapshot",
+    "bytes": 6523,
+    "sha256": "e66238fc151a962a6db30e30777c71672a702efc30941d89b4ef725ab9fb1094"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_lfo_step.v",
+    "category": "synth_snapshot",
+    "bytes": 3129,
+    "sha256": "1bdc69ddd3309160e099048cbc15e93239bf58d857ff99f78fdae4dc94880597"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_voice_context.v",
+    "category": "synth_snapshot",
+    "bytes": 6277,
+    "sha256": "59fea771216921d8adc99efae73b0d025101d6759a43b58401ecf6517ff0d0b4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_voice_engine.v",
+    "category": "synth_snapshot",
+    "bytes": 7314,
+    "sha256": "61fee78934a354690fd33b3bce969f4b64579cd1c39195b2d5512961e255ca13"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_voice_fabric.v",
+    "category": "synth_snapshot",
+    "bytes": 6242,
+    "sha256": "11c04b257e3a73831eac25b753ea03d1c9eee8fbc951ab5fcfb8926f736327b1"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_voice_operators.v",
+    "category": "synth_snapshot",
+    "bytes": 9475,
+    "sha256": "ad4cc779af7169e41fcec55cea042e48f3c41ca133304dbcbaa1d9cb8c5ea04b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sim/tb_voice_presets.v",
+    "category": "synth_snapshot",
+    "bytes": 4890,
+    "sha256": "c486d7e8bafda184393c9329cd3787dd7ea4c349c6c3044ac6c6c723f1dbb745"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/sources.f",
+    "category": "synth_snapshot",
+    "bytes": 409,
+    "sha256": "35680088475cbd24848cf1c582d6c1502457e9a4fbf018654b437cde6163fdfe"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxiSynthEndpoint_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 10779,
+    "sha256": "274a4d0a4a6833dc000fca3837e2f9902c50a1fcaaed30a4ceb522800315afe2"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxiSynthEndpoint_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 5304,
+    "sha256": "3ae66c84b9e454ad0ba70bbc2b4669ccedc36052e7bf984e160dd3b392d9117b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxiVoiceEndpoint_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 12489,
+    "sha256": "f967bfdf10d433efb2316eee228ec145948abdc3fe1f1775fc3550c41d9b7946"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxiVoiceEndpoint_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 6915,
+    "sha256": "49429528617add2f8b0e2369746e63b64831fd884d1c5ec0355aaaa448f46717"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisDxEnvelope_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5546,
+    "sha256": "51d80bd30bcc1cf993f983983f7b3889a04ac7c7310e5576e3c382add7df1edf"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisDxEnvelope_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3567,
+    "sha256": "da9acb9db011e2612a8f2f21b39cd0d10e2355458535a916bcb82b6e8c8d16c5"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisEnvelopeMulti_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 4982,
+    "sha256": "4dc769c9dd6c56d56973e6aa7a82c2ef90e74cd61b4467357918db9a5c5d993b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisEnvelopeMulti_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3022,
+    "sha256": "a82204f88d9bb40a7557a3ac6750bb850694f71ef38cd06adfe2adebf6593c43"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisEnvelopeSegment_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5224,
+    "sha256": "a6b305a4e881db304feab531f2e8b2a0bf142cb13edd0f68a67841db1adadf7d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisEnvelopeSegment_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3419,
+    "sha256": "d71ccd07aaa682bf1247b86e950071ff1749691039bf6ebcf89bb29606879f17"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisFmOperator_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 6982,
+    "sha256": "2404d636ef26511299977486461ff04e14521fabcc6b2e0a11cc49392e5e4954"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisFmOperator_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 4447,
+    "sha256": "9ec466dfa1b55526a52d52e2be70e01539e5cbca393c9d0ad0ea47182f80229c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisFxEngine_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 8690,
+    "sha256": "1dd8087e07f82bd225593fe107ba6ac421f38d1a7b8fdd232523eca0d8497efd"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisFxEngine_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 4984,
+    "sha256": "c6b63c4fe639c93f423b8b4e1a0ba280deeedc94be14169ef8aeac0cc0858d18"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisGainMix_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5128,
+    "sha256": "1f40bce91a9fb8560c5be9f06a3d2328a938f9db5b81f755ea5af54a9e7ccbe2"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisGainMix_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3283,
+    "sha256": "0cbb7e0c7c742138ce3e4cb212f88fed05bbccae76e263e0e586aa4833c95129"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisLfoStep_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5258,
+    "sha256": "ae906cfd3b1c2ccdf81c447fcc3deea8123acee31f68ee7adb624bcbbfcefd53"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisLfoStep_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3264,
+    "sha256": "388125688948de1bcb5501aaf73e9e7b2c82ad85a549c3e0e28e311bacc0f119"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisNoiseStep_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5114,
+    "sha256": "65d2ace262c96eb7733e0b57fff29ea7222d0124191e299f38f53b47dd824a55"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisNoiseStep_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3279,
+    "sha256": "05a7a104f6cdb0701714fb44df9fc67d7054f787c9949b994dbb471eed734a37"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisPhasePm_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5140,
+    "sha256": "9f6dec149de109e5ebd5bb344021d5f0c1b99a77f9bc64b78f49785e1967ea7b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisPhasePm_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3295,
+    "sha256": "b4a89caf1eac0f3ca8622e1e1c94e4213ca10a217ccfe8b8542994de0ad783e4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisSchroederReverb_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 6265,
+    "sha256": "7f2c242f762ee82e464a54feccea1f94e4ea969da57b14d08c93446434cef9f9"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisSchroederReverb_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3912,
+    "sha256": "0d8f322f2ded907df96b80ca2437eaaab06de8f9cbbe6062b1d61e59880bab69"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisStereoDelay_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 6336,
+    "sha256": "0089ec14b2bd4772efb6e7a24a5ed83584ec231285603f4e8cfe8a1e87a9cf29"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisStereoDelay_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3954,
+    "sha256": "e58920c89f6a7ed21b353d2a2322eddb0afb60d199410d23dfa77b70c23a2e2d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisSynthSystem_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 10074,
+    "sha256": "8128e8bd29cbf8a7b176deb8a166459eb6de6830524b6e2c8bdf74b4542919ad"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisSynthSystem_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 5464,
+    "sha256": "77a8cd425865ff018c66937e3732e6aecdf479467bf0636770e306a5865b18a5"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisVoiceFabric_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5928,
+    "sha256": "5bebabd27d410d73f3cb583cc0b380a9b3a35a7cef464e3012e76c0048b93330"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisVoiceFabric_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3429,
+    "sha256": "eef66ccd1291a6a41a8af3f264600b994ac5eedfec9750630ca4f1edf71f5ee0"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisVoiceRuntime_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 8397,
+    "sha256": "4984a1240665b7d4f91b86eb8cf7ba6cd6d52677224ded0dd8c4017399dd5e2c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/AxisVoiceRuntime_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 5302,
+    "sha256": "1692feda411bd4bbaedbea10a1e29eb2305dbad7fd0002c8209268184d31b816"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/VoiceModulation_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 8960,
+    "sha256": "9f68212500d49c28ae9099728c9c980dd12307ea47c23c661717f014705e41d3"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/VoiceModulation_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 4897,
+    "sha256": "41e51b4fc549aaefc09ce08b6d2665ecd6147b004c0a065166304878e99be332"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/VoiceSynthEngine_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 10559,
+    "sha256": "378500d34577c2a2fb5a1e6b39827fab1d3e0190696b7dd9a1a440c3ac8b40d6"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/VoiceSynthEngine_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 6485,
+    "sha256": "46fb505d474c9c57996f3bd8397a769236d400d76c85f1a52bdcde805b53531d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/fx-plan.json",
+    "category": "synth_snapshot",
+    "bytes": 846,
+    "sha256": "95d6c7392a328640a48dc5ee6bac004531d5d1949f9c64593fb2c776938b29b0"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/operators.json",
+    "category": "synth_snapshot",
+    "bytes": 131212,
+    "sha256": "57d8daee6a88eb6908ac60176606f913ac18c548b67a9a8005f3fce7ae312fb1"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_axi_fx_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2222,
+    "sha256": "ad3f8498adb1f6ae8c9939ddeb21b0a15b89aa2fb0f3568deab4953f4005cc43"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_axi_lfo_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1988,
+    "sha256": "4936c3c718ed9da30b7318030e0bcc1812e8a027ada1388181ae5b9c7f2aa13c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_axi_synth_engine_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2033,
+    "sha256": "4daf1ba5509b49eee08166debd3770ebb391d62432098fa28ba5b6870f3e4b5b"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_axi_voice_endpoint_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1882,
+    "sha256": "e3201310a062d589e42ab0eca1cf20b43c70f07491b477377f65ce5b7e3c0299"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_dx_envelope_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1800,
+    "sha256": "dcf9936888d7b44d0dc10d8fda57827366b02923fd76d9bddcb1b0946d2e7e42"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_dx_operator_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1806,
+    "sha256": "e37af8d59749108883f2f82bd740ad71ff966e74bb0b225b9eec6b22c5275a8c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_fm1_engine_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1904,
+    "sha256": "8015f854d426d68bdee02db60c1e1315e6f62143a6039f5d68787cdff2a8f9b3"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_fm_operator_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1884,
+    "sha256": "e249c4e3dd9d0c78cdf1744695810fc8468c163b71771efddb532e846555baa2"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_fx_delay_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2246,
+    "sha256": "df56e609a5b0c5eb1b84a476a1f97b7ccb9b4d06338bfbc04c02f6073653eafe"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_fx_reverb_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2253,
+    "sha256": "769c741962ddb05b75290af6f66c6552cdf91798e47b5979aa1e556eeb380fd5"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_keyboard_hold_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2570,
+    "sha256": "7be91c44378872972be8046e41a4c273a5c9e6de483a536a15ad4c2b66aecb7c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_lfo_engine_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2174,
+    "sha256": "529b76268bd443dc6f47fc179fc06c118476111ead675e4054b13c7a9a977364"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_lfo_step_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1866,
+    "sha256": "f705e6990c8723072c944c289a594fed02f345eb35e39fb24b6a07eebed3056e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_voice_context_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2474,
+    "sha256": "8644304eda5f43ddc76d423fb41c97a6ef99ad9f3477ef268ec6b8dbf9d1fb6e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_voice_engine_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2159,
+    "sha256": "7f5b5a4d1190fc205722aea735a9a4ed8bdbef4661a04da46e54db11e7e590f6"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_voice_fabric_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1922,
+    "sha256": "031d274edd832b3fec5f4db0572d2e948119c5cf31f625bc545c9ffc1491e47e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_voice_operators_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2048,
+    "sha256": "9eedbdcc0465ff1c04de8ed8f11cbc7c7d849da09cd50ac217690c3069fdc226"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/tb_voice_presets_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 1913,
+    "sha256": "1cdf03ac7987c2006d88026395461530fc9a247f8402b35a90e967dd25acdc33"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_fx_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_fx_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_lfo_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_lfo_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_synth_engine_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_synth_engine_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_voice_endpoint_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_axi_voice_endpoint_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_dx_envelope_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_dx_envelope_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_dx_operator_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_dx_operator_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fm1_engine_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fm1_engine_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fm_operator_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fm_operator_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fx_delay_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fx_delay_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fx_reverb_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_fx_reverb_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_keyboard_hold_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_keyboard_hold_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_lfo_engine_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_lfo_engine_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_lfo_step_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_lfo_step_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_context_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_context_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_engine_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_engine_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_fabric_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_fabric_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_operators_reset.json5",
+    "category": "synth_snapshot",
+    "bytes": 286,
+    "sha256": "57da072e99af69557b55273ba3dfc008d2df07331f3791d9a2960f9fbd35151d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_operators_reset.svg",
+    "category": "synth_snapshot",
+    "bytes": 56108,
+    "sha256": "aa5ece537be141a1bdcb1c6315ebc49bfed07bc19e66efd36b5a849a895d94b2"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_presets_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/sim/waveforms/tb_voice_presets_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_axi_fx_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 3020,
+    "sha256": "8157d6ca3f09b7b489599b7bf7e33ea6a0bfcd2311ad2fc4430f9f4846bc560f"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_axi_lfo_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2732,
+    "sha256": "ea06609f1c0425264092f48d045394bfc24e8be95f9728c70c6f1056adeb2a3d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_axi_synth_engine_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2732,
+    "sha256": "d349c6bc1d0a4f1a06b92f2a70c1059a8ac9c838169e6132a64eb3fecc5e840e"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_axi_voice_endpoint_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2571,
+    "sha256": "efdb04eea82b215e84d5abd283157116e6557e2ceb64b083d776771de68d81c6"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_dx_envelope_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2524,
+    "sha256": "19a6bcfa1e960c00123f7946eab45bba7726c10117077c9ed8f6b749295ea172"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_dx_operator_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2530,
+    "sha256": "ab0774778154bb13413a2f068f6808deb34f93ab859ac6b39f3dad0dee173e8d"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_fm1_engine_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2633,
+    "sha256": "c82f2acda12b2b96144d41b232129dc49109275a93d7c27f466bea2922d2e65c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_fm_operator_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2608,
+    "sha256": "d057b4376aceddcd2bf5700f50084b6f803fde145ecd5c61f95b36b2db950a47"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_fx_delay_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 3034,
+    "sha256": "881ffe223e5fae63d6088e0d0ce54cd462215cfe971bbe287d0dab1a3a1678c3"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_fx_reverb_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 3036,
+    "sha256": "4a4d80cb9f7f400d49be1b398785cd0a615eafca2f2065de8b30f5f4b433326c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_keyboard_hold_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 3347,
+    "sha256": "dd15a6aa0bdc24f001413d2674c1b56ce19f63f554e6f9090eadb8a558f40ba4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_lfo_engine_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2921,
+    "sha256": "ffa531d9f52b65c3e812efdb275b2c5c0dfc4658cd69d98a0b38bc89327f1e9a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_lfo_step_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2605,
+    "sha256": "bcdd9a5ab7c0dad07938c9d6860864c9dfd7630fce64bbcbaf163312138c90ab"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_voice_context_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 3242,
+    "sha256": "68bbcb9e2c07339f9d7a503ebc3ef139f25adf5ef452f3d858fb154cd8b46929"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_voice_engine_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2896,
+    "sha256": "2163659267dd9b48da8982eb1369fdf128a564e82a8d60a3213769402688c112"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_voice_fabric_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2650,
+    "sha256": "b8e99b0933f82c57e564d8b5c4c9621ccd3bb27e8189617dc7401864bbfb6f22"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_voice_operators_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2290,
+    "sha256": "3c5978cecaa85bfc03fb026c11318f307c3da04745723524619255eb61717e05"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/tb_voice_presets_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2627,
+    "sha256": "c6fd08b7b9e43dce46ca46ac81c3b91c0d5426feaa54e9ae8926799885e51921"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxiSynthEndpoint_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxiSynthEndpoint_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxiVoiceEndpoint_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxiVoiceEndpoint_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisDxEnvelope_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "0c54f5d8ead5d437d1ef996029b03fa451a405a5c8d65acf9f441d8e6844c0ef"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisDxEnvelope_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 60560,
+    "sha256": "3c7628021b7a56303e382054eca64ddc48e06d84307a833d197d2cfa986a5af4"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisEnvelopeMulti_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisEnvelopeMulti_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisEnvelopeSegment_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisEnvelopeSegment_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisFmOperator_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisFmOperator_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisFxEngine_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisFxEngine_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisGainMix_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisGainMix_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisLfoStep_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisLfoStep_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisNoiseStep_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisNoiseStep_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisPhasePm_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisPhasePm_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisSchroederReverb_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisSchroederReverb_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisStereoDelay_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisStereoDelay_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisSynthSystem_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisSynthSystem_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisVoiceFabric_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisVoiceFabric_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisVoiceRuntime_flow.json5",
+    "category": "synth_snapshot",
+    "bytes": 500,
+    "sha256": "edabb14c18e130792980b2949231ee17f71fd919d44996cb298e517b3d0fff81"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/AxisVoiceRuntime_flow.svg",
+    "category": "synth_snapshot",
+    "bytes": 60570,
+    "sha256": "b6dcf68fba51d56e9566804c6bc5c1facf9ca315563708e8016524cfc6893d97"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/VoiceModulation_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/VoiceModulation_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/VoiceSynthEngine_control.json5",
+    "category": "synth_snapshot",
+    "bytes": 540,
+    "sha256": "de9db3714583b225157c473002b4baaf7839cec295742468b5b3ddbee19d912c"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/VoiceSynthEngine_control.svg",
+    "category": "synth_snapshot",
+    "bytes": 62514,
+    "sha256": "86fb240fd8a5901d7c8093eb11a1491ac3c0b96e77a6d17418102624b39d0ca5"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/VoiceSynthEngine_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-engine/spec/waveforms/VoiceSynthEngine_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/BOARD_APP_PLAN.md",
+    "category": "synth_snapshot",
+    "bytes": 3454,
+    "sha256": "4a5b285d73af573c307911dfab809ff1083bc18e5623f834cb8323fe5f061957"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/BOARD_TEST.md",
+    "category": "synth_snapshot",
+    "bytes": 4594,
+    "sha256": "c09bf4fca1d69dbc33df1e7172b07ab93c48a9915171ac8fe5b58852916bfb55"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/README.md",
+    "category": "synth_snapshot",
+    "bytes": 1285,
+    "sha256": "1bbdfec40407dd098a6c1b6ab75632874b227557737b9d82637836f43b033d05"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/RESOURCE_TIMING.md",
+    "category": "synth_snapshot",
+    "bytes": 5610,
+    "sha256": "b116ac87824e427ef5d485f6f9fc0205e416e5006a257df40ece2ed0f4046c8c"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/SYSTEM.md",
+    "category": "synth_snapshot",
+    "bytes": 15126,
+    "sha256": "fd5a05697912d50815ba26a1c535038f241d0996b44bd6612ab933ae64042510"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/VERIFICATION.md",
+    "category": "synth_snapshot",
+    "bytes": 9103,
+    "sha256": "9b1c008cfca48c69c38ad39ba01553207d5b86bec0c41b04b798d4b4ab068bef"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/app/DSP_NOTICE.txt",
+    "category": "synth_snapshot",
+    "bytes": 1079,
+    "sha256": "1eae00d003c50562246d2fb6b3a9f7f3b2286056e3cd9abb46d07b2543315643"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/app/FM1_NOTICES.md",
+    "category": "synth_snapshot",
+    "bytes": 142314,
+    "sha256": "c10451a1c0b368ec926e86b9296eb0c96c790d4d4768ad07e91b09ca9ea4bfa5"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/app/README.md",
+    "category": "synth_snapshot",
+    "bytes": 3032,
+    "sha256": "e6bc42a673f4ce0befa2420082ff62bd16467265e3e342b7c784288efab75146"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/app/SynthStringVoiceStudio.exe",
+    "category": "synth_snapshot",
+    "bytes": 9920000,
+    "sha256": "2fb66d86c637d50bb2376071b4c728d825d60481bf5fecc4d6111393801fb823"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/app/voice-probe.exe",
+    "category": "synth_snapshot",
+    "bytes": 768512,
+    "sha256": "1cf17bdb804b76cf611ed15d5e1bce3db6b355c0fbd1ff93d4419226641508e6"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/build.tcl",
+    "category": "synth_snapshot",
+    "bytes": 190,
+    "sha256": "b5ba63b54f1790e6444532a70799f5980c48ac34152510a13d4515e286cf7bde"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/firmware/README.md",
+    "category": "synth_snapshot",
+    "bytes": 419,
+    "sha256": "1fbf8acf733a99c31e45f87431b8d935ba63e48a1558649de7c6aec7993cb65d"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/firmware/UNVERIFIED_synth_fm1.fs",
+    "category": "synth_snapshot",
+    "bytes": 20416412,
+    "sha256": "19f632f07dba42962719cc2a14f6ad2d7814ded0aa8c79d8121c675dac91c918"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/host/control.py",
+    "category": "synth_snapshot",
+    "bytes": 8679,
+    "sha256": "167888c67a84765040dd4b959008efc852f7139a415b1b3941f35ac2b17bc4bc"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/key_thresholds.hex",
+    "category": "synth_snapshot",
+    "bytes": 288,
+    "sha256": "08744000960c115a7df7751499ac37671e40ee962e11d90509e54dd8ee2fa4be"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/build_project.py",
+    "category": "synth_snapshot",
+    "bytes": 1210,
+    "sha256": "12093e35b91e038e299c5ff77f724c9a88c4f40d8e894e0adbc24f75e4b3ca57"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/build_wiring.py",
+    "category": "synth_snapshot",
+    "bytes": 9448,
+    "sha256": "7f72aec8842822cbd4bbeab5128d45bd609ecba77336af4afe4a63689e50dfc8"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/check_host.py",
+    "category": "synth_snapshot",
+    "bytes": 3568,
+    "sha256": "084b15d177b0da3ffd6a014626fe3d214d4e16ac05b1d71c6939d770dde7420d"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/compact_delay_test.py",
+    "category": "synth_snapshot",
+    "bytes": 1539,
+    "sha256": "2532564d2b048c757049256de80d11d3f39470c6ec1076510c0adb3701861e93"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/contracts.py",
+    "category": "synth_snapshot",
+    "bytes": 9392,
+    "sha256": "eb28645fa8a2793d2553a6758e1a1d5e2fbf733593cbf0dec53124720abd381a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/export_github_snapshot.py",
+    "category": "synth_snapshot",
+    "bytes": 12938,
+    "sha256": "86e1c5ea3a900482f5d36671de0ede73edb94d2b199554f6bc6645cfcdcc745b"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/fm1_synthesis.py",
+    "category": "synth_snapshot",
+    "bytes": 780,
+    "sha256": "4fcd00b669ad71876b45bb0af05708f80a0bb21a2cfeae3fa291355ba110a518"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/master_testbench.py",
+    "category": "synth_snapshot",
+    "bytes": 9565,
+    "sha256": "0e88b34365b8d819f63b08d878eddc36488ccd0b4a764e110e531ff3acf29ad7"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/publish_specs.py",
+    "category": "synth_snapshot",
+    "bytes": 3963,
+    "sha256": "ef8020f285c882173061eae2ea2d521b9d30e9e029063792ba51a5f2736d5d80"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/record_board_tests.py",
+    "category": "synth_snapshot",
+    "bytes": 1408,
+    "sha256": "395ee28a945c9e664265737fc3b1b26661f7632f857747e37ce8983b9db0e713"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/record_fm1_verification.py",
+    "category": "synth_snapshot",
+    "bytes": 4606,
+    "sha256": "f26cc4196a56dfc1a35142670d3f3bee881c8564da46369fbc20197997077c8b"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/record_verification.py",
+    "category": "synth_snapshot",
+    "bytes": 4435,
+    "sha256": "c055cbe75696fd2ccab3734624e5756f37d97a04d8e19df0295e0e3c5cb45d31"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/run_validation.ps1",
+    "category": "synth_snapshot",
+    "bytes": 1389,
+    "sha256": "127016d5970d7c8c86568f210a09b18a5002cbae8986d24a00c311dce60da9c1"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/system_model.py",
+    "category": "synth_snapshot",
+    "bytes": 4160,
+    "sha256": "72b050b1cc8329ca9b8aadcdb7719bc894e97b9cec49e8478fbf4d2980cb3b23"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/model/system_vectors.py",
+    "category": "synth_snapshot",
+    "bytes": 2743,
+    "sha256": "46f7b2afe75a1cd289d9996542b9e54fcb89b19310c7e5d65a306ee830ea8051"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/raw_bottom.hex",
+    "category": "synth_snapshot",
+    "bytes": 160,
+    "sha256": "092ebf43f16a96a185a6e3d2523d5bba78efab4ad5b03563c6cc4c954ebde12f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/raw_rest.hex",
+    "category": "synth_snapshot",
+    "bytes": 160,
+    "sha256": "26b83817f2a6e4e952210fa5f3150c89296e6ffc3ab79ba47abb396bffb121d8"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/board-tested-inputs.json",
+    "category": "synth_snapshot",
+    "bytes": 11667,
+    "sha256": "2102ddd4b7aee18d9163a8d660430f9264b84b14d443c71804b28fa489f9dcde"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/final-compact_delay-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1557,
+    "sha256": "9e47d60f847ad220da150cb50612e3f69c04c88eb97441989890ac1479ea801e"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/final-synth_master-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1593,
+    "sha256": "3683ed2a18c6b1ebd982c9962b3c7cd0c318ed032d809fde1e1ff46a02fcc6fd"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/final-synth_system-xsim.log",
+    "category": "synth_snapshot",
+    "bytes": 1812,
+    "sha256": "463c2029f29ef14405ad6933725a362a5340ea81fdf03cf4163afa18808af21e"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/gowin-board-summary.json",
+    "category": "synth_snapshot",
+    "bytes": 2118,
+    "sha256": "8045a2a902f72ff99cc4157a4d11f3b70a786055d05675c06a33f1de1e4af0df"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/release/snapshot.json",
+    "category": "synth_snapshot",
+    "bytes": 6637,
+    "sha256": "7a2aeb35673817a5acf6af3261f983cc8e06e6a5a5761cbc1974cdde54289362"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/release/strict-gate-summary.json",
+    "category": "synth_snapshot",
+    "bytes": 9541,
+    "sha256": "5fab740d217fdf4e9a747fc6c2db9eda978217fbfd2888be946245c0d0836654"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/release/synth_fm1.rpt.txt",
+    "category": "synth_snapshot",
+    "bytes": 87627,
+    "sha256": "66b6cca02c0f28eb5f81f6614441006b650efd6dc0ca560b907343ba3f2cdad0"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/release/synth_fm1.timing_paths",
+    "category": "synth_snapshot",
+    "bytes": 90772,
+    "sha256": "f5f10d410255735b1502169ed4b577f3f330248b5234926e121b10e1e078dbba"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/reports/release/synth_fm1_syn_rsc.xml",
+    "category": "synth_snapshot",
+    "bytes": 4219,
+    "sha256": "07af8c02f843cc493489f233ba6b092d583b9ca2f5b8ce6f56783c5e3380d50f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/boot.commands.json",
+    "category": "synth_snapshot",
+    "bytes": 72839,
+    "sha256": "341983a875e0bb21ba0b6e4061e69abff6d84386a068b1d880868463d06c101f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/boot.hex",
+    "category": "synth_snapshot",
+    "bytes": 10240,
+    "sha256": "fc3322e1b87280ebd2106bef1088d48fa4f96d35e135dfe2758140898e1639ea"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/dx_exp2.hex",
+    "category": "synth_snapshot",
+    "bytes": 2560,
+    "sha256": "ae93c2e63ffd9c2ec495eb060e7fd6a6ff4266b9135782b0de1f7e5a41f07806"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/dx_keyscale.hex",
+    "category": "synth_snapshot",
+    "bytes": 640,
+    "sha256": "797fd54fd6f9d5fee1345f9065584d68c7992442533e63e0f9b5b83fd0caf7ab"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/dx_rate.hex",
+    "category": "synth_snapshot",
+    "bytes": 640,
+    "sha256": "17c98ca82caf90405e8c327ff6d7a4088782b04f8e64ba65702797c9e6425806"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/dx_velocity.hex",
+    "category": "synth_snapshot",
+    "bytes": 640,
+    "sha256": "e4ee8adf31b5457563103d51ea79291e5f28d07f77d13bd822eeaf6815cf7bc7"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/keyboard_phase.hex",
+    "category": "synth_snapshot",
+    "bytes": 320,
+    "sha256": "232cfd61c2983450596d750ec613f98c84a3891e164655b4b5b8ef08f21e3347"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rom/sine_q26.hex",
+    "category": "synth_snapshot",
+    "bytes": 10240,
+    "sha256": "f88541c3d8d27fce396c999378725fb573bafefb177c187ecf640bd04bf04e70"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rtl/SynthAxiMaster.v",
+    "category": "synth_snapshot",
+    "bytes": 7199,
+    "sha256": "82f4b93e00655490e87a7436b47f7751c9a849aa102bdb59ee0e7f7694675fbc"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rtl/SynthBootSequencer.v",
+    "category": "synth_snapshot",
+    "bytes": 2963,
+    "sha256": "43c7f8dd6e0300115862971a3fba09cc086a951a8e02d5664b9931fd3dc82df3"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rtl/SynthCommandArbiter.v",
+    "category": "synth_snapshot",
+    "bytes": 2958,
+    "sha256": "644383c128d6cd8a317d8991b1bc641a9d823f465fc9bd1ddba6bd4d6c4b292e"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rtl/SynthKeyboardSource.v",
+    "category": "synth_snapshot",
+    "bytes": 3558,
+    "sha256": "feb152ed97ed5f4f6ea198ddb44931de39309927d68b341fbc22b171deef4557"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rtl/SynthPcmOutput.v",
+    "category": "synth_snapshot",
+    "bytes": 2186,
+    "sha256": "d10362b5c9d9fcd1cc52b9d9056b1104e03fd9b1116e0a4b38e8630091f81e91"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rtl/SynthSystemTop.v",
+    "category": "synth_snapshot",
+    "bytes": 9597,
+    "sha256": "b04ae1b862ff5c8485c366567ae9cfe872fe96017337c1cdbb7a943d7ffb6c2a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/rtl/SynthUartControl.v",
+    "category": "synth_snapshot",
+    "bytes": 9427,
+    "sha256": "45b75fb3e2b8682e5da80e42ad3dbd757ab055c9703fd744a4ec44f9b0ddf395"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/sim/compact_delay.txt",
+    "category": "synth_snapshot",
+    "bytes": 4000000,
+    "sha256": "4e6fc10d8d3e812c97098328b74e871b4d33d9473c4e80fd997a0bf85ef4be2f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/sim/tb_compact_delay.v",
+    "category": "synth_snapshot",
+    "bytes": 3996,
+    "sha256": "9b5b5e1b19e11c13485532869a2c4bf591cdc868cff583647f0401669f997990"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/sim/tb_synth_master.v",
+    "category": "synth_snapshot",
+    "bytes": 10036,
+    "sha256": "227f992e3c5b007d5ee43647a9fa20a1d9980902640a1ba28d571e269db0694c"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/sim/tb_synth_system.v",
+    "category": "synth_snapshot",
+    "bytes": 12216,
+    "sha256": "f9e931a4e427955279c76384c7041d70d5644a43b9219dc8209e9750f57b813f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/sim/uart_packets.hex",
+    "category": "synth_snapshot",
+    "bytes": 4992,
+    "sha256": "716e4224fea20735fb3da8458d2f3751a40057608886abd7bcf1040e0bd5ada3"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/sim/uart_stress.hex",
+    "category": "synth_snapshot",
+    "bytes": 23088,
+    "sha256": "e8a0552afc69afe54c6579db4957199fc1ec9ac4fd1258f7606df19ec7c3cc92"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/sources.f",
+    "category": "synth_snapshot",
+    "bytes": 1876,
+    "sha256": "f794c618897b21d1eb88fcd5913e694fe18dd021f31a74edcc0a007480d7c59c"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthAxiMaster_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 8735,
+    "sha256": "7828b788ec85663eff9da532d8118a4310b75a4a3241f383514b4be29d7d9b0f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthAxiMaster_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 4546,
+    "sha256": "c682d7491f199185294c6f597a3da09ceb10983aabec28cd59b8c091ffc8801a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthBootSequencer_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 4929,
+    "sha256": "b6b872994f9a4e489f3354e73b492d712d38cef3a1d868113c79fe9bf7e7dd2f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthBootSequencer_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2997,
+    "sha256": "757dee51bc33ec24bdb4a025040c4e7946af078f3505abb4f8bef46c86fc0505"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthCommandArbiter_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 8516,
+    "sha256": "d1686994e783c2e04188a850bd26e96616c8a987f25f101cc35b1cbb8eab6723"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthCommandArbiter_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 4379,
+    "sha256": "77bf152a32263f5a6bd50fbfc799c69ebc96f1e5a76f7307b918b623cbc6ff66"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthKeyboardSource_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 5741,
+    "sha256": "945fcfb1b5b2d5ce756642b58e313b49a7597cf572b26d19073ed11af3aae22f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthKeyboardSource_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3406,
+    "sha256": "741a5e21321407b4d1494dc2e866e5f659d391a15b0b235233e44f1c4007a5d7"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthPcmOutput_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 4964,
+    "sha256": "b2f1a0c4f47539cef7b06301f7cb47fb252cc543b06aa103d4f25db8c78df585"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthPcmOutput_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3003,
+    "sha256": "d7045ec756b55732055d2d9f56b34291745530d7aab56418a3832fb98d9fe0ad"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthSystemTop_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 6030,
+    "sha256": "e5661f9e165b07ba239cde140e4fc970f9a56eb8a6156a0c9d888c9d4251a8e9"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthSystemTop_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3540,
+    "sha256": "10a088e10e0cd04c5e3f8d6c82098cf9d543f0e0aaab08e8592141a2d4b650de"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthUartControl_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 6440,
+    "sha256": "76fea2de7656e06ce045989e895de0f14b0de94d858dbd87428349a36ec3839e"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/SynthUartControl_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 3942,
+    "sha256": "121a30c6dfd62e4b5f79751791d9f7a439cd95ddc29c4202d092d7f3effb812a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/fm1-operators.json",
+    "category": "synth_snapshot",
+    "bytes": 180274,
+    "sha256": "6cbe705af59eaa2c059deff90dbc4dee74284206b7f946492a32adfe8a72f0b2"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/operators.json",
+    "category": "synth_snapshot",
+    "bytes": 177214,
+    "sha256": "3c1b13706410a2012394c1d19d449b6c66bb13cded7316121731c80c9528105d"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/tb_compact_delay_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2213,
+    "sha256": "5b32bfe470a7b47d41bda19be846e374ef0b124c96f78e66ec9c2c0097748151"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/tb_synth_master_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2246,
+    "sha256": "9fd24328acc8105286f3b180afbb763517b0f2ed055434893a12674850fedcb6"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/tb_synth_system_spec.md",
+    "category": "synth_snapshot",
+    "bytes": 2228,
+    "sha256": "5de553ba1bcf3613ff6688ba24f222b1266c4e6c7baa518a59b9197d243b7817"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/waveforms/tb_compact_delay_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/waveforms/tb_compact_delay_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/waveforms/tb_synth_master_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/waveforms/tb_synth_master_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/waveforms/tb_synth_system_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/sim/waveforms/tb_synth_system_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/tb_compact_delay_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2976,
+    "sha256": "4bf0a07806ede8b82a962271cff8b0d56e494fb346fc0d1259a49e71fece9736"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/tb_synth_master_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 3014,
+    "sha256": "cc51cdbfc7078c22b4a5e440ab7a84f3b5de8b62035fe3540daccb8453ad8002"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/tb_synth_system_contract.json",
+    "category": "synth_snapshot",
+    "bytes": 2996,
+    "sha256": "c8338765e13e3449ba86d81fef12fa8183c83fc2c2c132bbfbc93d25ff5013a1"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthAxiMaster_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthAxiMaster_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthBootSequencer_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthBootSequencer_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthCommandArbiter_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthCommandArbiter_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthKeyboardSource_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthKeyboardSource_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthPcmOutput_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthPcmOutput_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthSystemTop_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthSystemTop_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthUartControl_stream.json5",
+    "category": "synth_snapshot",
+    "bytes": 490,
+    "sha256": "942e1179639216e0133e98b443119648b5cfea984c7fbc6ddf70a10a27cc4b54"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/spec/waveforms/SynthUartControl_stream.svg",
+    "category": "synth_snapshot",
+    "bytes": 59841,
+    "sha256": "2f9b8d45b53919705029ce5118e242cd37de4d221d0aef0179a461e0a05c512a"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/synth_system.gprj",
+    "category": "synth_snapshot",
+    "bytes": 3604,
+    "sha256": "530f258a7a06c7d54e3b9758761666552192c597f9e57c1f3e2aad6ed3276e7f"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/system.cst",
+    "category": "synth_snapshot",
+    "bytes": 1484,
+    "sha256": "9a728dc93f8714b3d4651d44da8c1acdd0eadf752f34653f79ca261243539fd9"
+  },
+  {
+    "path": "Gowin/demo1/voice-system/system.sdc",
+    "category": "synth_snapshot",
+    "bytes": 63,
+    "sha256": "7c00f9b9fc58a81469a359608d512c41196d605d39ed9bcac055433e8fb03bc3"
+  },
+  {
     "path": "Gowin/demo_test/board/ResetSync.v",
     "category": "rtl",
     "bytes": 458,
@@ -10756,6 +13090,18 @@
     "category": "app-source",
     "bytes": 5939,
     "sha256": "cd709cfccae7b5f0d3db0cacccf8879cbf9dc3c463d61525f1da8cf945edfcf8"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/VOICE_STUDIO.md",
+    "category": "synth_snapshot",
+    "bytes": 3032,
+    "sha256": "e6bc42a673f4ce0befa2420082ff62bd16467265e3e342b7c784288efab75146"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/build-voice-studio.ps1",
+    "category": "synth_snapshot",
+    "bytes": 1028,
+    "sha256": "83acd58859c12bfb7380d99652c5610bb46ea7ddb4a13c64e2254c626a0a453a"
   },
   {
     "path": "Gowin/demo_test/desktop-tauri/build.ps1",
@@ -10932,6 +13278,12 @@
     "sha256": "63a54bdb9d0314608cdd63b54ff9afcb1ebede0d40750ae49d0962b8004b956b"
   },
   {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/assets/fm1-library.json",
+    "category": "synth_snapshot",
+    "bytes": 140778,
+    "sha256": "94076b5f7dcb0eefbbe9a5b62cde8d71b7b841a2de3ca410b549719e7ee2310f"
+  },
+  {
     "path": "Gowin/demo_test/desktop-tauri/src-tauri/build.rs",
     "category": "app-source",
     "bytes": 39,
@@ -10940,8 +13292,8 @@
   {
     "path": "Gowin/demo_test/desktop-tauri/src-tauri/capabilities/default.json",
     "category": "app-source",
-    "bytes": 121,
-    "sha256": "159fa409af058bf6f21508f66883f769c3c18eebf4e5bd146abab0e1ee19362f"
+    "bytes": 136,
+    "sha256": "8bec991ff2cdfa7854b8ce8920fee787ff7e380379b233589c43061d1fc84541"
   },
   {
     "path": "Gowin/demo_test/desktop-tauri/src-tauri/icons/icon.ico",
@@ -10974,6 +13326,18 @@
     "sha256": "56a665b8a3462e04b6ffe629f56c7126a72791e935b169c326a844e0a025d383"
   },
   {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/bin/synthstring-voice-studio.rs",
+    "category": "synth_snapshot",
+    "bytes": 121,
+    "sha256": "e282718b4b4d3a7c6595dc0ff5671d21590dbf21a0de9f66c67f3f940d42bbcc"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/bin/voice-probe.rs",
+    "category": "synth_snapshot",
+    "bytes": 4015,
+    "sha256": "9989e9679fa982892f67b3a16244735f1644e73da834378d4d4b7e8f80d2722d"
+  },
+  {
     "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/calibration.rs",
     "category": "app-source",
     "bytes": 11660,
@@ -10982,8 +13346,8 @@
   {
     "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/lib.rs",
     "category": "app-source",
-    "bytes": 4691,
-    "sha256": "13b7f919443561d3ecbff9bf4327ae0b3bd9213fbea3c353ceae819957940e8c"
+    "bytes": 4714,
+    "sha256": "ea1e28b7132516b815d2933ae5a456d276f7cc64f072204a7d59e71614d66345"
   },
   {
     "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/link.rs",
@@ -11032,6 +13396,12 @@
     "category": "app-source",
     "bytes": 6281,
     "sha256": "50e33e19b9658ae8003de1fab589573f442ffb87abe0a6bad35586357e4bfac9"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src-tauri/src/voice_engine.rs",
+    "category": "synth_snapshot",
+    "bytes": 21169,
+    "sha256": "c03ae19ae633f2a0252bf0526b0764073d48c86fd0dfa1b7b8e6b5046d980dd8"
   },
   {
     "path": "Gowin/demo_test/desktop-tauri/src-tauri/tauri.conf.json",
@@ -11118,6 +13488,12 @@
     "sha256": "cac7606cc32d0c1448421a0ff4988821cd235a9655eb9dc10864aba2de66aeae"
   },
   {
+    "path": "Gowin/demo_test/desktop-tauri/src/VoiceStudio.tsx",
+    "category": "synth_snapshot",
+    "bytes": 19541,
+    "sha256": "f5ee1b6fcae203cf42a0310a15f1ae8140930927ab796e793c941fd5bf16809c"
+  },
+  {
     "path": "Gowin/demo_test/desktop-tauri/src/buttons.css",
     "category": "app-source",
     "bytes": 3113,
@@ -11156,8 +13532,8 @@
   {
     "path": "Gowin/demo_test/desktop-tauri/src/main.tsx",
     "category": "app-source",
-    "bytes": 301,
-    "sha256": "4e541569ddd70f1bd0b88d82929bfe02febe90a85f68f2f14fa8325aca0bc046"
+    "bytes": 401,
+    "sha256": "15f9d2ef7a6daf8b0baca2a8d9de72a88c9447636d196642154aec7c593a90fa"
   },
   {
     "path": "Gowin/demo_test/desktop-tauri/src/pages/ButtonsPage.tsx",
@@ -11242,6 +13618,12 @@
     "category": "app-source",
     "bytes": 4043,
     "sha256": "bca541b5e8325415537a4d4cc532b7c86ace0b75debd22735c19853cd052ee36"
+  },
+  {
+    "path": "Gowin/demo_test/desktop-tauri/src/voice-studio.css",
+    "category": "synth_snapshot",
+    "bytes": 8215,
+    "sha256": "42360f78031db13c5c15ecaa01575ab44151a7f8df1614a104d77333d6e99c8b"
   },
   {
     "path": "Gowin/demo_test/desktop-tauri/tests/calibration-ui.test.mjs",
@@ -19848,15 +22230,21 @@
     "sha256": "d022eaf3598255a37425376d10eaeeab2364e071b205e5d126e39275430ad297"
   },
   {
+    "path": "Gowin/structure.md",
+    "category": "synth_snapshot",
+    "bytes": 27635,
+    "sha256": "7688fbcc406ca98b9341d66e1fd6c11c4690c7f123ea6923936f8bde1ab637f6"
+  },
+  {
     "path": "README.md",
     "category": "documentation",
-    "bytes": 7169,
-    "sha256": "0a05946c5a63a06a02a345720e55b6c37a245fba2589b5bc9f5ba7f375c91c0e"
+    "bytes": 8519,
+    "sha256": "a0b2b20a36e8c333dd1b300480125cda0d1bc5d5e52c358583b6ce7f3af6402e"
   },
   {
     "path": "tools/verify_snapshot.py",
     "category": "support",
-    "bytes": 3599,
-    "sha256": "f79221a1b86bc62ba05d47626a9e1706d299b86299cf1d53c11a6a01fa7e4920"
+    "bytes": 4955,
+    "sha256": "da4df59718c2d24c41316de3c933cd17ccfc9d59cd71bde214bb908d35002392"
   }
 ]

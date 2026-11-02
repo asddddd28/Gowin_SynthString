@@ -1,0 +1,162 @@
+{
+  "time": "2026-11-02T15:56:46.581798",
+  "source_sha256": {
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisPhasePm.v": "c5ae183e532a6d4114b336a12d60b53eb9997c8e9d980500c467a273a982ddde",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisEnvelopeSegment.v": "8f01fffa6523a4770ea94e0c0b51d94105368acc595d1b433703b5e888e04a61",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisGainMix.v": "90acbe2e1c9a28e989de5551f594bb605662c27049cd12026a9ae48aecd1dff4",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisNoiseStep.v": "6a6f7bdbdba0929b70d70893bc300df20a1bdb5f34ba7c58376bbbdce1e14074",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisEnvelopeMulti.v": "6febd53fb81a060f32f54dbd9afa74c1e54f480fb6d8f1c2e34f80f81c852bd7",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisDxEnvelope.v": "801b66d022ad419ddc444b44eda45e3f7e53dc893a016ebc5e59d5d1692da66b",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisVoiceFabric.v": "e4737d873d206ddcff81ad156d55a48640029d2b5ab4ec3fdc2f9221af45781f",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisVoiceRuntime.v": "4e8c8cfc6e446a1efb871707493b42947c1c938bc36e89d0d7061611da270090",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisFmOperator.v": "bf8558f76a7954e680c7edc855d72f308e7b938cb10ec02cad3d4c00f9801f02",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisLfoStep.v": "adbe8dcb0a658f60fc540bdc47092e66e88dfe76f472fff341e7c91eafaf157a",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\VoiceModulation.v": "21d045f7d60e4605bb25209b2672dacb1b7677883f7a1527bf9756d2f7447929",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\VoiceSynthEngine.v": "14e37a1ff0b7a17b8ccbf84de3d71531fe05612a2161b3c3e0eb88f05da04605",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisStereoDelay.v": "d34f8000b3eb45b78db051f962e8dcb8d15a913e4e32b5f46b2798b4e71883f1",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisSchroederReverb.v": "bd793f3ef76c66f6a95c409da6c65d73230e23cb0f141478a7d70231d95d82d8",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisFxEngine.v": "7cd143b6c8d3d3316b68749cfedb5b0d8c3f1acddf20be48befd009fbf0e60fa",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxisSynthSystem.v": "118a128e140708aa5583d584e05b43fcdc23a1d9b82ac894eeba85901f788cc4",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxiVoiceEndpoint.v": "4f209b86cb0e4239f86bcd22bb535d96fa329c5b03a7f8652ac9bf1d9d41363a",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\rtl\\AxiSynthEndpoint.v": "39feca3d7a26522d1450c6e908b5f6755b8292794e82a44ed196d9d2c6dc2851",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rtl\\SynthAxiMaster.v": "82f4b93e00655490e87a7436b47f7751c9a849aa102bdb59ee0e7f7694675fbc",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rtl\\SynthBootSequencer.v": "43c7f8dd6e0300115862971a3fba09cc086a951a8e02d5664b9931fd3dc82df3",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rtl\\SynthKeyboardSource.v": "feb152ed97ed5f4f6ea198ddb44931de39309927d68b341fbc22b171deef4557",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rtl\\SynthUartControl.v": "45b75fb3e2b8682e5da80e42ad3dbd757ab055c9703fd744a4ec44f9b0ddf395",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rtl\\SynthPcmOutput.v": "d10362b5c9d9fcd1cc52b9d9056b1104e03fd9b1116e0a4b38e8630091f81e91",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rtl\\SynthSystemTop.v": "b04ae1b862ff5c8485c366567ae9cfe872fe96017337c1cdbb7a943d7ffb6c2a",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rtl\\SynthCommandArbiter.v": "644383c128d6cd8a317d8991b1bc641a9d823f465fc9bd1ddba6bd4d6c4b292e",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\keyboard_games\\src\\KeyboardSampler.v": "5570655eff6746438b366031e5ad0c0e4ebe3c44d23109bc06f446f613c500a8",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\keyboard_games\\src\\UartRx.v": "e2624eeaa0cb6a67df40c786e82954e064f5d42bb77cdb7bede58d9729475f76",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\encoder\\src\\EncoderUartTx.v": "f621123c5d9bb2edc2429fdff144a2c2095d7ab4e8844e6eb3fcd52a34372e9f",
+    "D:\\Projects\\ai\\Gowin\\demo1\\keyboard-latency\\src\\LatencyKeyThresholds.v": "636c8b762b91c0239d48b645e6b4297048a113fe6eabda78823c990a3af43ba0",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\system.cst": "9a728dc93f8714b3d4651d44da8c1acdd0eadf752f34653f79ca261243539fd9",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\system.sdc": "7c00f9b9fc58a81469a359608d512c41196d605d39ed9bcac055433e8fb03bc3",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rom\\boot.hex": "fc3322e1b87280ebd2106bef1088d48fa4f96d35e135dfe2758140898e1639ea",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rom\\dx_exp2.hex": "ae93c2e63ffd9c2ec495eb060e7fd6a6ff4266b9135782b0de1f7e5a41f07806",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rom\\dx_keyscale.hex": "797fd54fd6f9d5fee1345f9065584d68c7992442533e63e0f9b5b83fd0caf7ab",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rom\\dx_rate.hex": "17c98ca82caf90405e8c327ff6d7a4088782b04f8e64ba65702797c9e6425806",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rom\\dx_velocity.hex": "e4ee8adf31b5457563103d51ea79291e5f28d07f77d13bd822eeaf6815cf7bc7",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rom\\keyboard_phase.hex": "232cfd61c2983450596d750ec613f98c84a3891e164655b4b5b8ef08f21e3347",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\rom\\sine_q26.hex": "f88541c3d8d27fce396c999378725fb573bafefb177c187ecf640bd04bf04e70",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\key_thresholds.hex": "08744000960c115a7df7751499ac37671e40ee962e11d90509e54dd8ee2fa4be",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\raw_rest.hex": "26b83817f2a6e4e952210fa5f3150c89296e6ffc3ab79ba47abb396bffb121d8",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\raw_bottom.hex": "092ebf43f16a96a185a6e3d2523d5bba78efab4ad5b03563c6cc4c954ebde12f",
+    "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\synth_system.gprj": "530f258a7a06c7d54e3b9758761666552192c597f9e57c1f3e2aad6ed3276e7f"
+  },
+  "rtl_suites": [
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\dx-dx_envelope-xsim.log",
+      "sha256": "ec0b208fb69e715fea532f71a3bd17402f35ff93c65d6644231e4a5f07c99bee",
+      "summary": [
+        "PASS dx_envelope vectors=10096 max_latency=6 stalls=PASS reset=PASS"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\dx-dx_operator-xsim.log",
+      "sha256": "f4c32a945560ac88a1a244093cf493ebf2df0226eaf697f0cb5fffc41916fe0c",
+      "summary": [
+        "PASS dx_operator vectors=1600 max_latency=10 stalls=PASS reset=PASS"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\dx-fm1_engine-xsim.log",
+      "sha256": "cadb21726c681c395150950e124f29e445d8eaf98d285ee1b6377df8471c2e0a",
+      "summary": [
+        "PASS fm1_engine patches=4 PCM=10240 commands=147 max_voice_cycles=861 mixed_native=PASS metadata_conflict=PASS live_format_barrier=PASS"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\dx-fm_operator-xsim.log",
+      "sha256": "72ef6f27c1dafdc51d95d8666d80790262869844a46983f71c5bebddb44841ea",
+      "summary": [
+        "PASS fm_operator vectors=2656 latency=10..10 stalled_outputs=2400 reset_cancel=1 uploaded_wave_points=2048"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\dx-lfo_engine-xsim.log",
+      "sha256": "e223d4543c43115c778ca98f0630039715058ce6728da9d833cef434b3330ef1",
+      "summary": [
+        "PASS lfo_engine pcm_frames=1600 state_snapshots=38400 voices=8 logical_ops=48 max_render_cycles=866 commands=160"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\dx-voice_engine-xsim.log",
+      "sha256": "c04620266b600081c6073f1468a87958f192d18f60ba813f1c1792341c86f651",
+      "summary": [
+        "PASS voice_engine pcm_frames=400 all_48_operators=1 max_render_cycles=861 nonzero_frames=225 commands=73 retry/sustain/steal/panic/reset/backpressure=PASS"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\dx-voice_presets-xsim.log",
+      "sha256": "9f21d6f376adcf109330bd0cd43d98e5ee1a2b82996aae617799bd8e4166677a",
+      "summary": [
+        "PASS voice_presets compiled_patches=5 compared_pcm_frames=10240 chord_voices=3"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\fx-final-axi_fx-xsim.log",
+      "sha256": "024cb901d6b0cea7cf4af825dd2c7108d481b5ee8be2a5af3d7fd0fe430706f6",
+      "summary": [
+        "PASS axi_fx commands=117 pcm=6129 full_voice_cycles=866 total_cycles=940 fx_cycles=72 clear_pulses=1"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\fx-final-axi_lfo-xsim.log",
+      "sha256": "6ff9a63471023db544df4a0bd68cad9e3f4f829de247b79dfbba81f19b9d23fa",
+      "summary": [
+        "PASS axi_lfo compiled_patches=3 commands=71 nonzero_pcm=513 global/local/replay/invalid=PASS"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\fx-final-axi_synth_engine-xsim.log",
+      "sha256": "961fcfb4d19f23ed5b3e3e01a1857c60836d288e63555d06a83914672058cf8d",
+      "summary": [
+        "PASS axi_synth_engine control_commands=33 pcm_consumed=71 nonzero_pcm=38 snapshot/replay/live_commit/legacy/overflow=PASS"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\fx-final-axi_voice_endpoint-xsim.log",
+      "sha256": "e0e807fdbde923aebbfff7d157cde5dcfbd8ec8d247e13045ff97b48aa942350",
+      "summary": [
+        "PASS axi_voice_endpoint writes=1141 reads=1080 checked_completions=369 saturation_accepted=12 full_rejected=2 B_stalls=5709 R_stalls=8381"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\fx-final-fx_delay-xsim.log",
+      "sha256": "c5a932420b3684470d20189192ac373a5cc833bde85ae0c7bef423bd4d7fbad3",
+      "summary": [
+        "PASS tb_fx_delay frames=80000 max_compute_cycles=10 stalls=10324 clips=689"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-engine\\reports\\fx-final-fx_reverb-xsim.log",
+      "sha256": "00b0ee2d68da6047d4db63e3224d67ddaef9f359fdaae8771f01c0385f3bfa3b",
+      "summary": [
+        "PASS tb_fx_reverb frames=100000 max_compute_cycles=60 stalls=12904 clips=0"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\final-compact_delay-xsim.log",
+      "sha256": "9e47d60f847ad220da150cb50612e3f69c04c88eb97441989890ac1479ea801e",
+      "summary": [
+        "PASS tb_compact_delay frames=50000 max_compute_cycles=10 stalls=6452 clips=9"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\final-synth_master-xsim.log",
+      "sha256": "3683ed2a18c6b1ebd982c9962b3c7cd0c318ed032d809fde1e1ff46a02fcc6fd",
+      "summary": [
+        "PASS synth_master normal_commands=96 reads=24 requests=126 stalled_cycles=7140 watchdog/BRESP/RRESP/identity/reset=PASS"
+      ]
+    },
+    {
+      "log": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\final-synth_system-xsim.log",
+      "sha256": "463c2029f29ef14405ad6933725a362a5340ea81fdf03cf4163afa18808af21e",
+      "summary": [
+        "PASS synth_system boot=60 FM1_presets=4 keys=66 UART_replies=134 CRC_replay=PASS PCM=3436 PT8211=3437 nonzero=1809 ADC=15642 max_compute=940"
+      ]
+    }
+  ],
+  "count": 16
+}

@@ -7,6 +7,7 @@ pub mod runtime;
 pub mod synth_debug;
 pub mod synth_studio;
 pub mod synth_midi;
+pub mod voice_engine;
 use runtime::{Action, Service, Snapshot};
 use tauri::Manager;
 

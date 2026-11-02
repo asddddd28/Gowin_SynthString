@@ -1,6 +1,15 @@
 # Gowin_SynthString
 
-Tang Mega 60K（GW5AT-60B）合成器与综合硬件调试工程。2026-11-02 最新快照将六颗轻触开关合入普通／HDMI 综合测试固件，并更新 Rust/Tauri App；保留此前的音频合成器、喇叭测试、Python App 和 pair 固件。
+Tang Mega 60K（GW5AT-60B）合成器与综合硬件调试工程。2026-11-02新增FM1四音色Voice Engine及Tauri/Rust Voice Studio快照；保留此前已测试的音频合成器、综合硬件调试、Python App和pair固件。
+
+**最新Voice Engine候选尚未烧录，50MHz时序未通过。** 16组RTL仿真通过，8声部×6算子加LFO/FX最重940/1024拍；实际布局Fmax35.944MHz，setup -7.821ns。按用户要求暂停进一步调试并先保存快照，未降低50MHz时钟。当前候选不能替代下面已验证的演奏固件。
+
+- [各模块资源、执行拍数与长路径报告](Gowin/demo1/voice-system/RESOURCE_TIMING.md)
+- [完整结构与协议](Gowin/demo1/voice-system/SYSTEM.md) · [当前验证状态](Gowin/demo1/voice-system/BOARD_TEST.md)
+- [SynthStringVoiceStudio.exe](Gowin/demo1/voice-system/app/SynthStringVoiceStudio.exe) · [使用方法](Gowin/demo1/voice-system/app/README.md)
+- [未通过时序的候选位流](Gowin/demo1/voice-system/firmware/README.md)，文件名明确带有UNVERIFIED。
+
+新版App包含可滚动界面、四槽音色、六算子电平/频率/DX包络编辑、电脑键盘/MIDI/鼠标演奏、旋钮、延音、共享FX及硬件遥测。滚动已由用户确认；新版协议实板联调尚未执行。库保留128条原厂数据，只开放PIANO 2、ORGAN 1、BASS 3、BRASS 2四个已验证参数配置。
 
 ## 运行入口与固件配对
 
@@ -41,11 +50,11 @@ HDMI 保持原仪表盘布局，六键详情在 App 页面显示。上一版 89B
 
 音频固件通过 50 MHz 时序检查（余量很小）和数字链路验收。4 Ω / 3 W 喇叭在 3/8 主音量测试中，用户反馈有声音但较小；6/8 测试记录到非零 PCM，未单独确认听感。没有测量实际声压、输出功率或两个物理声道。测试结束静音，详见 [喇叭记录](Gowin/demo_test/diagnostics/speaker_test/README.md)。
 
-上述是已有实测记录；本次 GitHub 导出没有重新综合或烧录。严格 RTL 风格审查仍有未通过项，不能将功能仿真和时序通过理解为全部风格门禁通过。
+上述是此前独立固件的实测记录；本次Voice Engine快照重新进行了综合和布局布线，但未通过时序、未烧录。严格RTL风格审查仍有未通过项，不能将功能仿真理解为全部门禁通过。
 
 ## 构建与快照边界
 
-App 可在 `Gowin/demo_test/desktop-tauri` 执行 `npm ci`、`npm test`、`npm run test:ui` 和 `./build.ps1`。前置依赖为 Node.js、Rust MSVC、Visual Studio C++ Build Tools 和 WebView2。Synth Studio 的入口是 Cargo 二进制 `synth-debug`，共用前端及 Rust 模块。
+App 可在 `Gowin/demo_test/desktop-tauri` 执行 `npm ci`、`npm test`、`npm run test:ui` 和 `./build.ps1`。前置依赖为 Node.js、Rust MSVC、Visual Studio C++ Build Tools 和 WebView2。旧Synth Studio入口是Cargo二进制`synth-debug`；新Voice Studio执行`./build-voice-studio.ps1`，二进制入口`synthstring-voice-studio`，共用前端及Rust模块。新DSP测试向量由`voice-engine/model`生成，未上传大型生成向量及构建缓存。
 
 本次补齐新增工程及直接依赖的 GPRJ / CST / SDC 文件。为保留已验证源文件的 SHA-256，源码、生成脚本和报告中的原工作区路径 `D:/Projects/ai` 未自动改写。换目录重建时需调整 GPRJ/Tcl、ROM 路径及仿真文件列表，并重新生成验证结果；历史报告不能直接作为修改后源码的通过证明。HDMI 的厂商文件和 `layout.hex` 已随附，普通重建不必重新运行依赖外部 reference 目录的 `prepare_assets.py`；历史迁移/生成脚本也不应无差别执行。
 

@@ -1,0 +1,33 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p..........."
+    },
+    {
+      "name": "cmd_valid",
+      "wave": "01.........0"
+    },
+    {
+      "name": "sample_tick",
+      "wave": "0..10......."
+    },
+    {
+      "name": "audio_busy",
+      "wave": "0...1..0...."
+    },
+    {
+      "name": "lookup",
+      "wave": "x.3.x..3.4.x",
+      "data": [
+        "partial",
+        "restart",
+        "done"
+      ]
+    },
+    {
+      "name": "cmd_ready",
+      "wave": "0.........10"
+    }
+  ]
+}

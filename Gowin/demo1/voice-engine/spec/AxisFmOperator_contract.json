@@ -1,0 +1,189 @@
+{
+  "modules": [
+    {
+      "name": "AxisFmOperator",
+      "rtl_path": "rtl/AxisFmOperator.v",
+      "description": "单个可复用 PM/FM/AM/Ring 算子，EG 与波形计算并行。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "任务与结果共用时钟"
+          },
+          {
+            "name": "i_axis_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "异步清除有效资格；外部同步释放"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "direction": "input",
+            "width": 672,
+            "role": "data",
+            "description": "本次操作的状态与参数原子快照"
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "调用者的透明事务编号"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "源端持有完整请求"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "本拍可以接收快照"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "direction": "output",
+            "width": 160,
+            "role": "data",
+            "description": "该事务的数值和状态结果"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "与结果同步返回的原编号"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "输出寄存器包含可消费事务"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "调用者可以提交输出结果"
+          },
+          {
+            "name": "i_wave_write",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "仅空闲时写波表"
+          },
+          {
+            "name": "i_wave_address",
+            "direction": "input",
+            "width": 11,
+            "role": "data",
+            "description": "帧与采样地址"
+          },
+          {
+            "name": "i_wave_data",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "有符号 Q26 采样"
+          },
+          {
+            "name": "o_wave_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "波表可安全写入"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "21-word request contains phase, increment, modulation, depth, gain, EG state/control/eight parameters, two feedback samples, feedback depth, noise state, waveform/mode flags, shape.",
+        "Output words: sample, next phase, EG level, EG flags, next noise state.",
+        "Independent four-stage linear EG advances once per request. Feedback reads two previous samples, not current output.",
+        "Six waveform types; 1024-point interpolated sine and two writable frames; initial tables are sine.",
+        "Single in-flight request. Output and tag stable during backpressure. Table writes only when idle and no request accepted.",
+        "DX envelope executes in parallel with wave math. State result is logarithmic, amplitude is separate. PM source normalized by8 restores phase with source<<9; feedback strength0..7 uses history_average<<(strength+1). DX sine reads old phase before increment.",
+        "DX extension: request flags word19 bit5 selects DX mode; bits12:6 note,19:13 velocity,26:20 scaled output level. Word20 carries packed key/velocity scaling.",
+        "Two signed33-by-signed32 lanes share phase/feedback and gain phases. Dedicated signed33-by-positive23 interpolation and signed33-by-positive18 morph products break mux paths. Preserve native64, interpolation56, morph51 and factor65 slices; latency remains10 clocks."
+      ],
+      "constraints": [
+        "Single 50 MHz clock domain; reset cancels in-flight work.",
+        "See ENGINE.md for exact fixed-point and command ABI.",
+        "Candidate: board timing and strict style gate are separate from functional simulation."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent Python integer model versus xsim",
+        "Backpressure stability and reset cancellation",
+        "Illegal parameters and voice lifecycle",
+        "1024-clock frame deadline under eight voices and six operators"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "请求锁存后运算；结果可以暂停，已驻留声部仍按采样时钟推进。图示握手关系，不按图推断延迟。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

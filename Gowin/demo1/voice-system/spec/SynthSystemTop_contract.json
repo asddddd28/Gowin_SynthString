@@ -1,0 +1,184 @@
+{
+  "modules": [
+    {
+      "name": "SynthSystemTop",
+      "rtl_path": "rtl/SynthSystemTop.v",
+      "description": "Single50MHz board hierarchy: ADC scanner and hysteresis → note source; UART → framed control; boot/keys/host → arbiter → AXI master → AxiSynthEndpoint → PT8211.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_adc_dout",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_adc_dout"
+          },
+          {
+            "name": "i_uart_rx",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_uart_rx"
+          },
+          {
+            "name": "o_mux_sel",
+            "direction": "output",
+            "width": 3,
+            "role": "data",
+            "description": "o_mux_sel"
+          },
+          {
+            "name": "o_mux_en",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_mux_en"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_adc_cs_n"
+          },
+          {
+            "name": "o_adc_sclk",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_adc_sclk"
+          },
+          {
+            "name": "o_adc_din",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_adc_din"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_uart_tx"
+          },
+          {
+            "name": "HP_BCK",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "HP_BCK"
+          },
+          {
+            "name": "HP_WS",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "HP_WS"
+          },
+          {
+            "name": "HP_DIN",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "HP_DIN"
+          },
+          {
+            "name": "PA_EN",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "PA_EN"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Single50MHz board hierarchy: ADC scanner and hysteresis → note source; UART → framed control; boot/keys/host → arbiter → AXI master → AxiSynthEndpoint → PT8211.",
+        "Reset synchronously released after powerup delay; ADC/UART inputs synchronized. PA_EN active low, enabled only after successful boot and amplifier delay and no faults.",
+        "Core subsystem is shared with voice-engine. No generic AXI crossbar/DMA or external RAM master is claimed.",
+        "C_DELAY_ADDR_BITS=13 board default; core library defaults to15. Capability registers and parameter limits follow the synthesized depth."
+      ],
+      "constraints": [
+        "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
+        "See SYSTEM.md and model/system_model.py for ABI, numerical behavior, memory images and validation scope."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent protocol/PCM model",
+        "Real UART/ADC pins to serial DAC simulation",
+        "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
+        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

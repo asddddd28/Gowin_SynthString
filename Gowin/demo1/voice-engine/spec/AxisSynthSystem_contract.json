@@ -1,0 +1,301 @@
+{
+  "modules": [
+    {
+      "name": "AxisSynthSystem",
+      "rtl_path": "rtl/AxisSynthSystem.v",
+      "description": "兼容旧任务的内部互联与持续采样时钟、PCM 队列。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "任务与结果共用时钟"
+          },
+          {
+            "name": "i_axis_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "异步清除有效资格；外部同步释放"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "direction": "input",
+            "width": 384,
+            "role": "data",
+            "description": "本次操作的状态与参数原子快照"
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "调用者的透明事务编号"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "源端持有完整请求"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "本拍可以接收快照"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "direction": "output",
+            "width": 128,
+            "role": "data",
+            "description": "该事务的数值和状态结果"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "与结果同步返回的原编号"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "输出寄存器包含可消费事务"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "调用者可以提交输出结果"
+          },
+          {
+            "name": "i_s_axis_tdest",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "任务目的操作码"
+          },
+          {
+            "name": "i_s_axis_tlast",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "原子命令边界"
+          },
+          {
+            "name": "o_m_axis_tdest",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "完成操作码"
+          },
+          {
+            "name": "o_m_axis_tlast",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "完成均为单拍"
+          },
+          {
+            "name": "o_count_executed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "旧上下文计数"
+          },
+          {
+            "name": "o_count_replayed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "旧上下文计数"
+          },
+          {
+            "name": "o_count_rejected",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "旧上下文计数"
+          },
+          {
+            "name": "o_count_bound",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "旧上下文计数"
+          },
+          {
+            "name": "o_pcm_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "PCM 队列有数据"
+          },
+          {
+            "name": "i_pcm_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "消费 PCM"
+          },
+          {
+            "name": "o_pcm_data",
+            "direction": "output",
+            "width": 64,
+            "role": "data",
+            "description": "左右 Q26 采样"
+          },
+          {
+            "name": "o_pcm_frame",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "对应完成帧"
+          },
+          {
+            "name": "o_overruns",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "采样期限错过"
+          },
+          {
+            "name": "o_pcm_dropped",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "PCM 队列满丢弃新帧"
+          },
+          {
+            "name": "o_render_cycles",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "最近渲染周期"
+          },
+          {
+            "name": "o_active",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "活动声部位图"
+          },
+          {
+            "name": "o_fx_frames",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "FX处理帧数"
+          },
+          {
+            "name": "o_fx_clipped",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "FX削波帧数"
+          },
+          {
+            "name": "o_fx_dropped",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "FX输入丢帧数"
+          },
+          {
+            "name": "o_fx_cycles",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "FX处理时钟数"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Single-beat A0..A9 and B0..B3 route to the resident engine; C0..C4 route to the independent shared FX domain.",
+        "LEGACY_ENABLE defaults to one for compatibility; the AxiSynthEndpoint wrapper sets zero and returns unsupported status 1 to old raw/context commands.",
+        "Malformed packet head and tails remain in the legacy drain domain.",
+        "Three-way round-robin completion arbitration latches ownership while stalled. PCM uses a separate four-entry FIFO.",
+        "Two-entry ingress queue adapts voice PCM pulses to AxisFxEngine; Delay then Reverb own shared tail state; output FIFO full drops new frames without freezing feedback.",
+        "Sample tick every 1024 clocks; PCM full drops new frame and increments telemetry without blocking synthesis.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses14. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations14/15.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15."
+      ],
+      "constraints": [
+        "Single 50 MHz clock domain; reset cancels in-flight work.",
+        "See ENGINE.md for exact fixed-point and command ABI.",
+        "Candidate: board timing and strict style gate are separate from functional simulation."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent Python integer model versus xsim",
+        "Backpressure stability and reset cancellation",
+        "Illegal parameters and voice lifecycle",
+        "1024-clock frame deadline under eight voices and six operators"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "请求锁存后运算；结果可以暂停，已驻留声部仍按采样时钟推进。图示握手关系，不按图推断延迟。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

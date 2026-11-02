@@ -1,0 +1,5 @@
+{
+  "name": "短延时与小房间",
+  "delay": {"enabled": true, "left_ms": 90, "right_ms": 120, "feedback": 0.25, "wet": 0.16, "pingpong": false},
+  "reverb": {"enabled": true, "feedback": 0.7, "damping": 0.45, "wet": 0.22}
+}

@@ -1,0 +1,251 @@
+{
+  "modules": [
+    {
+      "name": "AxisFxEngine",
+      "rtl_path": "rtl/AxisFxEngine.v",
+      "description": "独立FX命令域：草稿参数原子提交，Delay→Reverb持续处理音频。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_axis_aclk"
+          },
+          {
+            "name": "i_axis_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_axis_arstn"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "direction": "input",
+            "width": 384,
+            "role": "data",
+            "description": "i_s_axis_tdata"
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_s_axis_tuser"
+          },
+          {
+            "name": "i_s_axis_tdest",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_s_axis_tdest"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_s_axis_tvalid"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_s_axis_tready"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "direction": "output",
+            "width": 128,
+            "role": "data",
+            "description": "o_m_axis_tdata"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_m_axis_tuser"
+          },
+          {
+            "name": "o_m_axis_tdest",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_m_axis_tdest"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_m_axis_tvalid"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_m_axis_tready"
+          },
+          {
+            "name": "i_audio_data",
+            "direction": "input",
+            "width": 64,
+            "role": "data",
+            "description": "i_audio_data"
+          },
+          {
+            "name": "i_audio_frame",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_audio_frame"
+          },
+          {
+            "name": "i_audio_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_audio_valid"
+          },
+          {
+            "name": "o_audio_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_audio_ready"
+          },
+          {
+            "name": "o_audio_data",
+            "direction": "output",
+            "width": 64,
+            "role": "data",
+            "description": "o_audio_data"
+          },
+          {
+            "name": "o_audio_frame",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_audio_frame"
+          },
+          {
+            "name": "o_audio_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_audio_valid"
+          },
+          {
+            "name": "i_audio_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_audio_ready"
+          },
+          {
+            "name": "o_frames",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_frames"
+          },
+          {
+            "name": "o_clipped_frames",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_clipped_frames"
+          },
+          {
+            "name": "o_cycles",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_cycles"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "独立FX命令域：草稿参数原子提交，Delay→Reverb持续处理音频。",
+        "C0 Delay draft, C1 Reverb draft, C2 commit, C3 clear mask, C4 query. Epoch/sequence independent from voice and legacy domains.",
+        "First sequence zero binds epoch; exact latest request replay returns cached response with bit72 and fresh tag; conflicts/gaps/stale requests reject.",
+        "Control accepted between frames, completion backpressure never stops audio; clear and commit prevent audio acceptance on the same edge.",
+        "Note lifecycle does not own FX state. Tail survives NoteOff and patch commit. Counts increment exactly once per output transfer.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses14. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations14/15.",
+        "Packet signature equality is registered in 21 independent 16-bit chunks; payload zero tests use ten registered words. READY waits for predecode; arriving audio invalidates predecode and has priority. Accepted command and replay semantics are unchanged.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15."
+      ],
+      "constraints": [
+        "Verilog-2001; single 50MHz clock; signed Q26 audio, signed 18-bit Q16 feedback RAM.",
+        "See FX.md for numerical equations, command layout and limits. No board timing claim.",
+        "Clear only while idle, RAM validity reset without clearing memory contents. Reset cancels in-flight work."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent integer model, stereo impulses and random full-scale inputs",
+        "Fractional and maximum delay, bypass, clipping and zero-input tail decay",
+        "Backpressure and reset; independent command replay; atomic parameter commit; 1024-clock deadline"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "在输入握手时锁存一帧及配置，多周期读写反馈RAM。完成结果暂停期间保持不变。示意图不代表实际时钟延迟。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,186 @@
+{
+  "modules": [
+    {
+      "name": "SynthUartControl",
+      "rtl_path": "rtl/SynthUartControl.v",
+      "description": "Protocol5: fixed52-byte request SY/version/kind/sequence/opcode/argument/payload40/CRC16-CCITT, little-endian.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "o_request",
+            "direction": "output",
+            "width": 392,
+            "role": "data",
+            "description": "o_request"
+          },
+          {
+            "name": "o_request_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_request_valid"
+          },
+          {
+            "name": "i_request_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_request_ready"
+          },
+          {
+            "name": "i_response",
+            "direction": "input",
+            "width": 136,
+            "role": "data",
+            "description": "i_response"
+          },
+          {
+            "name": "i_response_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_response_valid"
+          },
+          {
+            "name": "o_response_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_response_ready"
+          },
+          {
+            "name": "i_rx",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_rx"
+          },
+          {
+            "name": "o_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_tx"
+          },
+          {
+            "name": "i_initialized",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_initialized"
+          },
+          {
+            "name": "i_status",
+            "direction": "input",
+            "width": 128,
+            "role": "data",
+            "description": "i_status"
+          },
+          {
+            "name": "o_bad_packets",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_bad_packets"
+          },
+          {
+            "name": "o_replayed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_replayed"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Protocol5: fixed52-byte request SY/version/kind/sequence/opcode/argument/payload40/CRC16-CCITT, little-endian.",
+        "Response32 bytes SR/version/kind/sequence/result128/transport_status/opcode/argument/replayflag/reserved16/CRC16.",
+        "Kind0 engine command; kind1 read AXI register (payload W0); kind2 local status. Stop-and-wait, latest exact request cached, conflicts/stale/gaps reject without execution.",
+        "Invalid CRC, framing, byte gap or packets while busy never execute. RX and TX use independent byte engines; host retries on timeout.",
+        "DECODE registers packet equality and payload-zero chunks; CLASSIFY registers replay/conflict/sequence/payload decisions before CHECK. Adds two control clocks, preserves byte-exact retry semantics.",
+        "Host NoteIDs must have bit31 clear; physical key IDs reserved. Boot-not-ready rejects engine/read requests. Local status is accepted while the parser is idle; a permanently stalled AXI request holds WAIT_REPLY until handshake or reset."
+      ],
+      "constraints": [
+        "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
+        "See SYSTEM.md and model/system_model.py for ABI, numerical behavior, memory images and validation scope."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent protocol/PCM model",
+        "Real UART/ADC pins to serial DAC simulation",
+        "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
+        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

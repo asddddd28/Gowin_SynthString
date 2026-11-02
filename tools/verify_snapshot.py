@@ -59,6 +59,23 @@ def main():
     release = json.loads((app / 'reports/buttons-release.json').read_text(encoding='utf-8'))
     if hashlib.sha256((app / release['artifact']).read_bytes()).hexdigest() != release['sha256']:
         errors.append('App release fingerprint mismatch')
+    # The new synth snapshot is deliberately not marked as a board-qualified image.
+    voice = ROOT / 'Gowin/demo1/voice-system'
+    snapshot = json.loads((voice / 'reports/release/snapshot.json').read_text(encoding='utf-8'))
+    timing = json.loads((voice / 'reports/gowin-board-summary.json').read_text(encoding='utf-8'))
+    if snapshot['status'] != 'simulation_passed_timing_failed_not_programmed' or snapshot['hardware_tested']:
+        errors.append('Candidate qualification status changed unexpectedly')
+    if timing['clean'] or not timing['timing']['violations'] or timing['timing']['fmax'][0]['constraintMhz'] != 50:
+        errors.append('Candidate timing evidence inconsistent')
+    artifact = ROOT / snapshot['bitstream']
+    if hashlib.sha256(artifact.read_bytes()).hexdigest() != snapshot['bitstream_sha256']:
+        errors.append('Candidate firmware fingerprint mismatch')
+    if hashlib.sha256((voice / 'app/SynthStringVoiceStudio.exe').read_bytes()).hexdigest() != snapshot['app_sha256']:
+        errors.append('Voice Studio fingerprint mismatch')
+    for original, expected in snapshot['source_sha256'].items():
+        source = exported_path(original, ROOT)
+        if not source.is_file() or hashlib.sha256(source.read_bytes()).hexdigest() != expected:
+            errors.append(f'Candidate source fingerprint mismatch: {original}')
     if errors:
         raise SystemExit('\n'.join(errors))
     print(f'PASS: {len(entries)} file checksums, {projects} project dependency lists, current firmware/App and historical audio fingerprints.')

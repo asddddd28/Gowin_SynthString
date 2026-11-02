@@ -1,0 +1,184 @@
+{
+  "name": "PIANO 2",
+  "revision": 1,
+  "engine_profile": "dx7-subset-1",
+  "operators": [
+    {
+      "wave": "sine",
+      "mode": "pm",
+      "enabled": true,
+      "carrier": false,
+      "sources": [],
+      "gain": 1,
+      "dx7": {
+        "levels": [
+          4032,
+          3968,
+          0,
+          0
+        ],
+        "rates": [
+          63,
+          28,
+          37,
+          32
+        ],
+        "output": 106,
+        "profile": 1744830464,
+        "feedback": 7
+      },
+      "ratio": 16.448519864786125
+    },
+    {
+      "wave": "sine",
+      "mode": "pm",
+      "enabled": true,
+      "carrier": true,
+      "sources": [
+        0
+      ],
+      "gain": 1,
+      "dx7": {
+        "levels": [
+          4032,
+          3968,
+          0,
+          0
+        ],
+        "rates": [
+          63,
+          28,
+          37,
+          32
+        ],
+        "output": 120,
+        "profile": 1711276032,
+        "feedback": 0
+      },
+      "ratio": 4.4
+    },
+    {
+      "wave": "sine",
+      "mode": "pm",
+      "enabled": true,
+      "carrier": false,
+      "sources": [],
+      "gain": 1,
+      "dx7": {
+        "levels": [
+          4032,
+          3904,
+          0,
+          0
+        ],
+        "rates": [
+          63,
+          34,
+          45,
+          35
+        ],
+        "output": 127,
+        "profile": 1979858944,
+        "feedback": 0
+      },
+      "fixed_hz": 389.9113023750544
+    },
+    {
+      "wave": "sine",
+      "mode": "pm",
+      "enabled": true,
+      "carrier": true,
+      "sources": [
+        2
+      ],
+      "gain": 1,
+      "dx7": {
+        "levels": [
+          4032,
+          3968,
+          0,
+          0
+        ],
+        "rates": [
+          57,
+          34,
+          23,
+          25
+        ],
+        "output": 127,
+        "profile": 1174405120,
+        "feedback": 0
+      },
+      "ratio": 1.9989586426777601
+    },
+    {
+      "wave": "sine",
+      "mode": "pm",
+      "enabled": true,
+      "carrier": false,
+      "sources": [],
+      "gain": 1,
+      "dx7": {
+        "levels": [
+          4032,
+          3968,
+          0,
+          0
+        ],
+        "rates": [
+          63,
+          34,
+          23,
+          24
+        ],
+        "output": 127,
+        "profile": 1912700928,
+        "feedback": 0
+      },
+      "ratio": 2.001041899817242
+    },
+    {
+      "wave": "sine",
+      "mode": "pm",
+      "enabled": true,
+      "carrier": true,
+      "sources": [
+        4
+      ],
+      "gain": 1,
+      "dx7": {
+        "levels": [
+          4032,
+          3968,
+          0,
+          0
+        ],
+        "rates": [
+          57,
+          34,
+          23,
+          24
+        ],
+        "output": 127,
+        "profile": 570425344,
+        "feedback": 0
+      },
+      "ratio": 0.9989589137840282
+    }
+  ],
+  "source": {
+    "kind": "DX7 VMEM",
+    "program": 4,
+    "sha256": "f35426bfeefe680b86909150897bc39af79efb7c885313adcd23e130543b62a0",
+    "raw_vmem": "632c3b3263600000000000000c184e1e0a632c3b3263600000000000003b185c080a63364737635e0000000009005b1c63053b5936252863600000000000003310630400633625276360000000000600411c63040059362527636000000000000029086302006363636332323232040f2300000031185049414e4f2032202020"
+  },
+  "compatibility": {
+    "bit_exact": false,
+    "limitations": [
+      "sample-stepped EG",
+      "quantized exp2/sine",
+      "normalized carrier/voice gain",
+      "FM1 effects not in DX7 voice data"
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "name": "Chord_Pad",
+  "revision": 1,
+  "operators": [
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0.9,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.8,
+        0.7,
+        0
+      ],
+      "segment_ms": [
+        20,
+        300,
+        400,
+        450
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 2.002,
+      "gain": 0.25,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.8,
+        0.7,
+        0
+      ],
+      "segment_ms": [
+        40,
+        300,
+        400,
+        450
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    }
+  ]
+}
