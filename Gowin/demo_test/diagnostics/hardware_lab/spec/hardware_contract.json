@@ -1,0 +1,1698 @@
+{
+  "name": "hardware_lab",
+  "modules": [
+    {
+      "name": "HardwareEncoders",
+      "rtl_path": "src/HardwareEncoders.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_encoder_a",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_encoder_a; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_encoder_b",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_encoder_b; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_tx_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_tx_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_tx_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_tx_data; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Preserve five independent50us filters, quadrature counts and diagnostic snapshots.",
+        "Only telemetry byte transport is replaced; shared UART backpressure never blocks physical counting."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareIdentity",
+      "rtl_path": "src/HardwareIdentity.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_data; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Immediately after reset and every250ms send H1007F0100*66 CRLF. Hold byte until ready."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareJoystick",
+      "rtl_path": "src/HardwareJoystick.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_joystick",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_joystick; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_tx_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_tx_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_tx_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_tx_data; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Preserve five independent5ms filters and low-active switch counter.",
+        "Snapshot every50ms at top; byte transport supports backpressure."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareKeyboard",
+      "rtl_path": "src/HardwareKeyboard.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_adc_dout",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_adc_dout; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_uart_rx",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_uart_rx; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_mux_sel",
+            "direction": "output",
+            "width": 3,
+            "role": "data",
+            "description": "o_mux_sel; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_mux_en",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_mux_en; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_adc_cs_n; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_adc_sclk",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_adc_sclk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_adc_din",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_adc_din; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_rgb",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_rgb; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_tx_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_tx_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_tx_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_tx_data; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_priority",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_priority; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Continuous ADC scan directly drives calibrated key decisions and games. Snapshot provides paced raw telemetry."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareKeyboardTelemetry",
+      "rtl_path": "src/HardwareKeyboardTelemetry.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_key",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_key; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 12,
+            "role": "data",
+            "description": "i_raw; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_ack",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_ack; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_ack_seq",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_ack_seq; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_ack_result",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_ack_result; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_configured",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_configured; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_generation",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_generation; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_mode",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "i_mode; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_direction",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_direction; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_pressed",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_pressed; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_game_status",
+            "direction": "input",
+            "width": 128,
+            "role": "data",
+            "description": "i_game_status; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_tx_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_tx_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_tx_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_tx_data; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_priority",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_priority; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "ACK and periodic status/game CRC generation retained. Emit one stable byte until tx_ready, no local bit serializer."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareKeyController",
+      "rtl_path": "src/HardwareKeyController.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_command",
+            "direction": "input",
+            "width": 80,
+            "role": "data",
+            "description": "i_command; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_command_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_command_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_crc_error",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_crc_error; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_key",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_key; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 12,
+            "role": "data",
+            "description": "i_raw; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_sample_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_sample_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_ack",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_ack; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_ack_seq",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_ack_seq; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_ack_result",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_ack_result; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_configured",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_configured; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_generation",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_generation; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_mode",
+            "direction": "output",
+            "width": 4,
+            "role": "data",
+            "description": "o_mode; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_direction",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_direction; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_pressed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_pressed; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_press_pulse",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_press_pulse; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_clear_effect",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_clear_effect; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_game_start",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_game_start; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_game_stop",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_game_stop; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_game_type",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "o_game_type; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Atomic32-key double-bank calibration with hysteresis and two-sample qualification.",
+        "Support effect6 continuous flow; mode5 reserved for game start. Command validation, duplicate/idempotent ACK unchanged."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareKeyLightEffects",
+      "rtl_path": "src/HardwareKeyLightEffects.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_press",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_press; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_clear",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_clear; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_mode",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "i_mode; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_direction",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_direction; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_frame_tick",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_frame_tick; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_pixel",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_pixel; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_grb",
+            "direction": "output",
+            "width": 24,
+            "role": "data",
+            "description": "o_grb; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Preserve independent1s key lights and interruptible ripple/sweep/cross.",
+        "Mode6 advances shared four-row comet and hue on20ms frame ticks; stable frame snapshots."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareLab",
+      "rtl_path": "src/HardwareLab.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_adc_dout",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_adc_dout; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_uart_rx",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_uart_rx; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_encoder_a",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_encoder_a; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_encoder_b",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_encoder_b; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_joystick",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_joystick; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_irq",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "i_irq; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "io_scl",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_scl; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "io_sda",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_sda; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_mux_sel",
+            "direction": "output",
+            "width": 3,
+            "role": "data",
+            "description": "o_mux_sel; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_mux_en",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_mux_en; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_adc_cs_n; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_adc_sclk",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_adc_sclk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_adc_din",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_adc_din; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_rgb",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_rgb; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_uart_tx; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Unified50MHz/reset and34 unique pins. Parallel keyboard/encoder/joystick/touchpad/guitar modules share one UART.",
+        "Keyboard100ms snapshots, encoders100ms,joystick50ms,touch telemetry50ms alternating boards,identity250ms."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "HardwareTouchpad",
+      "rtl_path": "src/HardwareTouchpad.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_irq",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "i_irq; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "io_scl",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_scl; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "io_sda",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_sda; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_tx_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_tx_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_tx_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_tx_data; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_priority",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_priority; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Preserve dual100kHz I2C, MPR settings, hardware weighted centroids and crossing detection.",
+        "16entry FIFO per board, real G events urgent, T and heartbeat ordinary. Byte transport supports backpressure."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "KeyboardSnapshot",
+      "rtl_path": "src/KeyboardSnapshot.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_key",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_key; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 12,
+            "role": "data",
+            "description": "i_raw; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_key",
+            "direction": "output",
+            "width": 5,
+            "role": "data",
+            "description": "o_key; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_raw",
+            "direction": "output",
+            "width": 12,
+            "role": "data",
+            "description": "o_raw; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_valid; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Update latest samples without backpressure. Every100ms capture32 keys at key31 complete-scan boundary.",
+        "Hold complete snapshot and sequential key/data output until each ready handshake; no sample or key sequence loss."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TelemetryByte",
+      "rtl_path": "src/TelemetryByte.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_start",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_start; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_data",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_data; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_busy",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_busy; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_data; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Capture one start/data byte, hold valid/data until ready. Busy remains high while held."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TelemetryMux",
+      "rtl_path": "src/TelemetryMux.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_valid",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_valid; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_data",
+            "direction": "input",
+            "width": 40,
+            "role": "data",
+            "description": "i_data; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "i_priority",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "i_priority; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_ready",
+            "direction": "output",
+            "width": 5,
+            "role": "data",
+            "description": "o_ready; requirements.md defines transport/control semantics"
+          },
+          {
+            "name": "o_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_tx; requirements.md defines transport/control semantics"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top asynchronous assertion and synchronized release"
+      },
+      "behavior": [
+        "Lock source until accepted LF. Each byte accepted once into115200 UART.",
+        "Separate round-robin cursors for urgent and ordinary groups; after3 urgent frames service one ordinary frame when pending."
+      ],
+      "constraints": [
+        "Verilog2001; 50MHz; original electrical interfaces unchanged."
+      ],
+      "corner_cases": [
+        "Reset aborts partially sent line; host parser must resynchronize.",
+        "Pending data remains stable under backpressure; physical sampling continues."
+      ],
+      "verification_cases": [
+        "Wire-level ADC/UART,32-key atomic calibration,ACK retry,reactive effects and piano game integration.",
+        "Dual-pad guitar mixed with encoder and joystick frames; bounded-priority saturated arbiter."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transfer",
+          "title": "Held byte transfer",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid sequence; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "data",
+                "wave": "x3...x..",
+                "data": [
+                  "held"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

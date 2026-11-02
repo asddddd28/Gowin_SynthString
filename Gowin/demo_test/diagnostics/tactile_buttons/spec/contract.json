@@ -1,0 +1,380 @@
+{
+  "name": "tactile_buttons",
+  "modules": [
+    {
+      "name": "TactileInput",
+      "rtl_path": "src/TactileInput.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "reset"
+          },
+          {
+            "name": "i_switch",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "active-high physical switch"
+          },
+          {
+            "name": "o_raw",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "two-stage synchronized level"
+          },
+          {
+            "name": "o_pressed",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "debounced active-high level"
+          },
+          {
+            "name": "o_presses",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "wrapping press count"
+          },
+          {
+            "name": "o_releases",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "wrapping release count"
+          },
+          {
+            "name": "o_edges",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "wrapping raw edge count"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Two-stage synchronization before debounce; requires C_STABLE_CYCLES consecutive different samples to change stable state. A return to current level cancels candidate.",
+        "Press/release/raw-edge counters wrap at 65536. Held input is not repeated; a switch held through reset is counted once after the stable window."
+      ],
+      "constraints": [
+        "50 MHz clock, 3.3 V switch inputs; C_STABLE_CYCLES >= 1, C_REPORT_CYCLES >= 1, C_BAUD_CYCLES >= 2.",
+        "Production debounce 250000 cycles; report 1000000 cycles; UART divisor 434. Logical press counters survive any missed display refresh."
+      ],
+      "corner_cases": [
+        "Reset clears all counters; held-at-reset input counts once.",
+        "Simultaneous keys do not share filter state. Counters and sequence wrap unsigned.",
+        "Raw telemetry is a sampled snapshot, not a lossless waveform."
+      ],
+      "verification_cases": [
+        "xsim: bounce both edges, channel mapping, simultaneous press/release, long hold, modulo wrap, reset held.",
+        "Actual UART bits decoded independently in Python and Rust; CRC, fields, sequence, snapshot isolation.",
+        "Gowin routing/timing and SRAM download; physical per-switch test is separate evidence."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stable_window",
+          "title": "TactileInput conceptual timing",
+          "scenario": "stable_window",
+          "description": "Conceptual phases, not a measured trace; synchronization precedes the five-millisecond stability window.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "raw",
+                "wave": "0.1......"
+              },
+              {
+                "name": "stable_window",
+                "wave": "0.1...0.."
+              },
+              {
+                "name": "pressed",
+                "wave": "0.....1.."
+              },
+              {
+                "name": "press_count",
+                "wave": "=.....=..",
+                "data": [
+                  "0",
+                  "1"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TactileReport",
+      "rtl_path": "src/TactileReport.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "reset"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "raw mask bit zero SW1"
+          },
+          {
+            "name": "i_pressed",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "debounced mask"
+          },
+          {
+            "name": "i_presses",
+            "direction": "input",
+            "width": 96,
+            "role": "data",
+            "description": "six press counters SW1 at high bits"
+          },
+          {
+            "name": "i_releases",
+            "direction": "input",
+            "width": 96,
+            "role": "data",
+            "description": "six release counters SW1 at high bits"
+          },
+          {
+            "name": "i_edges",
+            "direction": "input",
+            "width": 96,
+            "role": "data",
+            "description": "six edge counters SW1 at high bits"
+          },
+          {
+            "name": "o_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "115200 8N1 ASCII B1 frames"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Every C_REPORT_CYCLES, if idle, atomically snapshot sequence, raw/filtered masks, presses, releases, and raw edges. Busy ticks are skipped, not queued.",
+        "Emit exactly 87 bytes, B1 + 80 hex payload characters + * + CRC8 + CR LF. CRC polynomial 0x07, zero seed, covers the 82 ASCII body bytes.",
+        "Each byte uses start/accept/wait sequencing with the unchanged EncoderUartTx. Snapshot source changes cannot alter an in-progress frame."
+      ],
+      "constraints": [
+        "50 MHz clock, 3.3 V switch inputs; C_STABLE_CYCLES >= 1, C_REPORT_CYCLES >= 1, C_BAUD_CYCLES >= 2.",
+        "Production debounce 250000 cycles; report 1000000 cycles; UART divisor 434. Logical press counters survive any missed display refresh."
+      ],
+      "corner_cases": [
+        "Reset clears all counters; held-at-reset input counts once.",
+        "Simultaneous keys do not share filter state. Counters and sequence wrap unsigned.",
+        "Raw telemetry is a sampled snapshot, not a lossless waveform."
+      ],
+      "verification_cases": [
+        "xsim: bounce both edges, channel mapping, simultaneous press/release, long hold, modulo wrap, reset held.",
+        "Actual UART bits decoded independently in Python and Rust; CRC, fields, sequence, snapshot isolation.",
+        "Gowin routing/timing and SRAM download; physical per-switch test is separate evidence."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stable_window",
+          "title": "TactileReport conceptual timing",
+          "scenario": "stable_window",
+          "description": "Conceptual phases, not a measured trace; synchronization precedes the five-millisecond stability window.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "raw",
+                "wave": "0.1......"
+              },
+              {
+                "name": "stable_window",
+                "wave": "0.1...0.."
+              },
+              {
+                "name": "pressed",
+                "wave": "0.....1.."
+              },
+              {
+                "name": "press_count",
+                "wave": "=.....=..",
+                "data": [
+                  "0",
+                  "1"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TactileButtons",
+      "rtl_path": "src/TactileButtons.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "reset"
+          },
+          {
+            "name": "i_buttons",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "six active-high asynchronous switches"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "DEBUG UART telemetry"
+          },
+          {
+            "name": "o_rgb",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "constant low RGB data"
+          },
+          {
+            "name": "o_pa_disable",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "constant high disables speaker amplifier"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Hold internal reset until two-stage external release and power counter bit 15 (32768 cycles). Initialize startup counters to zero.",
+        "Instantiate six independent TactileInput channels, SW1 on bit zero and highest 16-bit counter slice. Reporter continuously captures coherent data.",
+        "SW2 is AB18 according to actual interface schematic, not the spreadsheet AA18 typo. All button ports are input-only; other peripherals are not scanned. RGB stays low and PA disable high."
+      ],
+      "constraints": [
+        "50 MHz clock, 3.3 V switch inputs; C_STABLE_CYCLES >= 1, C_REPORT_CYCLES >= 1, C_BAUD_CYCLES >= 2.",
+        "Production debounce 250000 cycles; report 1000000 cycles; UART divisor 434. Logical press counters survive any missed display refresh."
+      ],
+      "corner_cases": [
+        "Reset clears all counters; held-at-reset input counts once.",
+        "Simultaneous keys do not share filter state. Counters and sequence wrap unsigned.",
+        "Raw telemetry is a sampled snapshot, not a lossless waveform."
+      ],
+      "verification_cases": [
+        "xsim: bounce both edges, channel mapping, simultaneous press/release, long hold, modulo wrap, reset held.",
+        "Actual UART bits decoded independently in Python and Rust; CRC, fields, sequence, snapshot isolation.",
+        "Gowin routing/timing and SRAM download; physical per-switch test is separate evidence."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stable_window",
+          "title": "TactileButtons conceptual timing",
+          "scenario": "stable_window",
+          "description": "Conceptual phases, not a measured trace; synchronization precedes the five-millisecond stability window.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "raw",
+                "wave": "0.1......"
+              },
+              {
+                "name": "stable_window",
+                "wave": "0.1...0.."
+              },
+              {
+                "name": "pressed",
+                "wave": "0.....1.."
+              },
+              {
+                "name": "press_count",
+                "wave": "=.....=..",
+                "data": [
+                  "0",
+                  "1"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

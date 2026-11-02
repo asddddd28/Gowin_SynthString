@@ -1,0 +1,162 @@
+{
+  "modules": [
+    {
+      "name": "KeyboardLoudness",
+      "rtl_path": "src/KeyboardLoudness.v",
+      "description": "ROM由已保存的32键实测校准产生，包含方向、50%按下门限和35%释放门限。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "50MHz时钟",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "异步低有效复位",
+            "role": "reset"
+          },
+          {
+            "name": "i_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "每音频帧一次PCM",
+            "role": "data"
+          },
+          {
+            "name": "i_sample",
+            "width": 24,
+            "direction": "input",
+            "description": "有符号PCM",
+            "role": "data"
+          },
+          {
+            "name": "i_active",
+            "width": 32,
+            "direction": "input",
+            "description": "ADSR非空闲位图",
+            "role": "data"
+          },
+          {
+            "name": "i_volume",
+            "width": 4,
+            "direction": "input",
+            "description": "0至8主音量",
+            "role": "data"
+          },
+          {
+            "name": "o_valid",
+            "width": 1,
+            "direction": "output",
+            "description": "四沿后有效",
+            "role": "data"
+          },
+          {
+            "name": "o_sample",
+            "width": 24,
+            "direction": "output",
+            "description": "舍入限幅PCM",
+            "role": "data"
+          },
+          {
+            "name": "o_active_count",
+            "width": 6,
+            "direction": "output",
+            "description": "ADSR非空闲声部数，包括释音",
+            "role": "data"
+          },
+          {
+            "name": "o_gain",
+            "width": 19,
+            "direction": "output",
+            "description": "平滑后的Q16增益",
+            "role": "data"
+          },
+          {
+            "name": "o_input_peak",
+            "width": 24,
+            "direction": "output",
+            "description": "处理前采样峰值保持",
+            "role": "data"
+          },
+          {
+            "name": "o_output_peak",
+            "width": 24,
+            "direction": "output",
+            "description": "处理后采样峰值保持",
+            "role": "data"
+          },
+          {
+            "name": "o_clips",
+            "width": 32,
+            "direction": "output",
+            "description": "保护限幅累计次数",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "固定除32混音之后，Q16目标增益=floor(4*65536/sqrt(max(N,1)))*volume/8。",
+        "N来自实际包络，包含释音。音量0至8，越界钳位8。",
+        "每帧增益向下ceil(delta/64)，向上ceil(delta/4096)；最后恰好达到静音。",
+        "四级有效流水：完整乘积、绝对值、对称半值远离零舍入、限幅至正负0x700000。",
+        "峰值以约84ms时间常数衰减；限幅次数饱和计数。电平不是LUFS；没有前视限幅，超阈值样本可能失真。"
+      ],
+      "constraints": [
+        "固定32个逻辑声部；50MHz；板型31004；只用于本轮SRAM诊断验证。"
+      ],
+      "corner_cases": [
+        "复位后按住键",
+        "门限附近抖动",
+        "事件遇到音频忙帧",
+        "多个键同时变化"
+      ],
+      "verification_cases": [
+        "55500独立整数向量",
+        "多复音与增益切换",
+        "最负数和正满量程",
+        "管线复位取消",
+        "32键音乐和弦与松键"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "pcm",
+          "title": "四沿输出",
+          "scenario": "pipeline",
+          "description": "第一个沿接收乘积，第四沿提交限幅结果。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......"
+              },
+              {
+                "name": "i_valid",
+                "wave": "010...."
+              },
+              {
+                "name": "o_valid",
+                "wave": "0...10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

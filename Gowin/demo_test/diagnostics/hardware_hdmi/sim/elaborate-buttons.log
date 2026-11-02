@@ -1,0 +1,17 @@
+Vivado Simulator v2025.1.0
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: D:/Xilinx/2025.1/Vivado/bin/unwrapped/win64.o/xelab.exe work.tb_dashboard -s dashboard_buttons 
+Multi-threading is on. Using 22 slave threads.
+Starting static elaboration
+Pass Through NonSizing Optimizer
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling module work.DashboardTelemetry(C_CLOCK_HZ=50...
+Compiling module work.DashboardFont
+Compiling module work.DashboardVideo
+Compiling module work.UartRx(C_CLOCK_HZ=73333333)
+Compiling module work.tb_dashboard
+Built simulation snapshot dashboard_buttons

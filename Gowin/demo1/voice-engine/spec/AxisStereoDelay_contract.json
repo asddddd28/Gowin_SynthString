@@ -1,0 +1,180 @@
+{
+  "modules": [
+    {
+      "name": "AxisStereoDelay",
+      "rtl_path": "rtl/AxisStereoDelay.v",
+      "description": "共享立体声分数延迟；32K采样/声道，参数随输入握手锁存。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_axis_aclk"
+          },
+          {
+            "name": "i_axis_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_axis_arstn"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "direction": "input",
+            "width": 64,
+            "role": "data",
+            "description": "i_s_axis_tdata"
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_s_axis_tuser"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_s_axis_tvalid"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_s_axis_tready"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "direction": "output",
+            "width": 64,
+            "role": "data",
+            "description": "o_m_axis_tdata"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_m_axis_tuser"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_m_axis_tvalid"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_m_axis_tready"
+          },
+          {
+            "name": "i_config",
+            "direction": "input",
+            "width": 160,
+            "role": "data",
+            "description": "i_config"
+          },
+          {
+            "name": "i_clear",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_clear"
+          },
+          {
+            "name": "o_clipped",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_clipped"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "共享立体声分数延迟；32K采样/声道，参数随输入握手锁存。",
+        "Config words: Q16.16 left/right delay (1..32767.99998 samples), signed Q26 feedback, Q26 wet, flags enable/pingpong.",
+        "Synchronous read RAM, linear interpolation, Q52 feedback sum quantized toward zero to Q16; state saturation ±2, output saturation ±1.",
+        "Disabled effect returns dry input exactly; zero injection lets the hidden tail decay. Clear invalidates history in constant time.",
+        "One input in flight; sample tag unchanged; output stalls do not repeat state writes.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses14. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations14/15.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15."
+      ],
+      "constraints": [
+        "Verilog-2001; single 50MHz clock; signed Q26 audio, signed 18-bit Q16 feedback RAM.",
+        "See FX.md for numerical equations, command layout and limits. No board timing claim.",
+        "Clear only while idle, RAM validity reset without clearing memory contents. Reset cancels in-flight work."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent integer model, stereo impulses and random full-scale inputs",
+        "Fractional and maximum delay, bypass, clipping and zero-input tail decay",
+        "Backpressure and reset; independent command replay; atomic parameter commit; 1024-clock deadline"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "在输入握手时锁存一帧及配置，多周期读写反馈RAM。完成结果暂停期间保持不变。示意图不代表实际时钟延迟。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

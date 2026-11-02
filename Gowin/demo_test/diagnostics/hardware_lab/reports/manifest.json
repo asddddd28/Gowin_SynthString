@@ -1,0 +1,20 @@
+{
+  "src\\hardware.cst": "9b9299ffb24221d0303dc0bb94216200b2b4cf6d31571f96a66f5320e1e0bd3f",
+  "src\\hardware.sdc": "e639085a9ddb8b777083b34a163be700830ae9cf1f18fc87d368274f26bfd2ba",
+  "src\\HardwareEncoders.v": "92db15403221627fccd1bd269d3db9ef1a4bdfcda9395a7f28117dae065118ae",
+  "src\\HardwareIdentity.v": "44ab3972b70ae4259a443c89ee1ed1fc167192f3792f37febe1f37b3d2ba6844",
+  "src\\HardwareJoystick.v": "37dab07d12ede9db215c97e2f09b3bca91322b603e5ff4366e6b99d7d529f426",
+  "src\\HardwareKeyboard.v": "62fc66816d4cdf8522d7bd642714877bd33ecd3f805005f04167903d48c3b621",
+  "src\\HardwareKeyboardTelemetry.v": "fd01750a2ef1c69c10d2102bfb39a6acfc79423b4b99eb2aa143f359ee4781e3",
+  "src\\HardwareKeyController.v": "6cfb740c456bfa3727e3f39d7c74bc53caea1df8569e639c37d9e26ceff00d50",
+  "src\\HardwareKeyLightEffects.v": "bffe43a838392bfbde85c9a751bac4e5a4f4530b83b475438609eb857cc87e11",
+  "src\\HardwareLab.v": "6e9d773b59767b1761197af38b1e2d25adc1cf68ec8d49855fe3eaa399fb37ca",
+  "src\\HardwareTouchpad.v": "870fbeed5dce9bd073a344e85550b2de3639118a2935af64bb4b4090648b06bb",
+  "src\\KeyboardSnapshot.v": "9284e953deffa16094e6d425ce1f3e6795b6140a62245e134626fe52d4265946",
+  "src\\TelemetryByte.v": "ca3d1f757577cb896d51bc0ceda14b08fcb64d8b40d694ac8cde5f91d5d08a07",
+  "src\\TelemetryMux.v": "6f5ecf18cf7dc5be8a17ca4b1678b94bd32b6c4ac412c731573c120dc6a9ba33",
+  "bitstream": "9dd746798871ef065fd4ac33e153381f6718b1197253ac88087c48c630efec21",
+  "calibration.json": "397532b4220bce60bb480e6311424812089e4876d37f80f154736636d9e611a7",
+  "touchpad_mapping.json": "234a47114a5d46435b091b28316e80562bfd47f1babc3b8111e930d1165f5ac8",
+  "joystick_mapping.json": "59ee3a781a88007644c7f96bc5d17f976ba300f46ad79b303e6a30863dd12239"
+}

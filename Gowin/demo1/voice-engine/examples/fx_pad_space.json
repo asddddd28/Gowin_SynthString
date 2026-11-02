@@ -1,0 +1,5 @@
+{
+  "name": "Pad 交叉回声与长尾音",
+  "delay": {"enabled": true, "left_ms": 300, "right_ms": 450, "feedback": 0.55, "wet": 0.25, "pingpong": true},
+  "reverb": {"enabled": true, "feedback": 0.86, "damping": 0.35, "wet": 0.32}
+}

@@ -1,0 +1,86 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/system/AxisWaveLookup.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisWaveLookup
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisFixedCore.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisFixedCore
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisPhaseFm.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisPhaseFm
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisWaveSample.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisWaveSample
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisAdsr.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisAdsr
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisAmplitudeMod.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisAmplitudeMod
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisVoiceChain.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisVoiceChain
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisSvfSample.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisSvfSample
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/axis/AxisVoiceVca.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisVoiceVca
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/synth/EnvelopePrecision.v" into library work
+INFO: [VRFC 10-311] analyzing module EnvelopePrecision
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/synth/WavetablePairRead.v" into library work
+INFO: [VRFC 10-311] analyzing module WavetablePairRead
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/synth/WavetablePairCache.v" into library work
+INFO: [VRFC 10-311] analyzing module WavetablePairCache
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/synth/SurgeSvfSample.v" into library work
+INFO: [VRFC 10-311] analyzing module SurgeSvfSample
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/synth/SurgeVoiceVca.v" into library work
+INFO: [VRFC 10-311] analyzing module SurgeVoiceVca
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/audio/I2sTx.v" into library work
+INFO: [VRFC 10-311] analyzing module I2sTx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/rtl/audio/PcmRounder.v" into library work
+INFO: [VRFC 10-311] analyzing module PcmRounder
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/KeyboardSampler.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardSampler
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v" into library work
+INFO: [VRFC 10-311] analyzing module UartRx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v" into library work
+INFO: [VRFC 10-311] analyzing module EncoderUartTx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardAudioSystem.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardAudioSystem
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardAxisTop.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardAxisTop
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardSynthEngine.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardSynthEngine
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardSynthTelemetry.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardSynthTelemetry
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardThresholds.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardThresholds
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardVoiceBridge.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardVoiceBridge
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardLoudness.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardLoudness
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/KeyboardFrameMixer.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardFrameMixer
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/StudioControl.v" into library work
+INFO: [VRFC 10-311] analyzing module StudioControl
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/StudioOscMixer.v" into library work
+INFO: [VRFC 10-311] analyzing module StudioOscMixer
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-studio/src/StudioVoiceStore.v" into library work
+INFO: [VRFC 10-311] analyzing module StudioVoiceStore
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-parallel/src/AxisComputePool.v" into library work
+INFO: [VRFC 10-311] analyzing module AxisComputePool
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-parallel/src/ParallelAudioSystem.v" into library work
+INFO: [VRFC 10-311] analyzing module ParallelAudioSystem
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-parallel/src/ParallelAxisTop.v" into library work
+INFO: [VRFC 10-311] analyzing module ParallelAxisTop
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-parallel/src/ParallelSynthEngine.v" into library work
+INFO: [VRFC 10-311] analyzing module ParallelSynthEngine
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-parallel/src/ParallelVoiceChain.v" into library work
+INFO: [VRFC 10-311] analyzing module ParallelVoiceChain
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-parallel/src/SynthTaskPrefetch.v" into library work
+INFO: [VRFC 10-311] analyzing module SynthTaskPrefetch
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-latency/src/LatencyAudioSystem.v" into library work
+INFO: [VRFC 10-311] analyzing module LatencyAudioSystem
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-latency/src/LatencyAxisTop.v" into library work
+INFO: [VRFC 10-311] analyzing module LatencyAxisTop
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-latency/src/LatencyI2sTx.v" into library work
+INFO: [VRFC 10-311] analyzing module LatencyI2sTx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-latency/src/LatencyKeyThresholds.v" into library work
+INFO: [VRFC 10-311] analyzing module LatencyKeyThresholds
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-latency/src/LatencySupervisor.v" into library work
+INFO: [VRFC 10-311] analyzing module LatencySupervisor
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-latency/src/LatencySynthTelemetry.v" into library work
+INFO: [VRFC 10-311] analyzing module LatencySynthTelemetry
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo1/keyboard-latency/sim/tb_latency_supervisor.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_latency_supervisor

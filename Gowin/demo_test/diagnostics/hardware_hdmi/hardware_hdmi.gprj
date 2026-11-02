@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Project><Template>FPGA</Template><Version>5</Version><Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device><FileList>
+<File path="../tactile_buttons/src/TactileInput.v" type="file.verilog" enable="1"/>
+<File path="../hardware_lab/src/HardwareButtonReport.v" type="file.verilog" enable="1"/>
+<File path="../hardware_lab/src/HardwareButtons.v" type="file.verilog" enable="1"/>
+<File path="../hardware_lab/src/HardwareEncoders.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareIdentity.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareJoystick.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareKeyController.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareKeyLightEffects.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareKeyboard.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareKeyboardTelemetry.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareLab.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/HardwareTouchpad.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/KeyboardSnapshot.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/TelemetryByte.v" type="file.verilog" enable="1" />
+<File path="../hardware_lab/src/TelemetryMux.v" type="file.verilog" enable="1" />
+<File path="../keyboard_games/src/CommandFrameRx.v" type="file.verilog" enable="1" />
+<File path="../keyboard_games/src/KeyboardSampler.v" type="file.verilog" enable="1" />
+<File path="../keyboard_games/src/UartRx.v" type="file.verilog" enable="1" />
+<File path="../keyboard_games/src/GameEngine.v" type="file.verilog" enable="1" />
+<File path="../keyboard_games/src/GameDisplay.v" type="file.verilog" enable="1" />
+<File path="../keyboard_games/src/LedFrameTx.v" type="file.verilog" enable="1" />
+<File path="../encoder/src/EncoderChannel.v" type="file.verilog" enable="1" />
+<File path="../encoder/src/EncoderUartTx.v" type="file.verilog" enable="1" />
+<File path="../touchpad/src/I2cRegister.v" type="file.verilog" enable="1" />
+<File path="../touchpad/vendor/i2c_master_byte_ctrl.v" type="file.verilog" enable="1" />
+<File path="../touchpad/vendor/i2c_master_bit_ctrl.v" type="file.verilog" enable="1" />
+<File path="../touchpad_guitar/src/MprScanner.v" type="file.verilog" enable="1" />
+<File path="../touchpad_guitar/src/GuitarTracker.v" type="file.verilog" enable="1" />
+<File path="../touchpad_guitar/src/GuitarEventQueue.v" type="file.verilog" enable="1" />
+<File path="src/HardwareHdmi.v" type="file.verilog" enable="1" /><File path="src/DashboardTelemetry.v" type="file.verilog" enable="1" /><File path="src/DashboardVideo.v" type="file.verilog" enable="1" /><File path="src/DashboardFont.v" type="file.verilog" enable="1" /><File path="vendor/TMDS_PLL.v" type="file.verilog" enable="1" /><File path="vendor/DVI_TX_Top.v" type="file.verilog" enable="1" /><File path="src/hdmi.cst" type="file.cst" enable="1" /><File path="src/hdmi.sdc" type="file.sdc" enable="1" /></FileList></Project>

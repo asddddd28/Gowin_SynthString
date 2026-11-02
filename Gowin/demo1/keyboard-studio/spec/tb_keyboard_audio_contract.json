@@ -1,0 +1,76 @@
+{
+  "modules": [
+    {
+      "name": "tb_keyboard_audio",
+      "rtl_path": "sim/tb_keyboard_audio.v",
+      "description": "引脚级模拟ADC双转换及UART，独立解码PT8211左右声道并对照PCM舍入。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "o_done",
+            "width": 1,
+            "direction": "output",
+            "description": "所有引脚级检查完成",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "引脚级模拟ADC双转换及UART，独立解码PT8211左右声道并对照PCM舍入。",
+        "覆盖启动静音、三键跨行和弦、释音归零、单独数字自测及停止、遥测帧校验。",
+        "增加32键同时按下、释音仍计入补偿、音乐和弦无限幅，以及64字节遥测校验。"
+      ],
+      "constraints": [
+        "固定32个逻辑声部；50MHz；板型31004；只用于本轮SRAM诊断验证。"
+      ],
+      "corner_cases": [
+        "复位后按住键",
+        "门限附近抖动",
+        "事件遇到音频忙帧",
+        "多个键同时变化"
+      ],
+      "verification_cases": [
+        "上电静音",
+        "跨行多键按下和释放",
+        "ADC至DAC引脚解码",
+        "配置反压保持",
+        "命令自测与物理键隔离"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "flow",
+          "title": "接口概念时序",
+          "scenario": "pipeline",
+          "description": "为事件顺序示意，间隔不按比例；实际周期见仿真与构建报告。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "physical_keys",
+                "wave": "0.1..0.."
+              },
+              {
+                "name": "dac_nonzero",
+                "wave": "0..1...0"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

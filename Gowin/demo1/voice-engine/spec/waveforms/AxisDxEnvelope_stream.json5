@@ -1,0 +1,31 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "s_valid",
+      "wave": "10........"
+    },
+    {
+      "name": "s_ready",
+      "wave": "10......1."
+    },
+    {
+      "name": "m_valid",
+      "wave": "0....1..0."
+    },
+    {
+      "name": "m_ready",
+      "wave": "0......1.."
+    },
+    {
+      "name": "result/tag",
+      "wave": "x....=..x.",
+      "data": [
+        "stable result"
+      ]
+    }
+  ]
+}

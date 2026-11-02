@@ -1,0 +1,20 @@
+{
+  "signal": [
+    {
+      "name": "i_axis_aclk",
+      "wave": "p......"
+    },
+    {
+      "name": "valid",
+      "wave": "01..0.."
+    },
+    {
+      "name": "ready",
+      "wave": "0..10.."
+    },
+    {
+      "name": "commit",
+      "wave": "0...10."
+    }
+  ]
+}

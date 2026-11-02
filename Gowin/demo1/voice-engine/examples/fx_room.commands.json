@@ -1,0 +1,249 @@
+{
+  "abi": "0x00010004",
+  "domain": "fx",
+  "name": "短延时与小房间",
+  "sample_rate_hz": 48828.125,
+  "next_sequence": 3,
+  "commands": [
+    {
+      "opcode": 192,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 0,
+      "words": [
+        288000000,
+        384000000,
+        16777216,
+        10737418,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 288000000
+        },
+        {
+          "address": 260,
+          "value": 384000000
+        },
+        {
+          "address": 264,
+          "value": 16777216
+        },
+        {
+          "address": 268,
+          "value": 10737418
+        },
+        {
+          "address": 272,
+          "value": 1
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 192
+        },
+        {
+          "address": 300,
+          "value": 0
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 0
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 193,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 1,
+      "words": [
+        46976204,
+        30198988,
+        14763950,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 46976204
+        },
+        {
+          "address": 260,
+          "value": 30198988
+        },
+        {
+          "address": 264,
+          "value": 14763950
+        },
+        {
+          "address": 268,
+          "value": 1
+        },
+        {
+          "address": 272,
+          "value": 0
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 193
+        },
+        {
+          "address": 300,
+          "value": 1
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 1
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 194,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 2,
+      "words": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 0
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 0
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 0
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 194
+        },
+        {
+          "address": 300,
+          "value": 2
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 2
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

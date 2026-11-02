@@ -1,0 +1,172 @@
+*** GOWIN Tcl Command Line Console  *** 
+Open project D:/Projects/ai/Gowin/demo1/keyboard-latency/keyboard_latency.gprj finished
+GowinSynthesis start
+Reading property constraint file "D:\Projects\ai\Gowin\demo1\constraints\surge_svf_sample.gsc"
+Running parser ...
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\system\AxisWaveLookup.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisPhaseFm.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisWaveSample.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisAdsr.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisAmplitudeMod.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisVoiceChain.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisSvfSample.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\axis\AxisVoiceVca.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\synth\EnvelopePrecision.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairRead.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairCache.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\synth\SurgeSvfSample.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\synth\SurgeVoiceVca.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\audio\I2sTx.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\rtl\audio\PcmRounder.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo_test\diagnostics\keyboard_games\src\KeyboardSampler.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo_test\diagnostics\keyboard_games\src\UartRx.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo_test\diagnostics\encoder\src\EncoderUartTx.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardAudioSystem.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardAxisTop.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardSynthEngine.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardSynthTelemetry.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardThresholds.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardVoiceBridge.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardLoudness.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardFrameMixer.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioControl.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioOscMixer.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\ParallelAudioSystem.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\ParallelAxisTop.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\ParallelSynthEngine.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\ParallelVoiceChain.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\SynthTaskPrefetch.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyAudioSystem.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyAxisTop.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyI2sTx.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyKeyThresholds.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencySupervisor.v'
+Analyzing Verilog file 'D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencySynthTelemetry.v'
+Compiling module 'LatencyAxisTop'("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyAxisTop.v":4)
+Compiling module 'StudioControl'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioControl.v":3)
+Compiling module 'KeyboardSampler'("D:\Projects\ai\Gowin\demo_test\diagnostics\keyboard_games\src\KeyboardSampler.v":4)
+Compiling module 'LatencyKeyThresholds'("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyKeyThresholds.v":4)
+Extracting RAM for identifier 'mem_threshold'("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyKeyThresholds.v":10)
+WARN  (EX2526) : Entry size 28 at key_thresholds.hex:0 does not match memory width 25("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyKeyThresholds.v":14)
+Compiling module 'UartRx(C_CLOCK_HZ=49996800)'("D:\Projects\ai\Gowin\demo_test\diagnostics\keyboard_games\src\UartRx.v":4)
+Compiling module 'KeyboardVoiceBridge'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardVoiceBridge.v":3)
+Extracting RAM for identifier 'mem_profile'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardVoiceBridge.v":13)
+Compiling module 'LatencyAudioSystem(C_VOICES=32,C_MIX_SHIFT=5,C_FRAME_STEP=1,C_PT8211=1)'("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyAudioSystem.v":28)
+Compiling module 'ParallelSynthEngine'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\ParallelSynthEngine.v":28)
+Compiling module 'StudioVoiceStore'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":3)
+Extracting RAM for identifier 'mem_profile'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":17)
+Extracting RAM for identifier 'mem_phase_mod'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":30)
+Extracting RAM for identifier 'mem_phase_carrier'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":37)
+Extracting RAM for identifier 'mem_envelope'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":44)
+Extracting RAM for identifier 'mem_filter'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":51)
+Extracting RAM for identifier 'mem_wave_mod'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":58)
+Extracting RAM for identifier 'mem_wave_carrier'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":65)
+Extracting RAM for identifier 'mem_audio'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":72)
+Extracting RAM for identifier 'mem_mod_envelope'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioVoiceStore.v":79)
+Compiling module 'SynthTaskPrefetch'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\SynthTaskPrefetch.v":4)
+Extracting RAM for identifier 'mem_data'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\SynthTaskPrefetch.v":17)
+Extracting RAM for identifier 'mem_user'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\SynthTaskPrefetch.v":18)
+Compiling module 'KeyboardFrameMixer'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardFrameMixer.v":3)
+Compiling module 'AxisComputePool'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":4)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":29)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":30)
+Compiling module 'AxisPhaseFm(C_ADDR_WIDTH=3)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisPhaseFm.v":42)
+Compiling module 'AxisFixedCore(C_INPUT_WIDTH=128,C_ADDR_WIDTH=3)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":42)
+Extracting RAM for identifier 'reg_identity'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":89)
+Extracting RAM for identifier 'reg_result'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":90)
+Compiling module 'AxisComputePool(C_KIND=1,C_CORES=2,C_INPUT_WIDTH=54)'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":4)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":29)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":30)
+Compiling module 'AxisWaveLookup'("D:\Projects\ai\Gowin\demo1\rtl\system\AxisWaveLookup.v":28)
+Extracting RAM for identifier 'reg_sine'("D:\Projects\ai\Gowin\demo1\rtl\system\AxisWaveLookup.v":49)
+WARN  (EX3988) : Cannot open file 'rtl\synth\sine.mem'("D:\Projects\ai\Gowin\demo1\rtl\system\AxisWaveLookup.v":54)
+Compiling module 'WavetablePairCache'("D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairCache.v":42)
+Extracting RAM for identifier 'reg_even_a'("D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairCache.v":56)
+Extracting RAM for identifier 'reg_odd_a'("D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairCache.v":57)
+Extracting RAM for identifier 'reg_even_b'("D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairCache.v":58)
+Extracting RAM for identifier 'reg_odd_b'("D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairCache.v":59)
+Compiling module 'AxisWaveSample(C_ADDR_WIDTH=3)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisWaveSample.v":42)
+Compiling module 'AxisFixedCore(C_INPUT_WIDTH=160,C_ADDR_WIDTH=3)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":42)
+Extracting RAM for identifier 'reg_identity'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":89)
+Extracting RAM for identifier 'reg_result'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":90)
+Compiling module 'WavetablePairRead'("D:\Projects\ai\Gowin\demo1\rtl\synth\WavetablePairRead.v":42)
+Compiling module 'AxisComputePool(C_KIND=2,C_CORES=3,C_INPUT_WIDTH=112,C_OUTPUT_WIDTH=64)'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":4)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":29)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":30)
+Compiling module 'AxisAdsr(C_ADDR_WIDTH=3)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisAdsr.v":42)
+Compiling module 'AxisFixedCore(C_INPUT_WIDTH=112,C_OUTPUT_WIDTH=64,C_ADDR_WIDTH=3)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":42)
+Extracting RAM for identifier 'reg_identity'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":89)
+Extracting RAM for identifier 'reg_result'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":90)
+Compiling module 'EnvelopePrecision'("D:\Projects\ai\Gowin\demo1\rtl\synth\EnvelopePrecision.v":28)
+Compiling module 'AxisComputePool(C_KIND=3,C_INPUT_WIDTH=136,C_OUTPUT_WIDTH=64,C_ADDR_WIDTH=4)'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":4)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":29)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":30)
+Compiling module 'StudioOscMixer(C_ADDR_WIDTH=4)'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioOscMixer.v":3)
+WARN  (EX3791) : Expression size 38 truncated to fit in target size 32("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioOscMixer.v":22)
+Compiling module 'AxisFixedCore(C_INPUT_WIDTH=136,C_OUTPUT_WIDTH=64,C_ADDR_WIDTH=4)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":42)
+Extracting RAM for identifier 'reg_identity'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":89)
+Extracting RAM for identifier 'reg_result'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":90)
+WARN  (EX3791) : Expression size 65 truncated to fit in target size 32("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioOscMixer.v":39)
+WARN  (EX3791) : Expression size 65 truncated to fit in target size 32("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\StudioOscMixer.v":40)
+Compiling module 'ParallelVoiceChain'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\ParallelVoiceChain.v":42)
+Compiling module 'AxisComputePool(C_KIND=4,C_INPUT_WIDTH=320,C_OUTPUT_WIDTH=192,C_USER_WIDTH=46,C_ADDR_WIDTH=5)'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":4)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":29)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":30)
+Compiling module 'AxisSvfSample(C_USER_WIDTH=46,C_ADDR_WIDTH=5)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisSvfSample.v":42)
+Compiling module 'AxisFixedCore(C_INPUT_WIDTH=320,C_OUTPUT_WIDTH=192,C_USER_WIDTH=46,C_ADDR_WIDTH=5)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":42)
+Extracting RAM for identifier 'reg_identity'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":89)
+Extracting RAM for identifier 'reg_result'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":90)
+Compiling module 'SurgeSvfSample'("D:\Projects\ai\Gowin\demo1\rtl\synth\SurgeSvfSample.v":42)
+Compiling module 'AxisComputePool(C_KIND=5,C_INPUT_WIDTH=64,C_USER_WIDTH=177,C_ADDR_WIDTH=5)'("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":4)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":29)
+WARN  (EX3791) : Expression size 4 truncated to fit in target size 3("D:\Projects\ai\Gowin\demo1\keyboard-parallel\src\AxisComputePool.v":30)
+Compiling module 'AxisVoiceVca(C_USER_WIDTH=177,C_ADDR_WIDTH=5)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisVoiceVca.v":42)
+Compiling module 'AxisFixedCore(C_INPUT_WIDTH=64,C_USER_WIDTH=177,C_ADDR_WIDTH=5)'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":42)
+Extracting RAM for identifier 'reg_identity'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":89)
+Extracting RAM for identifier 'reg_result'("D:\Projects\ai\Gowin\demo1\rtl\axis\AxisFixedCore.v":90)
+Compiling module 'SurgeVoiceVca'("D:\Projects\ai\Gowin\demo1\rtl\synth\SurgeVoiceVca.v":42)
+Compiling module 'KeyboardLoudness'("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardLoudness.v":4)
+WARN  (EX3791) : Expression size 20 truncated to fit in target size 19("D:\Projects\ai\Gowin\demo1\keyboard-studio\src\KeyboardLoudness.v":75)
+Compiling module 'PcmRounder'("D:\Projects\ai\Gowin\demo1\rtl\audio\PcmRounder.v":4)
+Compiling module 'LatencyI2sTx(C_PT8211=1)'("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyI2sTx.v":4)
+WARN  (EX3791) : Expression size 11 truncated to fit in target size 10("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyI2sTx.v":38)
+Compiling module 'LatencySupervisor'("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencySupervisor.v":5)
+Compiling module 'LatencySynthTelemetry'("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencySynthTelemetry.v":4)
+Compiling module 'EncoderUartTx(C_BAUD_CYCLES=434)'("D:\Projects\ai\Gowin\demo_test\diagnostics\encoder\src\EncoderUartTx.v":3)
+NOTE  (EX0101) : Current top module is "LatencyAxisTop"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+WARN  (NL0002) : The module "PcmRounder" instantiated to "LeftRound_Inst" is swept in optimizing("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyI2sTx.v":21)
+WARN  (NL0002) : The module "PcmRounder" instantiated to "MonitorRound_Inst" is swept in optimizing("D:\Projects\ai\Gowin\demo1\keyboard-latency\src\LatencyAudioSystem.v":95)
+[95%] Generate netlist file "D:\Projects\ai\Gowin\demo1\keyboard-latency\impl\gwsynthesis\keyboard_latency.vg" completed
+[100%] Generate report file "D:\Projects\ai\Gowin\demo1\keyboard-latency\impl\gwsynthesis\keyboard_latency_syn.rpt.html" completed
+GowinSynthesis finish
+Reading netlist file: "D:\Projects\ai\Gowin\demo1\keyboard-latency\impl\gwsynthesis\keyboard_latency.vg"
+Parsing netlist file "D:\Projects\ai\Gowin\demo1\keyboard-latency\impl\gwsynthesis\keyboard_latency.vg" completed
+Processing netlist completed
+Reading constraint file: "D:\Projects\ai\Gowin\demo1\keyboard-studio\src\keyboard_axis.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed

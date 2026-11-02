@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project><Template>FPGA</Template><Version>5</Version>
+<Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device>
+<FileList>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisPhasePm.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisEnvelopeSegment.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisGainMix.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisNoiseStep.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisEnvelopeMulti.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisDxEnvelope.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisVoiceFabric.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisVoiceRuntime.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisFmOperator.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisLfoStep.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/VoiceModulation.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/VoiceSynthEngine.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisStereoDelay.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisSchroederReverb.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisFxEngine.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisSynthSystem.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxiVoiceEndpoint.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxiSynthEndpoint.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/rtl/SynthAxiMaster.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/rtl/SynthBootSequencer.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/rtl/SynthKeyboardSource.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/rtl/SynthUartControl.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/rtl/SynthPcmOutput.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/rtl/SynthSystemTop.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/rtl/SynthCommandArbiter.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/KeyboardSampler.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/keyboard-latency/src/LatencyKeyThresholds.v" type="file.verilog" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/system.cst" type="file.cst" enable="1"/>
+<File path="D:/Projects/ai/Gowin/demo1/voice-system/system.sdc" type="file.sdc" enable="1"/>
+</FileList></Project>

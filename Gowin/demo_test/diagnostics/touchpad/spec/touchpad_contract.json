@@ -1,0 +1,422 @@
+{
+  "name": "touchpad",
+  "modules": [
+    {
+      "name": "I2cRegister",
+      "rtl_path": "src/I2cRegister.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; see behavior contract"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; see behavior contract"
+          },
+          {
+            "name": "i_start",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_start; see behavior contract"
+          },
+          {
+            "name": "i_read",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_read; see behavior contract"
+          },
+          {
+            "name": "i_address",
+            "direction": "input",
+            "width": 7,
+            "role": "data",
+            "description": "i_address; see behavior contract"
+          },
+          {
+            "name": "i_register",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_register; see behavior contract"
+          },
+          {
+            "name": "i_write",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_write; see behavior contract"
+          },
+          {
+            "name": "i_count",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "i_count; see behavior contract"
+          },
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_done; see behavior contract"
+          },
+          {
+            "name": "o_error",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "o_error; see behavior contract"
+          },
+          {
+            "name": "o_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_valid; see behavior contract"
+          },
+          {
+            "name": "o_index",
+            "direction": "output",
+            "width": 6,
+            "role": "data",
+            "description": "o_index; see behavior contract"
+          },
+          {
+            "name": "o_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_data; see behavior contract"
+          },
+          {
+            "name": "io_scl",
+            "direction": "inout",
+            "width": 1,
+            "role": "data",
+            "description": "io_scl; see behavior contract"
+          },
+          {
+            "name": "io_sda",
+            "direction": "inout",
+            "width": 1,
+            "role": "data",
+            "description": "io_sda; see behavior contract"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Two-cycle synchronized release"
+      },
+      "behavior": [
+        "Register write or 1..42 byte read; repeated START and final NACK; error 1=NACK,2=timeout/arbitration.",
+        "One-cycle start accepted only in idle. Done pulse finalizes transaction. Read valid strobes may precede a failure and must be staged by caller."
+      ],
+      "constraints": [
+        "50MHz. Top C_DIVIDER999 yields nominal10kHz for initial hardware diagnosis; external pullups still required.",
+        "C_TIMEOUT5000000 at top (100ms) exceeds42-byte transaction at10kHz. Independent bus masters."
+      ],
+      "corner_cases": [
+        "One missing sensor does not block the other.",
+        "Clock stuck low returns timeout; stale payload never implies valid touch.",
+        "Reset aborts UART and releases both buses."
+      ],
+      "verification_cases": [
+        "Behavioral5A/5C address scan, exact configuration and burst byte order.",
+        "NACK and stuck-clock isolation, recovery; ECR corruption detects/reconfigures sensor.",
+        "18 complete UART packets independently checked for framing/CRC; termination cuts an additional32-byte tail.",
+        "App52 regression tests; real I2C register readback and zero-sample evidence separately recorded."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transaction",
+          "title": "Register read",
+          "scenario": "burst",
+          "description": "Conceptual START-write-address-register-repeatedSTART-read-data-NACK-STOP; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clock",
+                "wave": "p........."
+              },
+              {
+                "name": "start",
+                "wave": "010......."
+              },
+              {
+                "name": "busy",
+                "wave": "01......0."
+              },
+              {
+                "name": "read_valid",
+                "wave": "0....1010."
+              },
+              {
+                "name": "done",
+                "wave": "0.......10"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "MprScanner",
+      "rtl_path": "src/MprScanner.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; see behavior contract"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; see behavior contract"
+          },
+          {
+            "name": "io_scl",
+            "direction": "inout",
+            "width": 1,
+            "role": "data",
+            "description": "io_scl; see behavior contract"
+          },
+          {
+            "name": "io_sda",
+            "direction": "inout",
+            "width": 1,
+            "role": "data",
+            "description": "io_sda; see behavior contract"
+          },
+          {
+            "name": "o_raw",
+            "direction": "output",
+            "width": 336,
+            "role": "data",
+            "description": "o_raw; see behavior contract"
+          },
+          {
+            "name": "o_sequence",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "o_sequence; see behavior contract"
+          },
+          {
+            "name": "o_address",
+            "direction": "output",
+            "width": 7,
+            "role": "data",
+            "description": "o_address; see behavior contract"
+          },
+          {
+            "name": "o_error",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o_error; see behavior contract"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Two-cycle synchronized release"
+      },
+      "behavior": [
+        "Scan5A..5D independently; 46 configuration writes from model.py, read back5C..5E.",
+        "Burst00..29 commits only after success; sample counter increments on commit. Errors0=valid,1=probeNACK,2=timeout,3=configNACK,4=readback,5=sampleNACK,6=OVCF,7=initializing.",
+        "Retry after1s; no bus-clear clock train implemented. Failed data remains explicitly invalid.",
+        "Automatic configuration disabled7B/7C=00; global CDC16uA/CDT0.5us fixed. Verify5C..5E after every successful sample. C_SAMPLE_BASE0 default, nonzero for register diagnosis."
+      ],
+      "constraints": [
+        "50MHz. Top C_DIVIDER999 yields nominal10kHz for initial hardware diagnosis; external pullups still required.",
+        "C_TIMEOUT5000000 at top (100ms) exceeds42-byte transaction at10kHz. Independent bus masters."
+      ],
+      "corner_cases": [
+        "One missing sensor does not block the other.",
+        "Clock stuck low returns timeout; stale payload never implies valid touch.",
+        "Reset aborts UART and releases both buses."
+      ],
+      "verification_cases": [
+        "Behavioral5A/5C address scan, exact configuration and burst byte order.",
+        "NACK and stuck-clock isolation, recovery; ECR corruption detects/reconfigures sensor.",
+        "18 complete UART packets independently checked for framing/CRC; termination cuts an additional32-byte tail.",
+        "App52 regression tests; real I2C register readback and zero-sample evidence separately recorded."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transaction",
+          "title": "Register read",
+          "scenario": "burst",
+          "description": "Conceptual START-write-address-register-repeatedSTART-read-data-NACK-STOP; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clock",
+                "wave": "p........."
+              },
+              {
+                "name": "start",
+                "wave": "010......."
+              },
+              {
+                "name": "busy",
+                "wave": "01......0."
+              },
+              {
+                "name": "read_valid",
+                "wave": "0....1010."
+              },
+              {
+                "name": "done",
+                "wave": "0.......10"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "TouchpadDebug",
+      "rtl_path": "src/TouchpadDebug.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk; see behavior contract"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn; see behavior contract"
+          },
+          {
+            "name": "i_irq",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "i_irq; see behavior contract"
+          },
+          {
+            "name": "io_scl",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_scl; see behavior contract"
+          },
+          {
+            "name": "io_sda",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_sda; see behavior contract"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_uart_tx; see behavior contract"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Two-cycle synchronized release"
+      },
+      "behavior": [
+        "Capture each board alternately every25ms; each frame snapshot remains immutable.",
+        "ASCII T{side}{sample:04X}{address:02X}{error:02X}{lines:X}{42rawbytes:84X}*{CRC8:02X}CRLF; CRC polynomial07 init00 over first95bytes.",
+        "Lines bit0IRQ bit1SCL bit2SDA. No RX commands. 12 electrodes each: ELE0..4 rows, ELE5..11 columns.",
+        "DefaultC_SAMPLE_BASE00 emits T frames. C_SAMPLE_BASE5B emits D register dump frames, ignored by GUI. Default I2C10kHz."
+      ],
+      "constraints": [
+        "50MHz. Top C_DIVIDER999 yields nominal10kHz for initial hardware diagnosis; external pullups still required.",
+        "C_TIMEOUT5000000 at top (100ms) exceeds42-byte transaction at10kHz. Independent bus masters."
+      ],
+      "corner_cases": [
+        "One missing sensor does not block the other.",
+        "Clock stuck low returns timeout; stale payload never implies valid touch.",
+        "Reset aborts UART and releases both buses."
+      ],
+      "verification_cases": [
+        "Behavioral5A/5C address scan, exact configuration and burst byte order.",
+        "NACK and stuck-clock isolation, recovery; ECR corruption detects/reconfigures sensor.",
+        "18 complete UART packets independently checked for framing/CRC; termination cuts an additional32-byte tail.",
+        "App52 regression tests; real I2C register readback and zero-sample evidence separately recorded."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transaction",
+          "title": "Register read",
+          "scenario": "burst",
+          "description": "Conceptual START-write-address-register-repeatedSTART-read-data-NACK-STOP; not measured timing.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clock",
+                "wave": "p........."
+              },
+              {
+                "name": "start",
+                "wave": "010......."
+              },
+              {
+                "name": "busy",
+                "wave": "01......0."
+              },
+              {
+                "name": "read_valid",
+                "wave": "0....1010."
+              },
+              {
+                "name": "done",
+                "wave": "0.......10"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

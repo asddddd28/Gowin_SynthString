@@ -1,0 +1,36 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p..........."
+    },
+    {
+      "name": "ADC candidate",
+      "wave": "010........."
+    },
+    {
+      "name": "ADC confirm",
+      "wave": "0...10......"
+    },
+    {
+      "name": "note commit",
+      "wave": "0....10....."
+    },
+    {
+      "name": "voice nonzero",
+      "wave": "0......10..."
+    },
+    {
+      "name": "PCM valid",
+      "wave": "0.......10.."
+    },
+    {
+      "name": "frame load",
+      "wave": "0........10."
+    },
+    {
+      "name": "DAC left latch",
+      "wave": "0.........10"
+    }
+  ]
+}

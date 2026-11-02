@@ -1,0 +1,270 @@
+{
+  "modules": [
+    {
+      "name": "VoiceModulation",
+      "rtl_path": "rtl/VoiceModulation.v",
+      "description": "两LFO和八路稀疏调制的参数银行、状态池与帧调度。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "共用50MHz时钟"
+          },
+          {
+            "name": "i_axis_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "低有效复位"
+          },
+          {
+            "name": "i_start_frame",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "开始一次全源更新"
+          },
+          {
+            "name": "i_patch_valid",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "有效音色槽"
+          },
+          {
+            "name": "i_patch_bank",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "各音色活动银行"
+          },
+          {
+            "name": "i_voice_active",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "活动声部"
+          },
+          {
+            "name": "i_voice_patch",
+            "direction": "input",
+            "width": 16,
+            "role": "data",
+            "description": "每声部2位音色槽"
+          },
+          {
+            "name": "i_start_voice",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "开始某声部路由计算"
+          },
+          {
+            "name": "i_voice",
+            "direction": "input",
+            "width": 3,
+            "role": "data",
+            "description": "当前声部"
+          },
+          {
+            "name": "i_patch",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "当前声部音色"
+          },
+          {
+            "name": "i_note_on",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "实际新分配声部事件，重试不能置位"
+          },
+          {
+            "name": "i_note_voice",
+            "direction": "input",
+            "width": 3,
+            "role": "data",
+            "description": "新分配声部"
+          },
+          {
+            "name": "i_restart",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "仅新执行的显式重触发"
+          },
+          {
+            "name": "i_restart_context",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "需要重触发的上下文"
+          },
+          {
+            "name": "i_begin",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "清空草稿的启用掩码"
+          },
+          {
+            "name": "i_config_write",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "写草稿参数"
+          },
+          {
+            "name": "i_config_route",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "路由参数或LFO参数"
+          },
+          {
+            "name": "i_config_bank",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "草稿银行"
+          },
+          {
+            "name": "i_config_patch",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "草稿音色槽"
+          },
+          {
+            "name": "i_config_index",
+            "direction": "input",
+            "width": 3,
+            "role": "data",
+            "description": "LFO或路由编号"
+          },
+          {
+            "name": "i_config_data",
+            "direction": "input",
+            "width": 160,
+            "role": "data",
+            "description": "LFO五字或路由两字"
+          },
+          {
+            "name": "i_inspect",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "调试上下文索引"
+          },
+          {
+            "name": "o_inspect",
+            "direction": "output",
+            "width": 128,
+            "role": "data",
+            "description": "当前源值/相位/资格/RNG快照"
+          },
+          {
+            "name": "o_busy",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "帧或路由执行中"
+          },
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "单周期完成通知"
+          },
+          {
+            "name": "o_modulation",
+            "direction": "output",
+            "width": 480,
+            "role": "data",
+            "description": "15个有符号32位调制累加结果"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "24 state slots: eight patch-global and sixteen voice-local. Only enabled/eligible source contexts advance, once per frame; routes never advance source state.",
+        "Parameters are double banked with the voice program. Begin disables the inactive bank LFO and route masks without disturbing the active bank.",
+        "New NoteID allocation clears local LFO initialization; first eligible frame restarts phase and seed. Global phase is independent of note events.",
+        "Eight routes accumulate in 36-bit guards across fifteen targets; output saturates to signed32. Base musical parameters are not modified.",
+        "Route descriptor, source/depth operands, product and accumulator are registered separately. Eight descriptors issue at II=1, drain before final clamp; start-to-done is13 clocks. Disabled routes force both operands to zero; same-target writes retain source order.",
+        "Start pulses and configuration writes are only accepted while idle by contract; parent prevents control writes during a render."
+      ],
+      "constraints": [
+        "Verilog-2001, one clock domain. No board integration claim.",
+        "See MODULATION.md for units, commands, source scopes and reset behavior."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent integer model and mixed waveform PCM comparisons",
+        "Free-run versus key restart; voice steal and duplicate request",
+        "Eight routes, signed saturation and disabled sources",
+        "Worst-case sample deadline and concurrent AXI traffic"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "先发frame启动，24上下文流水扫描完成后发done；每个声部再启动8路累加；配置仅在idle提交。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

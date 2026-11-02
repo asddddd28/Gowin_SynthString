@@ -1,0 +1,281 @@
+{
+  "modules": [
+    {
+      "name": "ParallelSynthEngine",
+      "rtl_path": "src/ParallelSynthEngine.v",
+      "description": "32声部按7→0→1→2→3→4→5→6运行：调制包络、B相位、B波形、A相位FM、A波形、振幅包络、AM/混合、滤波/VCA。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "description": "统一计算时钟",
+            "direction": "input",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "description": "全系统低有效复位，释放须同步",
+            "direction": "input",
+            "role": "reset"
+          },
+          {
+            "name": "i_start",
+            "width": 1,
+            "description": "请求计算下一音频帧，忙时拒收并记过载",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_valid",
+            "width": 1,
+            "description": "源端持有完整声部配置",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "o_cfg_ready",
+            "width": 1,
+            "description": "仅空闲帧接收配置",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_voice",
+            "width": 5,
+            "description": "目标声部索引",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_data",
+            "width": 512,
+            "description": "音色参数和一次性门控事件",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_valid",
+            "width": 1,
+            "description": "波表上传字有效",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_ready",
+            "width": 1,
+            "description": "空闲时允许更新波表",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_frame",
+            "width": 1,
+            "description": "选择波表的A或B帧",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_address",
+            "width": 11,
+            "description": "银行位及1024点地址",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_data",
+            "width": 16,
+            "description": "有符号波表采样",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "o_pcm_valid",
+            "width": 1,
+            "description": "完整混音帧可消费",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "i_pcm_ready",
+            "width": 1,
+            "description": "音频出口消费当前帧",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "o_pcm_left",
+            "width": 24,
+            "description": "限幅后的左声道PCM",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_pcm_right",
+            "width": 24,
+            "description": "首版复制单声道到右声道",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_busy",
+            "width": 1,
+            "description": "当前音频帧尚未完全退役",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_overrun",
+            "width": 1,
+            "description": "忙时采样触发丢失的粘滞标志",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_fault",
+            "width": 1,
+            "description": "返回身份或算法错误，需要复位",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_frame_cycles",
+            "width": 16,
+            "description": "最近完成帧的计算周期数",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_result_valid",
+            "width": 1,
+            "description": "一个有效声部尾部结果提交",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_result_voice",
+            "width": 5,
+            "description": "本次提交所属声部",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_result_data",
+            "width": 192,
+            "description": "完整音频与滤波新状态",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_active",
+            "width": 32,
+            "direction": "output",
+            "description": "实际ADSR非空闲位图",
+            "role": "data"
+          },
+          {
+            "name": "o_stages",
+            "width": 7,
+            "direction": "output",
+            "description": "已接受阶段位图",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_peak",
+            "width": 32,
+            "direction": "output",
+            "description": "振荡峰值",
+            "role": "data"
+          },
+          {
+            "name": "o_mod_peak",
+            "width": 32,
+            "direction": "output",
+            "description": "AM峰值",
+            "role": "data"
+          },
+          {
+            "name": "o_env_peak",
+            "width": 18,
+            "direction": "output",
+            "description": "包络峰值",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 10
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "全局清除任务、相位包络滤波状态，保留波表RAM；外部同步释放"
+      },
+      "behavior": [
+        "32声部按7→0→1→2→3→4→5→6运行：调制包络、B相位、B波形、A相位FM、A波形、振幅包络、AM/混合、滤波/VCA。",
+        "同步参数/状态RAM连续预取，经两级寄存及8槽任务FIFO发射；FIFO信用包含在途读请求。",
+        "每个阶段最多发射及提交一个任务/拍，同类型核心轮流接受任务；返回保序，全部声部提交后切换阶段。",
+        "振幅包络任务握手后按已发射标签消费事件；不能使用超前预取地址消费事件。",
+        "默认1/2/3/1/1/1核心配置32声部385拍；外部PCM背压可延长busy，但不改变音频数值。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，低有效复位；板级复位同步释放。",
+        "C_*_CORES是综合期参数，1..4；任意配置需要独立验证资源和时序，只有默认配置有本板实现证据。",
+        "一个issue和一个retire端口；仍保留阶段屏障，不是任意连接的多发射计算图。"
+      ],
+      "corner_cases": [
+        "全满背压及同时接受/返回",
+        "非2次幂核心数游标回绕",
+        "处理中复位",
+        "wave副本写一致性",
+        "note-off保留旧参数"
+      ],
+      "verification_cases": [
+        "原引擎逐声部及PCM等值比较",
+        "各池1/2/3/4核配置",
+        "输入输出停顿及复位",
+        "真实ADC/UART/PT8211引脚闭环",
+        "Gowin综合与50MHz时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "ordered",
+          "title": "背压与有序返回",
+          "scenario": "handshake",
+          "description": "示意ready为0时保持队首；箭头不代表固定核心算术延迟。实际周期见各核心和阶段统计。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "task",
+                "wave": "x2...x..",
+                "data": [
+                  "voice n"
+                ]
+              },
+              {
+                "name": "accept",
+                "wave": "0...10.."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

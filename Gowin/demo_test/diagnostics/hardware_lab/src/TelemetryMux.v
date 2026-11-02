@@ -1,14 +1,15 @@
 `timescale 1ns / 1ps
-// TelemetryMux：五路整行仲裁；优先级和普通流各有独立轮询游标。
+// TelemetryMux：可配置整行仲裁（1至8路）；优先级和普通流各有独立轮询游标。
 module TelemetryMux #(
-    parameter [15:0] C_BAUD=434
+    parameter [15:0] C_BAUD=434,
+    parameter integer C_CHANNELS=5
 )(
     input i_clk,
     input i_rstn,
-    input [4:0] i_valid,
-    input [39:0] i_data,
-    input [4:0] i_priority,
-    output [4:0] o_ready,
+    input [C_CHANNELS-1:0] i_valid,
+    input [C_CHANNELS*8-1:0] i_data,
+    input [C_CHANNELS-1:0] i_priority,
+    output [C_CHANNELS-1:0] o_ready,
     output o_tx
 );
 localparam S_IDLE=1'b0,S_FRAME=1'b1;
@@ -17,14 +18,14 @@ reg [2:0] owner,normal_cursor,priority_cursor;
 reg [1:0] priority_run;
 reg [2:0] selected;
 reg found;
-reg [4:0] candidates;
+reg [C_CHANNELS-1:0] candidates;
 reg [2:0] cursor;
-reg [4:0] ready_o;
+reg [C_CHANNELS-1:0] ready_o;
 reg uart_start;
 reg [7:0] uart_data;
 wire uart_busy;
-wire [4:0] urgent=i_valid&i_priority;
-wire [4:0] ordinary=i_valid&~i_priority;
+wire [C_CHANNELS-1:0] urgent=i_valid&i_priority;
+wire [C_CHANNELS-1:0] ordinary=i_valid&~i_priority;
 wire choose_priority=(|urgent) && (priority_run<3 || ordinary==0);
 wire [7:0] owner_data=i_data[owner*8 +: 8];
 wire transfer=i_valid[owner] && ready_o[owner];
@@ -38,9 +39,9 @@ always @(*) begin
     candidates=choose_priority ? urgent : ordinary;
     cursor=choose_priority ? priority_cursor : normal_cursor;
     selected=0;found=0;candidate=0;
-    for(offset=0;offset<5;offset=offset+1) begin
+    for(offset=0;offset<C_CHANNELS;offset=offset+1) begin
         candidate=cursor+offset;
-        if(candidate>=5) candidate=candidate-5;
+        if(candidate>=C_CHANNELS) candidate=candidate-C_CHANNELS;
         if(!found && candidates[candidate]) begin selected=candidate;found=1;end
     end
 end
@@ -68,10 +69,10 @@ always @(posedge i_clk or negedge i_rstn) begin
         if(state==S_IDLE && next_state==S_FRAME) begin
             owner<=selected;
             if(choose_priority) begin
-                priority_cursor<=selected==4 ? 0 : selected+1'b1;
+                priority_cursor<=selected==C_CHANNELS-1 ? 0 : selected+1'b1;
                 if(priority_run<3) priority_run<=priority_run+1'b1;
             end else begin
-                normal_cursor<=selected==4 ? 0 : selected+1'b1; priority_run<=0;
+                normal_cursor<=selected==C_CHANNELS-1 ? 0 : selected+1'b1; priority_run<=0;
             end
         end
         if(transfer) begin uart_data<=owner_data;uart_start<=1;end

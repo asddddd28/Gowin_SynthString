@@ -1,0 +1,27 @@
+{
+  "requirements": "Shared stereo modular Delay/Reverb behind existing bounded AXI4-MM endpoint",
+  "order": [
+    "contracts and WaveDrom",
+    "Python integer model",
+    "RTL",
+    "xsim numeric/protocol/deadline",
+    "Gowin synthesis",
+    "strict gate"
+  ],
+  "resources": {
+    "delay_words": 65536,
+    "reverb_words": 10240,
+    "bits": 18
+  },
+  "review": {
+    "interface": "AXI-MM command mailbox plus private ready-valid stereo samples",
+    "reset": "Age counters invalidate RAM; asynchronous control reset",
+    "timing": "FX target <=160 clocks after worst voice858/1024",
+    "widths": "Q52 signed sums; explicit TZ and saturation",
+    "risks": [
+      "No current board top integration",
+      "Abrupt live delay changes may click",
+      "Simple Schroeder room, not Surge/DX emulation"
+    ]
+  }
+}

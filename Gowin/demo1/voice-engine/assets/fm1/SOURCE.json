@@ -1,0 +1,11 @@
+{
+  "repository": "https://github.com/m-vave/fm1_open",
+  "commit": "4c7496daac04a95ff10d1afdcc8f9ead2dbabc41",
+  "source": "app/fm_factory.inc",
+  "source_sha256": "b3b002d998be7e931e20b8c57b758846779ed375ef2e8ab5f7a03b9f46418d91",
+  "vmem_sha256": "ecad0b8620f9d784d46c8da1e3c5de02c40214649ed8dec218026431046aad25",
+  "voices": 128,
+  "bytes": 16384,
+  "license": "Apache-2.0",
+  "modification": "Lossless unpacking only; original parameters and order retained"
+}

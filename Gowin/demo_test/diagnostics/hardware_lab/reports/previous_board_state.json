@@ -1,0 +1,16 @@
+{
+  "date": "2026-11-01",
+  "firmware": "TouchpadDebug",
+  "project": "diagnostics/touchpad/touchpad.gprj",
+  "bitstream": "diagnostics/touchpad/impl/pnr/touchpad.fs",
+  "sha256": "73440c6747fba606857921d68ac3da04c0ede203f0d09422c63ea862d8dcdf22",
+  "user_code": "0x0000F0BD",
+  "status_code": "0x76026238",
+  "download": "Last successful SRAM download; no Flash or full readback. User now instructed to power off for resistance measurements; SRAM may be lost.",
+  "serial_port": "COM4",
+  "serial_holder": "TangKeyboardLab.exe release_touchpad_pcb PID64692",
+  "evidence": "diagnostics/touchpad/reports/pcb_layout_validation.json",
+  "physical_validation": "Both sensors now produce live nonzero samples, error0. User reports hardware repaired; physical diagonal orientation requested and applied inApp. Repair details/VREG voltage not remeasured.",
+  "next_step": "PCB-proportioned display active; both pads sampling; per-pad diagonal mirror retained.",
+  "serial_handle_open": true
+}

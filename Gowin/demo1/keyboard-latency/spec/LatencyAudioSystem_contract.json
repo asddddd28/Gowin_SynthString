@@ -1,0 +1,378 @@
+{
+  "modules": [
+    {
+      "name": "LatencyAudioSystem",
+      "rtl_path": "src/LatencyAudioSystem.v",
+      "description": "复用原32声部多核合成与响度；仅增加监测输出，不改变音频数据或背压。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "description": "统一计算时钟",
+            "direction": "input",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "description": "全系统低有效复位，释放须同步",
+            "direction": "input",
+            "role": "reset"
+          },
+          {
+            "name": "i_run",
+            "width": 1,
+            "description": "配置结束后启动音频；只在空闲时停止",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_valid",
+            "width": 1,
+            "description": "源端持有完整声部配置",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "o_cfg_ready",
+            "width": 1,
+            "description": "仅空闲帧接收配置",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_voice",
+            "width": 5,
+            "description": "目标声部索引",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_data",
+            "width": 512,
+            "description": "音色参数和一次性门控事件",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_valid",
+            "width": 1,
+            "description": "波表上传字有效",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_ready",
+            "width": 1,
+            "description": "空闲时允许更新波表",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_frame",
+            "width": 1,
+            "description": "选择波表的A或B帧",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_address",
+            "width": 11,
+            "description": "银行位及1024点地址",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_data",
+            "width": 16,
+            "description": "有符号波表采样",
+            "direction": "input",
+            "role": "data"
+          },
+          {
+            "name": "o_pcm_valid",
+            "width": 1,
+            "description": "完整混音帧可消费",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_pcm_left",
+            "width": 24,
+            "description": "限幅后的左声道PCM",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_pcm_right",
+            "width": 24,
+            "description": "首版复制单声道到右声道",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_busy",
+            "width": 1,
+            "description": "当前音频帧尚未完全退役",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_overrun",
+            "width": 1,
+            "description": "忙时采样触发丢失的粘滞标志",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_fault",
+            "width": 1,
+            "description": "返回身份或算法错误，需要复位",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_frame_cycles",
+            "width": 16,
+            "description": "最近完成帧的计算周期数",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_result_valid",
+            "width": 1,
+            "description": "一个有效声部尾部结果提交",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_result_voice",
+            "width": 5,
+            "description": "本次提交所属声部",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_result_data",
+            "width": 192,
+            "description": "完整音频与滤波新状态",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_sample_tick",
+            "width": 1,
+            "description": "音频帧节拍监测",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_bclk",
+            "width": 1,
+            "description": "串行位时钟",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_lrclk",
+            "width": 1,
+            "description": "左右声道选择",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_sdata",
+            "width": 1,
+            "description": "I2S音频输出",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_mclk",
+            "width": 1,
+            "description": "主音频时钟",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "o_underrun",
+            "width": 1,
+            "description": "I2S缺帧粘滞标志",
+            "direction": "output",
+            "role": "data"
+          },
+          {
+            "name": "i_volume",
+            "width": 4,
+            "direction": "input",
+            "description": "主音量0至8",
+            "role": "data"
+          },
+          {
+            "name": "o_active_count",
+            "width": 6,
+            "direction": "output",
+            "description": "ADSR非空闲声部数，包括释音",
+            "role": "data"
+          },
+          {
+            "name": "o_gain",
+            "width": 19,
+            "direction": "output",
+            "description": "平滑后的Q16增益",
+            "role": "data"
+          },
+          {
+            "name": "o_input_peak",
+            "width": 24,
+            "direction": "output",
+            "description": "处理前采样峰值保持",
+            "role": "data"
+          },
+          {
+            "name": "o_output_peak",
+            "width": 24,
+            "direction": "output",
+            "description": "处理后采样峰值保持",
+            "role": "data"
+          },
+          {
+            "name": "o_clips",
+            "width": 32,
+            "direction": "output",
+            "description": "保护限幅累计次数",
+            "role": "data"
+          },
+          {
+            "name": "o_stages",
+            "width": 7,
+            "direction": "output",
+            "description": "已提交阶段累计位图",
+            "role": "data"
+          },
+          {
+            "name": "o_wave_peak",
+            "width": 32,
+            "direction": "output",
+            "description": "振荡波形绝对峰值",
+            "role": "data"
+          },
+          {
+            "name": "o_mod_peak",
+            "width": 32,
+            "direction": "output",
+            "description": "AM输出绝对峰值",
+            "role": "data"
+          },
+          {
+            "name": "o_env_peak",
+            "width": 18,
+            "direction": "output",
+            "description": "包络整数峰值",
+            "role": "data"
+          },
+          {
+            "name": "o_frame_load",
+            "width": 1,
+            "direction": "output",
+            "description": "o frame load",
+            "role": "data"
+          },
+          {
+            "name": "o_dac_left_latch",
+            "width": 1,
+            "direction": "output",
+            "description": "o dac left latch",
+            "role": "data"
+          },
+          {
+            "name": "o_pcm_nonzero",
+            "width": 1,
+            "direction": "output",
+            "description": "o pcm nonzero",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 10
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "全局清除任务、相位包络滤波状态，保留波表RAM；外部同步释放"
+      },
+      "behavior": [
+        "复用原32声部多核合成与响度；仅增加监测输出，不改变音频数据或背压。",
+        "输出实际串行器加载帧与左声道锁存脉冲；o_pcm_nonzero取24→16位舍入后的非零判断。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，异步低有效复位，顶层同步释放。",
+        "监测无音频控制反馈；一次事件窗口小于32位时间戳周期，默认1秒超时。"
+      ],
+      "corner_cases": [
+        "32键同时完成",
+        "计数回绕",
+        "候选取消",
+        "静音与慢起音",
+        "覆盖与超时并发",
+        "清零时仍按住键"
+      ],
+      "verification_cases": [
+        "独立时间差模型",
+        "逐分段确定值比较",
+        "真实ADC和PT8211 WS边沿关联",
+        "协议4全部分包边界及坏包恢复",
+        "Gowin时序与板上串口/听感"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "onset",
+          "title": "采集到数字起音",
+          "scenario": "onset",
+          "description": "概念时序，扫描等待与音频帧间隔被压缩；所有时间戳来自同一50MHz计数器。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p..........."
+              },
+              {
+                "name": "ADC candidate",
+                "wave": "010........."
+              },
+              {
+                "name": "ADC confirm",
+                "wave": "0...10......"
+              },
+              {
+                "name": "note commit",
+                "wave": "0....10....."
+              },
+              {
+                "name": "voice nonzero",
+                "wave": "0......10..."
+              },
+              {
+                "name": "PCM valid",
+                "wave": "0.......10.."
+              },
+              {
+                "name": "frame load",
+                "wave": "0........10."
+              },
+              {
+                "name": "DAC left latch",
+                "wave": "0.........10"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

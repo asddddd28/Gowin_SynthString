@@ -1,0 +1,1450 @@
+{
+  "abi": "0x00010003",
+  "name": "LFO_Random_FM",
+  "sample_rate_hz": 48828.125,
+  "slot": 0,
+  "revision": 1,
+  "next_sequence": 18,
+  "commands": [
+    {
+      "opcode": 160,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 0,
+      "words": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 1
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 0
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 0
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 160
+        },
+        {
+          "address": 300,
+          "value": 0
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 0
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 161,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 1,
+      "words": [
+        196608,
+        40265318,
+        515396076,
+        0,
+        20480,
+        2147483648,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 196608
+        },
+        {
+          "address": 260,
+          "value": 40265318
+        },
+        {
+          "address": 264,
+          "value": 515396076
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 20480
+        },
+        {
+          "address": 276,
+          "value": 2147483648
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 161
+        },
+        {
+          "address": 300,
+          "value": 1
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 1
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 162,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 2,
+      "words": [
+        67108864,
+        10066330,
+        0,
+        0,
+        1374390,
+        17180,
+        13744,
+        13744,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 67108864
+        },
+        {
+          "address": 260,
+          "value": 10066330
+        },
+        {
+          "address": 264,
+          "value": 0
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 1374390
+        },
+        {
+          "address": 276,
+          "value": 17180
+        },
+        {
+          "address": 280,
+          "value": 13744
+        },
+        {
+          "address": 284,
+          "value": 13744
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 162
+        },
+        {
+          "address": 300,
+          "value": 2
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 2
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 161,
+      "address": 1,
+      "epoch": 1,
+      "sequence": 3,
+      "words": [
+        65536,
+        60397978,
+        343597384,
+        0,
+        20545,
+        2147483648,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 65536
+        },
+        {
+          "address": 260,
+          "value": 60397978
+        },
+        {
+          "address": 264,
+          "value": 343597384
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 20545
+        },
+        {
+          "address": 276,
+          "value": 2147483648
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 161
+        },
+        {
+          "address": 300,
+          "value": 3
+        },
+        {
+          "address": 308,
+          "value": 257
+        },
+        {
+          "address": 312,
+          "value": 3
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 162,
+      "address": 1,
+      "epoch": 1,
+      "sequence": 4,
+      "words": [
+        67108864,
+        40265318,
+        16777216,
+        0,
+        458130,
+        4581,
+        2749,
+        4581,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 67108864
+        },
+        {
+          "address": 260,
+          "value": 40265318
+        },
+        {
+          "address": 264,
+          "value": 16777216
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 458130
+        },
+        {
+          "address": 276,
+          "value": 4581
+        },
+        {
+          "address": 280,
+          "value": 2749
+        },
+        {
+          "address": 284,
+          "value": 4581
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 162
+        },
+        {
+          "address": 300,
+          "value": 4
+        },
+        {
+          "address": 308,
+          "value": 257
+        },
+        {
+          "address": 312,
+          "value": 4
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 161,
+      "address": 2,
+      "epoch": 1,
+      "sequence": 5,
+      "words": [
+        65536,
+        0,
+        515396076,
+        0,
+        16384,
+        2147483648,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 65536
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 515396076
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 16384
+        },
+        {
+          "address": 276,
+          "value": 2147483648
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 161
+        },
+        {
+          "address": 300,
+          "value": 5
+        },
+        {
+          "address": 308,
+          "value": 258
+        },
+        {
+          "address": 312,
+          "value": 5
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 162,
+      "address": 2,
+      "epoch": 1,
+      "sequence": 6,
+      "words": [
+        67108864,
+        46976205,
+        33554432,
+        0,
+        343597,
+        11453,
+        7635,
+        5727,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 67108864
+        },
+        {
+          "address": 260,
+          "value": 46976205
+        },
+        {
+          "address": 264,
+          "value": 33554432
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 343597
+        },
+        {
+          "address": 276,
+          "value": 11453
+        },
+        {
+          "address": 280,
+          "value": 7635
+        },
+        {
+          "address": 284,
+          "value": 5727
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 162
+        },
+        {
+          "address": 300,
+          "value": 6
+        },
+        {
+          "address": 308,
+          "value": 258
+        },
+        {
+          "address": 312,
+          "value": 6
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 161,
+      "address": 3,
+      "epoch": 1,
+      "sequence": 7,
+      "words": [
+        65536,
+        0,
+        515396076,
+        0,
+        16384,
+        2147483648,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 65536
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 515396076
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 16384
+        },
+        {
+          "address": 276,
+          "value": 2147483648
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 161
+        },
+        {
+          "address": 300,
+          "value": 7
+        },
+        {
+          "address": 308,
+          "value": 259
+        },
+        {
+          "address": 312,
+          "value": 7
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 162,
+      "address": 3,
+      "epoch": 1,
+      "sequence": 8,
+      "words": [
+        67108864,
+        46976205,
+        33554432,
+        0,
+        343597,
+        11453,
+        7635,
+        5727,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 67108864
+        },
+        {
+          "address": 260,
+          "value": 46976205
+        },
+        {
+          "address": 264,
+          "value": 33554432
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 343597
+        },
+        {
+          "address": 276,
+          "value": 11453
+        },
+        {
+          "address": 280,
+          "value": 7635
+        },
+        {
+          "address": 284,
+          "value": 5727
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 162
+        },
+        {
+          "address": 300,
+          "value": 8
+        },
+        {
+          "address": 308,
+          "value": 259
+        },
+        {
+          "address": 312,
+          "value": 8
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 161,
+      "address": 4,
+      "epoch": 1,
+      "sequence": 9,
+      "words": [
+        65536,
+        0,
+        515396076,
+        0,
+        16384,
+        2147483648,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 65536
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 515396076
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 16384
+        },
+        {
+          "address": 276,
+          "value": 2147483648
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 161
+        },
+        {
+          "address": 300,
+          "value": 9
+        },
+        {
+          "address": 308,
+          "value": 260
+        },
+        {
+          "address": 312,
+          "value": 9
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 162,
+      "address": 4,
+      "epoch": 1,
+      "sequence": 10,
+      "words": [
+        67108864,
+        46976205,
+        33554432,
+        0,
+        343597,
+        11453,
+        7635,
+        5727,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 67108864
+        },
+        {
+          "address": 260,
+          "value": 46976205
+        },
+        {
+          "address": 264,
+          "value": 33554432
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 343597
+        },
+        {
+          "address": 276,
+          "value": 11453
+        },
+        {
+          "address": 280,
+          "value": 7635
+        },
+        {
+          "address": 284,
+          "value": 5727
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 162
+        },
+        {
+          "address": 300,
+          "value": 10
+        },
+        {
+          "address": 308,
+          "value": 260
+        },
+        {
+          "address": 312,
+          "value": 10
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 161,
+      "address": 5,
+      "epoch": 1,
+      "sequence": 11,
+      "words": [
+        65536,
+        0,
+        515396076,
+        0,
+        16384,
+        2147483648,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 65536
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 515396076
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 16384
+        },
+        {
+          "address": 276,
+          "value": 2147483648
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 161
+        },
+        {
+          "address": 300,
+          "value": 11
+        },
+        {
+          "address": 308,
+          "value": 261
+        },
+        {
+          "address": 312,
+          "value": 11
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 162,
+      "address": 5,
+      "epoch": 1,
+      "sequence": 12,
+      "words": [
+        67108864,
+        46976205,
+        33554432,
+        0,
+        343597,
+        11453,
+        7635,
+        5727,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 67108864
+        },
+        {
+          "address": 260,
+          "value": 46976205
+        },
+        {
+          "address": 264,
+          "value": 33554432
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 343597
+        },
+        {
+          "address": 276,
+          "value": 11453
+        },
+        {
+          "address": 280,
+          "value": 7635
+        },
+        {
+          "address": 284,
+          "value": 5727
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 162
+        },
+        {
+          "address": 300,
+          "value": 12
+        },
+        {
+          "address": 308,
+          "value": 261
+        },
+        {
+          "address": 312,
+          "value": 12
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 176,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 13,
+      "words": [
+        219902,
+        0,
+        54,
+        305419896,
+        2147483648,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 219902
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 54
+        },
+        {
+          "address": 268,
+          "value": 305419896
+        },
+        {
+          "address": 272,
+          "value": 2147483648
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 176
+        },
+        {
+          "address": 300,
+          "value": 13
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 13
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 176,
+      "address": 1,
+      "epoch": 1,
+      "sequence": 14,
+      "words": [
+        263883,
+        0,
+        37,
+        2271560481,
+        2147483648,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 263883
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 37
+        },
+        {
+          "address": 268,
+          "value": 2271560481
+        },
+        {
+          "address": 272,
+          "value": 2147483648
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 176
+        },
+        {
+          "address": 300,
+          "value": 14
+        },
+        {
+          "address": 308,
+          "value": 257
+        },
+        {
+          "address": 312,
+          "value": 14
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 177,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 15,
+      "words": [
+        41,
+        343597384,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 41
+        },
+        {
+          "address": 260,
+          "value": 343597384
+        },
+        {
+          "address": 264,
+          "value": 0
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 0
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 177
+        },
+        {
+          "address": 300,
+          "value": 15
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 15
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 177,
+      "address": 1,
+      "epoch": 1,
+      "sequence": 16,
+      "words": [
+        15,
+        16777216,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 15
+        },
+        {
+          "address": 260,
+          "value": 16777216
+        },
+        {
+          "address": 264,
+          "value": 0
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 0
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 177
+        },
+        {
+          "address": 300,
+          "value": 16
+        },
+        {
+          "address": 308,
+          "value": 257
+        },
+        {
+          "address": 312,
+          "value": 16
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    },
+    {
+      "opcode": 163,
+      "address": 0,
+      "epoch": 1,
+      "sequence": 17,
+      "words": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "axi_writes": [
+        {
+          "address": 256,
+          "value": 0
+        },
+        {
+          "address": 260,
+          "value": 0
+        },
+        {
+          "address": 264,
+          "value": 0
+        },
+        {
+          "address": 268,
+          "value": 0
+        },
+        {
+          "address": 272,
+          "value": 0
+        },
+        {
+          "address": 276,
+          "value": 0
+        },
+        {
+          "address": 280,
+          "value": 0
+        },
+        {
+          "address": 284,
+          "value": 0
+        },
+        {
+          "address": 288,
+          "value": 0
+        },
+        {
+          "address": 292,
+          "value": 0
+        },
+        {
+          "address": 296,
+          "value": 163
+        },
+        {
+          "address": 300,
+          "value": 17
+        },
+        {
+          "address": 308,
+          "value": 256
+        },
+        {
+          "address": 312,
+          "value": 17
+        },
+        {
+          "address": 304,
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

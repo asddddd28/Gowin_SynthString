@@ -1,0 +1,75 @@
+{
+  "now": 874.9529406,
+  "connection": "live",
+  "protocol": "buttons",
+  "identity": null,
+  "buttons": {
+    "record": {
+      "sequence": 45599,
+      "raw": 0,
+      "filtered": 0,
+      "presses": [
+        8,
+        17,
+        24,
+        32,
+        28,
+        15
+      ],
+      "releases": [
+        8,
+        17,
+        24,
+        32,
+        28,
+        15
+      ],
+      "edges": [
+        2872,
+        206,
+        166,
+        188,
+        242,
+        44
+      ]
+    },
+    "fresh": true,
+    "updated": 874.9480809
+  },
+  "counts": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    43628
+  ],
+  "rates": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    49.92726097348804
+  ],
+  "errors": 0,
+  "sequence_errors": 0,
+  "rx_bytes": 3795691,
+  "tx_bytes": 0,
+  "fresh_count": 6,
+  "board": null,
+  "transfer": {
+    "busy": false,
+    "completed": 0,
+    "total": 0,
+    "failures": 0,
+    "message": ""
+  },
+  "export_note": "Compact historical evidence; personal profile/settings and host paths omitted."
+}

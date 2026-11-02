@@ -1,0 +1,115 @@
+{
+  "modules": [
+    {
+      "name": "KeyboardThresholds",
+      "rtl_path": "src/KeyboardThresholds.v",
+      "description": "ROM由已保存的32键实测校准产生，包含方向、50%按下门限和35%释放门限。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "50MHz统一计算时钟",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "低有效复位，异步置位同步释放",
+            "role": "reset"
+          },
+          {
+            "name": "i_key",
+            "width": 5,
+            "direction": "input",
+            "description": "零基键号",
+            "role": "data"
+          },
+          {
+            "name": "i_raw",
+            "width": 12,
+            "direction": "input",
+            "description": "ADC结果",
+            "role": "data"
+          },
+          {
+            "name": "i_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "采样提交",
+            "role": "data"
+          },
+          {
+            "name": "o_pressed",
+            "width": 32,
+            "direction": "output",
+            "description": "迟滞判键结果",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "ROM由已保存的32键实测校准产生，包含方向、50%按下门限和35%释放门限。",
+        "同一键连续两个有效样本越过当前状态的门限才翻转；任何不满足样本清除该键资格。",
+        "复位清除按键及资格，保留只读门限。"
+      ],
+      "constraints": [
+        "固定32个逻辑声部；50MHz；板型31004；只用于本轮SRAM诊断验证。"
+      ],
+      "corner_cases": [
+        "复位后按住键",
+        "门限附近抖动",
+        "事件遇到音频忙帧",
+        "多个键同时变化"
+      ],
+      "verification_cases": [
+        "上电静音",
+        "跨行多键按下和释放",
+        "ADC至DAC引脚解码",
+        "配置反压保持",
+        "命令自测与物理键隔离"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "flow",
+          "title": "接口概念时序",
+          "scenario": "pipeline",
+          "description": "为事件顺序示意，间隔不按比例；实际周期见仿真与构建报告。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "sample_valid",
+                "wave": "0101010."
+              },
+              {
+                "name": "threshold_crossed",
+                "wave": "01......"
+              },
+              {
+                "name": "pressed",
+                "wave": "0..1...."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

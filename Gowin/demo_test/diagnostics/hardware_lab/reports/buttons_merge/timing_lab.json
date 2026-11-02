@@ -1,0 +1,81 @@
+{
+  "build": {
+    "implDir": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_lab\\impl",
+    "name": "hardware_lab",
+    "designFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_lab\\impl\\gwsynthesis\\hardware_lab.vg",
+    "constraintsFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_lab\\src\\hardware.cst",
+    "sdcFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_lab\\src\\hardware.sdc",
+    "toolVersion": "V1.9.11.03 Education",
+    "partNumber": "GW5AT-LV60PG484AC1/I0",
+    "device": "GW5AT-60",
+    "deviceVersion": "B",
+    "createdTime": "Mon Nov  2 07:07:32 2026",
+    "elapsed": "0h 2m 11s",
+    "peakMemory": "1741MB"
+  },
+  "resources": {
+    "logic": {
+      "name": "Logic",
+      "depth": 0,
+      "used": 13892,
+      "available": 59904,
+      "utilization": "24%",
+      "raw": "13892/59904"
+    },
+    "cls": {
+      "name": "CLS",
+      "depth": 0,
+      "used": 10168,
+      "available": 29952,
+      "utilization": "34%",
+      "raw": "10168/29952"
+    },
+    "register": {
+      "name": "Register",
+      "depth": 0,
+      "used": 9234,
+      "available": 60780,
+      "utilization": "16%",
+      "raw": "9234/60780"
+    },
+    "bsram": {
+      "name": "BSRAM",
+      "depth": 0,
+      "used": 8,
+      "available": 118,
+      "utilization": "7%",
+      "raw": "8/118"
+    },
+    "dsp": {
+      "name": "DSP",
+      "depth": 0,
+      "used": 7.5,
+      "available": 118,
+      "utilization": "7%",
+      "raw": "7.5/118"
+    },
+    "ioPort": {
+      "name": "I/O Port",
+      "depth": 0,
+      "used": 40,
+      "available": 297,
+      "utilization": "14%",
+      "raw": "40/297"
+    }
+  },
+  "timing": {
+    "fmax": [
+      {
+        "clock": "clk",
+        "constraintMhz": 50,
+        "actualMhz": 50.301,
+        "logicLevel": 10,
+        "entity": "TOP",
+        "failing": false,
+        "marginMhz": 0.301
+      }
+    ],
+    "violations": []
+  },
+  "clean": true
+}

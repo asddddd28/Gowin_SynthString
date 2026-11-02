@@ -1,0 +1,367 @@
+{
+  "route": [
+    "generate",
+    "modify",
+    "validate"
+  ],
+  "clock_hz": 50000000,
+  "start": "physical: first ADC sample crossing press threshold; remote: effective gate rising inside FPGA",
+  "detect": "physical second qualifying scan; remote same cycle as start",
+  "end": "WS falling edge latching the left PT8211 word of the first nonzero voice contribution in a nonzero rounded DAC frame",
+  "limits": "No pre-scan mechanical delay, analog DAC/amplifier delay or acoustic propagation measurement; nonzero digital data is not an audibility guarantee",
+  "per_key_capacity": 1,
+  "voices": 32,
+  "states": {
+    "candidate": "qualifying",
+    "cancel": "idle",
+    "confirm": "detected",
+    "commit": "voice",
+    "zero_voice": "voice",
+    "nonzero_voice": "pcm",
+    "zero_pcm": "voice",
+    "nonzero_pcm": "load",
+    "frame_load": "play",
+    "left_word_latch": "complete"
+  },
+  "timeout_cycles": 50000000,
+  "budget_cycles": 500000,
+  "arithmetic": "32-bit modular timestamps; duration limited to 1 second; snapshot/difference/commit pipeline",
+  "report": "protocol 4, 192 bytes, common 0..77 prefix, latency 80..189, XOR 190, CR 191",
+  "observation_only": true,
+  "review": {
+    "interface": "Audio result and actual serializer boundary taps; no ready/valid feedback from monitor",
+    "reset": "Cancel all monitor transactions; L resets monitor only",
+    "timing": "Shared scanner serializes 32 simultaneous completions",
+    "collision": "New note replaces old transaction with overwrite accounting; generation guards stale report/timeout",
+    "width": "32-bit durations, 64-bit sum, fixed 50 MHz conversion",
+    "testbench": [
+      "exact timestamps",
+      "wrap",
+      "debounce cancel",
+      "silent/slow onset",
+      "32 keys",
+      "timeout",
+      "retrigger",
+      "PT8211 pin correlation",
+      "protocol fragmentation"
+    ]
+  },
+  "gates": [
+    "compile",
+    "ast",
+    "readability",
+    "comment",
+    "naming",
+    "profile",
+    "testbench",
+    "toolchain"
+  ],
+  "model_vectors": [
+    {
+      "total": 240,
+      "qualify": 100,
+      "queue": 20,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 50,
+      "mix": 10
+    },
+    {
+      "total": 240,
+      "qualify": 100,
+      "queue": 20,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 50,
+      "mix": 10
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 30,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 100,
+      "mix": 50
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 31,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 99,
+      "mix": 49
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 32,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 98,
+      "mix": 48
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 33,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 97,
+      "mix": 47
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 34,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 96,
+      "mix": 46
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 35,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 95,
+      "mix": 45
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 36,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 94,
+      "mix": 44
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 37,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 93,
+      "mix": 43
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 38,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 92,
+      "mix": 42
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 39,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 91,
+      "mix": 41
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 40,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 90,
+      "mix": 40
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 41,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 89,
+      "mix": 39
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 42,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 88,
+      "mix": 38
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 43,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 87,
+      "mix": 37
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 44,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 86,
+      "mix": 36
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 45,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 85,
+      "mix": 35
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 46,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 84,
+      "mix": 34
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 47,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 83,
+      "mix": 33
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 48,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 82,
+      "mix": 32
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 49,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 81,
+      "mix": 31
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 50,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 80,
+      "mix": 30
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 51,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 79,
+      "mix": 29
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 52,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 78,
+      "mix": 28
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 53,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 77,
+      "mix": 27
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 54,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 76,
+      "mix": 26
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 55,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 75,
+      "mix": 25
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 56,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 74,
+      "mix": 24
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 57,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 73,
+      "mix": 23
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 58,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 72,
+      "mix": 22
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 59,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 71,
+      "mix": 21
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 60,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 70,
+      "mix": 20
+    },
+    {
+      "total": 200,
+      "qualify": 0,
+      "queue": 61,
+      "compute": 40,
+      "onset_wait": 30,
+      "output": 69,
+      "mix": 19
+    }
+  ]
+}

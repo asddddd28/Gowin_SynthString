@@ -1,0 +1,23 @@
+{
+  "signal": [
+    {
+      "name": "i_clk",
+      "wave": "p....."
+    },
+    {
+      "name": "o_tx_valid",
+      "wave": "01..0."
+    },
+    {
+      "name": "i_tx_ready",
+      "wave": "0..10."
+    },
+    {
+      "name": "o_tx_data",
+      "wave": "x=..x.",
+      "data": [
+        "B"
+      ]
+    }
+  ]
+}

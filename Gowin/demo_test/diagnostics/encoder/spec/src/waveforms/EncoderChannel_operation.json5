@@ -1,0 +1,19 @@
+{
+  "signal": [
+    {
+      "name": "phase",
+      "wave": "=.=.=.=.=.",
+      "data": [
+        "initialize",
+        "sample",
+        "filter",
+        "count",
+        "report"
+      ]
+    },
+    {
+      "name": "reset_n",
+      "wave": "01........"
+    }
+  ]
+}

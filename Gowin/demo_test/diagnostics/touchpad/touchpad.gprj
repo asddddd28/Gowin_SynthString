@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project><Template>FPGA</Template><Version>5</Version><Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device><FileList>
+<File path="vendor/i2c_master_bit_ctrl.v" type="file.verilog" enable="1"/>
+<File path="vendor/i2c_master_byte_ctrl.v" type="file.verilog" enable="1"/>
+<File path="../encoder/src/EncoderUartTx.v" type="file.verilog" enable="1"/>
+<File path="src/I2cRegister.v" type="file.verilog" enable="1"/>
+<File path="src/MprScanner.v" type="file.verilog" enable="1"/>
+<File path="src/TouchpadDebug.v" type="file.verilog" enable="1"/>
+<File path="src/touchpad.cst" type="file.cst" enable="1"/>
+<File path="src/touchpad.sdc" type="file.sdc" enable="1"/>
+</FileList></Project>

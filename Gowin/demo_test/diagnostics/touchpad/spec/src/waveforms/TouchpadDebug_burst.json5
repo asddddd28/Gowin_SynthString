@@ -1,0 +1,24 @@
+{
+  "signal": [
+    {
+      "name": "clock",
+      "wave": "p........."
+    },
+    {
+      "name": "start",
+      "wave": "010......."
+    },
+    {
+      "name": "busy",
+      "wave": "01......0."
+    },
+    {
+      "name": "read_valid",
+      "wave": "0....1010."
+    },
+    {
+      "name": "done",
+      "wave": "0.......10"
+    }
+  ]
+}

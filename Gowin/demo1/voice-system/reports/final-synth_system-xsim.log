@@ -1,0 +1,33 @@
+#-----------------------------------------------------------
+# xsim v2025.1 (64-bit)
+# SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+# IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+# SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+# Start of session at: Mon Nov  2 15:52:23 2026
+# Process ID         : 83016
+# Current directory  : D:/Projects/ai/Gowin/demo1/voice-system
+# Command line       : xsim.exe -log reports/final-synth_system-xsim.log -mode tcl -source {xsim.dir/final_synth_system/xsim_script.tcl}
+# Log file           : D:/Projects/ai/Gowin/demo1/voice-system/reports/final-synth_system-xsim.log
+# Journal file       : D:/Projects/ai/Gowin/demo1/voice-system\xsim.jou
+# Running On         : DESKTOP-6S5ES0E
+# Platform           : Windows Server 2016 or Windows 10
+# Operating System   : 28000
+# Processor Detail   : 13th Gen Intel(R) Core(TM) i7-13700HX
+# CPU Frequency      : 2304 MHz
+# CPU Physical cores : 16
+# CPU Logical cores  : 24
+# Host memory        : 42655 MB
+# Swap memory        : 19327 MB
+# Total Virtual      : 61983 MB
+# Available Virtual  : 13912 MB
+#-----------------------------------------------------------
+source xsim.dir/final_synth_system/xsim_script.tcl
+# xsim {final_synth_system} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS synth_system boot=60 FM1_presets=4 keys=66 UART_replies=134 CRC_replay=PASS PCM=3436 PT8211=3437 nonzero=1809 ADC=15642 max_compute=940
+$finish called at time : 70390240 ns : File "D:/Projects/ai/Gowin/demo1/voice-system/sim/tb_synth_system.v" Line 203
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:00:20 . Memory (MB): peak = 191.598 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 12560 KB (Peak: 12560 KB), Simulation CPU Usage: 19359 ms
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 15:52:44 2026...

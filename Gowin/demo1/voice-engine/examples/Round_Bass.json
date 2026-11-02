@@ -1,0 +1,146 @@
+{
+  "name": "Round_Bass",
+  "revision": 1,
+  "operators": [
+    {
+      "enabled": true,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0.7,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.2,
+        0.1,
+        0
+      ],
+      "segment_ms": [
+        2,
+        70,
+        100,
+        80
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0.9,
+      "depth": 0.08,
+      "feedback": 0,
+      "sources": [
+        0
+      ],
+      "levels": [
+        1,
+        0.7,
+        0.65,
+        0
+      ],
+      "segment_ms": [
+        3,
+        120,
+        200,
+        100
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    }
+  ]
+}

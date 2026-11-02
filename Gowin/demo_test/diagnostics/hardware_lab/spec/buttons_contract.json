@@ -1,0 +1,265 @@
+{
+  "name": "hardware_buttons_merge",
+  "modules": [
+    {
+      "name": "HardwareButtonReport",
+      "rtl_path": "src/HardwareButtonReport.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i rstn"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "i raw"
+          },
+          {
+            "name": "i_pressed",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "i pressed"
+          },
+          {
+            "name": "i_presses",
+            "direction": "input",
+            "width": 96,
+            "role": "data",
+            "description": "i presses"
+          },
+          {
+            "name": "i_releases",
+            "direction": "input",
+            "width": 96,
+            "role": "data",
+            "description": "i releases"
+          },
+          {
+            "name": "i_edges",
+            "direction": "input",
+            "width": 96,
+            "role": "data",
+            "description": "i edges"
+          },
+          {
+            "name": "i_tx_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i tx ready"
+          },
+          {
+            "name": "o_tx_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o tx valid"
+          },
+          {
+            "name": "o_tx_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o tx data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Capture all input fields on the same clock. Emit B1 ASCII frame with exactly 87 bytes and CRC8 polynomial 07 over 82 body bytes. Sequence and counters wrap at 65536; SW1 is bit 0 and highest packed 16-bit counter.",
+        "A TelemetryByte register holds each byte until ready; ST_ACCEPT observes busy assertion before ST_WAIT accepts its deassertion. ST_ADVANCE alone advances the snapshot. Periodic ticks while busy are skipped; sequence increments only on capture. Sampling continues during backpressure."
+      ],
+      "constraints": [
+        "50 MHz rising-edge clock. Asynchronous active-low reset with synchronized release owned by HardwareLab.",
+        "C_STABLE_CYCLES and C_REPORT_CYCLES must be positive; reset aborts a frame and host resynchronizes at LF.",
+        "SW1..SW6 pins AA19, AB18, Y18, N15, U17, P15, 3.3 V active-high with weak DOWN. TP2 SCL remains AA18."
+      ],
+      "corner_cases": [
+        "Reset clears all counters; held-at-reset input counts once.",
+        "Simultaneous keys do not share filter state. Counters and sequence wrap unsigned.",
+        "Raw telemetry is a sampled snapshot, not a lossless waveform."
+      ],
+      "verification_cases": [
+        "xsim: bounce both edges, channel mapping, simultaneous press/release, long hold, modulo wrap, reset held.",
+        "Actual UART bits decoded independently in Python and Rust; CRC, fields, sequence, snapshot isolation.",
+        "Gowin routing/timing and SRAM download; physical per-switch test is separate evidence."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "held_byte",
+          "title": "Held byte under backpressure",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid handshake: data remains stable until ready.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p....."
+              },
+              {
+                "name": "o_tx_valid",
+                "wave": "01..0."
+              },
+              {
+                "name": "i_tx_ready",
+                "wave": "0..10."
+              },
+              {
+                "name": "o_tx_data",
+                "wave": "x=..x.",
+                "data": [
+                  "B"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "verification": [
+        "Combined actual ADC/I2C/UART simulation; six simultaneous short presses retained in later B1 records.",
+        "Six saturated sources: whole-line atomicity and at most three urgent frames before ordinary service.",
+        "Rust parser replay of actual mixed RTL UART at arbitrary chunk boundaries; all nine message types including B1 and new identity."
+      ]
+    },
+    {
+      "name": "HardwareButtons",
+      "rtl_path": "src/HardwareButtons.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i rstn"
+          },
+          {
+            "name": "i_buttons",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "i buttons"
+          },
+          {
+            "name": "i_tx_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i tx ready"
+          },
+          {
+            "name": "o_tx_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o tx valid"
+          },
+          {
+            "name": "o_tx_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "o tx data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Six unchanged TactileInput instances synchronize with two flops and require 250000 consecutive different samples (5 ms at 50 MHz). Independent counters retain simultaneous and short accepted presses while UART is occupied.",
+        "C_REPORT_CYCLES defaults to 5000000 (100 ms). Snapshot submission 10 Hz, no event priority. Actual delivery can be delayed by entire-line arbitration; no input edges are suppressed by telemetry stalls."
+      ],
+      "constraints": [
+        "50 MHz rising-edge clock. Asynchronous active-low reset with synchronized release owned by HardwareLab.",
+        "C_STABLE_CYCLES and C_REPORT_CYCLES must be positive; reset aborts a frame and host resynchronizes at LF.",
+        "SW1..SW6 pins AA19, AB18, Y18, N15, U17, P15, 3.3 V active-high with weak DOWN. TP2 SCL remains AA18."
+      ],
+      "corner_cases": [
+        "Reset clears all counters; held-at-reset input counts once.",
+        "Simultaneous keys do not share filter state. Counters and sequence wrap unsigned.",
+        "Raw telemetry is a sampled snapshot, not a lossless waveform."
+      ],
+      "verification_cases": [
+        "xsim: bounce both edges, channel mapping, simultaneous press/release, long hold, modulo wrap, reset held.",
+        "Actual UART bits decoded independently in Python and Rust; CRC, fields, sequence, snapshot isolation.",
+        "Gowin routing/timing and SRAM download; physical per-switch test is separate evidence."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "held_byte",
+          "title": "Held byte under backpressure",
+          "scenario": "backpressure",
+          "description": "Conceptual ready/valid handshake: data remains stable until ready.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p....."
+              },
+              {
+                "name": "o_tx_valid",
+                "wave": "01..0."
+              },
+              {
+                "name": "i_tx_ready",
+                "wave": "0..10."
+              },
+              {
+                "name": "o_tx_data",
+                "wave": "x=..x.",
+                "data": [
+                  "B"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "verification": [
+        "Combined actual ADC/I2C/UART simulation; six simultaneous short presses retained in later B1 records.",
+        "Six saturated sources: whole-line atomicity and at most three urgent frames before ordinary service.",
+        "Rust parser replay of actual mixed RTL UART at arbitrary chunk boundaries; all nine message types including B1 and new identity."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,271 @@
+{
+  "modules": [
+    {
+      "name": "KeyboardSynthTelemetry",
+      "rtl_path": "src/KeyboardSynthTelemetry.v",
+      "description": "周期性锁存32字节原子状态快照，计算前30字节异或，最后字节0D。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "50MHz统一计算时钟",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "低有效复位，异步置位同步释放",
+            "role": "reset"
+          },
+          {
+            "name": "i_frames",
+            "width": 32,
+            "direction": "input",
+            "description": "音频帧计数",
+            "role": "data"
+          },
+          {
+            "name": "i_pressed",
+            "width": 32,
+            "direction": "input",
+            "description": "物理键状态",
+            "role": "data"
+          },
+          {
+            "name": "i_delivered",
+            "width": 32,
+            "direction": "input",
+            "description": "提交键状态",
+            "role": "data"
+          },
+          {
+            "name": "i_nonzero",
+            "width": 32,
+            "direction": "input",
+            "description": "非零PCM计数",
+            "role": "data"
+          },
+          {
+            "name": "i_events",
+            "width": 32,
+            "direction": "input",
+            "description": "事件计数",
+            "role": "data"
+          },
+          {
+            "name": "i_cycles",
+            "width": 16,
+            "direction": "input",
+            "description": "合成周期",
+            "role": "data"
+          },
+          {
+            "name": "i_flags",
+            "width": 8,
+            "direction": "input",
+            "description": "错误及测试标志",
+            "role": "data"
+          },
+          {
+            "name": "i_key",
+            "width": 5,
+            "direction": "input",
+            "description": "最近键号",
+            "role": "data"
+          },
+          {
+            "name": "i_raw",
+            "width": 12,
+            "direction": "input",
+            "description": "最近ADC结果",
+            "role": "data"
+          },
+          {
+            "name": "o_uart_tx",
+            "width": 1,
+            "direction": "output",
+            "description": "115200 8N1输出",
+            "role": "data"
+          },
+          {
+            "name": "i_volume",
+            "width": 4,
+            "direction": "input",
+            "description": "主音量0至8",
+            "role": "data"
+          },
+          {
+            "name": "i_active_count",
+            "width": 6,
+            "direction": "input",
+            "description": "ADSR非空闲声部数，包括释音",
+            "role": "data"
+          },
+          {
+            "name": "i_gain",
+            "width": 19,
+            "direction": "input",
+            "description": "平滑后的Q16增益",
+            "role": "data"
+          },
+          {
+            "name": "i_input_peak",
+            "width": 24,
+            "direction": "input",
+            "description": "处理前采样峰值保持",
+            "role": "data"
+          },
+          {
+            "name": "i_output_peak",
+            "width": 24,
+            "direction": "input",
+            "description": "处理后采样峰值保持",
+            "role": "data"
+          },
+          {
+            "name": "i_clips",
+            "width": 32,
+            "direction": "input",
+            "description": "保护限幅累计次数",
+            "role": "data"
+          },
+          {
+            "name": "i_stages",
+            "width": 7,
+            "direction": "input",
+            "description": "已提交阶段累计位图",
+            "role": "data"
+          },
+          {
+            "name": "i_wave_peak",
+            "width": 32,
+            "direction": "input",
+            "description": "振荡波形绝对峰值",
+            "role": "data"
+          },
+          {
+            "name": "i_mod_peak",
+            "width": 32,
+            "direction": "input",
+            "description": "AM输出绝对峰值",
+            "role": "data"
+          },
+          {
+            "name": "i_env_peak",
+            "width": 18,
+            "direction": "input",
+            "description": "包络整数峰值",
+            "role": "data"
+          },
+          {
+            "name": "i_ack_seq",
+            "width": 8,
+            "direction": "input",
+            "description": "i ack seq",
+            "role": "data"
+          },
+          {
+            "name": "i_ack_op",
+            "width": 8,
+            "direction": "input",
+            "description": "i ack op",
+            "role": "data"
+          },
+          {
+            "name": "i_ack_status",
+            "width": 8,
+            "direction": "input",
+            "description": "i ack status",
+            "role": "data"
+          },
+          {
+            "name": "i_ack_key",
+            "width": 8,
+            "direction": "input",
+            "description": "i ack key",
+            "role": "data"
+          },
+          {
+            "name": "i_ack_crc",
+            "width": 16,
+            "direction": "input",
+            "description": "i ack crc",
+            "role": "data"
+          },
+          {
+            "name": "i_commits",
+            "width": 32,
+            "direction": "input",
+            "description": "i commits",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "80字节快照：A5 5A 03 50；0..61保持旧遥测布局。",
+        "62seq、63op、64status、65key、66..67CRC、68..71配置提交数、72..75能力位、76..77保留、78 XOR(0..77)、79=0D。",
+        "100ms周期锁存一次，发完整包后再锁存；ACK不是命令发送的本地回显。"
+      ],
+      "constraints": [
+        "50MHz单时钟域；异步低有效复位，板级同步释放。",
+        "新固件协议与旧96kHz Studio不兼容，必须核对版本3。"
+      ],
+      "corner_cases": [
+        "复位取消旧任务",
+        "输出背压",
+        "32键复音",
+        "CRC失败与残包",
+        "参数在释音中更新"
+      ],
+      "verification_cases": [
+        "完整ADC/UART/PT8211闭环",
+        "400个混合整数向量",
+        "配置ACK及短演奏包",
+        "无覆盖的活动参数快照",
+        "Gowin综合实现时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "commit",
+          "title": "参数与任务提交",
+          "scenario": "handshake",
+          "description": "有效期间保持完整事务，接受后才发射或确认；算术延迟见行为合同。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......"
+              },
+              {
+                "name": "valid",
+                "wave": "01..0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0..10.."
+              },
+              {
+                "name": "commit",
+                "wave": "0...10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

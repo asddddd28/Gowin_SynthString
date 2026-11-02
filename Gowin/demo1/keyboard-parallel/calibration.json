@@ -1,0 +1,266 @@
+{
+  "format": "TangKeyboardCalibration",
+  "version": 1,
+  "name": "历史实测 · 2026-10-29",
+  "source": "Tang Mega 60K / Dock31004 / DEBUG2025030317B. Rest: keyboard_final_idle_after_rework_20261029_025354.bin; bottom: keyboard_after_cn1_rework_all_keys_20261029_024626.bin. Recalibrate after mechanical/magnet changes; relative endpoint scale, not millimeters.",
+  "press_threshold": 0.5,
+  "release_threshold": 0.35,
+  "keys": [
+    {
+      "key": 1,
+      "calibration": {
+        "rest": 845,
+        "bottom": 130.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 2,
+      "calibration": {
+        "rest": 795,
+        "bottom": 129,
+        "noise": 8
+      }
+    },
+    {
+      "key": 3,
+      "calibration": {
+        "rest": 801,
+        "bottom": 121,
+        "noise": 8
+      }
+    },
+    {
+      "key": 4,
+      "calibration": {
+        "rest": 835,
+        "bottom": 123,
+        "noise": 5
+      }
+    },
+    {
+      "key": 5,
+      "calibration": {
+        "rest": 869,
+        "bottom": 124.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 6,
+      "calibration": {
+        "rest": 995,
+        "bottom": 123.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 7,
+      "calibration": {
+        "rest": 989,
+        "bottom": 120.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 8,
+      "calibration": {
+        "rest": 795,
+        "bottom": 117.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 9,
+      "calibration": {
+        "rest": 817,
+        "bottom": 129.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 10,
+      "calibration": {
+        "rest": 865,
+        "bottom": 125,
+        "noise": 7
+      }
+    },
+    {
+      "key": 11,
+      "calibration": {
+        "rest": 895,
+        "bottom": 127,
+        "noise": 7
+      }
+    },
+    {
+      "key": 12,
+      "calibration": {
+        "rest": 894,
+        "bottom": 124,
+        "noise": 7
+      }
+    },
+    {
+      "key": 13,
+      "calibration": {
+        "rest": 959,
+        "bottom": 127.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 14,
+      "calibration": {
+        "rest": 999,
+        "bottom": 131,
+        "noise": 7
+      }
+    },
+    {
+      "key": 15,
+      "calibration": {
+        "rest": 1038,
+        "bottom": 121,
+        "noise": 6
+      }
+    },
+    {
+      "key": 16,
+      "calibration": {
+        "rest": 828,
+        "bottom": 131,
+        "noise": 7
+      }
+    },
+    {
+      "key": 17,
+      "calibration": {
+        "rest": 798,
+        "bottom": 129,
+        "noise": 6
+      }
+    },
+    {
+      "key": 18,
+      "calibration": {
+        "rest": 842,
+        "bottom": 120.0,
+        "noise": 8
+      }
+    },
+    {
+      "key": 19,
+      "calibration": {
+        "rest": 859,
+        "bottom": 117,
+        "noise": 8
+      }
+    },
+    {
+      "key": 20,
+      "calibration": {
+        "rest": 865,
+        "bottom": 121.5,
+        "noise": 8
+      }
+    },
+    {
+      "key": 21,
+      "calibration": {
+        "rest": 912,
+        "bottom": 124,
+        "noise": 8
+      }
+    },
+    {
+      "key": 22,
+      "calibration": {
+        "rest": 1023,
+        "bottom": 122.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 23,
+      "calibration": {
+        "rest": 1062,
+        "bottom": 128.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 24,
+      "calibration": {
+        "rest": 819,
+        "bottom": 123,
+        "noise": 7
+      }
+    },
+    {
+      "key": 25,
+      "calibration": {
+        "rest": 766,
+        "bottom": 131.0,
+        "noise": 8
+      }
+    },
+    {
+      "key": 26,
+      "calibration": {
+        "rest": 760,
+        "bottom": 121.5,
+        "noise": 7
+      }
+    },
+    {
+      "key": 27,
+      "calibration": {
+        "rest": 799,
+        "bottom": 123.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 28,
+      "calibration": {
+        "rest": 795,
+        "bottom": 121.0,
+        "noise": 8
+      }
+    },
+    {
+      "key": 29,
+      "calibration": {
+        "rest": 848,
+        "bottom": 126.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 30,
+      "calibration": {
+        "rest": 936,
+        "bottom": 127.0,
+        "noise": 7
+      }
+    },
+    {
+      "key": 31,
+      "calibration": {
+        "rest": 939,
+        "bottom": 127,
+        "noise": 8
+      }
+    },
+    {
+      "key": 32,
+      "calibration": {
+        "rest": 759,
+        "bottom": 125.0,
+        "noise": 7
+      }
+    }
+  ]
+}

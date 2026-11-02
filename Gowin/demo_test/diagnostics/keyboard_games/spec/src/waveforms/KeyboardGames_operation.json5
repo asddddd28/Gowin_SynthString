@@ -1,0 +1,21 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p......."
+    },
+    {
+      "name": "reset_n",
+      "wave": "01......"
+    },
+    {
+      "name": "phase",
+      "wave": "x.=.=.=.",
+      "data": [
+        "accept",
+        "process",
+        "publish"
+      ]
+    }
+  ]
+}

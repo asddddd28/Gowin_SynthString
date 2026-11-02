@@ -1,0 +1,49 @@
+   Compiling tang-hardware-lab v2.0.0 (D:\Projects\ai\Gowin\demo_test\desktop-tauri\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 6.27s
+     Running unittests src\lib.rs (src-tauri\target\debug\deps\tang_hardware_lab-4d557bff92c59b79.exe)
+
+running 12 tests
+test calibration::tests::interruption_never_commits ... ok
+test calibration::tests::invalid_thresholds_and_profiles_rejected ... ok
+test model::tests::disconnect_clears_active_inputs ... ok
+test model::tests::guitar_only_fpga_events_and_order ... ok
+test model::tests::encoder_wrap_and_timeout ... ok
+test link::tests::matching_ack_only_and_retry ... ok
+test calibration::tests::stable_calibration_and_spike_rejection ... ok
+test model::tests::guitar_clock_wrap_and_board_restart_reanchor_silently ... ok
+test link::tests::collision_changes_sequence_and_timeout_fails ... ok
+test model::tests::guitar_rejects_backlog_then_accepts_current_events ... ok
+test audio::tests::waveform_finite_and_fades ... ok
+test audio::tests::silence_pluck_and_polyphony ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running unittests src\bin\hardware-probe.rs (src-tauri\target\debug\deps\hardware_probe-d8132d6b42e2b8ec.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src\main.rs (src-tauri\target\debug\deps\tang_hardware_lab-c38788a6d2731b01.exe)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests\compatibility.rs (src-tauri\target\debug\deps\compatibility-7598709f540592de.exe)
+
+running 5 tests
+test bad_crc_unsupported_identity_noise_and_partial_line_recover ... ok
+test opening_mid_frame_does_not_count_a_transport_error ... ok
+test range_errors_never_reach_model ... ok
+test calibration_command_bytes_match_legacy_including_rounding ... ok
+test every_split_size_matches_previous_app_and_real_capture ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+   Doc-tests tang_hardware_lab
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+

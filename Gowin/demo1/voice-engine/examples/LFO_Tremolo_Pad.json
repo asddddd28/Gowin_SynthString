@@ -1,0 +1,172 @@
+{
+  "name": "LFO_Tremolo_Pad",
+  "revision": 1,
+  "operators": [
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 0.9975,
+      "gain": 0.7,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.85,
+        0.8,
+        0
+      ],
+      "segment_ms": [
+        700,
+        1500,
+        1800,
+        1200
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 0.9985,
+      "gain": 0.7,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.85,
+        0.8,
+        0
+      ],
+      "segment_ms": [
+        700,
+        1500,
+        1800,
+        1200
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 0.9995,
+      "gain": 0.7,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.85,
+        0.8,
+        0
+      ],
+      "segment_ms": [
+        700,
+        1500,
+        1800,
+        1200
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1.0005,
+      "gain": 0.7,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.85,
+        0.8,
+        0
+      ],
+      "segment_ms": [
+        700,
+        1500,
+        1800,
+        1200
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1.0015,
+      "gain": 0.7,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.85,
+        0.8,
+        0
+      ],
+      "segment_ms": [
+        700,
+        1500,
+        1800,
+        1200
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1.0025,
+      "gain": 0.7,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.85,
+        0.8,
+        0
+      ],
+      "segment_ms": [
+        700,
+        1500,
+        1800,
+        1200
+      ]
+    }
+  ],
+  "lfos": [
+    {
+      "wave": "sine",
+      "scope": "global",
+      "beats_per_cycle": 1,
+      "unipolar": true,
+      "seed": 1
+    },
+    {
+      "wave": "sine",
+      "scope": "voice",
+      "rate_hz": 0.37,
+      "phase": 0.25,
+      "seed": 2
+    }
+  ],
+  "routes": [
+    {
+      "source": 0,
+      "target": "gain",
+      "depth": -0.55
+    },
+    {
+      "source": 1,
+      "target": "pan",
+      "depth": 0.4
+    }
+  ]
+}

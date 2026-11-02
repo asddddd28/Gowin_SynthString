@@ -1,0 +1,173 @@
+{
+  "modules": [
+    {
+      "name": "KeyboardAxisTop",
+      "rtl_path": "src/KeyboardAxisTop.v",
+      "description": "50MHz单域，1024拍音频帧，采样率48828.125Hz，相位增量按此采样率计算。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "50MHz统一计算时钟",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "低有效复位，异步置位同步释放",
+            "role": "reset"
+          },
+          {
+            "name": "i_adc_dout",
+            "width": 1,
+            "direction": "input",
+            "description": "外部ADC串行数据",
+            "role": "data"
+          },
+          {
+            "name": "i_uart_rx",
+            "width": 1,
+            "direction": "input",
+            "description": "调试命令输入",
+            "role": "data"
+          },
+          {
+            "name": "o_mux_sel",
+            "width": 3,
+            "direction": "output",
+            "description": "模拟多路选择",
+            "role": "data"
+          },
+          {
+            "name": "o_mux_en",
+            "width": 1,
+            "direction": "output",
+            "description": "多路器使能",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC片选",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_sclk",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC时钟",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_din",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC命令",
+            "role": "data"
+          },
+          {
+            "name": "o_uart_tx",
+            "width": 1,
+            "direction": "output",
+            "description": "调试快照",
+            "role": "data"
+          },
+          {
+            "name": "HP_BCK",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211位时钟",
+            "role": "data"
+          },
+          {
+            "name": "HP_WS",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211声道选择",
+            "role": "data"
+          },
+          {
+            "name": "HP_DIN",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211音频数据",
+            "role": "data"
+          },
+          {
+            "name": "PA_EN",
+            "width": 1,
+            "direction": "output",
+            "description": "低有效功放使能",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "实际ADC引脚采样、迟滞判键、程序RAM、AXIS合成、响度控制和PT8211构成完整链路。",
+        "StudioControl处理带CRC参数包与短演奏包，保留空闲时ASCII T/P和0..8。",
+        "程序和波表存储在片上RAM，掉电丢失；不修改SD卡或Flash。"
+      ],
+      "constraints": [
+        "50MHz单时钟域；异步低有效复位，板级同步释放。",
+        "新固件协议与旧96kHz Studio不兼容，必须核对版本3。"
+      ],
+      "corner_cases": [
+        "复位取消旧任务",
+        "输出背压",
+        "32键复音",
+        "CRC失败与残包",
+        "参数在释音中更新"
+      ],
+      "verification_cases": [
+        "完整ADC/UART/PT8211闭环",
+        "400个混合整数向量",
+        "配置ACK及短演奏包",
+        "无覆盖的活动参数快照",
+        "Gowin综合实现时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "commit",
+          "title": "参数与任务提交",
+          "scenario": "handshake",
+          "description": "有效期间保持完整事务，接受后才发射或确认；算术延迟见行为合同。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......"
+              },
+              {
+                "name": "valid",
+                "wave": "01..0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0..10.."
+              },
+              {
+                "name": "commit",
+                "wave": "0...10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

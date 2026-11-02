@@ -1,0 +1,339 @@
+{
+  "name": "encoder",
+  "modules": [
+    {
+      "name": "EncoderChannel",
+      "rtl_path": "src/EncoderChannel.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50MHz clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset"
+          },
+          {
+            "name": "i_phase",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "A/B async inputs"
+          },
+          {
+            "name": "o_raw",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "Synchronized phase"
+          },
+          {
+            "name": "o_filtered",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "Stable phase"
+          },
+          {
+            "name": "o_position",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "Signed net edge count"
+          },
+          {
+            "name": "o_positive",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "Positive edges"
+          },
+          {
+            "name": "o_negative",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "Negative edges"
+          },
+          {
+            "name": "o_invalid",
+            "direction": "output",
+            "width": 16,
+            "role": "data",
+            "description": "Invalid diagonal transitions"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Two-stage input synchronizer; whole AB candidate stable for 2500 cycles before accepting.",
+        "First stable phase initializes baseline without counting. Positive Gray order 00,01,11,10,00.",
+        "Counters wrap modulo 65536. Invalid diagonal transition increments invalid and resynchronizes."
+      ],
+      "constraints": [
+        "C_FILTER_CYCLES >= 2 and <=65535; C_BAUD_CYCLES >=2 and <=65535.",
+        "C_REPORT_CYCLES must exceed full five-line UART transmission for every interval to be serviced.",
+        "AB voltage must be compatible with 3.3V IO. Mechanical CW polarity is not yet calibrated."
+      ],
+      "corner_cases": [
+        "Initial stable phase must not generate a rotation.",
+        "Reset aborts UART and clears all counters.",
+        "Double-bit transition is rejected from position, not reconstructed."
+      ],
+      "verification_cases": [
+        "xsim positive, negative, short glitch, backtracking bounce, invalid transition, five-channel mapping, exact ASCII and reset during UART.",
+        "Gowin synthesis and timing; hardware rotate test still required."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "EncoderChannel conceptual operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; not a measured trace.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "phase",
+                "wave": "=.=.=.=.=.",
+                "data": [
+                  "initialize",
+                  "sample",
+                  "filter",
+                  "count",
+                  "report"
+                ]
+              },
+              {
+                "name": "reset_n",
+                "wave": "01........"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EncoderUartTx",
+      "rtl_path": "src/EncoderUartTx.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50MHz clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset"
+          },
+          {
+            "name": "i_start",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "Start pulse accepted only when idle"
+          },
+          {
+            "name": "i_data",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "Byte to send"
+          },
+          {
+            "name": "o_busy",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "High through stop bit"
+          },
+          {
+            "name": "o_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "UART serial line"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Latch start plus data plus stop when idle. Transmit LSB first, each bit lasts C_BAUD_CYCLES.",
+        "Ignore start while busy. Reset aborts transfer and forces idle high."
+      ],
+      "constraints": [
+        "C_FILTER_CYCLES >= 2 and <=65535; C_BAUD_CYCLES >=2 and <=65535.",
+        "C_REPORT_CYCLES must exceed full five-line UART transmission for every interval to be serviced.",
+        "AB voltage must be compatible with 3.3V IO. Mechanical CW polarity is not yet calibrated."
+      ],
+      "corner_cases": [
+        "Initial stable phase must not generate a rotation.",
+        "Reset aborts UART and clears all counters.",
+        "Double-bit transition is rejected from position, not reconstructed."
+      ],
+      "verification_cases": [
+        "xsim positive, negative, short glitch, backtracking bounce, invalid transition, five-channel mapping, exact ASCII and reset during UART.",
+        "Gowin synthesis and timing; hardware rotate test still required."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "EncoderUartTx conceptual operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; not a measured trace.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "phase",
+                "wave": "=.=.=.=.=.",
+                "data": [
+                  "initialize",
+                  "sample",
+                  "filter",
+                  "count",
+                  "report"
+                ]
+              },
+              {
+                "name": "reset_n",
+                "wave": "01........"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "EncoderDebug",
+      "rtl_path": "src/EncoderDebug.v",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "50MHz clock"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "Active-low reset"
+          },
+          {
+            "name": "i_encoder_a",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "Five A pins in board order"
+          },
+          {
+            "name": "i_encoder_b",
+            "direction": "input",
+            "width": 5,
+            "role": "data",
+            "description": "Five B pins in board order"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "U15 to debugger UART"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "frequency_mhz": 50,
+        "edge": "posedge"
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "synchronous": false,
+        "description": "Top synchronizes release for child modules"
+      },
+      "behavior": [
+        "Synchronize reset release; instantiate five independent channels.",
+        "Every 100ms send five 34-byte ASCII lines; every line has one coherent snapshot.",
+        "Format: E1 A3 F3 Q0000 P0000 N0000 X0000 CR LF. Input sampling continues during output."
+      ],
+      "constraints": [
+        "C_FILTER_CYCLES >= 2 and <=65535; C_BAUD_CYCLES >=2 and <=65535.",
+        "C_REPORT_CYCLES must exceed full five-line UART transmission for every interval to be serviced.",
+        "AB voltage must be compatible with 3.3V IO. Mechanical CW polarity is not yet calibrated."
+      ],
+      "corner_cases": [
+        "Initial stable phase must not generate a rotation.",
+        "Reset aborts UART and clears all counters.",
+        "Double-bit transition is rejected from position, not reconstructed."
+      ],
+      "verification_cases": [
+        "xsim positive, negative, short glitch, backtracking bounce, invalid transition, five-channel mapping, exact ASCII and reset during UART.",
+        "Gowin synthesis and timing; hardware rotate test still required."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "operation",
+          "title": "EncoderDebug conceptual operation",
+          "scenario": "operation",
+          "description": "Conceptual phases; not a measured trace.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "phase",
+                "wave": "=.=.=.=.=.",
+                "data": [
+                  "initialize",
+                  "sample",
+                  "filter",
+                  "count",
+                  "report"
+                ]
+              },
+              {
+                "name": "reset_n",
+                "wave": "01........"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

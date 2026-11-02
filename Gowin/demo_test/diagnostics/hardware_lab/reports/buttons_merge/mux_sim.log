@@ -1,0 +1,17 @@
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 07:05:20 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/telemetry_mux_buttons_sim/xsim_script.tcl
+# xsim {telemetry_mux_buttons_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS six streams saturated: atomic frames, max3 priority, all sources progress
+$finish called at time : 316810 ns : File "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/sim/tb_telemetry_mux.v" Line 38
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 07:05:22 2026...

@@ -1,0 +1,31 @@
+{
+  "signal": [
+    {
+      "name": "clock",
+      "wave": "p........."
+    },
+    {
+      "name": "request",
+      "wave": "01.0......"
+    },
+    {
+      "name": "processing",
+      "wave": "01....0..."
+    },
+    {
+      "name": "result_valid",
+      "wave": "0.....1..0"
+    },
+    {
+      "name": "result_ready",
+      "wave": "1.....0.1."
+    },
+    {
+      "name": "result_tag",
+      "wave": "x.....=..x",
+      "data": [
+        "same tag"
+      ]
+    }
+  ]
+}

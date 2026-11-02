@@ -1,0 +1,155 @@
+{
+  "modules": [
+    {
+      "name": "SynthPcmOutput",
+      "rtl_path": "rtl/SynthPcmOutput.v",
+      "description": "Q26 stereo to saturated signed16 with symmetric nearest rounding; consume PCM only at fixed1024-clock frame boundaries.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_valid"
+          },
+          {
+            "name": "i_data",
+            "direction": "input",
+            "width": 64,
+            "role": "data",
+            "description": "i_data"
+          },
+          {
+            "name": "o_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_ready"
+          },
+          {
+            "name": "o_bclk",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_bclk"
+          },
+          {
+            "name": "o_ws",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_ws"
+          },
+          {
+            "name": "o_data",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_data"
+          },
+          {
+            "name": "o_frames",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_frames"
+          },
+          {
+            "name": "o_underruns",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_underruns"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Q26 stereo to saturated signed16 with symmetric nearest rounding; consume PCM only at fixed1024-clock frame boundaries.",
+        "PT8211: 16 BCK per channel, WS high left, MSB first. BCK rises at counts16+32n; serial data changes near preceding falling edge.",
+        "Startup silence is not an underrun; after first consumed sample missing frames output zero and increment underrun counter."
+      ],
+      "constraints": [
+        "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
+        "See SYSTEM.md and model/system_model.py for ABI, numerical behavior, memory images and validation scope."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent protocol/PCM model",
+        "Real UART/ADC pins to serial DAC simulation",
+        "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
+        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

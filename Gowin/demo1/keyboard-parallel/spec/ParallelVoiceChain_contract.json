@@ -1,0 +1,154 @@
+{
+  "modules": [
+    {
+      "name": "ParallelVoiceChain",
+      "rtl_path": "src/ParallelVoiceChain.v",
+      "description": "SVF池与VCA池独立配置物理实例数量，通过AXI-Stream直接级联。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "width": 1,
+            "direction": "input",
+            "description": "i axis aclk",
+            "role": "clock"
+          },
+          {
+            "name": "i_axis_arstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i axis arstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "width": 352,
+            "direction": "input",
+            "description": "i s axis tdata",
+            "role": "data"
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "width": 21,
+            "direction": "input",
+            "description": "i s axis tuser",
+            "role": "data"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "width": 1,
+            "direction": "input",
+            "description": "i s axis tvalid",
+            "role": "data"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "width": 1,
+            "direction": "output",
+            "description": "o s axis tready",
+            "role": "data"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "width": 192,
+            "direction": "output",
+            "description": "o m axis tdata",
+            "role": "data"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "width": 21,
+            "direction": "output",
+            "description": "o m axis tuser",
+            "role": "data"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "width": 1,
+            "direction": "input",
+            "description": "i m axis tready",
+            "role": "data"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "width": 1,
+            "direction": "output",
+            "description": "o m axis tvalid",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "SVF池与VCA池独立配置物理实例数量，通过AXI-Stream直接级联。",
+        "滤波user携带原21位标签+18位包络+7位力度，共46位；VCA user携带21位标签+156位滤波状态与标志，共177位。",
+        "最终返回192位音频与状态以及原21位标签；算术、量化和状态格式与旧AxisVoiceChain一致。",
+        "每池保序并传递背压；复位取消所有在途上下文。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，低有效复位；板级复位同步释放。",
+        "C_*_CORES是综合期参数，1..4；任意配置需要独立验证资源和时序，只有默认配置有本板实现证据。",
+        "一个issue和一个retire端口；仍保留阶段屏障，不是任意连接的多发射计算图。"
+      ],
+      "corner_cases": [
+        "全满背压及同时接受/返回",
+        "非2次幂核心数游标回绕",
+        "处理中复位",
+        "wave副本写一致性",
+        "note-off保留旧参数"
+      ],
+      "verification_cases": [
+        "原引擎逐声部及PCM等值比较",
+        "各池1/2/3/4核配置",
+        "输入输出停顿及复位",
+        "真实ADC/UART/PT8211引脚闭环",
+        "Gowin综合与50MHz时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "ordered",
+          "title": "背压与有序返回",
+          "scenario": "handshake",
+          "description": "示意ready为0时保持队首；箭头不代表固定核心算术延迟。实际周期见各核心和阶段统计。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_axis_aclk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "task",
+                "wave": "x2...x..",
+                "data": [
+                  "voice n"
+                ]
+              },
+              {
+                "name": "accept",
+                "wave": "0...10.."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

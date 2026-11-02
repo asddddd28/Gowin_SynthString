@@ -1,0 +1,17 @@
+
+> tang-hardware-lab@2.0.0 test:ui
+> node --test tests/*.test.mjs
+
+✔ finished game still needs an explicit exit before calibration (0.9977ms)
+✔ replay, stale status and missing keys cannot start or apply (0.2676ms)
+✔ busy commands disable game exit until an ACK is available (0.13ms)
+✔ calibration advances rest -> ready -> press -> complete (0.1761ms)
+✔ failed candidate can restart without overwriting saved calibration (0.2068ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140.9112

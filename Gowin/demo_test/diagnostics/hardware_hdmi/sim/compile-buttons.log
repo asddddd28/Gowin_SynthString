@@ -1,0 +1,10 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardTelemetry.v" into library work
+INFO: [VRFC 10-311] analyzing module DashboardTelemetry
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardVideo.v" into library work
+INFO: [VRFC 10-311] analyzing module DashboardVideo
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/src/DashboardFont.v" into library work
+INFO: [VRFC 10-311] analyzing module DashboardFont
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v" into library work
+INFO: [VRFC 10-311] analyzing module UartRx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_hdmi/sim/tb_dashboard.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_dashboard

@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-02",
+  "artifact": "release/TangHardwareLab.exe",
+  "sha256": "5f00a447f18c0c8046ab102815678bb2cb5481184fe903bdcc929b7bbdfffa54",
+  "build_log": "../build_buttons_merge_app.log",
+  "rust_tests": "../build_buttons_merge_all_tests.log",
+  "note": "Final successful Tauri build; includes six-switch hub compatibility and overview caption. No build performed during GitHub export."
+}

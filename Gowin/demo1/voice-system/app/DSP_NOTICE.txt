@@ -1,0 +1,18 @@
+The DX envelope scaling tables, algorithm descriptions and conversion formulas
+are adapted from Music Synthesizer for Android (env.cc, dx7note.cc, fm_core.cc).
+Copyright 2012 Google Inc.
+https://github.com/google/music-synthesizer-for-android
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+    https://www.apache.org/licenses/LICENSE-2.0
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
+
+Modifications: translated to Python and Verilog; bounded FPGA compatibility
+profile; sample-rate adjusted continuous envelopes; normalized Q26 amplitudes;
+256-entry exponential ROM; explicit validation of unsupported features.
+Factory voice data have separate provenance in SOURCE.json and UPSTREAM_NOTICES.md.

@@ -3,7 +3,8 @@
 module HardwareLab #(
     parameter integer C_UART_CYCLES=434,C_SETTLE_CYCLES=10000,C_FRAME_CYCLES=1000000,
     parameter integer C_KEY_REPORT=5000000,C_ENCODER_REPORT=5000000,C_JOY_REPORT=2500000,
-    parameter integer C_TOUCH_REPORT=2500000,C_ID_REPORT=12500000,
+    parameter integer C_TOUCH_REPORT=2500000,C_ID_REPORT=12500000,C_BUTTON_REPORT=5000000,
+    parameter integer C_BUTTON_FILTER=250000,
     parameter integer C_ENCODER_FILTER=2500,C_JOY_FILTER=250000,
     parameter integer C_I2C_DIVIDER=99,C_TOUCH_BOOT=2500000,C_TOUCH_RETRY=50000000,
     parameter integer C_TOUCH_RESET=250000,C_TOUCH_TIMEOUT=2000000
@@ -16,6 +17,7 @@ module HardwareLab #(
     input [4:0] i_encoder_b,
     input [4:0] i_joystick,
     input [1:0] i_irq,
+    input [5:0] i_buttons,
     inout [1:0] io_scl,
     inout [1:0] io_sda,
     output [2:0] o_mux_sel,
@@ -29,10 +31,10 @@ module HardwareLab #(
 reg [1:0] reset_sync=0;
 reg [15:0] power_count=0;
 wire resetn=reset_sync[1] && power_count[15];
-wire [4:0] valid,ready,priority;
-wire [39:0] data;
+wire [5:0] valid,ready,priority;
+wire [47:0] data;
 assign priority[2:1]=0;
-assign priority[4]=0;
+assign priority[5:4]=0;
 always @(posedge i_clk or negedge i_rstn) begin
     if(!i_rstn) begin reset_sync<=0;power_count<=0;end
     else begin
@@ -57,6 +59,9 @@ HardwareTouchpad #(.C_DIVIDER(C_I2C_DIVIDER),.C_REPORT(C_TOUCH_REPORT),.C_BOOT(C
  .i_tx_ready(ready[3]),.o_tx_valid(valid[3]),.o_tx_data(data[31:24]),.o_priority(priority[3]));
 HardwareIdentity #(.C_REPORT_CYCLES(C_ID_REPORT)) identity(
  .i_clk(i_clk),.i_rstn(resetn),.i_ready(ready[4]),.o_valid(valid[4]),.o_data(data[39:32]));
-TelemetryMux #(.C_BAUD(C_UART_CYCLES)) output_mux(
+HardwareButtons #(.C_STABLE_CYCLES(C_BUTTON_FILTER),.C_REPORT_CYCLES(C_BUTTON_REPORT)) buttons(
+ .i_clk(i_clk),.i_rstn(resetn),.i_buttons(i_buttons),
+ .i_tx_ready(ready[5]),.o_tx_valid(valid[5]),.o_tx_data(data[47:40]));
+TelemetryMux #(.C_BAUD(C_UART_CYCLES),.C_CHANNELS(6)) output_mux(
  .i_clk(i_clk),.i_rstn(resetn),.i_valid(valid),.i_data(data),.i_priority(priority),.o_ready(ready),.o_tx(o_uart_tx));
 endmodule

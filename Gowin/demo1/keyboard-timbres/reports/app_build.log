@@ -1,0 +1,14 @@
+
+> tang-hardware-lab@2.0.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1590 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.36 kB │ gzip:   0.27 kB
+dist/assets/index-DC3UiLad.css   46.24 kB │ gzip:  11.21 kB
+dist/assets/index-C_sOVdnv.js   328.45 kB │ gzip: 102.12 kB
+
+✓ built in 800ms

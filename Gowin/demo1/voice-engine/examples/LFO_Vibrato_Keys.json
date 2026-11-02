@@ -1,0 +1,174 @@
+{
+  "name": "LFO_Vibrato_Keys",
+  "revision": 1,
+  "operators": [
+    {
+      "enabled": true,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 3,
+      "gain": 0.6,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.15,
+        0,
+        0
+      ],
+      "segment_ms": [
+        1,
+        80,
+        100,
+        100
+      ]
+    },
+    {
+      "enabled": true,
+      "carrier": true,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0.9,
+      "depth": 0.08,
+      "feedback": 0,
+      "sources": [
+        0
+      ],
+      "levels": [
+        1,
+        0.6,
+        0.25,
+        0
+      ],
+      "segment_ms": [
+        3,
+        300,
+        500,
+        300
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    },
+    {
+      "enabled": false,
+      "carrier": false,
+      "wave": "sine",
+      "mode": "pm",
+      "ratio": 1,
+      "gain": 0,
+      "depth": 0.12,
+      "feedback": 0,
+      "sources": [],
+      "levels": [
+        1,
+        0.7,
+        0.5,
+        0
+      ],
+      "segment_ms": [
+        4,
+        120,
+        180,
+        240
+      ]
+    }
+  ],
+  "lfos": [
+    {
+      "wave": "sine",
+      "scope": "voice",
+      "rate_hz": 5.5,
+      "phase": 0,
+      "seed": 1
+    },
+    {
+      "wave": "triangle",
+      "scope": "global",
+      "rate_hz": 0.25,
+      "phase": 0.25,
+      "seed": 2
+    }
+  ],
+  "routes": [
+    {
+      "source": 0,
+      "target": "pitch",
+      "depth": 0.006
+    },
+    {
+      "source": 1,
+      "target": "pan",
+      "depth": 0.3
+    }
+  ]
+}

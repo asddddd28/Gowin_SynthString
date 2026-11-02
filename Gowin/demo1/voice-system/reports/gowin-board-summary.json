@@ -1,0 +1,89 @@
+{
+  "build": {
+    "implDir": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\gowin-shared-operator\\impl",
+    "name": "synth_fm1",
+    "designFile": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\gowin-shared-operator\\impl\\gwsynthesis\\synth_fm1.vg",
+    "constraintsFile": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\system.cst",
+    "sdcFile": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\system.sdc",
+    "toolVersion": "V1.9.11.03 Education",
+    "partNumber": "GW5AT-LV60PG484AC1/I0",
+    "device": "GW5AT-60",
+    "deviceVersion": "B",
+    "createdTime": "Mon Nov  2 16:06:18 2026",
+    "elapsed": "0h 11m 49s",
+    "peakMemory": "1954MB"
+  },
+  "resources": {
+    "logic": {
+      "name": "Logic",
+      "depth": 0,
+      "used": 27189,
+      "available": 59904,
+      "utilization": "46%",
+      "raw": "27189/59904"
+    },
+    "cls": {
+      "name": "CLS",
+      "depth": 0,
+      "used": 24379,
+      "available": 29952,
+      "utilization": "82%",
+      "raw": "24379/29952"
+    },
+    "register": {
+      "name": "Register",
+      "depth": 0,
+      "used": 23643,
+      "available": 60780,
+      "utilization": "39%",
+      "raw": "23643/60780"
+    },
+    "bsram": {
+      "name": "BSRAM",
+      "depth": 0,
+      "used": 98,
+      "available": 118,
+      "utilization": "84%",
+      "raw": "98/118"
+    },
+    "dsp": {
+      "name": "DSP",
+      "depth": 0,
+      "used": 98,
+      "available": 118,
+      "utilization": "84%",
+      "raw": "98/118"
+    },
+    "ioPort": {
+      "name": "I/O Port",
+      "depth": 0,
+      "used": 16,
+      "available": 297,
+      "utilization": "6%",
+      "raw": "16/297"
+    }
+  },
+  "timing": {
+    "fmax": [
+      {
+        "clock": "sys_clk",
+        "constraintMhz": 50,
+        "actualMhz": 35.944,
+        "logicLevel": 10,
+        "entity": "TOP",
+        "failing": true,
+        "marginMhz": -14.056
+      }
+    ],
+    "violations": [
+      {
+        "kind": "setup",
+        "clock": "sys_clk",
+        "amount": -1776.88,
+        "unit": "ns",
+        "detail": "1240 endpoints failing setup"
+      }
+    ]
+  },
+  "clean": false
+}

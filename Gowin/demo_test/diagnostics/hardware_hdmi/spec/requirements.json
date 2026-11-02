@@ -1,0 +1,31 @@
+{
+  "resolution": [
+    1280,
+    720
+  ],
+  "total": [
+    1650,
+    750
+  ],
+  "pixel_hz": 73333333.333333,
+  "serial_hz": 366666666.666667,
+  "fps": 59.2592592593,
+  "softcore": false,
+  "source": "read-only internal UART observer at 115200 8N1",
+  "original_rtl_modified": false,
+  "graphics": [
+    "32 key ADC hex values and pressed mask",
+    "5 signed counts shown as 16-bit hex",
+    "two transposed 5x7 touch grids",
+    "joystick raw direction and switch",
+    "64 samples of K01 ADC, not audio"
+  ],
+  "verification": [
+    "parser known and malformed frames",
+    "one full frame sync and active-pixel counts",
+    "RTL frame capture",
+    "Gowin synthesis/PnR timing",
+    "SRAM download",
+    "user confirms actual screen"
+  ]
+}

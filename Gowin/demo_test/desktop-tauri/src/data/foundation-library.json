@@ -1,0 +1,724 @@
+{
+  "format": "tang-foundation-library",
+  "version": 1,
+  "firmware": "Studio protocol 3/4; no new RTL required",
+  "categories": [
+    {
+      "id": "Drum",
+      "label": "Drum · 鼓",
+      "description": "低频鼓击、FM 通鼓、木质与金属短击；噪声军鼓/踩镲、音高下滑底鼓待硬件扩展。"
+    },
+    {
+      "id": "Bass",
+      "label": "Bass · 低音",
+      "description": "Sub、锯齿与 FM 低音。示范区采用低八度音高。"
+    },
+    {
+      "id": "Pad",
+      "label": "Pad · 铺底",
+      "description": "慢起音、失谐与长释音；请持续按键，当前为单声道。"
+    },
+    {
+      "id": "Key",
+      "label": "Key · 键盘",
+      "description": "电钢、钟键与拨键；不包含采样钢琴。"
+    },
+    {
+      "id": "Chord",
+      "label": "Chord · 和弦",
+      "description": "同时按多个键组成和弦；示范区 K27–29 为 C 大三和弦，K30–32 为 C 小三和弦。"
+    }
+  ],
+  "presets": [
+    {
+      "id": "drum_low",
+      "category": "Drum",
+      "name": "低频鼓击",
+      "description": "固定音高的低频鼓击；尚无底鼓音高下滑。",
+      "fixedNote": true,
+      "patch": {
+        "name": "低频鼓击",
+        "note": 36,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 1,
+        "depth": 0,
+        "gain_a": 95,
+        "gain_b": 0,
+        "amp": {
+          "attack": 0.3,
+          "decay": 180,
+          "sustain": 0,
+          "release": 180
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 600,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "drum_tom",
+      "category": "Drum",
+      "name": "FM 通鼓",
+      "description": "快速衰减的 FM 泛音，适合电子通鼓。",
+      "fixedNote": true,
+      "patch": {
+        "name": "FM 通鼓",
+        "note": 43,
+        "velocity": 96,
+        "mode": "fm",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 1.49,
+        "depth": 1.4,
+        "gain_a": 85,
+        "gain_b": 0,
+        "amp": {
+          "attack": 0.5,
+          "decay": 260,
+          "sustain": 0,
+          "release": 260
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 60,
+          "sustain": 0,
+          "release": 60
+        },
+        "cutoff": 3200,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "drum_wood",
+      "category": "Drum",
+      "name": "木质敲击",
+      "description": "短促的非整数频率比 FM 敲击。",
+      "fixedNote": true,
+      "patch": {
+        "name": "木质敲击",
+        "note": 72,
+        "velocity": 96,
+        "mode": "fm",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 2.41,
+        "depth": 1.8,
+        "gain_a": 70,
+        "gain_b": 0,
+        "amp": {
+          "attack": 0,
+          "decay": 65,
+          "sustain": 0,
+          "release": 65
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 30,
+          "sustain": 0,
+          "release": 30
+        },
+        "cutoff": 8000,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "drum_metal",
+      "category": "Drum",
+      "name": "金属短击",
+      "description": "环形调制的金属打击；不是噪声踩镲或军鼓。",
+      "fixedNote": true,
+      "patch": {
+        "name": "金属短击",
+        "note": 66,
+        "velocity": 96,
+        "mode": "ring",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 1.414,
+        "depth": 1,
+        "gain_a": 70,
+        "gain_b": 0,
+        "amp": {
+          "attack": 0,
+          "decay": 95,
+          "sustain": 0,
+          "release": 95
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 3500,
+        "resonance": 35,
+        "filter": 6,
+        "morph": 0
+      }
+    },
+    {
+      "id": "bass_sub",
+      "category": "Bass",
+      "name": "圆润 Sub Bass",
+      "description": "正弦与少量三角波，适合低八度演奏。",
+      "fixedNote": false,
+      "patch": {
+        "name": "圆润 Sub Bass",
+        "note": 36,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 0,
+        "wave_b": 3,
+        "ratio": 1,
+        "depth": 0,
+        "gain_a": 80,
+        "gain_b": 20,
+        "amp": {
+          "attack": 3,
+          "decay": 150,
+          "sustain": 70,
+          "release": 100
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 500,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "bass_saw",
+      "category": "Bass",
+      "name": "锯齿低音",
+      "description": "锯齿加低八度正弦，滤波截止暂为固定值。",
+      "fixedNote": false,
+      "patch": {
+        "name": "锯齿低音",
+        "note": 36,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 2,
+        "wave_b": 0,
+        "ratio": 0.5,
+        "depth": 0,
+        "gain_a": 60,
+        "gain_b": 40,
+        "amp": {
+          "attack": 2,
+          "decay": 180,
+          "sustain": 35,
+          "release": 95
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 700,
+        "resonance": 25,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "bass_fm",
+      "category": "Bass",
+      "name": "FM 弹拨低音",
+      "description": "调制包络让起音明亮、尾部变柔和。",
+      "fixedNote": false,
+      "patch": {
+        "name": "FM 弹拨低音",
+        "note": 36,
+        "velocity": 96,
+        "mode": "fm",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 1,
+        "depth": 1.4,
+        "gain_a": 85,
+        "gain_b": 0,
+        "amp": {
+          "attack": 2,
+          "decay": 220,
+          "sustain": 25,
+          "release": 140
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 100,
+          "sustain": 0,
+          "release": 100
+        },
+        "cutoff": 1600,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "pad_warm",
+      "category": "Pad",
+      "name": "温暖铺底",
+      "description": "轻微失谐与慢起音；持续按住可听到展开。",
+      "fixedNote": false,
+      "patch": {
+        "name": "温暖铺底",
+        "note": 60,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 2,
+        "wave_b": 3,
+        "ratio": 1.003,
+        "depth": 0,
+        "gain_a": 60,
+        "gain_b": 40,
+        "amp": {
+          "attack": 650,
+          "decay": 600,
+          "sustain": 70,
+          "release": 1500
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 1600,
+        "resonance": 8,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "pad_strings",
+      "category": "Pad",
+      "name": "双锯齿弦垫",
+      "description": "两路锯齿轻微失谐，当前输出为单声道。",
+      "fixedNote": false,
+      "patch": {
+        "name": "双锯齿弦垫",
+        "note": 60,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 2,
+        "wave_b": 2,
+        "ratio": 0.997,
+        "depth": 0,
+        "gain_a": 50,
+        "gain_b": 50,
+        "amp": {
+          "attack": 350,
+          "decay": 400,
+          "sustain": 75,
+          "release": 1000
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 3200,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "pad_soft",
+      "category": "Pad",
+      "name": "柔和泛音垫",
+      "description": "正弦加高八度三角波，长释音。",
+      "fixedNote": false,
+      "patch": {
+        "name": "柔和泛音垫",
+        "note": 60,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 0,
+        "wave_b": 3,
+        "ratio": 2,
+        "depth": 0,
+        "gain_a": 70,
+        "gain_b": 30,
+        "amp": {
+          "attack": 800,
+          "decay": 500,
+          "sustain": 80,
+          "release": 1800
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 2400,
+        "resonance": 8,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "key_ep",
+      "category": "Key",
+      "name": "FM 电钢",
+      "description": "双振荡器电钢近似音色，不使用钢琴采样。",
+      "fixedNote": false,
+      "patch": {
+        "name": "FM 电钢",
+        "note": 60,
+        "velocity": 96,
+        "mode": "fm",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 2,
+        "depth": 1.1,
+        "gain_a": 80,
+        "gain_b": 0,
+        "amp": {
+          "attack": 1,
+          "decay": 1100,
+          "sustain": 12,
+          "release": 500
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 350,
+          "sustain": 8,
+          "release": 200
+        },
+        "cutoff": 6500,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "key_bell",
+      "category": "Key",
+      "name": "晶莹钟键",
+      "description": "非整数频率比 FM，长衰减的钟声音色。",
+      "fixedNote": false,
+      "patch": {
+        "name": "晶莹钟键",
+        "note": 72,
+        "velocity": 96,
+        "mode": "fm",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 3.5,
+        "depth": 1.6,
+        "gain_a": 65,
+        "gain_b": 0,
+        "amp": {
+          "attack": 1,
+          "decay": 1600,
+          "sustain": 0,
+          "release": 1100
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 850,
+          "sustain": 4,
+          "release": 600
+        },
+        "cutoff": 9000,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "key_pluck",
+      "category": "Key",
+      "name": "短音拨键",
+      "description": "短 FM 包络的拨弦键盘音色。",
+      "fixedNote": false,
+      "patch": {
+        "name": "短音拨键",
+        "note": 60,
+        "velocity": 96,
+        "mode": "fm",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 1,
+        "depth": 1.4,
+        "gain_a": 85,
+        "gain_b": 0,
+        "amp": {
+          "attack": 1,
+          "decay": 420,
+          "sustain": 0,
+          "release": 250
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 90,
+          "sustain": 0,
+          "release": 90
+        },
+        "cutoff": 4800,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "chord_stab",
+      "category": "Chord",
+      "name": "短促和弦",
+      "description": "同时按 C/E/G 等多个键，形成和弦短击。",
+      "fixedNote": false,
+      "patch": {
+        "name": "短促和弦",
+        "note": 60,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 2,
+        "wave_b": 3,
+        "ratio": 1.002,
+        "depth": 0,
+        "gain_a": 60,
+        "gain_b": 40,
+        "amp": {
+          "attack": 3,
+          "decay": 280,
+          "sustain": 0,
+          "release": 280
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 2300,
+        "resonance": 15,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "chord_ep",
+      "category": "Chord",
+      "name": "电钢和弦",
+      "description": "多个声部共同演奏，保留起音与自然释音。",
+      "fixedNote": false,
+      "patch": {
+        "name": "电钢和弦",
+        "note": 60,
+        "velocity": 96,
+        "mode": "fm",
+        "wave_a": 0,
+        "wave_b": 0,
+        "ratio": 2,
+        "depth": 0.8,
+        "gain_a": 75,
+        "gain_b": 0,
+        "amp": {
+          "attack": 2,
+          "decay": 950,
+          "sustain": 25,
+          "release": 650
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 250,
+          "sustain": 5,
+          "release": 200
+        },
+        "cutoff": 6000,
+        "resonance": 10,
+        "filter": 1,
+        "morph": 0
+      }
+    },
+    {
+      "id": "chord_pad",
+      "category": "Chord",
+      "name": "柔和和弦垫",
+      "description": "多个声部叠成和弦；可配合延音。",
+      "fixedNote": false,
+      "patch": {
+        "name": "柔和和弦垫",
+        "note": 60,
+        "velocity": 96,
+        "mode": "mix",
+        "wave_a": 2,
+        "wave_b": 0,
+        "ratio": 0.998,
+        "depth": 0,
+        "gain_a": 60,
+        "gain_b": 40,
+        "amp": {
+          "attack": 260,
+          "decay": 400,
+          "sustain": 75,
+          "release": 1000
+        },
+        "modulation": {
+          "attack": 0,
+          "decay": 0,
+          "sustain": 100,
+          "release": 120
+        },
+        "cutoff": 2200,
+        "resonance": 12,
+        "filter": 1,
+        "morph": 0
+      }
+    }
+  ],
+  "demo": [
+    {
+      "id": "drum_low",
+      "note": 36
+    },
+    {
+      "id": "drum_tom",
+      "note": 43
+    },
+    {
+      "id": "drum_wood",
+      "note": 72
+    },
+    {
+      "id": "drum_metal",
+      "note": 66
+    },
+    {
+      "id": "drum_low",
+      "note": 31
+    },
+    {
+      "id": "drum_tom",
+      "note": 48
+    },
+    {
+      "id": "drum_wood",
+      "note": 79
+    },
+    {
+      "id": "drum_metal",
+      "note": 70
+    },
+    {
+      "id": "bass_sub",
+      "note": 36
+    },
+    {
+      "id": "bass_saw",
+      "note": 38
+    },
+    {
+      "id": "bass_fm",
+      "note": 40
+    },
+    {
+      "id": "bass_sub",
+      "note": 41
+    },
+    {
+      "id": "bass_saw",
+      "note": 43
+    },
+    {
+      "id": "bass_fm",
+      "note": 45
+    },
+    {
+      "id": "pad_warm",
+      "note": 48
+    },
+    {
+      "id": "pad_strings",
+      "note": 52
+    },
+    {
+      "id": "pad_soft",
+      "note": 55
+    },
+    {
+      "id": "pad_warm",
+      "note": 60
+    },
+    {
+      "id": "pad_strings",
+      "note": 64
+    },
+    {
+      "id": "pad_soft",
+      "note": 67
+    },
+    {
+      "id": "key_ep",
+      "note": 60
+    },
+    {
+      "id": "key_bell",
+      "note": 62
+    },
+    {
+      "id": "key_pluck",
+      "note": 64
+    },
+    {
+      "id": "key_ep",
+      "note": 65
+    },
+    {
+      "id": "key_bell",
+      "note": 67
+    },
+    {
+      "id": "key_pluck",
+      "note": 69
+    },
+    {
+      "id": "chord_stab",
+      "note": 60
+    },
+    {
+      "id": "chord_stab",
+      "note": 64
+    },
+    {
+      "id": "chord_stab",
+      "note": 67
+    },
+    {
+      "id": "chord_pad",
+      "note": 60
+    },
+    {
+      "id": "chord_pad",
+      "note": 63
+    },
+    {
+      "id": "chord_pad",
+      "note": 67
+    }
+  ]
+}

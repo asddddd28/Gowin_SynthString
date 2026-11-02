@@ -1,0 +1,345 @@
+{
+  "modules": [
+    {
+      "name": "AxiSynthEndpoint",
+      "rtl_path": "rtl/AxiSynthEndpoint.v",
+      "description": "新合成系统的精简AXI顶层，排除旧raw/context调试计算分支。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axi_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "AXI与内部计算共用时钟"
+          },
+          {
+            "name": "i_axi_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "清除总线事务与队列"
+          },
+          {
+            "name": "i_s_axi_awid",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "请求awid"
+          },
+          {
+            "name": "i_s_axi_awaddr",
+            "direction": "input",
+            "width": 16,
+            "role": "data",
+            "description": "请求awaddr"
+          },
+          {
+            "name": "i_s_axi_awlen",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "请求awlen"
+          },
+          {
+            "name": "i_s_axi_awsize",
+            "direction": "input",
+            "width": 3,
+            "role": "data",
+            "description": "请求awsize"
+          },
+          {
+            "name": "i_s_axi_awburst",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "请求awburst"
+          },
+          {
+            "name": "i_s_axi_awlock",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "请求awlock"
+          },
+          {
+            "name": "i_s_axi_awvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "请求awvalid"
+          },
+          {
+            "name": "o_s_axi_awready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "接纳aw通道"
+          },
+          {
+            "name": "i_s_axi_arid",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "请求arid"
+          },
+          {
+            "name": "i_s_axi_araddr",
+            "direction": "input",
+            "width": 16,
+            "role": "data",
+            "description": "请求araddr"
+          },
+          {
+            "name": "i_s_axi_arlen",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "请求arlen"
+          },
+          {
+            "name": "i_s_axi_arsize",
+            "direction": "input",
+            "width": 3,
+            "role": "data",
+            "description": "请求arsize"
+          },
+          {
+            "name": "i_s_axi_arburst",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "请求arburst"
+          },
+          {
+            "name": "i_s_axi_arlock",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "请求arlock"
+          },
+          {
+            "name": "i_s_axi_arvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "请求arvalid"
+          },
+          {
+            "name": "o_s_axi_arready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "接纳ar通道"
+          },
+          {
+            "name": "i_s_axi_wdata",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "AXI wdata事务字段"
+          },
+          {
+            "name": "i_s_axi_wstrb",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "AXI wstrb事务字段"
+          },
+          {
+            "name": "i_s_axi_wlast",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "AXI wlast事务字段"
+          },
+          {
+            "name": "i_s_axi_wvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "AXI wvalid事务字段"
+          },
+          {
+            "name": "o_s_axi_wready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "AXI wready事务字段"
+          },
+          {
+            "name": "o_s_axi_bid",
+            "direction": "output",
+            "width": 4,
+            "role": "data",
+            "description": "AXI bid事务字段"
+          },
+          {
+            "name": "o_s_axi_bresp",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "AXI bresp事务字段"
+          },
+          {
+            "name": "o_s_axi_bvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "AXI bvalid事务字段"
+          },
+          {
+            "name": "i_s_axi_bready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "AXI bready事务字段"
+          },
+          {
+            "name": "o_s_axi_rid",
+            "direction": "output",
+            "width": 4,
+            "role": "data",
+            "description": "AXI rid事务字段"
+          },
+          {
+            "name": "o_s_axi_rdata",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "AXI rdata事务字段"
+          },
+          {
+            "name": "o_s_axi_rresp",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "AXI rresp事务字段"
+          },
+          {
+            "name": "o_s_axi_rlast",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "AXI rlast事务字段"
+          },
+          {
+            "name": "o_s_axi_rvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "AXI rvalid事务字段"
+          },
+          {
+            "name": "i_s_axi_rready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "AXI rready事务字段"
+          },
+          {
+            "name": "o_pcm_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "PCM 队列输出有效"
+          },
+          {
+            "name": "i_pcm_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "PCM 消费者接纳"
+          },
+          {
+            "name": "o_pcm_data",
+            "direction": "output",
+            "width": 64,
+            "role": "data",
+            "description": "左右 signed Q26 采样"
+          },
+          {
+            "name": "o_pcm_frame",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "采样帧编号"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axi_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axi_arstn",
+        "active": "low",
+        "style": "asynchronous"
+      },
+      "behavior": [
+        "Same AXI/PCM ports and bounded AXI protocol as AxiVoiceEndpoint, with LEGACY_ENABLE=0.",
+        "Voice A0..A9, LFO B0..B3, FX C0..C4 remain available. Legacy capability/context capacity registers are zero.",
+        "Unsupported command returns status 1 with original tag; does not hang or block audio. ABI 0x00010004.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses14. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations14/15.",
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15."
+      ],
+      "constraints": [
+        "Candidate subsystem; existing board top unchanged; no Gowin timing/area claim.",
+        "Common core clock only, no CDC. Caller provides synchronous reset release.",
+        "AXI endpoint is a slave; it does not fetch RAM itself or implement a program scheduler."
+      ],
+      "corner_cases": [
+        "backpressure and bubbles",
+        "full and empty queues",
+        "reset with in-flight tasks",
+        "invalid stage or operation or bus request"
+      ],
+      "verification_cases": [
+        "independent integer reference",
+        "mixed tagged transactions and all sideband stability",
+        "event/phase transition sequence",
+        "AXI IDs, independent channels, WSTRB, bursts and FIFO side effects"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "flow",
+          "title": "任务提交与结果保持",
+          "scenario": "flow",
+          "description": "输入握手移交所有权；结果等待消费时数据和事务身份保持。精确延迟以行为合同为准。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clock",
+                "wave": "p........."
+              },
+              {
+                "name": "request",
+                "wave": "01.0......"
+              },
+              {
+                "name": "processing",
+                "wave": "01....0..."
+              },
+              {
+                "name": "result_valid",
+                "wave": "0.....1..0"
+              },
+              {
+                "name": "result_ready",
+                "wave": "1.....0.1."
+              },
+              {
+                "name": "result_tag",
+                "wave": "x.....=..x",
+                "data": [
+                  "same tag"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

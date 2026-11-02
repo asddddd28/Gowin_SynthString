@@ -1,0 +1,188 @@
+{
+  "modules": [
+    {
+      "name": "KeyboardVoiceBridge",
+      "rtl_path": "src/KeyboardVoiceBridge.v",
+      "description": "启动依次初始化32个独立逻辑声部，全部接受后允许音频运行。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "50MHz统一计算时钟",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "低有效复位，异步置位同步释放",
+            "role": "reset"
+          },
+          {
+            "name": "i_pressed",
+            "width": 32,
+            "direction": "input",
+            "description": "目标键状态",
+            "role": "data"
+          },
+          {
+            "name": "i_frame_done",
+            "width": 1,
+            "direction": "input",
+            "description": "PCM完成脉冲",
+            "role": "data"
+          },
+          {
+            "name": "o_cfg_valid",
+            "width": 1,
+            "direction": "output",
+            "description": "完整配置有效",
+            "role": "data"
+          },
+          {
+            "name": "i_cfg_ready",
+            "width": 1,
+            "direction": "input",
+            "description": "引擎接受配置",
+            "role": "data"
+          },
+          {
+            "name": "o_cfg_voice",
+            "width": 5,
+            "direction": "output",
+            "description": "目标逻辑声部",
+            "role": "data"
+          },
+          {
+            "name": "o_cfg_data",
+            "width": 512,
+            "direction": "output",
+            "description": "完整参数和单次事件",
+            "role": "data"
+          },
+          {
+            "name": "o_initialized",
+            "width": 1,
+            "direction": "output",
+            "description": "全部初始配置已接受",
+            "role": "data"
+          },
+          {
+            "name": "o_delivered",
+            "width": 32,
+            "direction": "output",
+            "description": "最后接受的键状态",
+            "role": "data"
+          },
+          {
+            "name": "o_events",
+            "width": 32,
+            "direction": "output",
+            "description": "已接受事件计数",
+            "role": "data"
+          },
+          {
+            "name": "i_patch_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "i patch valid",
+            "role": "data"
+          },
+          {
+            "name": "o_patch_ready",
+            "width": 1,
+            "direction": "output",
+            "description": "o patch ready",
+            "role": "data"
+          },
+          {
+            "name": "i_patch_key",
+            "width": 5,
+            "direction": "input",
+            "description": "i patch key",
+            "role": "data"
+          },
+          {
+            "name": "i_patch_data",
+            "width": 512,
+            "direction": "input",
+            "description": "i patch data",
+            "role": "data"
+          },
+          {
+            "name": "i_velocity",
+            "width": 224,
+            "direction": "input",
+            "description": "i velocity",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "启动逐声部清零状态并装入ROM初始音色，完成后启动音频。",
+        "程序RAM接受CRC验证后的音色；同步读取后在下一note-on复制到活动声部。",
+        "note-off仅更新事件，保留发声中的旧参数，直到释音结束。",
+        "物理键与远程键合并；一次事件提交后等待音频帧结束，避免覆盖未消费的事件。"
+      ],
+      "constraints": [
+        "50MHz单时钟域；异步低有效复位，板级同步释放。",
+        "新固件协议与旧96kHz Studio不兼容，必须核对版本3。"
+      ],
+      "corner_cases": [
+        "复位取消旧任务",
+        "输出背压",
+        "32键复音",
+        "CRC失败与残包",
+        "参数在释音中更新"
+      ],
+      "verification_cases": [
+        "完整ADC/UART/PT8211闭环",
+        "400个混合整数向量",
+        "配置ACK及短演奏包",
+        "无覆盖的活动参数快照",
+        "Gowin综合实现时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "commit",
+          "title": "参数与任务提交",
+          "scenario": "handshake",
+          "description": "有效期间保持完整事务，接受后才发射或确认；算术延迟见行为合同。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......"
+              },
+              {
+                "name": "valid",
+                "wave": "01..0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0..10.."
+              },
+              {
+                "name": "commit",
+                "wave": "0...10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

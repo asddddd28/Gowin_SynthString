@@ -15,9 +15,9 @@ assign o_valid=active;
 assign o_data=data_o;
 always @(*) begin
     case(index)
-        0:data_o="H";1:data_o="1";2:data_o="0";3:data_o="0";4:data_o="7";5:data_o="F";
-        6:data_o="0";7:data_o="1";8:data_o="0";9:data_o="0";10:data_o="*";
-        11:data_o="6";12:data_o="6";13:data_o=13;default:data_o=10;
+        0:data_o="H";1:data_o="1";2:data_o="0";3:data_o="0";4:data_o="F";5:data_o="F";
+        6:data_o="0";7:data_o="1";8:data_o="0";9:data_o="1";10:data_o="*";
+        11:data_o="9";12:data_o="B";13:data_o=13;default:data_o=10;
     endcase
 end
 always @(posedge i_clk or negedge i_rstn) begin

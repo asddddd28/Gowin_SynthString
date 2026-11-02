@@ -1,0 +1,17 @@
+{
+  "bitstream_sha256": "f59c66ac3652b2298f4e3d7ce3c962d3a46f5783cf76e29634b8b7283815d6ce",
+  "source_sha256": {
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\src\\TactileButtons.v": "46b929c8968a296e0382cab57eee76be22638d4a9f1266701fd009b895d30e01",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\src\\TactileInput.v": "89ef78440b6c3c71fcae8e96c2f575bccc8b8a20606688921d18d0a2525b79ee",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\src\\TactileReport.v": "179bba7947cd06ed0bec874d80e0aaa471c2b51a3ac13e7b7752ccd2651ad6d2",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\encoder\\src\\EncoderUartTx.v": "f621123c5d9bb2edc2429fdff144a2c2095d7ab4e8844e6eb3fcd52a34372e9f",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\src\\buttons.cst": "6f614418e4bdd84d1a70bb83294f5bdc761c28a05a900b109aa341a18175b326",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\src\\buttons.sdc": "020135680e2bc00f228c419d3005974f00706adbf8ec84acaeaa9aa0d3cb2607",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\tactile_buttons.gprj": "b01b4d1f2864b1da2d23b6c03e4f944540e0266fd578b3d5cbd105d75330b22a",
+    "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\build.tcl": "e76737115dd91454f3f4404a74b358370ae3013e721c1f04ca474578c57fa09f"
+  },
+  "simulation_passed": true,
+  "timing_clean": true,
+  "strict_style_passed": false,
+  "programming": "SRAM only; no full readback claim"
+}

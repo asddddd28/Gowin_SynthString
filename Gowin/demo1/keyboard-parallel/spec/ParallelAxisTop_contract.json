@@ -1,0 +1,182 @@
+{
+  "modules": [
+    {
+      "name": "ParallelAxisTop",
+      "rtl_path": "src/ParallelAxisTop.v",
+      "description": "完整ADC采集、迟滞判键、UART StudioControl、32声部参数/状态存储、多核合成和PT8211。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "50MHz统一计算时钟",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "低有效复位，异步置位同步释放",
+            "role": "reset"
+          },
+          {
+            "name": "i_adc_dout",
+            "width": 1,
+            "direction": "input",
+            "description": "外部ADC串行数据",
+            "role": "data"
+          },
+          {
+            "name": "i_uart_rx",
+            "width": 1,
+            "direction": "input",
+            "description": "调试命令输入",
+            "role": "data"
+          },
+          {
+            "name": "o_mux_sel",
+            "width": 3,
+            "direction": "output",
+            "description": "模拟多路选择",
+            "role": "data"
+          },
+          {
+            "name": "o_mux_en",
+            "width": 1,
+            "direction": "output",
+            "description": "多路器使能",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC片选",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_sclk",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC时钟",
+            "role": "data"
+          },
+          {
+            "name": "o_adc_din",
+            "width": 1,
+            "direction": "output",
+            "description": "ADC命令",
+            "role": "data"
+          },
+          {
+            "name": "o_uart_tx",
+            "width": 1,
+            "direction": "output",
+            "description": "调试快照",
+            "role": "data"
+          },
+          {
+            "name": "HP_BCK",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211位时钟",
+            "role": "data"
+          },
+          {
+            "name": "HP_WS",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211声道选择",
+            "role": "data"
+          },
+          {
+            "name": "HP_DIN",
+            "width": 1,
+            "direction": "output",
+            "description": "PT8211音频数据",
+            "role": "data"
+          },
+          {
+            "name": "PA_EN",
+            "width": 1,
+            "direction": "output",
+            "description": "低有效功放使能",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "完整ADC采集、迟滞判键、UART StudioControl、32声部参数/状态存储、多核合成和PT8211。",
+        "六个C_*_CORES参数由core_counts.json在构建前确定，支持1..4；不支持运行时改变硬件实例数。",
+        "默认Phase=1、Wave=2、Envelope=3、Modulation=1、Filter=1、VCA=1；波表更新广播到所有Wave副本。",
+        "配置和波表接受窗口仍位于引擎空闲期；参数下次起音快照生效，音量实时平滑。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，低有效复位；板级复位同步释放。",
+        "C_*_CORES是综合期参数，1..4；任意配置需要独立验证资源和时序，只有默认配置有本板实现证据。",
+        "一个issue和一个retire端口；仍保留阶段屏障，不是任意连接的多发射计算图。"
+      ],
+      "corner_cases": [
+        "全满背压及同时接受/返回",
+        "非2次幂核心数游标回绕",
+        "处理中复位",
+        "wave副本写一致性",
+        "note-off保留旧参数"
+      ],
+      "verification_cases": [
+        "原引擎逐声部及PCM等值比较",
+        "各池1/2/3/4核配置",
+        "输入输出停顿及复位",
+        "真实ADC/UART/PT8211引脚闭环",
+        "Gowin综合与50MHz时序"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "ordered",
+          "title": "背压与有序返回",
+          "scenario": "handshake",
+          "description": "示意ready为0时保持队首；箭头不代表固定核心算术延迟。实际周期见各核心和阶段统计。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "i_clk",
+                "wave": "p......."
+              },
+              {
+                "name": "valid",
+                "wave": "01...0.."
+              },
+              {
+                "name": "ready",
+                "wave": "0...10.."
+              },
+              {
+                "name": "task",
+                "wave": "x2...x..",
+                "data": [
+                  "voice n"
+                ]
+              },
+              {
+                "name": "accept",
+                "wave": "0...10.."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

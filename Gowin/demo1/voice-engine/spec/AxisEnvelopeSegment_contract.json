@@ -1,0 +1,158 @@
+{
+  "modules": [
+    {
+      "name": "AxisEnvelopeSegment",
+      "rtl_path": "rtl/AxisEnvelopeSegment.v",
+      "description": "有符号目标电平步进，限幅至目标并返回到达/零步长停滞标志；不是完整 DX 包络。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "任务与结果共用时钟"
+          },
+          {
+            "name": "i_axis_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "异步清除有效资格；外部同步释放"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "direction": "input",
+            "width": 128,
+            "role": "data",
+            "description": "本次操作的状态与参数原子快照"
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "调用者的透明事务编号"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "源端持有完整请求"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "本拍可以接收快照"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "direction": "output",
+            "width": 64,
+            "role": "data",
+            "description": "该事务的数值和状态结果"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "与结果同步返回的原编号"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "输出寄存器包含可消费事务"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "调用者可以提交输出结果"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "No stalls: accept at E0, earliest output transfer E4; initiation interval one.",
+        "input[31:0]=signed current; [63:32]=signed target; [95:64]=unsigned step; [127:96] reserved/ignored.",
+        "output[31:0]=next current; bit32=reached; bit33=stalled; [63:34]=0. Numerical scale chosen by caller consistently.",
+        "Output backpressure freezes every stage. Input and output transfers require valid and ready.",
+        "Operator never owns voice state; caller prevents using stale state in a subsequent sample."
+      ],
+      "constraints": [
+        "Verilog-2001, single clock domain, no TLAST/TKEEP; this is one atomic task per beat.",
+        "Reserved input bits are ignored. Tags are opaque 32-bit values.",
+        "No board integration or timing capacity claim; independent operator library only."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Python wide-integer reference comparison",
+        "minimum latency and one accepted task per unstalled clock",
+        "output stability while stalled",
+        "reset cancellation followed by a fresh sequence"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "输入 E0 接纳；无反压时最早 E4 消费。图为握手关系示意，暂停时数据与编号整体冻结。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

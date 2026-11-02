@@ -1,0 +1,154 @@
+{
+  "modules": [
+    {
+      "name": "LatencyKeyThresholds",
+      "rtl_path": "src/LatencyKeyThresholds.v",
+      "description": "沿用原门限ROM、迟滞和连续两次完整扫描确认，音频事件行为不变。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "width": 1,
+            "direction": "input",
+            "description": "i clk",
+            "role": "clock"
+          },
+          {
+            "name": "i_rstn",
+            "width": 1,
+            "direction": "input",
+            "description": "i rstn",
+            "role": "reset"
+          },
+          {
+            "name": "i_key",
+            "width": 5,
+            "direction": "input",
+            "description": "i key",
+            "role": "data"
+          },
+          {
+            "name": "i_raw",
+            "width": 12,
+            "direction": "input",
+            "description": "i raw",
+            "role": "data"
+          },
+          {
+            "name": "i_valid",
+            "width": 1,
+            "direction": "input",
+            "description": "i valid",
+            "role": "data"
+          },
+          {
+            "name": "o_candidate",
+            "width": 1,
+            "direction": "output",
+            "description": "o candidate",
+            "role": "data"
+          },
+          {
+            "name": "o_confirm",
+            "width": 1,
+            "direction": "output",
+            "description": "o confirm",
+            "role": "data"
+          },
+          {
+            "name": "o_cancel",
+            "width": 1,
+            "direction": "output",
+            "description": "o cancel",
+            "role": "data"
+          },
+          {
+            "name": "o_pressed",
+            "width": 32,
+            "direction": "output",
+            "description": "o pressed",
+            "role": "data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "period_ns": 20
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "取消事件和任务，键状态及计数清零"
+      },
+      "behavior": [
+        "沿用原门限ROM、迟滞和连续两次完整扫描确认，音频事件行为不变。",
+        "候选、确认和取消脉冲均在相应ADC样本握手沿有效，只针对按下过程；释放仍按原逻辑处理。"
+      ],
+      "constraints": [
+        "50MHz同一时钟域，异步低有效复位，顶层同步释放。",
+        "监测无音频控制反馈；一次事件窗口小于32位时间戳周期，默认1秒超时。"
+      ],
+      "corner_cases": [
+        "32键同时完成",
+        "计数回绕",
+        "候选取消",
+        "静音与慢起音",
+        "覆盖与超时并发",
+        "清零时仍按住键"
+      ],
+      "verification_cases": [
+        "独立时间差模型",
+        "逐分段确定值比较",
+        "真实ADC和PT8211 WS边沿关联",
+        "协议4全部分包边界及坏包恢复",
+        "Gowin时序与板上串口/听感"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "onset",
+          "title": "采集到数字起音",
+          "scenario": "onset",
+          "description": "概念时序，扫描等待与音频帧间隔被压缩；所有时间戳来自同一50MHz计数器。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p..........."
+              },
+              {
+                "name": "ADC candidate",
+                "wave": "010........."
+              },
+              {
+                "name": "ADC confirm",
+                "wave": "0...10......"
+              },
+              {
+                "name": "note commit",
+                "wave": "0....10....."
+              },
+              {
+                "name": "voice nonzero",
+                "wave": "0......10..."
+              },
+              {
+                "name": "PCM valid",
+                "wave": "0.......10.."
+              },
+              {
+                "name": "frame load",
+                "wave": "0........10."
+              },
+              {
+                "name": "DAC left latch",
+                "wave": "0.........10"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

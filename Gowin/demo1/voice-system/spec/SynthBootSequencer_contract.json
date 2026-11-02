@@ -1,0 +1,154 @@
+{
+  "modules": [
+    {
+      "name": "SynthBootSequencer",
+      "rtl_path": "rtl/SynthBootSequencer.v",
+      "description": "Synchronous 32-bit ROM contains count followed by opcode/argument plus ten payload words per command.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "o_request",
+            "direction": "output",
+            "width": 392,
+            "role": "data",
+            "description": "o_request"
+          },
+          {
+            "name": "o_request_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_request_valid"
+          },
+          {
+            "name": "i_request_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_request_ready"
+          },
+          {
+            "name": "i_response",
+            "direction": "input",
+            "width": 136,
+            "role": "data",
+            "description": "i_response"
+          },
+          {
+            "name": "i_response_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "i_response_valid"
+          },
+          {
+            "name": "o_response_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_response_ready"
+          },
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_done"
+          },
+          {
+            "name": "o_fault",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "o_fault"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Synchronous 32-bit ROM contains count followed by opcode/argument plus ten payload words per command.",
+        "Four presets, shared FX and safe master level loaded through the same AXI master as live controls. Done only after every success completion; failure prevents amplifier enable."
+      ],
+      "constraints": [
+        "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
+        "See SYSTEM.md and model/system_model.py for ABI, numerical behavior, memory images and validation scope."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Independent protocol/PCM model",
+        "Real UART/ADC pins to serial DAC simulation",
+        "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
+        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "stream",
+          "title": "流水接纳与反压",
+          "scenario": "stream",
+          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........"
+              },
+              {
+                "name": "s_valid",
+                "wave": "01....0.."
+              },
+              {
+                "name": "s_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "0...1...."
+              },
+              {
+                "name": "m_ready",
+                "wave": "1...0..1."
+              },
+              {
+                "name": "data/tag",
+                "wave": "x...=..=x",
+                "data": [
+                  "held",
+                  "next"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

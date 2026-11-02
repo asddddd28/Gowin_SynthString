@@ -1,0 +1,70 @@
+{
+  "modules": [
+    {
+      "name": "tb_voice_operators",
+      "rtl_path": "sim/tb_voice_operators.v",
+      "description": "四个独立算子的并发参考向量、连续吞吐、反压和复位取消验证。",
+      "interfaces": {
+        "ports": [{"name":"o_done","direction":"output","width":1,"role":"data","description":"最终轮所有算子事务完成；供外层仿真夹具观察"}]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous"
+      },
+      "behavior": [
+        "Four independent input streams use Python reference vectors.",
+        "Reset at cycle 70 cancels 15 pipeline transactions; restart tags use another epoch.",
+        "No-stall latency is 3/4/4/4; each operator accepts every cycle.",
+        "No source or destination payload may change while that transfer is stalled."
+      ],
+      "constraints": [
+        "Testbench only; not synthesizable and not included in board source lists.",
+        "Run from voice-engine directory so vectors paths resolve."
+      ],
+      "corner_cases": [
+        "signed min/max and saturation boundaries",
+        "zero-step and zero-seed",
+        "whole pipeline blocked at reset"
+      ],
+      "verification_cases": [
+        "7861 post-reset transactions checked bit-for-bit",
+        "output tags and results remain stable on stalls",
+        "timeout at 30000 cycles"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "reset",
+          "title": "阻塞期间复位撤销任务",
+          "scenario": "reset",
+          "description": "在输出被反压时断言复位，清除有效位；释放后使用新 epoch。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "rstn",
+                "wave": "1..0.1.."
+              },
+              {
+                "name": "m_ready",
+                "wave": "0.....1."
+              },
+              {
+                "name": "m_valid",
+                "wave": "01.0..1."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,222 @@
+{
+  "modules": [
+    {
+      "name": "AxisVoiceRuntime",
+      "rtl_path": "rtl/AxisVoiceRuntime.v",
+      "description": "Resident operator contexts, ordered execution, exact retry replay and transparent raw-task bypass.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_axis_aclk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "共用计算时钟"
+          },
+          {
+            "name": "i_axis_arstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "异步清除资格，外部同步释放"
+          },
+          {
+            "name": "i_s_axis_tdata",
+            "direction": "input",
+            "width": 384,
+            "role": "data",
+            "description": "Low320 payload, next32 generation/context, high32 execution sequence."
+          },
+          {
+            "name": "i_s_axis_tuser",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "透明事务编号"
+          },
+          {
+            "name": "i_s_axis_tdest",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "操作码路由"
+          },
+          {
+            "name": "i_s_axis_tlast",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "完整任务必须为单拍包"
+          },
+          {
+            "name": "i_s_axis_tvalid",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "源端有效资格"
+          },
+          {
+            "name": "o_s_axis_tready",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "入口可接纳"
+          },
+          {
+            "name": "o_m_axis_tdata",
+            "direction": "output",
+            "width": 128,
+            "role": "data",
+            "description": "完成结果"
+          },
+          {
+            "name": "o_m_axis_tuser",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "原请求编号"
+          },
+          {
+            "name": "o_m_axis_tdest",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "description": "返回原操作码"
+          },
+          {
+            "name": "o_m_axis_tlast",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "每个完成为单拍包"
+          },
+          {
+            "name": "o_m_axis_tvalid",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "完成资格"
+          },
+          {
+            "name": "i_m_axis_tready",
+            "direction": "input",
+            "width": 1,
+            "role": "control",
+            "description": "下游接受完成"
+          },
+          {
+            "name": "o_count_executed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "Accepted valid arithmetic executions, raw or cached"
+          },
+          {
+            "name": "o_count_replayed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "Exact cached RUN and BIND retries"
+          },
+          {
+            "name": "o_count_rejected",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "Error completions"
+          },
+          {
+            "name": "o_count_bound",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "New or newer-generation parameter bindings"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_axis_aclk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_axis_arstn",
+        "active": "low",
+        "style": "asynchronous"
+      },
+      "behavior": [
+        "Raw opcodes0..4 bypass to the existing fabric; non-context errors and malformed packets preserve raw fabric semantics.",
+        "Context opcodes80..84 hex bind core0..4;90 hex RUN;91 hex INSPECT. A context command waits for all raw completions and packet drain.",
+        "Metadata: context_id bits327:320 must be0..31; generation bits351:328 monotonic24; sequence bits383:352 contiguous32 starting0 after bind.",
+        "BIND caches exact320-bit initial image and initial state. Same generation/image/type replays acknowledgment without resetting state; changed same generation conflicts; older generation is rejected.",
+        "RUN runtime_a bits31:0, runtime_b bits63:32, EG event bits65:64; upper payload bits319:66 must be zero. First sequence0, then last+1; exact last sequence and signature replay cached result.",
+        "Older sequences return status6, gaps7, same sequence/different signature5, missing/bad ID3, stale generation4, reserved payload8. Error has no state effects.",
+        "PM/segment/noise update current low32; MultiEG also updates stage bits34:32; MAC is stateless and uses live a/b with resident gains.",
+        "Response low64 core result, bits71:64 status, bit72 replay. INSPECT returns state bits34:0, history valid73, core78:76,last sequence111:80.",
+        "Output remains stable under backpressure. State commits once when the checked core completion is accepted, before response consumption.",
+        "Only last execution retained per context. Context generation and history are volatile; reset invalidates all contexts and cancels outstanding tasks."
+      ],
+      "constraints": [
+        "Candidate only; no board integration. Single clock, external synchronized reset release.",
+        "This is an operator context table, not a voice allocator, autonomous sample scheduler or complete FM operator.",
+        "Generation/sequence must not wrap within a context session. Caller must establish a fresh transport session after reset.",
+        "Same AXI ID or note number is not a deduplication key. New sequence means a new legitimate calculation."
+      ],
+      "corner_cases": [
+        "Duplicate submitted while original is pending",
+        "Delayed old NoteOff after context reuse",
+        "Duplicate BIND after state progresses",
+        "Raw out-of-order completions before context barrier",
+        "Reset while output stalled",
+        "Full-width sequence and generation boundaries"
+      ],
+      "verification_cases": [
+        "Independent Python stateful model",
+        "32 contexts/all5operators",
+        "Exact duplicate versus same-sequence conflict",
+        "RAW throughput/regression",
+        "AXI additive register staging and cached result replay",
+        "Counter and state conservation under random stalls"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "flow",
+          "title": "任务提交与结果保持",
+          "scenario": "flow",
+          "description": "输入握手移交所有权；结果等待消费时数据和事务身份保持。精确延迟以行为合同为准。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clock",
+                "wave": "p........."
+              },
+              {
+                "name": "request",
+                "wave": "01.0......"
+              },
+              {
+                "name": "processing",
+                "wave": "01....0..."
+              },
+              {
+                "name": "result_valid",
+                "wave": "0.....1..0"
+              },
+              {
+                "name": "result_ready",
+                "wave": "1.....0.1."
+              },
+              {
+                "name": "result_tag",
+                "wave": "x.....=..x",
+                "data": [
+                  "same tag"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

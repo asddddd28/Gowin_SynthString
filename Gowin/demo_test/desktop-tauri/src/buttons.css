@@ -1,0 +1,24 @@
+.tactile-intro { color: var(--muted, #72766f); line-height: 1.7; margin: 0 0 24px; }
+.tactile-live { display:flex; align-items:center; gap:8px; color:#7d8279; font-size:12px; }
+.tactile-live i { width:7px; height:7px; border-radius:50%; background:#b7bcb4; }
+.tactile-live.online i { background:#529762; box-shadow:0 0 0 4px #52976216; }
+.tactile-board { display:grid; grid-template-columns:repeat(6,minmax(115px,1fr)); gap:14px; padding:24px 18px; border:1px solid #dce1d6; background:linear-gradient(135deg,#e9ede3,#f4f5ef); border-radius:20px; margin-bottom:20px; }
+.tactile-key { text-align:center; border:1px solid transparent; padding:12px 6px 16px; border-radius:16px; transition:background .1s,border-color .1s; }
+.tactile-key.pressed { background:#fff9ec; border-color:#d5a45180; }
+.tactile-key-label { display:flex; justify-content:space-between; margin:0 7px 18px; font-size:12px; letter-spacing:.08em; }
+.tactile-key-label span { opacity:.35; }
+.tactile-switch { height:104px; position:relative; display:grid; place-items:center; }
+.tactile-leg { position:absolute; width:56px; height:12px; background:linear-gradient(90deg,#b9bdb6 0 15%,transparent 15% 85%,#b9bdb6 85%); }
+.tactile-leg.top { top:6px; }.tactile-leg.bottom { bottom:6px; }
+.tactile-case { width:78px; height:78px; border-radius:12px; border:2px solid #aeb4a8; background:linear-gradient(145deg,#fdfdf8,#d5dacf); position:relative; display:grid; place-items:center; box-shadow:0 5px 0 #aeb4a8,0 10px 18px #414e3721; }
+.tactile-case>i { position:absolute; width:5px; height:5px; background:#adb5a6; border-radius:50%; }
+.tactile-case>i:nth-child(1){top:7px;left:7px}.tactile-case>i:nth-child(2){top:7px;right:7px}.tactile-case>i:nth-child(3){bottom:7px;left:7px}.tactile-case>i:nth-child(4){bottom:7px;right:7px}
+.tactile-cap { width:43px; height:43px; border-radius:50%; background:radial-gradient(circle at 35% 25%,#565d52,#242b23); border:3px solid #4b5447; box-shadow:0 4px 0 #151e14,0 6px 7px #26342235; transition:transform .08s,background .08s; }
+.pressed .tactile-cap { transform:translateY(3px); background:radial-gradient(circle at 35% 25%,#f4cd78,#cb9336); border-color:#b6812c; box-shadow:0 1px 0 #8a6124,0 0 20px #e6b54b66; }
+.tactile-state { display:block; color:#7b8373; font-size:12px; margin:12px 0; }.pressed .tactile-state {color:#986a1e;font-weight:650}
+.tactile-count b {font-size:29px;font-weight:500;font-variant-numeric:tabular-nums}.tactile-count small {display:block;font-size:11px;color:#8a9083;margin:3px 0 16px}
+.tactile-raw {display:flex;gap:6px;align-items:center;justify-content:center;font-size:11px;color:#6c7564}.tactile-raw i{width:5px;height:5px;border-radius:50%;background:#b9c1b1}.tactile-raw i.high{background:#d5a347}
+.tactile-pin {display:block;font-size:10px;color:#929a89;margin-top:8px}.tactile-key.stale .tactile-switch{opacity:.45}
+.tactile-footnote {font-size:12px;line-height:1.8;color:#7b8373;margin:18px 4px 0}
+@media(max-width:1200px){.tactile-board{grid-template-columns:repeat(3,minmax(140px,1fr))}}
+@media(prefers-reduced-motion:reduce){.tactile-key,.tactile-cap{transition:none}}

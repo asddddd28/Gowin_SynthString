@@ -1,0 +1,903 @@
+{
+  "format": "tang-axis-studio",
+  "version": 1,
+  "description": "K01–08 Drum，K09–14 Bass，K15–20 Pad，K21–26 Key，K27–29 C大三和弦，K30–32 C小三和弦；和弦由多个键共同演奏。",
+  "keys": [
+    {
+      "name": "低频鼓击",
+      "note": 36,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1,
+      "depth": 0,
+      "gain_a": 95,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0.3,
+        "decay": 180,
+        "sustain": 0,
+        "release": 180
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 600,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "FM 通鼓",
+      "note": 43,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1.49,
+      "depth": 1.4,
+      "gain_a": 85,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0.5,
+        "decay": 260,
+        "sustain": 0,
+        "release": 260
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 60,
+        "sustain": 0,
+        "release": 60
+      },
+      "cutoff": 3200,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "木质敲击",
+      "note": 72,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 2.41,
+      "depth": 1.8,
+      "gain_a": 70,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0,
+        "decay": 65,
+        "sustain": 0,
+        "release": 65
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 30,
+        "sustain": 0,
+        "release": 30
+      },
+      "cutoff": 8000,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "金属短击",
+      "note": 66,
+      "velocity": 96,
+      "mode": "ring",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1.414,
+      "depth": 1,
+      "gain_a": 70,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0,
+        "decay": 95,
+        "sustain": 0,
+        "release": 95
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 3500,
+      "resonance": 35,
+      "filter": 6,
+      "morph": 0
+    },
+    {
+      "name": "低频鼓击",
+      "note": 31,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1,
+      "depth": 0,
+      "gain_a": 95,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0.3,
+        "decay": 180,
+        "sustain": 0,
+        "release": 180
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 600,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "FM 通鼓",
+      "note": 48,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1.49,
+      "depth": 1.4,
+      "gain_a": 85,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0.5,
+        "decay": 260,
+        "sustain": 0,
+        "release": 260
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 60,
+        "sustain": 0,
+        "release": 60
+      },
+      "cutoff": 3200,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "木质敲击",
+      "note": 79,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 2.41,
+      "depth": 1.8,
+      "gain_a": 70,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0,
+        "decay": 65,
+        "sustain": 0,
+        "release": 65
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 30,
+        "sustain": 0,
+        "release": 30
+      },
+      "cutoff": 8000,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "金属短击",
+      "note": 70,
+      "velocity": 96,
+      "mode": "ring",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1.414,
+      "depth": 1,
+      "gain_a": 70,
+      "gain_b": 0,
+      "amp": {
+        "attack": 0,
+        "decay": 95,
+        "sustain": 0,
+        "release": 95
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 3500,
+      "resonance": 35,
+      "filter": 6,
+      "morph": 0
+    },
+    {
+      "name": "圆润 Sub Bass",
+      "note": 36,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 0,
+      "wave_b": 3,
+      "ratio": 1,
+      "depth": 0,
+      "gain_a": 80,
+      "gain_b": 20,
+      "amp": {
+        "attack": 3,
+        "decay": 150,
+        "sustain": 70,
+        "release": 100
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 500,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "锯齿低音",
+      "note": 38,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 0,
+      "ratio": 0.5,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 2,
+        "decay": 180,
+        "sustain": 35,
+        "release": 95
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 700,
+      "resonance": 25,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "FM 弹拨低音",
+      "note": 40,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1,
+      "depth": 1.4,
+      "gain_a": 85,
+      "gain_b": 0,
+      "amp": {
+        "attack": 2,
+        "decay": 220,
+        "sustain": 25,
+        "release": 140
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 100,
+        "sustain": 0,
+        "release": 100
+      },
+      "cutoff": 1600,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "圆润 Sub Bass",
+      "note": 41,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 0,
+      "wave_b": 3,
+      "ratio": 1,
+      "depth": 0,
+      "gain_a": 80,
+      "gain_b": 20,
+      "amp": {
+        "attack": 3,
+        "decay": 150,
+        "sustain": 70,
+        "release": 100
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 500,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "锯齿低音",
+      "note": 43,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 0,
+      "ratio": 0.5,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 2,
+        "decay": 180,
+        "sustain": 35,
+        "release": 95
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 700,
+      "resonance": 25,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "FM 弹拨低音",
+      "note": 45,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1,
+      "depth": 1.4,
+      "gain_a": 85,
+      "gain_b": 0,
+      "amp": {
+        "attack": 2,
+        "decay": 220,
+        "sustain": 25,
+        "release": 140
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 100,
+        "sustain": 0,
+        "release": 100
+      },
+      "cutoff": 1600,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "温暖铺底",
+      "note": 48,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 3,
+      "ratio": 1.003,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 650,
+        "decay": 600,
+        "sustain": 70,
+        "release": 1500
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 1600,
+      "resonance": 8,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "双锯齿弦垫",
+      "note": 52,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 2,
+      "ratio": 0.997,
+      "depth": 0,
+      "gain_a": 50,
+      "gain_b": 50,
+      "amp": {
+        "attack": 350,
+        "decay": 400,
+        "sustain": 75,
+        "release": 1000
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 3200,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "柔和泛音垫",
+      "note": 55,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 0,
+      "wave_b": 3,
+      "ratio": 2,
+      "depth": 0,
+      "gain_a": 70,
+      "gain_b": 30,
+      "amp": {
+        "attack": 800,
+        "decay": 500,
+        "sustain": 80,
+        "release": 1800
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2400,
+      "resonance": 8,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "温暖铺底",
+      "note": 60,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 3,
+      "ratio": 1.003,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 650,
+        "decay": 600,
+        "sustain": 70,
+        "release": 1500
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 1600,
+      "resonance": 8,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "双锯齿弦垫",
+      "note": 64,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 2,
+      "ratio": 0.997,
+      "depth": 0,
+      "gain_a": 50,
+      "gain_b": 50,
+      "amp": {
+        "attack": 350,
+        "decay": 400,
+        "sustain": 75,
+        "release": 1000
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 3200,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "柔和泛音垫",
+      "note": 67,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 0,
+      "wave_b": 3,
+      "ratio": 2,
+      "depth": 0,
+      "gain_a": 70,
+      "gain_b": 30,
+      "amp": {
+        "attack": 800,
+        "decay": 500,
+        "sustain": 80,
+        "release": 1800
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2400,
+      "resonance": 8,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "FM 电钢",
+      "note": 60,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 2,
+      "depth": 1.1,
+      "gain_a": 80,
+      "gain_b": 0,
+      "amp": {
+        "attack": 1,
+        "decay": 1100,
+        "sustain": 12,
+        "release": 500
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 350,
+        "sustain": 8,
+        "release": 200
+      },
+      "cutoff": 6500,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "晶莹钟键",
+      "note": 62,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 3.5,
+      "depth": 1.6,
+      "gain_a": 65,
+      "gain_b": 0,
+      "amp": {
+        "attack": 1,
+        "decay": 1600,
+        "sustain": 0,
+        "release": 1100
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 850,
+        "sustain": 4,
+        "release": 600
+      },
+      "cutoff": 9000,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "短音拨键",
+      "note": 64,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1,
+      "depth": 1.4,
+      "gain_a": 85,
+      "gain_b": 0,
+      "amp": {
+        "attack": 1,
+        "decay": 420,
+        "sustain": 0,
+        "release": 250
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 90,
+        "sustain": 0,
+        "release": 90
+      },
+      "cutoff": 4800,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "FM 电钢",
+      "note": 65,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 2,
+      "depth": 1.1,
+      "gain_a": 80,
+      "gain_b": 0,
+      "amp": {
+        "attack": 1,
+        "decay": 1100,
+        "sustain": 12,
+        "release": 500
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 350,
+        "sustain": 8,
+        "release": 200
+      },
+      "cutoff": 6500,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "晶莹钟键",
+      "note": 67,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 3.5,
+      "depth": 1.6,
+      "gain_a": 65,
+      "gain_b": 0,
+      "amp": {
+        "attack": 1,
+        "decay": 1600,
+        "sustain": 0,
+        "release": 1100
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 850,
+        "sustain": 4,
+        "release": 600
+      },
+      "cutoff": 9000,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "短音拨键",
+      "note": 69,
+      "velocity": 96,
+      "mode": "fm",
+      "wave_a": 0,
+      "wave_b": 0,
+      "ratio": 1,
+      "depth": 1.4,
+      "gain_a": 85,
+      "gain_b": 0,
+      "amp": {
+        "attack": 1,
+        "decay": 420,
+        "sustain": 0,
+        "release": 250
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 90,
+        "sustain": 0,
+        "release": 90
+      },
+      "cutoff": 4800,
+      "resonance": 10,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "短促和弦",
+      "note": 60,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 3,
+      "ratio": 1.002,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 3,
+        "decay": 280,
+        "sustain": 0,
+        "release": 280
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2300,
+      "resonance": 15,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "短促和弦",
+      "note": 64,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 3,
+      "ratio": 1.002,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 3,
+        "decay": 280,
+        "sustain": 0,
+        "release": 280
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2300,
+      "resonance": 15,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "短促和弦",
+      "note": 67,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 3,
+      "ratio": 1.002,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 3,
+        "decay": 280,
+        "sustain": 0,
+        "release": 280
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2300,
+      "resonance": 15,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "柔和和弦垫",
+      "note": 60,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 0,
+      "ratio": 0.998,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 260,
+        "decay": 400,
+        "sustain": 75,
+        "release": 1000
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2200,
+      "resonance": 12,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "柔和和弦垫",
+      "note": 63,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 0,
+      "ratio": 0.998,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 260,
+        "decay": 400,
+        "sustain": 75,
+        "release": 1000
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2200,
+      "resonance": 12,
+      "filter": 1,
+      "morph": 0
+    },
+    {
+      "name": "柔和和弦垫",
+      "note": 67,
+      "velocity": 96,
+      "mode": "mix",
+      "wave_a": 2,
+      "wave_b": 0,
+      "ratio": 0.998,
+      "depth": 0,
+      "gain_a": 60,
+      "gain_b": 40,
+      "amp": {
+        "attack": 260,
+        "decay": 400,
+        "sustain": 75,
+        "release": 1000
+      },
+      "modulation": {
+        "attack": 0,
+        "decay": 0,
+        "sustain": 100,
+        "release": 120
+      },
+      "cutoff": 2200,
+      "resonance": 12,
+      "filter": 1,
+      "morph": 0
+    }
+  ]
+}
