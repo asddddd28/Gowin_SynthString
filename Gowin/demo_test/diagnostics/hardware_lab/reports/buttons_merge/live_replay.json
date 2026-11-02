@@ -1,0 +1,86 @@
+{
+  "now": 7.160209,
+  "connection": "replay_done",
+  "protocol": "hub",
+  "identity": {
+    "capabilities": 255,
+    "build": 257
+  },
+  "buttons": {
+    "record": {
+      "sequence": 99,
+      "raw": 0,
+      "filtered": 0,
+      "presses": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "releases": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "edges": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "fresh": false,
+    "updated": 7.0650727
+  },
+  "counts": [
+    2560,
+    80,
+    79,
+    400,
+    160,
+    160,
+    160,
+    32,
+    80
+  ],
+  "rates": [
+    362.569847133361,
+    10.986965064647304,
+    10.986965064647304,
+    54.93482532323652,
+    22.972745135171635,
+    21.973930129294608,
+    21.973930129294608,
+    3.99526002350811,
+    10.986965064647304
+  ],
+  "errors": 0,
+  "sequence_errors": 0,
+  "rx_bytes": 74137,
+  "tx_bytes": 0,
+  "fresh_count": 0,
+  "board": {
+    "seq": 255,
+    "result": 128,
+    "configured": false,
+    "mode": 1,
+    "direction": 0,
+    "generation": 0,
+    "pressed": 0
+  },
+  "transfer": {
+    "busy": false,
+    "completed": 0,
+    "total": 0,
+    "failures": 0,
+    "message": ""
+  },
+  "export_note": "Compact historical evidence; personal profile/settings and host paths omitted."
+}

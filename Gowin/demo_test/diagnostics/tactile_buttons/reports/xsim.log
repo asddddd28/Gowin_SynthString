@@ -1,0 +1,18 @@
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 06:40:59 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/tactile_sim/xsim_script.tcl
+# xsim {tactile_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS debounce both edges, six channel mapping, concurrency, hold, counter wrap, reset-held
+PASS three physical UART frames emitted for independent CRC/snapshot verification
+$finish called at time : 765290 ns : File "D:/Projects/ai/Gowin/demo_test/diagnostics/tactile_buttons/sim/tb_tactile_buttons.v" Line 50
+exit
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 06:41:01 2026...

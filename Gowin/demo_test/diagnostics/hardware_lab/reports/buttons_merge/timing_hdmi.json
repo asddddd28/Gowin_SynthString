@@ -1,0 +1,90 @@
+{
+  "build": {
+    "implDir": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_hdmi\\impl",
+    "name": "hardware_hdmi",
+    "designFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_hdmi\\impl\\gwsynthesis\\hardware_hdmi.vg",
+    "constraintsFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_hdmi\\src\\hdmi.cst",
+    "sdcFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\hardware_hdmi\\src\\hdmi.sdc",
+    "toolVersion": "V1.9.11.03 Education",
+    "partNumber": "GW5AT-LV60PG484AC1/I0",
+    "device": "GW5AT-60",
+    "deviceVersion": "B",
+    "createdTime": "Mon Nov  2 07:09:28 2026",
+    "elapsed": "0h 1m 48s",
+    "peakMemory": "1759MB"
+  },
+  "resources": {
+    "logic": {
+      "name": "Logic",
+      "depth": 0,
+      "used": 16518,
+      "available": 59904,
+      "utilization": "28%",
+      "raw": "16518/59904"
+    },
+    "cls": {
+      "name": "CLS",
+      "depth": 0,
+      "used": 12320,
+      "available": 29952,
+      "utilization": "42%",
+      "raw": "12320/29952"
+    },
+    "register": {
+      "name": "Register",
+      "depth": 0,
+      "used": 10816,
+      "available": 60780,
+      "utilization": "18%",
+      "raw": "10816/60780"
+    },
+    "bsram": {
+      "name": "BSRAM",
+      "depth": 0,
+      "used": 11,
+      "available": 118,
+      "utilization": "10%",
+      "raw": "11/118"
+    },
+    "dsp": {
+      "name": "DSP",
+      "depth": 0,
+      "used": 9.5,
+      "available": 118,
+      "utilization": "9%",
+      "raw": "9.5/118"
+    },
+    "ioPort": {
+      "name": "I/O Port",
+      "depth": 0,
+      "used": 49,
+      "available": 297,
+      "utilization": "17%",
+      "raw": "49/297"
+    }
+  },
+  "timing": {
+    "fmax": [
+      {
+        "clock": "clk",
+        "constraintMhz": 50,
+        "actualMhz": 57.368,
+        "logicLevel": 9,
+        "entity": "TOP",
+        "failing": false,
+        "marginMhz": 7.368
+      },
+      {
+        "clock": "pixel_clk",
+        "constraintMhz": 73.333,
+        "actualMhz": 73.524,
+        "logicLevel": 10,
+        "entity": "TOP",
+        "failing": false,
+        "marginMhz": 0.191
+      }
+    ],
+    "violations": []
+  },
+  "clean": true
+}

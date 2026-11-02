@@ -78,3 +78,17 @@ IO_PORT "tmds_clk_p_0" PULL_MODE=NONE DRIVE=3.5 BANK_VCCIO=3.3;
 IO_LOC "hpd_en" K13;
 IO_PORT "hpd_en" PULL_MODE=UP DRIVE=12 BANK_VCCIO=3.3;
 INS_LOC "u_tmds_pll/PLLA_inst" PLL_R[0];
+
+// Six active-high tactile inputs, weak pulldowns. SW2 is AB18, NOT TP2 SCL AA18.
+IO_LOC "i_buttons[0]" AA19;
+IO_PORT "i_buttons[0]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;
+IO_LOC "i_buttons[1]" AB18;
+IO_PORT "i_buttons[1]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;
+IO_LOC "i_buttons[2]" Y18;
+IO_PORT "i_buttons[2]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;
+IO_LOC "i_buttons[3]" N15;
+IO_PORT "i_buttons[3]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;
+IO_LOC "i_buttons[4]" U17;
+IO_PORT "i_buttons[4]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;
+IO_LOC "i_buttons[5]" P15;
+IO_PORT "i_buttons[5]" IO_TYPE=LVCMOS33 PULL_MODE=DOWN BANK_VCCIO=3.3;

@@ -4,6 +4,7 @@
 module HardwareHdmi(
     input i_clk, input i_rstn, input i_adc_dout, input i_uart_rx,
     input [4:0] i_encoder_a, i_encoder_b, i_joystick, input [1:0] i_irq,
+    input [5:0] i_buttons,
     inout [1:0] io_scl, io_sda,
     output [2:0] o_mux_sel,
     output o_mux_en, o_adc_cs_n, o_adc_sclk, o_adc_din, o_rgb, o_uart_tx,
@@ -34,7 +35,7 @@ module HardwareHdmi(
 
     HardwareLab HardwareLab_Inst(
         .i_clk(i_clk),.i_rstn(i_rstn),.i_adc_dout(i_adc_dout),.i_uart_rx(i_uart_rx),
-        .i_encoder_a(i_encoder_a),.i_encoder_b(i_encoder_b),.i_joystick(i_joystick),.i_irq(i_irq),
+        .i_encoder_a(i_encoder_a),.i_encoder_b(i_encoder_b),.i_joystick(i_joystick),.i_irq(i_irq),.i_buttons(i_buttons),
         .io_scl(io_scl),.io_sda(io_sda),.o_mux_sel(o_mux_sel),.o_mux_en(o_mux_en),
         .o_adc_cs_n(o_adc_cs_n),.o_adc_sclk(o_adc_sclk),.o_adc_din(o_adc_din),.o_rgb(o_rgb),.o_uart_tx(o_uart_tx));
     TMDS_PLL u_tmds_pll(.clkin(i_clk),.clkout0(clk_serial),.clkout1(clk_pixel),.lock(flag_pll_lock));

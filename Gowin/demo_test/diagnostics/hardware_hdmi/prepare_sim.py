@@ -6,7 +6,12 @@ def transmit(text):
 keyframes=''.join(f'K{k+1:02d}:{(k*100+300):03X}\r\n' for k in range(32))
 touch='T100015A000'+'21000000'+'00'*38+'*00\r\n'
 assert len(touch)==100
+buttons='B1'+'0'*80+'*00\r\n'
+assert len(buttons)==87
 frames=keyframes+'E1 A3 F3 QFFFB P0005 N000A X0000\r\n'+'J1234 R15 F15 P0001\r\n'+'@010001400000000081*00\n'+touch
+# The dashboard deliberately ignores B1; ensure the new mixed stream cannot
+# overwrite existing widgets or prevent the following complete line decoding.
+frames=buttons+'H100FF0101*9B\r\n'+frames+buttons
 assert len('E1 A3 F3 QFFFB P0005 N000A X0000\r\n')==34
 tb='''`timescale 1ns / 1ps
 module tb_dashboard;

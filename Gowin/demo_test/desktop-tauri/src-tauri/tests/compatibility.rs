@@ -18,7 +18,7 @@ fn every_split_size_matches_previous_app_and_real_capture() {
             }
         }
         assert_eq!(
-            json!(parser.counts),
+            json!(&parser.counts[..8]),
             expected["counts"],
             "chunk size {chunk}"
         );

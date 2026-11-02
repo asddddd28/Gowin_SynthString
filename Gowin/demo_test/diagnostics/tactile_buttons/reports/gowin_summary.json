@@ -1,0 +1,65 @@
+{
+  "build": {
+    "implDir": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\impl",
+    "name": "tactile_buttons",
+    "designFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\impl\\gwsynthesis\\tactile_buttons.vg",
+    "constraintsFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\src\\buttons.cst",
+    "sdcFile": "D:\\Projects\\ai\\Gowin\\demo_test\\diagnostics\\tactile_buttons\\src\\buttons.sdc",
+    "toolVersion": "V1.9.11.03 Education",
+    "partNumber": "GW5AT-LV60PG484AC1/I0",
+    "device": "GW5AT-60",
+    "deviceVersion": "B",
+    "createdTime": "Mon Nov  2 06:44:06 2026",
+    "elapsed": "0h 0m 12s",
+    "peakMemory": "1507MB"
+  },
+  "resources": {
+    "logic": {
+      "name": "Logic",
+      "depth": 0,
+      "used": 1263,
+      "available": 59904,
+      "utilization": "3%",
+      "raw": "1263/59904"
+    },
+    "cls": {
+      "name": "CLS",
+      "depth": 0,
+      "used": 716,
+      "available": 29952,
+      "utilization": "3%",
+      "raw": "716/29952"
+    },
+    "register": {
+      "name": "Register",
+      "depth": 0,
+      "used": 948,
+      "available": 60780,
+      "utilization": "2%",
+      "raw": "948/60780"
+    },
+    "ioPort": {
+      "name": "I/O Port",
+      "depth": 0,
+      "used": 11,
+      "available": 297,
+      "utilization": "4%",
+      "raw": "11/297"
+    }
+  },
+  "timing": {
+    "fmax": [
+      {
+        "clock": "i_clk",
+        "constraintMhz": 50,
+        "actualMhz": 145.626,
+        "logicLevel": 3,
+        "entity": "TOP",
+        "failing": false,
+        "marginMhz": 95.626
+      }
+    ],
+    "violations": []
+  },
+  "clean": true
+}

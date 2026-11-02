@@ -44,7 +44,7 @@ fn main() {
         service.action(Action::Connect { port }).unwrap();
         let ready = wait(&service, 15., |s| {
             s.view.protocol == "hub"
-                && s.view.fresh_count == 40
+                && s.view.fresh_count == if s.view.identity.as_ref().is_some_and(|id| id.capabilities & 128 != 0) { 46 } else { 40 }
                 && s.view.board.as_ref().is_some_and(|b| b.configured)
                 && !s.view.transfer.busy
         });
@@ -106,13 +106,13 @@ fn main() {
         assert_eq!(s.view.errors, 0);
         assert_eq!(s.view.sequence_errors, 0);
         assert_eq!(s.view.transfer.failures, 0);
-        assert_eq!(s.view.fresh_count, 40);
+        assert_eq!(s.view.fresh_count, if s.view.identity.as_ref().is_some_and(|id| id.capabilities & 128 != 0) { 46 } else { 40 });
         assert!(
             s.view.audio.ready,
             "Native audio failed: {}",
             s.view.audio.error
         );
         service.action(Action::Disconnect).unwrap();
-        println!("PASS: live 40/40, 35 calibration ACKs, six effects, three game start/stop, recording, native audio ready");
+        println!("PASS: live all available channels, 35 calibration ACKs, six effects, three game start/stop, recording, native audio ready");
     }
 }

@@ -1,0 +1,28 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........"
+    },
+    {
+      "name": "raw",
+      "wave": "0.1......"
+    },
+    {
+      "name": "stable_window",
+      "wave": "0.1...0.."
+    },
+    {
+      "name": "pressed",
+      "wave": "0.....1.."
+    },
+    {
+      "name": "press_count",
+      "wave": "=.....=..",
+      "data": [
+        "0",
+        "1"
+      ]
+    }
+  ]
+}

@@ -8,7 +8,7 @@ import {
   Touchpad,
 } from "lucide-react";
 import type { Page, Snapshot } from "../types";
-import { EFFECTS, fmt, bytes } from "../config";
+import { EFFECTS, fmt, bytes, inputCapacity } from "../config";
 import {
   Badge,
   CardHead,
@@ -35,9 +35,9 @@ export function Overview({
         <Metric
           label="实时通道"
           value={String(s.fresh_count)}
-          unit="/ 40"
+          unit={`/ ${inputCapacity(s)}`}
           icon={Activity}
-          detail={live ? "32 键 · 5 旋钮 · 摇杆 · 双 Pad" : "等待连接硬件"}
+          detail={live ? s.protocol === "buttons" ? "6 路轻触开关" : `32 键 · 5 旋钮 · 摇杆 · 双 Pad${inputCapacity(s) === 46 ? " · 6 开关" : ""}` : "等待连接硬件"}
         />
         <Metric
           label="键盘遥测"
@@ -93,13 +93,13 @@ export function Overview({
             className="health-ring"
             style={
               {
-                "--progress": `${(s.fresh_count / 40) * 100}%`,
+                "--progress": `${(s.fresh_count / inputCapacity(s)) * 100}%`,
               } as React.CSSProperties
             }
           >
             <div>
               <strong>{s.fresh_count}</strong>
-              <span>实时更新 / 40</span>
+              <span>实时更新 / {inputCapacity(s)}</span>
             </div>
           </div>
           <div className="system-lines">

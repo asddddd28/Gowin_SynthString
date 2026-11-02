@@ -12,27 +12,27 @@
   <Part Number>: GW5AT-LV60PG484AC1/I0
   <Device>: GW5AT-60
   <Device Version>: B
-  <Created Time>:Sun Nov  1 23:44:22 2026
+  <Created Time>:Mon Nov  2 07:09:28 2026
 
 
 2. PnR Details
 
   Running placement:
-    Placement Phase 0: CPU time = 0h 0m 3s, Elapsed time = 0h 0m 3s
-    Placement Phase 1: CPU time = 0h 0m 1s, Elapsed time = 0h 0m 1s
-    Placement Phase 2: CPU time = 0h 0m 15s, Elapsed time = 0h 0m 15s
-    Placement Phase 3: CPU time = 0h 0m 18s, Elapsed time = 0h 0m 18s
-    Total Placement: CPU time = 0h 0m 37s, Elapsed time = 0h 0m 37s
+    Placement Phase 0: CPU time = 0h 0m 8s, Elapsed time = 0h 0m 8s
+    Placement Phase 1: CPU time = 0h 0m 2s, Elapsed time = 0h 0m 2s
+    Placement Phase 2: CPU time = 0h 0m 20s, Elapsed time = 0h 0m 20s
+    Placement Phase 3: CPU time = 0h 0m 24s, Elapsed time = 0h 0m 24s
+    Total Placement: CPU time = 0h 0m 54s, Elapsed time = 0h 0m 54s
  Running routing:
-    Routing Phase 0: CPU time = 0h 0m 0.007s, Elapsed time = 0h 0m 0.007s
-    Routing Phase 1: CPU time = 0h 0m 43s, Elapsed time = 0h 0m 43s
-    Routing Phase 2: CPU time = 0h 0m 0.228s, Elapsed time = 0h 0m 0.227s
+    Routing Phase 0: CPU time = 0h 0m 0.009s, Elapsed time = 0h 0m 0.009s
+    Routing Phase 1: CPU time = 0h 0m 48s, Elapsed time = 0h 0m 48s
+    Routing Phase 2: CPU time = 0h 0m 0.283s, Elapsed time = 0h 0m 0.283s
     Routing Phase 3: CPU time = 0h 0m 0s, Elapsed time = 0h 0m 0s
-    Total Routing: CPU time = 0h 0m 43s, Elapsed time = 0h 0m 43s
+    Total Routing: CPU time = 0h 0m 48s, Elapsed time = 0h 0m 48s
  Generate output files:
-    CPU time = 0h 0m 5s, Elapsed time = 0h 0m 5s
+    CPU time = 0h 0m 7s, Elapsed time = 0h 0m 7s
 
- Total Time and Memory Usage: CPU time = 0h 1m 26s, Elapsed time = 0h 1m 26s, Peak memory usage = 1756MB
+ Total Time and Memory Usage: CPU time = 0h 1m 48s, Elapsed time = 0h 1m 48s, Peak memory usage = 1759MB
 
 
 3. Resource Usage Summary
@@ -40,18 +40,18 @@
   --------------------------------------------------------------------------------
   Resources                   | Usage                               | Utilization
   --------------------------------------------------------------------------------
-  Logic                       | 15338/59904                         |  26%
-    --LUT,ALU,ROM16           | 14834(12901 LUT, 1933 ALU, 0 ROM16) | -
+  Logic                       | 16518/59904                         |  28%
+    --LUT,ALU,ROM16           | 16014(13796 LUT, 2218 ALU, 0 ROM16) | -
     --SSRAM(RAM16)            | 84                                  | -
-  Register                    | 9909/60780                          |  17%
+  Register                    | 10816/60780                         |  18%
     --Logic Register as Latch | 0/59904                             |  0%
-    --Logic Register as FF    | 9884/59904                          |  17%
+    --Logic Register as FF    | 10785/59904                         |  18%
     --I/O Register as Latch   | 0/876                               |  0%
-    --I/O Register as FF      | 25/876                              |  3%
-  CLS                         | 11684/29952                         |  39%
-  I/O Port                    | 43/297                              |  15%
-  I/O Buf                     | 39                                  | -
-    --Input Buf               | 21                                  | -
+    --I/O Register as FF      | 31/876                              |  4%
+  CLS                         | 12320/29952                         |  42%
+  I/O Port                    | 49/297                              |  17%
+  I/O Buf                     | 45                                  | -
+    --Input Buf               | 27                                  | -
     --Output Buf              | 14                                  | -
     --Inout Buf               | 4                                   | -
   IOLOGIC                     | 8/293                               | 3%
@@ -77,9 +77,9 @@
   bank 3   | 0/8         | 0%          
   bank 4   | 7/16        | 44%         
   bank 5   | 2/34        | 6%          
-  bank 6   | 12/20       | 60%         
+  bank 6   | 14/20       | 70%         
   bank 7   | 8/24        | 34%         
-  bank 8   | 13/24       | 55%         
+  bank 8   | 17/24       | 71%         
   bank 9   | 1/66        | 2%          
   bank 10  | 0/25        | 0%          
   bank 11  | 0/25        | 0%          
@@ -94,7 +94,7 @@
   ------------------------------------------
   PRIMARY       | 7/8           | 88%
   LW            | 8/8           | 100%
-  GCLK_PIN      | 3/40          | 8%
+  GCLK_PIN      | 4/40          | 10%
   PLLA          | 1/8           | 13%
   ==========================================
 
@@ -106,15 +106,15 @@
   -------------------------------------------
   i_clk_d        | PRIMARY        |  PTR1 PTR2 PTR3 PBR1 PBR2 PBR3
   clk_pixel      | PRIMARY        |  PTR2 PTR3 PBR2 PBR3
+  HardwareLab_Inst/keyboard/flag_frame_tick| PRIMARY        |  PTR2 PBR2
+  HardwareLab_Inst/keyboard/Snapshot_Inst/n1032_3| PRIMARY        |  PTR2 PBR2
   HardwareLab_Inst/touchpad/payload_255_9| PRIMARY        |  PTR1 PTR2 PBR1
-  HardwareLab_Inst/touchpad/left_sensor/n4265_6| PRIMARY        |  PTR1
-  HardwareLab_Inst/touchpad/left_sensor/sequence_o_15_10| PRIMARY        |  PTR1
-  HardwareLab_Inst/touchpad/right_sensor/n4265_6| PRIMARY        |  PTR1 PBR1
-  HardwareLab_Inst/touchpad/right_sensor/sequence_o_15_12| PRIMARY        |  PTR1 PBR1
+  HardwareLab_Inst/touchpad/left_sensor/sequence_o_15_12| PRIMARY        |  PTR1 PTR2
+  HardwareLab_Inst/touchpad/right_sensor/sequence_o_15_12| PRIMARY        |  PTR1
   o_mux_en_d     | LW             |  -
   reg_reset_release[2]| LW             |  -
+  HardwareLab_Inst/n32_5| LW             |  -
   HardwareLab_Inst/keyboard/flag_game_stop| LW             |  -
-  HardwareLab_Inst/keyboard/Snapshot_Inst/n1032_3| LW             |  -
   HardwareLab_Inst/touchpad/n1866_7| LW             |  -
   HardwareLab_Inst/touchpad/left_tracker/snapshot_335_10| LW             |  -
   HardwareLab_Inst/touchpad/right_tracker/snapshot_335_10| LW             |  -
@@ -149,6 +149,12 @@ i_joystick[3]   | -         | T20/7         | Y          | in    | IOB111[B] | D
 i_joystick[4]   | -         | P14/6         | Y          | in    | IOB146[A] | -               | LVCMOS33   | OFF   | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 i_irq[0]        | -         | AA21/7        | Y          | in    | IOB102[B] | D12             | LVCMOS33   | OFF   | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 i_irq[1]        | -         | Y19/8         | Y          | in    | IOB87[B] | GCLKC_10        | LVCMOS33   | OFF   | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+i_buttons[0]    | -         | AA19/8        | Y          | in    | IOB85[A] | RDWR_B          | LVCMOS33   | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+i_buttons[1]    | -         | AB18/8        | Y          | in    | IOB77[B] | BPLL1_C_IN2/BPLL1_C_FB0 | LVCMOS33   | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+i_buttons[2]    | -         | Y18/8         | Y          | in    | IOB87[A] | GCLKT_10        | LVCMOS33   | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+i_buttons[3]    | -         | N15/6         | Y          | in    | IOB134[B] | -               | LVCMOS33   | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+i_buttons[4]    | -         | U17/8         | Y          | in    | IOB75[A] | -               | LVCMOS33   | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
+i_buttons[5]    | -         | P15/6         | Y          | in    | IOB142[A] | -               | LVCMOS33   | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 o_mux_sel[0]    | -         | W17/8         | Y          | out   | IOB79[B] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 o_mux_sel[1]    | -         | T18/6         | Y          | out   | IOB144[B] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
 o_mux_sel[2]    | -         | R17/6         | Y          | out   | IOB136[B] | -               | LVCMOS33   | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3        | MEDIUM        | NONE         
@@ -295,17 +301,17 @@ W9/9     | -               | in    | IOB69[A] | -               | LVCMOS15 | 8  
 Y9/9     | -               | in    | IOB69[B] | -               | LVCMOS15 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 1.5   | MEDIUM        | NONE         
 U7/9     | -               | in    | IOB71[A] | BPLL1_T_IN1/BPLL1_T_FB1 | LVCMOS15 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 1.5   | MEDIUM        | NONE         
 V10/9    | -               | in    | IOB71[B] | BPLL1_C_IN1/BPLL1_C_FB1 | LVCMOS15 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 1.5   | MEDIUM        | NONE         
-U17/8    | -               | in    | IOB75[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+U17/8    | i_buttons[4]    | in    | IOB75[A] | -               | LVCMOS33 | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 U18/8    | i_joystick[2]   | in    | IOB75[B] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 AA18/8   | io_scl[1]       | io    | IOB77[A] | BPLL1_T_IN2/BPLL1_T_FB0 | LVCMOS33 | 8     | UP        | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-AB18/8   | -               | in    | IOB77[B] | BPLL1_C_IN2/BPLL1_C_FB0 | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+AB18/8   | i_buttons[1]    | in    | IOB77[B] | BPLL1_C_IN2/BPLL1_C_FB0 | LVCMOS33 | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 V17/8    | i_encoder_b[3]  | in    | IOB79[A] | CSI_B           | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 W17/8    | o_mux_sel[0]    | out   | IOB79[B] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 V18/8    | -               | in    | IOB81[A] | GCLKT_11        | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 V19/8    | -               | in    | IOB81[B] | GCLKC_11        | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-AA19/8   | -               | in    | IOB85[A] | RDWR_B          | LVCMOS33 | 8     | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+AA19/8   | i_buttons[0]    | in    | IOB85[A] | RDWR_B          | LVCMOS33 | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 AB20/8   | io_sda[1]       | io    | IOB85[B] | CSO_B/DOUT      | LVCMOS33 | 8     | UP        | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-Y18/8    | -               | in    | IOB87[A] | GCLKT_10        | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+Y18/8    | i_buttons[2]    | in    | IOB87[A] | GCLKT_10        | LVCMOS33 | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 Y19/8    | i_irq[1]        | in    | IOB87[B] | GCLKC_10        | LVCMOS33 | OFF   | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 AB15/8   | -               | in    | IOB89[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 AA14/8   | -               | in    | IOB89[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
@@ -350,14 +356,14 @@ U15/6    | o_uart_tx       | out   | IOB130[B] | -               | LVCMOS33 | 8 
 T15/6    | -               | in    | IOB132[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 T14/6    | -               | in    | IOB132[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 U16/6    | -               | in    | IOB134[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-N15/6    | -               | in    | IOB134[B] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+N15/6    | i_buttons[3]    | in    | IOB134[B] | -               | LVCMOS33 | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P16/6    | i_encoder_b[4]  | in    | IOB136[A] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 R17/6    | o_mux_sel[2]    | out   | IOB136[B] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 N13/6    | i_encoder_a[2]  | in    | IOB138[A] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 N14/6    | o_adc_sclk      | out   | IOB138[B] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 N17/6    | i_encoder_b[2]  | in    | IOB140[A] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 P17/6    | i_adc_dout      | in    | IOB140[B] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
-P15/6    | -               | in    | IOB142[A] | -               | LVCMOS33 | 8     | UP        | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
+P15/6    | i_buttons[5]    | in    | IOB142[A] | -               | LVCMOS33 | OFF   | DOWN      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 R16/6    | i_joystick[1]   | in    | IOB142[B] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 R18/6    | i_encoder_a[4]  | in    | IOB144[A] | -               | LVCMOS33 | OFF   | NONE      | OFF       | ON         | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         
 T18/6    | o_mux_sel[1]    | out   | IOB144[B] | -               | LVCMOS33 | 8     | NONE      | OFF       | OFF        | OFF        | SLOW      | OFF        | OFF             | OFF           | 3.3   | MEDIUM        | NONE         

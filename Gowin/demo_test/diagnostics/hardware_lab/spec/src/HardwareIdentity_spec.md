@@ -29,7 +29,7 @@
 
 ## 5. 周期行为与延迟
 
-- Immediately after reset and every250ms send H1007F0100*66 CRLF. Hold byte until ready.
+- Immediately after reset and every250ms send H100FF0101*9B CRLF. Hold byte until ready.
 
 ## 6. WaveDrom 时序图
 

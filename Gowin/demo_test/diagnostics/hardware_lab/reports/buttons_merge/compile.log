@@ -1,0 +1,63 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/sim/tb_hardware_lab.v" into library work
+INFO: [VRFC 10-311] analyzing module MprBehavior
+INFO: [VRFC 10-311] analyzing module tb_hardware_lab
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/sim/tb_telemetry_mux.v" into library work
+INFO: [VRFC 10-311] analyzing module tb_telemetry_mux
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareEncoders.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareEncoders
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareButtons.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareButtons
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareButtonReport.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareButtonReport
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/tactile_buttons/src/TactileInput.v" into library work
+INFO: [VRFC 10-311] analyzing module TactileInput
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareIdentity.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareIdentity
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareJoystick.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareJoystick
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareKeyController.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareKeyController
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareKeyLightEffects.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareKeyLightEffects
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareKeyboard.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareKeyboard
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareKeyboardTelemetry.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareKeyboardTelemetry
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareLab.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareLab
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/HardwareTouchpad.v" into library work
+INFO: [VRFC 10-311] analyzing module HardwareTouchpad
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/KeyboardSnapshot.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardSnapshot
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/TelemetryByte.v" into library work
+INFO: [VRFC 10-311] analyzing module TelemetryByte
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/src/TelemetryMux.v" into library work
+INFO: [VRFC 10-311] analyzing module TelemetryMux
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/CommandFrameRx.v" into library work
+INFO: [VRFC 10-311] analyzing module CommandFrameRx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/KeyboardSampler.v" into library work
+INFO: [VRFC 10-311] analyzing module KeyboardSampler
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v" into library work
+INFO: [VRFC 10-311] analyzing module UartRx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/GameEngine.v" into library work
+INFO: [VRFC 10-311] analyzing module GameEngine
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/GameDisplay.v" into library work
+INFO: [VRFC 10-311] analyzing module GameDisplay
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/keyboard_games/src/LedFrameTx.v" into library work
+INFO: [VRFC 10-311] analyzing module LedFrameTx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/encoder/src/EncoderChannel.v" into library work
+INFO: [VRFC 10-311] analyzing module EncoderChannel
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v" into library work
+INFO: [VRFC 10-311] analyzing module EncoderUartTx
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/touchpad/src/I2cRegister.v" into library work
+INFO: [VRFC 10-311] analyzing module I2cRegister
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_byte_ctrl.v" into library work
+INFO: [VRFC 10-311] analyzing module i2c_master_byte_ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_bit_ctrl.v" into library work
+INFO: [VRFC 10-311] analyzing module i2c_master_bit_ctrl
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/touchpad_guitar/src/MprScanner.v" into library work
+INFO: [VRFC 10-311] analyzing module MprScanner
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/touchpad_guitar/src/GuitarTracker.v" into library work
+INFO: [VRFC 10-311] analyzing module GuitarTracker
+INFO: [VRFC 10-2263] Analyzing Verilog file "D:/Projects/ai/Gowin/demo_test/diagnostics/touchpad_guitar/src/GuitarEventQueue.v" into library work
+INFO: [VRFC 10-311] analyzing module GuitarEventQueue

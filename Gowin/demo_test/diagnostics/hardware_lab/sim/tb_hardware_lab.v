@@ -59,6 +59,7 @@ endmodule
 module tb_hardware_lab;
 reg clk=0,rstn=0,dout=0,rx=1;
 reg [4:0] encoder_a=31,encoder_b=31,joystick=16;
+reg [5:0] buttons=0;
 tri1 [1:0] pad_scl,pad_sda;
 wire [31:0] reads_left,reads_right;
 integer output_file;
@@ -82,9 +83,10 @@ reg last_configured=0,verify_static=1;
 reg [11:0] raw_value;
 HardwareLab #(.C_SETTLE_CYCLES(30),.C_UART_CYCLES(16),.C_FRAME_CYCLES(65000),
  .C_KEY_REPORT(200000),.C_ENCODER_REPORT(300000),.C_JOY_REPORT(150000),.C_TOUCH_REPORT(100000),.C_ID_REPORT(400000),
+ .C_BUTTON_REPORT(300000),.C_BUTTON_FILTER(10),
  .C_ENCODER_FILTER(3),.C_JOY_FILTER(10),.C_I2C_DIVIDER(4),.C_TOUCH_BOOT(100),.C_TOUCH_RETRY(5000),.C_TOUCH_RESET(200),.C_TOUCH_TIMEOUT(100000)) dut(
  .i_clk(clk),.i_rstn(rstn),.i_adc_dout(dout),.i_uart_rx(rx),.o_mux_sel(mux),.o_mux_en(en),
- .o_adc_cs_n(cs),.o_adc_sclk(sclk),.o_adc_din(din),.o_uart_tx(tx),.o_rgb(rgb),.i_encoder_a(encoder_a),.i_encoder_b(encoder_b),.i_joystick(joystick),.i_irq(2'b11),.io_scl(pad_scl),.io_sda(pad_sda));
+ .o_adc_cs_n(cs),.o_adc_sclk(sclk),.o_adc_din(din),.o_uart_tx(tx),.o_rgb(rgb),.i_encoder_a(encoder_a),.i_encoder_b(encoder_b),.i_joystick(joystick),.i_buttons(buttons),.i_irq(2'b11),.io_scl(pad_scl),.io_sda(pad_sda));
 defparam dut.keyboard.CommandParser_Inst.C_TIMEOUT=1000;
 always #10 clk=~clk;
 always @(posedge clk) if(rstn)for(j=0;j<32;j=j+1)if(dut.keyboard.reg_press[j])press_events=press_events+1;
@@ -127,6 +129,7 @@ initial forever begin
   else if(rx_byte==84)line_len=100;
   else if(rx_byte==71)line_len=37;
   else if(rx_byte==72)line_len=15;
+  else if(rx_byte==66)line_len=87;
   else begin $display("FAIL line prefix %h",rx_byte);$finish;end
  end
  if(byte_index==line_len-1)begin
@@ -209,6 +212,12 @@ initial begin
  left_pad.memory[0]=8'h10;left_pad.memory[1]=1;
  right_pad.memory[0]=8'h10;right_pad.memory[1]=1;
  #2000000;
+ // A short simultaneous press is retained in counters even between B1 reports.
+ buttons=63;#2000;
+ if(dut.buttons.bus_pressed!==6'b111111) $fatal(1,"Six-key debounce failed");
+ buttons=0;#2000;
+ if(dut.buttons.bus_pressed!==0 || dut.buttons.bus_presses!==96'h000100010001000100010001 ||
+    dut.buttons.bus_releases!==96'h000100010001000100010001) $fatal(1,"Six-key counts lost");
  // Exactly one outlying sample cannot trigger a key.
  @(negedge clk);raw[2]=100;
  wait(dut.keyboard.flag_sample_transfer && dut.keyboard.enc_key==2 && dut.keyboard.enc_raw==100);

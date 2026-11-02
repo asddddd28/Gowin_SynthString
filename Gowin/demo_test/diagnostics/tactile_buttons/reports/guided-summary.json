@@ -1,0 +1,99 @@
+{
+  "window_seconds": [
+    37.407,
+    85.282
+  ],
+  "baseline": {
+    "sequence": 5436,
+    "raw": 0,
+    "filtered": 0,
+    "presses": [
+      0,
+      4,
+      5,
+      0,
+      14,
+      4
+    ],
+    "releases": [
+      0,
+      4,
+      5,
+      0,
+      14,
+      4
+    ],
+    "edges": [
+      0,
+      44,
+      10,
+      0,
+      68,
+      8
+    ]
+  },
+  "final": {
+    "sequence": 7830,
+    "raw": 0,
+    "filtered": 0,
+    "presses": [
+      0,
+      8,
+      8,
+      0,
+      17,
+      8
+    ],
+    "releases": [
+      0,
+      8,
+      8,
+      0,
+      17,
+      8
+    ],
+    "edges": [
+      0,
+      64,
+      20,
+      0,
+      74,
+      16
+    ]
+  },
+  "press_delta": [
+    0,
+    4,
+    3,
+    0,
+    3,
+    4
+  ],
+  "release_delta": [
+    0,
+    4,
+    3,
+    0,
+    3,
+    4
+  ],
+  "raw_masks": [
+    0,
+    2,
+    4,
+    16,
+    32,
+    34
+  ],
+  "filtered_masks": [
+    0,
+    2,
+    4,
+    16,
+    32,
+    34
+  ],
+  "serial_errors": 0,
+  "serial_sequence_errors": 0,
+  "note": "Window selected from user-guided sequence after exploratory actions; PC snapshots approximately 1 Hz. FPGA counters retain events. Physical SW1/SW4 voltage checks pending."
+}

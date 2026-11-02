@@ -1,0 +1,3 @@
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.44s
+     Running `src-tauri\target\debug\hardware-probe.exe --replay ../diagnostics/hardware_lab/reports/buttons_merge/live_uart.bin ../diagnostics/hardware_lab/reports/buttons_merge/live_replay.json`
+PASS: replay, no TX/audio, all protocols parsed

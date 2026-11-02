@@ -73,3 +73,7 @@ Conceptual ready/valid sequence; not measured timing.
 - 规格模块：`HardwareLab`
 - RTL 路径：`src/HardwareLab.v`
 - 交付要求：本文档、WaveJSON 和 SVG 必须与同一版本规格一同发布。
+
+## Six-switch integration (2026-11-02)
+
+Additional input `i_buttons[5:0]`, SW1 bit0. C_BUTTON_FILTER=250000, C_BUTTON_REPORT=5000000. Six ordinary/priority-capable telemetry lanes; lane5 is ordinary B1, shares reset and UART. Independent input counters run continuously. See HardwareButtons_spec.md and HardwareButtonReport_spec.md. H1 capabilities=00FF/build=0101.

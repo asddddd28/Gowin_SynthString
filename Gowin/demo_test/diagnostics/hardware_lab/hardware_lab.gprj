@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE gowin-fpga-project>
 <Project><Template>FPGA</Template><Version>5</Version><Device name="GW5AT-60B" pn="GW5AT-LV60PG484AC1/I0">gw5at60b-002</Device><FileList>
+<File path="../tactile_buttons/src/TactileInput.v" type="file.verilog" enable="1"/>
+<File path="src/HardwareButtonReport.v" type="file.verilog" enable="1"/>
+<File path="src/HardwareButtons.v" type="file.verilog" enable="1"/>
 <File path="src/HardwareEncoders.v" type="file.verilog" enable="1"/>
 <File path="src/HardwareIdentity.v" type="file.verilog" enable="1"/>
 <File path="src/HardwareJoystick.v" type="file.verilog" enable="1"/>

@@ -1,0 +1,10 @@
+   Compiling tang-hardware-lab v2.0.0 (D:\Projects\ai\Gowin\demo_test\desktop-tauri\src-tauri)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.65s
+     Running tests\hub_buttons.rs (Gowin\demo_test\desktop-tauri\src-tauri\target\debug\deps\hub_buttons-1ff08f8b8eb53de7.exe)
+
+running 2 tests
+test identity_before_or_after_button_packet_keeps_hub_mode ... ok
+test new_identity_and_buttons_coexist_with_all_original_frame_types ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+

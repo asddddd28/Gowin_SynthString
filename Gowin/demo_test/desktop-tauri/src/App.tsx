@@ -19,7 +19,7 @@ import {
   X,
 } from "lucide-react";
 import type { Page, Port, Snapshot } from "./types";
-import { NAV, bytes, Act } from "./config";
+import { NAV, bytes, Act, inputCapacity } from "./config";
 
 import { invoke } from "@tauri-apps/api/core";
 import { Overview } from "./pages/Overview";
@@ -29,9 +29,11 @@ import { JoystickPage } from "./pages/JoystickPage";
 import { TouchpadPage } from "./pages/TouchpadPage";
 import { GuitarPage } from "./pages/GuitarPage";
 import { GamesPage } from "./pages/GamesPage";
+import { ButtonsPage } from "./pages/ButtonsPage";
 export default function App() {
   const [s, setS] = useState<Snapshot | null>(null);
   const [page, setPage] = useState<Page>("overview");
+  useEffect(() => { if (s?.protocol === "buttons") setPage("buttons"); }, [s?.protocol]);
   const [selected, setSelected] = useState(0);
   const [ports, setPorts] = useState<Port[]>([]);
   const [port, setPort] = useState("");
@@ -362,6 +364,7 @@ export default function App() {
                   />
                 )}
                 {page === "encoders" && <EncodersPage s={s} act={act} />}
+                {page === "buttons" && <ButtonsPage s={s} />}
                 {page === "joystick" && <JoystickPage s={s} act={act} />}
                 {page === "touchpad" && <TouchpadPage s={s} act={act} />}
                 {page === "guitar" && <GuitarPage s={s} act={act} />}
@@ -416,7 +419,7 @@ export default function App() {
           </span>
           <span>
             RX {bytes(s?.rx_bytes ?? 0)} <em /> TX {bytes(s?.tx_bytes ?? 0)}{" "}
-            <em /> {s?.fresh_count ?? 0}/40
+            <em /> {s?.fresh_count ?? 0}/{inputCapacity(s)}
           </span>
         </div>
       </div>

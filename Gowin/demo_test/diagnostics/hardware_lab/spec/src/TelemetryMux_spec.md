@@ -4,7 +4,7 @@
 
 ## 1. 模块目的
 
-未提供模块目的。
+Parameterizable whole-line UART arbiter; C_CHANNELS 1..8 (default 5, HardwareLab uses 6), C_BAUD default 434. Signal widths valid/ready/priority = C_CHANNELS, data = 8*C_CHANNELS.
 
 ## 2. 参数
 

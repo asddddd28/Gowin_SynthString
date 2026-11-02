@@ -24,6 +24,7 @@ export const NAV: {
   { id: "overview", title: "硬件总览", en: "OVERVIEW", icon: LayoutDashboard },
   { id: "keyboard", title: "键盘与灯效", en: "KEYBOARD", icon: Keyboard },
   { id: "encoders", title: "旋转编码器", en: "ENCODERS", icon: Gauge },
+  { id: "buttons", title: "六键开关", en: "SWITCHES", icon: Power },
   { id: "joystick", title: "摇杆", en: "JOYSTICK", icon: Move },
   { id: "touchpad", title: "双触摸板", en: "TOUCHPADS", icon: Touchpad },
   { id: "guitar", title: "吉他模拟器", en: "GUITAR", icon: Guitar },
@@ -38,6 +39,8 @@ export const EFFECTS = [
   { mode: 6, name: "连续彩色流水", desc: "四行持续渐变流动", icon: AudioLines },
 ];
 export const NOTES = ["E2", "A2", "D3", "G3", "B3", "E4"];
+export const inputCapacity = (s: Snapshot | null) =>
+  s?.protocol === "buttons" ? 6 : (s?.identity && (s.identity.capabilities & 0x80)) || s?.buttons.record ? 46 : 40;
 export const fmt = (v: number | undefined | null, d = 0) =>
   v == null ? "—" : v.toFixed(d);
 export const keyName = (n: number) => `K${String(n + 1).padStart(2, "0")}`;

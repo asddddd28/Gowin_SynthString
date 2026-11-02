@@ -88,6 +88,13 @@ export type Snapshot = {
   identity_updated: number;
   keys: KeyState[];
   encoders: EncoderState[];
+  buttons: {
+    record: {
+      sequence: number; raw: number; filtered: number;
+      presses: number[]; releases: number[]; edges: number[];
+    } | null;
+    fresh: boolean; updated: number;
+  };
   joystick: {
     record: {
       sequence: number;
@@ -179,6 +186,7 @@ export type Page =
   | "overview"
   | "keyboard"
   | "encoders"
+  | "buttons"
   | "joystick"
   | "touchpad"
   | "guitar"

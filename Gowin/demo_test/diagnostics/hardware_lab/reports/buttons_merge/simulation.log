@@ -1,0 +1,20 @@
+
+****** xsim v2025.1 (64-bit)
+  **** SW Build 6140274 on Thu May 22 00:12:29 MDT 2025
+  **** IP Build 6138677 on Thu May 22 03:10:11 MDT 2025
+  **** SharedData Build 6139179 on Tue May 20 17:58:58 MDT 2025
+  **** Start of session at: Mon Nov  2 07:04:13 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/hardware_lab_buttons_sim/xsim_script.tcl
+# xsim {hardware_lab_buttons_sim} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+PASS games over real UART framing: CRC128, start, duplicate epoch, invalid game, ADC calibrated bottom-key hit, wrong-key game over, stop restores effect; game_frames=59
+PASS: UART command/reply CRC, timeout recovery, incomplete/invalid config rejection, atomic 32-key commit, idempotent retry, ADC scan, two-sample qualification, both polarities, hysteresis, no repeat, effect selection, reset. raw_lines=1888 conversions=53214
+$finish called at time : 240119300 ns : File "D:/Projects/ai/Gowin/demo_test/diagnostics/hardware_lab/sim/tb_hardware_lab.v" Line 267
+run: Time (s): cpu = 00:00:00 ; elapsed = 00:01:46 . Memory (MB): peak = 191.180 ; gain = 0.000
+exit
+INFO: xsimkernel Simulation Memory Usage: 12800 KB (Peak: 12800 KB), Simulation CPU Usage: 103968 ms
+INFO: [Common 17-206] Exiting xsim at Mon Nov  2 07:06:01 2026...

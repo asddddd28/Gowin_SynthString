@@ -95,6 +95,15 @@ pub struct Identity {
     pub capabilities: u16,
     pub build: u16,
 }
+#[derive(Clone, Debug, Serialize)]
+pub struct Buttons {
+    pub sequence: u16,
+    pub raw: u8,
+    pub filtered: u8,
+    pub presses: [u16; 6],
+    pub releases: [u16; 6],
+    pub edges: [u16; 6],
+}
 #[derive(Clone, Debug)]
 pub enum Frame {
     Key(usize, u16),
@@ -105,6 +114,7 @@ pub enum Frame {
     Pad(Pad),
     Guitar(Guitar),
     Identity(Identity),
+    Buttons(Buttons),
 }
 impl Frame {
     pub fn kind(&self) -> usize {
@@ -117,12 +127,28 @@ impl Frame {
             Self::Pad(_) => 5,
             Self::Guitar(_) => 6,
             Self::Identity(_) => 7,
+            Self::Buttons(_) => 8,
         }
     }
 }
 
 pub fn decode(s: &[u8]) -> Option<Frame> {
     match *s.first()? {
+        b'B' if s.len() == 87 && &s[..2] == b"B1" && s[82] == b'*' && &s[85..] == b"\r\n" => {
+            if crc8(&s[..82]) != hex(&s[83..85])? as u8 { return None; }
+            let raw = hex(&s[6..8])? as u8;
+            let filtered = hex(&s[8..10])? as u8;
+            if raw > 63 || filtered > 63 { return None; }
+            let mut presses = [0; 6];
+            let mut releases = [0; 6];
+            let mut edges = [0; 6];
+            for i in 0..6 {
+                presses[i] = hex(&s[10+i*4..14+i*4])? as u16;
+                releases[i] = hex(&s[34+i*4..38+i*4])? as u16;
+                edges[i] = hex(&s[58+i*4..62+i*4])? as u16;
+            }
+            Some(Frame::Buttons(Buttons { sequence: hex(&s[2..6])? as u16, raw, filtered, presses, releases, edges }))
+        }
         b'K' if s.len() == 9 && s[3] == b':' && &s[7..] == b"\r\n" => {
             if !s[1..3].iter().all(u8::is_ascii_digit) {
                 return None;
@@ -282,7 +308,7 @@ pub fn decode(s: &[u8]) -> Option<Frame> {
             }
             let capabilities = hex(&s[2..6])? as u16;
             let build = hex(&s[6..10])? as u16;
-            if capabilities != 127 || build >> 8 != 1 {
+            if !matches!(capabilities, 127 | 255) || build >> 8 != 1 {
                 return None;
             }
             Some(Frame::Identity(Identity {
@@ -298,7 +324,7 @@ pub fn decode(s: &[u8]) -> Option<Frame> {
 pub struct Parser {
     buffer: Vec<u8>,
     saw_line_end: bool,
-    pub counts: [u64; 8],
+    pub counts: [u64; 9],
     pub errors: u64,
     pub discarded: u64,
 }

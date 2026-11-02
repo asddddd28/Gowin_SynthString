@@ -129,6 +129,12 @@ pub struct JoyView {
     pub updated: f64,
 }
 #[derive(Clone, Default, Serialize)]
+pub struct ButtonsView {
+    pub record: Option<Buttons>,
+    pub fresh: bool,
+    pub updated: f64,
+}
+#[derive(Clone, Default, Serialize)]
 pub struct PadView {
     pub record: Option<Pad>,
     pub position: Option<[f64; 2]>,
@@ -174,6 +180,7 @@ pub struct View {
     pub keys: Vec<KeyView>,
     pub encoders: Vec<EncoderView>,
     pub joystick: JoyView,
+    pub buttons: ButtonsView,
     pub pads: Vec<PadView>,
     pub guitar: GuitarView,
     pub board: Option<Board>,
@@ -184,8 +191,8 @@ pub struct View {
     pub settings: Settings,
     pub calibration: Option<CalibrationView>,
     pub transfer: Transfer,
-    pub counts: [u64; 8],
-    pub rates: [f64; 8],
+    pub counts: [u64; 9],
+    pub rates: [f64; 9],
     pub rx_bytes: u64,
     pub tx_bytes: u64,
     pub errors: u64,
@@ -207,7 +214,7 @@ pub struct Model {
     previous_encoder: Option<u8>,
     previous_joystick: Option<u16>,
     rate_time: f64,
-    rate_counts: [u64; 8],
+    rate_counts: [u64; 9],
 }
 impl Model {
     pub fn new(profile: Profile, settings: Settings) -> Self {
@@ -223,6 +230,7 @@ impl Model {
                 keys: vec![KeyView::default(); 32],
                 encoders: vec![EncoderView::default(); 5],
                 joystick: JoyView::default(),
+                buttons: ButtonsView::default(),
                 pads: vec![PadView::default(); 2],
                 guitar: GuitarView::default(),
                 board: None,
@@ -233,8 +241,8 @@ impl Model {
                 settings,
                 calibration: None,
                 transfer: Transfer::default(),
-                counts: [0; 8],
-                rates: [0.; 8],
+                counts: [0; 9],
+                rates: [0.; 9],
                 rx_bytes: 0,
                 tx_bytes: 0,
                 errors: 0,
@@ -254,7 +262,7 @@ impl Model {
             previous_encoder: None,
             previous_joystick: None,
             rate_time: 0.,
-            rate_counts: [0; 8],
+            rate_counts: [0; 9],
         }
     }
     pub fn log(&mut self, kind: &str, text: impl Into<String>, now: f64) {
@@ -278,12 +286,26 @@ impl Model {
         self.view.counts[frame.kind()] += 1;
         let mut notes = vec![];
         match frame {
+            Frame::Buttons(r) => {
+                if self.view.protocol == "unknown" {
+                    self.view.protocol = "buttons".into();
+                    self.view.message = "六键独立调试 · FPGA 去抖 · RGB 关闭".into();
+                    self.log("ok", "已识别 B1 六键开关遥测", now);
+                }
+                if let Some(old) = &self.view.buttons.record {
+                    if r.sequence != old.sequence.wrapping_add(1) {
+                        self.view.sequence_errors += 1;
+                    }
+                }
+                self.view.buttons.record = Some(r);
+                self.view.buttons.updated = now;
+            }
             Frame::Identity(r) => {
+                if self.view.protocol != "hub" {
+                    self.log("ok", &format!("已识别综合硬件固件 · H1 / 0x{:04X}", r.capabilities), now);
+                }
                 self.view.identity = Some(r);
                 self.view.identity_updated = now;
-                if self.view.protocol != "hub" {
-                    self.log("ok", "已识别综合硬件固件 · H1 / 0x007F", now);
-                }
                 self.view.protocol = "hub".into();
                 self.view.message = "综合固件已识别 · 所有模块独立持续采集".into();
             }
@@ -519,6 +541,9 @@ impl Model {
             }
             fresh += usize::from(p.fresh);
         }
+        self.view.buttons.fresh = active && self.view.buttons.record.is_some()
+            && now - self.view.buttons.updated <= 0.6;
+        fresh += if self.view.buttons.fresh { 6 } else { 0 };
         self.view.fresh_count = fresh;
         if let Some(c) = &mut self.calibration {
             c.tick(now);
@@ -528,7 +553,7 @@ impl Model {
         }
         if now - self.rate_time >= 1. {
             let dt = now - self.rate_time;
-            for i in 0..8 {
+            for i in 0..9 {
                 self.view.rates[i] = (self.view.counts[i] - self.rate_counts[i]) as f64 / dt;
             }
             self.rate_time = now;

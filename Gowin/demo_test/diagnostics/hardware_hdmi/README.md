@@ -1,8 +1,17 @@
 # Tang Mega 60K HDMI hardware dashboard
 
 Independent project for the existing comprehensive peripheral debug firmware. All
-existing `hardware_lab` RTL is referenced unchanged. No CPU, instruction memory,
+shared `hardware_lab` RTL is referenced directly. No CPU, instruction memory,
 software graphics stack, DDR controller, or full-screen framebuffer is used.
+
+## Six-switch integration (2026-11-02)
+
+The current build includes SW1..SW6 alongside all existing peripherals. It emits
+H1 capabilities 0x00FF / build 0x0101 and 10 Hz B1 snapshots. Use the updated
+Rust/Tauri App; the HDMI layout remains unchanged and ignores B1. The App shows
+switch states/counters and 46 total input channels. This round leaves RGB off.
+Current evidence: `../hardware_lab/reports/buttons_merge/validation.md`.
+The User Code 0x89B5 board test below refers to the previous HDMI build.
 
 ## Display
 

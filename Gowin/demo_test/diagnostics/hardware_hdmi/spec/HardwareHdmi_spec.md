@@ -9,3 +9,5 @@ Reset is active low where present. Video never backpressures telemetry.
 ```
 
 Vendor DVI reset independently uses the official asynchronous reset: i_rstn AND PLL lock. Pixel dashboard logic retains its three-cycle synchronized reset release.
+
+Six-switch integration: forward new i_buttons[5:0] into HardwareLab. HDMI renderer ignores the B1 line and retains its existing layout; App displays six-switch details. No pixel-domain CDC additions.

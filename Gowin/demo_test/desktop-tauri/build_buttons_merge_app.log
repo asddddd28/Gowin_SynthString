@@ -1,0 +1,23 @@
+
+> tang-hardware-lab@2.0.0 tauri
+> tauri build --no-bundle -- --locked --bin tang-hardware-lab
+
+        Info Looking up installed tauri packages to check mismatched versions...
+     Running beforeBuildCommand `npm run build`
+
+> tang-hardware-lab@2.0.0 build
+> tsc --noEmit && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 1592 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.36 kB │ gzip:   0.27 kB
+dist/assets/index-D_dWrtn-.css   49.17 kB │ gzip:  11.93 kB
+dist/assets/index-Cfic_5yu.js   331.98 kB │ gzip: 103.20 kB
+
+✓ built in 503ms
+   Compiling tang-hardware-lab v2.0.0 (D:\Projects\ai\Gowin\demo_test\desktop-tauri\src-tauri)
+    Finished `release` profile [optimized] target(s) in 1m 32s
+       Built application at: D:\Projects\ai\Gowin\demo_test\desktop-tauri\src-tauri\target\release\tang-hardware-lab.exe

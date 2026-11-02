@@ -1,0 +1,237 @@
+{
+  "version": 3,
+  "strict": true,
+  "delivery_ready": false,
+  "errors": 399,
+  "strict_warnings": 2,
+  "delivery_issues_by_rule": {
+    "VG007": 12,
+    "VG068": 3,
+    "VG004": 183,
+    "VG025": 21,
+    "VG009": 2,
+    "VG030": 3,
+    "VG014": 2,
+    "VG020": 3,
+    "VG031": 2,
+    "VG063": 10,
+    "VG040": 11,
+    "VG062": 30,
+    "VG064": 9,
+    "VG000": 1,
+    "VG015": 11,
+    "VG013": 1,
+    "VG072": 1,
+    "VG073": 1,
+    "VG074": 1,
+    "VG075": 1,
+    "VG076": 1,
+    "VG077": 1,
+    "VG078": 1,
+    "VG079": 1,
+    "VG080": 1,
+    "VG081": 1,
+    "VG082": 1,
+    "VG083": 1,
+    "VG084": 1,
+    "VG085": 1,
+    "VG086": 1,
+    "VG087": 1,
+    "VG088": 1,
+    "VG089": 1,
+    "VG090": 1,
+    "VG091": 1,
+    "VG092": 1,
+    "VG093": 1,
+    "VG094": 1,
+    "VG095": 1,
+    "VG096": 1,
+    "VG097": 1,
+    "VG098": 1,
+    "VG099": 1,
+    "VG100": 1,
+    "VG101": 1,
+    "VG102": 1,
+    "VG103": 1,
+    "VG104": 1,
+    "VG105": 1,
+    "VG106": 1,
+    "VG107": 1,
+    "VG108": 1,
+    "VG109": 1,
+    "VG110": 1,
+    "VG111": 1,
+    "VG112": 1,
+    "VG113": 1,
+    "VG114": 1,
+    "VG115": 1,
+    "VG116": 1,
+    "VG117": 1,
+    "VG118": 1,
+    "VG119": 1,
+    "VG120": 1,
+    "VG121": 1,
+    "VG122": 1,
+    "VG123": 1,
+    "VG124": 1,
+    "VG125": 1,
+    "VG126": 1,
+    "VG127": 1,
+    "VG128": 1,
+    "VG129": 1,
+    "VG130": 1,
+    "VG131": 1,
+    "VG132": 1,
+    "VG133": 1,
+    "VG134": 1,
+    "VG135": 1,
+    "VG136": 1,
+    "VG137": 1,
+    "VG138": 1,
+    "VG139": 1,
+    "VG140": 1,
+    "VG141": 1,
+    "VG142": 1,
+    "VG143": 1,
+    "VG144": 1,
+    "VG145": 1,
+    "VG146": 1,
+    "VG147": 1,
+    "VG150": 1,
+    "VG151": 1,
+    "VG152": 1,
+    "VG153": 1,
+    "VG154": 1,
+    "VG155": 1,
+    "VG156": 1,
+    "VG157": 1,
+    "VG158": 1,
+    "COMMENT_COMMENT_PLACEMENT": 7,
+    "FORMATTER_TEMPLATE_MISMATCH": 5
+  },
+  "checks": {
+    "compile": {
+      "ready": false,
+      "status": "failed",
+      "errors": 1,
+      "warnings": 0,
+      "files": 3,
+      "modules": 2,
+      "parse_errors": 1,
+      "source": "formatter_ast+verilog_quality_gate"
+    },
+    "ast": {
+      "ready": false,
+      "status": "failed",
+      "errors": 6,
+      "warnings": 0,
+      "files": 3,
+      "modules": 2,
+      "parse_errors": 1,
+      "formatter_errors": 5,
+      "source": "formatter_ast"
+    },
+    "readability": {
+      "ready": false,
+      "status": "failed",
+      "errors": 387,
+      "warnings": 2,
+      "source": "verilog_quality_gate",
+      "ok": false
+    },
+    "comment": {
+      "ready": false,
+      "status": "failed",
+      "errors": 7,
+      "warnings": 0,
+      "issues": 7,
+      "metrics": {
+        "scanned_files": 3,
+        "code_lines": 198,
+        "same_line_comment_lines": 81,
+        "violations": 7,
+        "by_construct": {
+          "directive": {
+            "checked": 3,
+            "violations": 0
+          },
+          "module": {
+            "checked": 6,
+            "violations": 0
+          },
+          "parameter": {
+            "checked": 8,
+            "violations": 2
+          },
+          "statement": {
+            "checked": 55,
+            "violations": 0
+          },
+          "port": {
+            "checked": 22,
+            "violations": 0
+          },
+          "signal": {
+            "checked": 33,
+            "violations": 0
+          },
+          "assign": {
+            "checked": 8,
+            "violations": 1
+          },
+          "always": {
+            "checked": 12,
+            "violations": 0
+          },
+          "branch": {
+            "checked": 39,
+            "violations": 0
+          },
+          "generate": {
+            "checked": 3,
+            "violations": 1
+          },
+          "instance": {
+            "checked": 3,
+            "violations": 3
+          },
+          "case": {
+            "checked": 6,
+            "violations": 0
+          }
+        }
+      },
+      "source": "comment_gate"
+    },
+    "naming": {
+      "ready": false,
+      "status": "failed",
+      "errors": 35,
+      "warnings": 2,
+      "source": "verilog_quality_gate"
+    },
+    "profile": {
+      "ready": false,
+      "status": "failed",
+      "errors": 1,
+      "warnings": 0,
+      "rulebook_path": "C:\\Users\\asddddd28\\.agents\\skills\\readable-verilog-generator\\assets\\verilog_style_rules.json",
+      "source": "style_profile+rulebook"
+    },
+    "testbench": {
+      "ready": true,
+      "status": "not_requested",
+      "errors": 0,
+      "warnings": 0,
+      "source": "include_testbench=false"
+    },
+    "toolchain": {
+      "ready": true,
+      "status": "not_requested",
+      "errors": 0,
+      "warnings": 0,
+      "source": "optional_validation_readiness",
+      "boundary": "simulation_execute_synthesis_remote_are_optional_toolchain_checks"
+    }
+  }
+}

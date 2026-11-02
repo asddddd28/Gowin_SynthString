@@ -1,6 +1,6 @@
 # Tang Hardware Lab — Rust + Tauri
 
-Windows 原生硬件调试 App。Rust 负责串口、协议、校准事务、状态模型和音频；React + TypeScript 负责七个可视化页面。运行不需要 Python，也不需要启动网页服务器。
+Windows 原生硬件调试 App。Rust 负责串口、协议、校准事务、状态模型和音频；React + TypeScript 负责八个可视化页面。运行不需要 Python，也不需要启动网页服务器。
 
 ## 运行
 
@@ -19,6 +19,7 @@ Windows 原生硬件调试 App。Rust 负责串口、协议、校准事务、状
 - 硬件总览：40 路更新状态、帧率、校验计数、输入缩略图及会话日志。
 - 键盘与灯效：4×8 原始值和深度、单键曲线、全键/单键校准、迟滞阈值、关闭/四种响应灯效/连续流水。
 - 编码器：从左到右 E5–E1，四边沿一格，原始/滤波 A/B、P/N/X、会话归零、回绕和断线计数。
+- 六键开关：SW1–SW6 实物造型，原始/去抖电平、按下/松开/原始翻转次数。配套 `../diagnostics/tactile_buttons/impl/pnr/tactile_buttons.fs` 为独立六键固件，50 Hz B1 遥测、FPGA 5 ms 去抖；RGB 数据保持低，其他外围扫描暂停。连接后自动显示此页，超过 0.6 秒未更新取消高亮。SW2 按实际原理图使用 AB18，修正表格误写的 AA18。
 - 摇杆：实体杆造型、九向和按压、原始/去抖位图、方向映射。
 - 双 Pad：左右拼接、43.596×61.976 mm 单板有效区域比例、90.832 mm 总跨度、触点及12电极响应。
 - 吉他：每板三根竖弦，E2/A2/D3/G3/B3/E4，FPGA G1 事件直接驱动原生音频。
@@ -55,6 +56,8 @@ npm run tauri -- dev
 
 ## 目录
 
-`src/pages/`：七个页面。`src/components.tsx`：键盘、旋钮、摇杆、触摸板、曲线等共享显示。`src-tauri/src/protocol.rs`：纯字节协议；`link.rs`：确认事务；`calibration.rs`：校准及持久化；`model.rs`：状态、映射、时效；`runtime.rs`：串口、录制、回放及命令门控；`audio.rs`：原生音频；`lib.rs`：有限的 Tauri IPC 接口。
+`src/pages/`：八个页面。`src/components.tsx`：键盘、旋钮、摇杆、触摸板、曲线等共享显示。`src-tauri/src/protocol.rs`：纯字节协议；`link.rs`：确认事务；`calibration.rs`：校准及持久化；`model.rs`：状态、映射、时效；`runtime.rs`：串口、录制、回放及命令门控；`audio.rs`：原生音频；`lib.rs`：有限的 Tauri IPC 接口。
 
 `scripts/golden.py` 仅用于从旧版生成测试基准，`scripts/icon.py` 仅用于生成应用图标；发布程序不调用它们。`scripts/split_ui.py` 是初版拆分记录，不要对已经拆分的目录重复执行。
+
+2026-11-02: six-switch B1 telemetry now coexists with all comprehensive firmware streams. Accept H1 0x00FF/build 0x0101 as well as the existing 0x007F/build 0x0100; show 46 channels for the new hub and six for standalone. The hardware_buttons_uart.bin fixture is real mixed RTL UART output.
