@@ -75,24 +75,48 @@
             "width": 32,
             "role": "data",
             "description": "o_underruns"
+          },
+          {
+            "name": "o_sample_valid",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "o_sample_valid"
+          },
+          {
+            "name": "o_sample",
+            "direction": "output",
+            "width": 16,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_sample"
+          },
+          {
+            "name": "i_click",
+            "direction": "input",
+            "width": 16,
+            "role": "data",
+            "description": "i_click"
           }
         ]
       },
       "clock": {
-        "name": "i_axis_aclk",
+        "name": "i_clk",
         "edge": "posedge",
         "frequency_hz": 50000000
       },
       "reset": {
-        "name": "i_axis_arstn",
+        "name": "i_rstn",
         "active": "low",
         "style": "asynchronous",
         "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
       },
       "behavior": [
-        "Q26 stereo to saturated signed16 with symmetric nearest rounding; consume PCM only at fixed1024-clock frame boundaries.",
-        "PT8211: 16 BCK per channel, WS high left, MSB first. BCK rises at counts16+32n; serial data changes near preceding falling edge.",
-        "Startup silence is not an underrun; after first consumed sample missing frames output zero and increment underrun counter."
+        "PT8211 runs at 50MHz/1024 with signed16 left/right samples, rounded and saturated from Q26.",
+        "o_sample_valid is true only on the actual output frame acceptance; o_sample is that same signed16 left-channel value. No sampling, interpolation or visualization affects audio readiness.",
+        "C_METRONOME_ENABLE默认0。启用时在原Q26→16位舍入后以17位相加再饱和；固定1024拍PT8211帧率不变，旁路监测包含节拍。",
+        "Quantization is floor(x/2048) plus bit10 AND (nonnegative OR any low10 bits), then signed16 saturation. This is bit-exact nearest rounding with ties away from zero, without 33-bit absolute-value/sign-restore carry chains."
       ],
       "constraints": [
         "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
@@ -105,45 +129,68 @@
         "reset while pipeline holds transactions"
       ],
       "verification_cases": [
-        "Independent protocol/PCM model",
-        "Real UART/ADC pins to serial DAC simulation",
-        "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
-        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+        "Full existing board regression: 134 UART replies, all 32 keys, eight-voice load and serial DAC.",
+        "tb_studio_system: local command CRC/replay, distinct key patches, held remapping/release, 512 signed16 capture samples compared to DAC quantization, tagged latency.",
+        "tb_pcm_rounding: 128672 independent Python oracle vectors covering all 2048 remainders at 14 signed boundary classes and 100000 deterministic random values; compares original/new DAC pins, frame/underrun counters and monitor samples, with metronome disabled/enabled and valid bubbles."
       ],
       "timing_diagrams": [
         {
-          "id": "stream",
-          "title": "流水接纳与反压",
-          "scenario": "stream",
-          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "id": "pcm-frame",
+          "title": "固定帧边界接收 PCM",
+          "scenario": "pcm-frame",
+          "description": "示意连续的 50 MHz 周期；每 1024 拍产生一次 ready。ready 与 valid 同时为高时锁存当前已舍入、饱和及混入节拍的左右声道数据。组合舍入替换不增加时钟周期。",
           "wavejson": {
             "signal": [
               {
-                "name": "clk",
-                "wave": "p........"
+                "name": "i_clk",
+                "wave": "p......."
               },
               {
-                "name": "s_valid",
-                "wave": "01....0.."
-              },
-              {
-                "name": "s_ready",
-                "wave": "1...0..1."
-              },
-              {
-                "name": "m_valid",
-                "wave": "0...1...."
-              },
-              {
-                "name": "m_ready",
-                "wave": "1...0..1."
-              },
-              {
-                "name": "data/tag",
-                "wave": "x...=..=x",
+                "name": "cnt_frame",
+                "wave": "========",
                 "data": [
-                  "held",
-                  "next"
+                  "1022",
+                  "1023",
+                  "0",
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5"
+                ]
+              },
+              {
+                "name": "i_valid",
+                "wave": "1......."
+              },
+              {
+                "name": "o_ready",
+                "wave": "0.10...."
+              },
+              {
+                "name": "o_sample_valid",
+                "wave": "0.10...."
+              },
+              {
+                "name": "i_data",
+                "wave": "=.......",
+                "data": [
+                  "Q26 stereo"
+                ]
+              },
+              {
+                "name": "o_sample",
+                "wave": "=.......",
+                "data": [
+                  "rounded + click, saturated"
+                ]
+              },
+              {
+                "name": "reg_left/right",
+                "wave": "=..=....",
+                "data": [
+                  "previous",
+                  "accepted sample"
                 ]
               }
             ]

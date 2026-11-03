@@ -51,6 +51,7 @@
 ## 9. 验证与验收
 
 - 1600 DX PM/feedback/operator oracle vectors; fixed ten-cycle result latency
+- 分拍回归：DX包络7拍、DX算子11拍；新增流水每阶段复位取消和重新请求，数值参考不变。
 
 ## 10. 可追溯性
 

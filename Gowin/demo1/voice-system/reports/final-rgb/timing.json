@@ -1,0 +1,90 @@
+{
+  "build": {
+    "implDir": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\synthui-hdmi\\build-keyboard-rgb-02\\impl",
+    "name": "synth_hdmi",
+    "designFile": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\synthui-hdmi\\build-keyboard-rgb-02\\impl\\gwsynthesis\\synth_hdmi.vg",
+    "constraintsFile": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\synthui-hdmi\\build-keyboard-rgb-02\\hdmi.cst",
+    "sdcFile": "D:\\Projects\\ai\\Gowin\\demo1\\voice-system\\reports\\synthui-hdmi\\build-keyboard-rgb-02\\hdmi.sdc",
+    "toolVersion": "V1.9.11.03 Education",
+    "partNumber": "GW5AT-LV60PG484AC1/I0",
+    "device": "GW5AT-60",
+    "deviceVersion": "B",
+    "createdTime": "Wed Nov  4 00:57:51 2026",
+    "elapsed": "0h 4m 43s",
+    "peakMemory": "2040MB"
+  },
+  "resources": {
+    "logic": {
+      "name": "Logic",
+      "depth": 0,
+      "used": 38053,
+      "available": 59904,
+      "utilization": "64%",
+      "raw": "38053/59904"
+    },
+    "cls": {
+      "name": "CLS",
+      "depth": 0,
+      "used": 26577,
+      "available": 29952,
+      "utilization": "89%",
+      "raw": "26577/29952"
+    },
+    "register": {
+      "name": "Register",
+      "depth": 0,
+      "used": 28097,
+      "available": 60780,
+      "utilization": "47%",
+      "raw": "28097/60780"
+    },
+    "bsram": {
+      "name": "BSRAM",
+      "depth": 0,
+      "used": 107,
+      "available": 118,
+      "utilization": "91%",
+      "raw": "107/118"
+    },
+    "dsp": {
+      "name": "DSP",
+      "depth": 0,
+      "used": 68.5,
+      "available": 118,
+      "utilization": "59%",
+      "raw": "68.5/118"
+    },
+    "ioPort": {
+      "name": "I/O Port",
+      "depth": 0,
+      "used": 55,
+      "available": 297,
+      "utilization": "19%",
+      "raw": "55/297"
+    }
+  },
+  "timing": {
+    "fmax": [
+      {
+        "clock": "clk",
+        "constraintMhz": 50,
+        "actualMhz": 50.164,
+        "logicLevel": 9,
+        "entity": "TOP",
+        "failing": false,
+        "marginMhz": 0.164
+      },
+      {
+        "clock": "pixel_clk",
+        "constraintMhz": 73.333,
+        "actualMhz": 88.407,
+        "logicLevel": 14,
+        "entity": "TOP",
+        "failing": false,
+        "marginMhz": 15.074
+      }
+    ],
+    "violations": []
+  },
+  "clean": true
+}

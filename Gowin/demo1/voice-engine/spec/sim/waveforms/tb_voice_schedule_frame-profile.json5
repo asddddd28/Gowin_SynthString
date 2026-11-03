@@ -1,0 +1,30 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p....."
+    },
+    {
+      "name": "sample tick",
+      "wave": "010..."
+    },
+    {
+      "name": "capture",
+      "wave": "01...0"
+    },
+    {
+      "name": "state",
+      "wave": "x====x",
+      "data": [
+        "LFO",
+        "mod",
+        "operator",
+        "mix"
+      ]
+    },
+    {
+      "name": "voice PCM",
+      "wave": "0....1"
+    }
+  ]
+}

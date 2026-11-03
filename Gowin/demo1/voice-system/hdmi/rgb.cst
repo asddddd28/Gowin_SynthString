@@ -1,0 +1,3 @@
+// CN1.1 IN_RGB, validated demo_test keyboard chain: four rows of eight LEDs.
+IO_LOC "o_rgb" R19;
+IO_PORT "o_rgb" IO_TYPE=LVCMOS33 PULL_MODE=NONE BANK_VCCIO=3.3;

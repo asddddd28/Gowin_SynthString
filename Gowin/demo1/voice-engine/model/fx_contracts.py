@@ -60,13 +60,13 @@ def generate():
         'C0 Delay draft, C1 Reverb draft, C2 commit, C3 clear mask, C4 query. Epoch/sequence independent from voice and legacy domains.',
         'First sequence zero binds epoch; exact latest request replay returns cached response with bit72 and fresh tag; conflicts/gaps/stale requests reject.',
         'Control accepted between frames, completion backpressure never stops audio; clear and commit prevent audio acceptance on the same edge.',
-        'Chunked predecode registers21 signature comparisons and10 payload-zero words before READY. Audio cancels the snapshot and retains priority.',
+        'Chunked predecode registers21 signature comparisons and10 payload-zero words. A second stage registers result, sequence eligibility and five action bits before READY; raw parameter validation no longer drives configuration/clear enables. Audio cancels both stages and retains priority; idle command validation adds one clock, audio latency remains unchanged.',
         'Note lifecycle does not own FX state. Tail survives NoteOff and patch commit. Counts increment exactly once per output transfer.' ])
     plan = dict(requirements='Shared stereo modular Delay/Reverb behind existing bounded AXI4-MM endpoint',
         order=['contracts and WaveDrom','Python integer model','RTL','xsim numeric/protocol/deadline','Gowin synthesis','strict gate'],
         resources=dict(delay_words=65536,reverb_words=10240,bits=18),
         review=dict(interface='AXI-MM command mailbox plus private ready-valid stereo samples', reset='Age counters invalidate RAM; asynchronous control reset',
-            timing='FX actual72 clocks after voice866; full-chain940/1024 with synchronous program RAM and pipelined modulation', widths='Q52 signed sums; explicit TZ and saturation',
+            timing='FX actual72 clocks after voice874; full-chain948/1024 with synchronous program RAM, pipelined modulation and stereo pan', widths='Q52 signed sums; explicit TZ and saturation',
             risks=['No current board top integration','Abrupt live delay changes may click','Simple Schroeder room, not Surge/DX emulation']))
     (ROOT/'spec/fx-plan.json').write_text(json.dumps(plan,indent=2)+'\n',encoding='utf-8')
 

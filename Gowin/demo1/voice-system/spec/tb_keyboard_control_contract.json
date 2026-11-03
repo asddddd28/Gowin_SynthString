@@ -1,0 +1,85 @@
+{
+  "modules": [
+    {
+      "name": "tb_keyboard_control",
+      "rtl_path": "keyboard/tb_keyboard_control.v",
+      "description": "Self-checking ADC threshold, calibration transaction and note-source velocity testbench",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "clk",
+            "role": "data",
+            "description": "All assertions completed"
+          }
+        ]
+      },
+      "clock": {
+        "name": "clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Drive both polarities, first/second crossing, two-sample confirmation, slow/fast and cancelled gestures.",
+        "Write complete/incomplete shadow profiles; check active readback, raw grouped reads, timeout and release-to-rearm.",
+        "Connect the actual SynthKeyboardSource and compare each emitted NoteOn velocity and Q26 gain with the originating per-key state.",
+        "KBD2 microsecond observation; single-scan crossings must produce interpolated nonzero travel and submaximum velocity; realistic6700us per-key input."
+      ],
+      "constraints": [
+        "Simulation only.50MHz clock with accelerated10-cycle millisecond and100ms watchdog."
+      ],
+      "corner_cases": [
+        "Both ADC directions; incomplete config; threshold chatter; held key during commit; same-sample fast crossing; long holds; watchdog."
+      ],
+      "verification_cases": [
+        "tb_keyboard_control and keyboard_model.py; full tb_studio_system; Rust calibration validation and complete50MHz implementation."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "press",
+          "title": "Threshold traversal and confirmation",
+          "scenario": "press",
+          "description": "Velocity ends at first press crossing, NoteOn waits for the second.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "sample",
+                "wave": "p......."
+              },
+              {
+                "name": "raw",
+                "wave": "=.==..=.",
+                "data": [
+                  "rest",
+                  "release-cross",
+                  "press-cross",
+                  "press-held"
+                ]
+              },
+              {
+                "name": "timer",
+                "wave": "0.1.0..."
+              },
+              {
+                "name": "velocity_latched",
+                "wave": "0...10.."
+              },
+              {
+                "name": "pressed",
+                "wave": "0.....1."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

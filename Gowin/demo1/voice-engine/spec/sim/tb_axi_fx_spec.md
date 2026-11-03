@@ -26,6 +26,7 @@
 ## 5. 周期行为与延迟
 
 - 真实AXI参数装载、草稿提交、重试、声音+LFO+FX满负载时限和独立尾音。
+- 满载Voice最大874拍；FX72拍；整链948拍。1024拍deadline断言不变。
 
 ## 6. WaveDrom 时序图
 
@@ -55,6 +56,7 @@
 - Independent integer model, stereo impulses and random full-scale inputs
 - Fractional and maximum delay, bypass, clipping and zero-input tail decay
 - Backpressure and reset; independent command replay; atomic parameter commit; 1024-clock deadline
+- 保留FX的兼容构建；FxDomain实例路径更新，native满载Voice834/含FX908拍。
 
 ## 10. 可追溯性
 

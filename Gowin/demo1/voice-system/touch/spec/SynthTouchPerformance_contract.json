@@ -1,0 +1,250 @@
+{
+  "modules": [
+    {
+      "name": "SynthTouchPerformance",
+      "rtl_path": "rtl/SynthTouchPerformance.v",
+      "description": "模式0强度、1音高、2Cutoff、3吉他。i_next_mode单拍递增一次；UART kind3 0x30..0x33提供能力、原子配置和状态。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_next_mode",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_next_mode"
+          },
+          {
+            "name": "i_silent",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_silent"
+          },
+          {
+            "name": "i_update",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "i_update"
+          },
+          {
+            "name": "i_touch",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "i_touch"
+          },
+          {
+            "name": "i_x",
+            "direction": "input",
+            "width": 20,
+            "role": "data",
+            "description": "i_x"
+          },
+          {
+            "name": "i_y",
+            "direction": "input",
+            "width": 20,
+            "role": "data",
+            "description": "i_y"
+          },
+          {
+            "name": "i_error",
+            "direction": "input",
+            "width": 16,
+            "role": "data",
+            "description": "i_error"
+          },
+          {
+            "name": "i_pressed",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_pressed"
+          },
+          {
+            "name": "i_delivered",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_delivered"
+          },
+          {
+            "name": "i_keys_idle",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_keys_idle"
+          },
+          {
+            "name": "o_pressed",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_pressed"
+          },
+          {
+            "name": "o_mode",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "o_mode"
+          },
+          {
+            "name": "o_gain",
+            "direction": "output",
+            "width": 18,
+            "role": "data",
+            "description": "o_gain"
+          },
+          {
+            "name": "o_pitch",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_pitch"
+          },
+          {
+            "name": "o_cutoff",
+            "direction": "output",
+            "width": 20,
+            "role": "data",
+            "description": "o_cutoff"
+          },
+          {
+            "name": "o_cutoff_active",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_cutoff_active"
+          },
+          {
+            "name": "i_request",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_request"
+          },
+          {
+            "name": "i_opcode",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_opcode"
+          },
+          {
+            "name": "i_argument",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "description": "i_argument"
+          },
+          {
+            "name": "i_words",
+            "direction": "input",
+            "width": 64,
+            "role": "data",
+            "description": "i_words"
+          },
+          {
+            "name": "o_response_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_response_valid"
+          },
+          {
+            "name": "o_response",
+            "direction": "output",
+            "width": 136,
+            "role": "data",
+            "description": "o_response"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "模式0强度、1音高、2Cutoff、3吉他。i_next_mode单拍递增一次；UART kind3 0x30..0x33提供能力、原子配置和状态。",
+        "1kHz共享乘法器计算(X-Y)×范围；音高查256×18 exp2 ROM，三个目标用1/8一阶平滑，每毫秒更新一次。松手/过期40ms/错误恢复到中性。",
+        "增益Q16的18位无符号数、音高Q26有符号频率增量、Cutoff20位有符号对数索引；配置上限100%、12半音、6oct。左板优先连续调制。",
+        "四根横弦Y=128/384/640/896，滞回20，冷却12ms，每板独立运动历史。首次落指、方向设置更改、模式更改、断流不拨弦。",
+        "每行8键取最右侧按住键，空行静音。每行一个pending目标；先清旧键，等待i_keys_idle且i_delivered==当前门控图，再重发，合并快速重复请求并计数。",
+        "进入/离开吉他停止旧实体键；离开时已按键抑制到释放。连续调制模式之间切换不停止已按键。校准silent强制不发声。"
+      ],
+      "constraints": [
+        "50MHz系统域；实时控制不依赖串口；ROM由touch_model.py生成。"
+      ],
+      "corner_cases": [
+        "复位、数据过期、触点跳变、重复包、在途按键命令、方向与模式切换、空行。"
+      ],
+      "verification_cases": [
+        "touch/model/run_simulations.py:位置/失联/四模式/右侧优先/重触发完成握手。",
+        "tb_touch_voice5120帧逐样本等效；tb_touch_filter4096帧；tb_touch_system真实UART/ADC/PT8211通路。"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "touch",
+          "title": "触摸事件与调制提交",
+          "scenario": "touch",
+          "description": "触摸采集在系统域提交，调制每毫秒平滑；音频帧独立执行，NoteOff确认之后才重新起音。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "position_update",
+                "wave": "010...10.."
+              },
+              {
+                "name": "control_tick",
+                "wave": "0..10...10"
+              },
+              {
+                "name": "audio_frame",
+                "wave": "0101010101"
+              },
+              {
+                "name": "row_noteoff",
+                "wave": "0..10....."
+              },
+              {
+                "name": "keys_idle_ack",
+                "wave": "0.....10.."
+              },
+              {
+                "name": "row_noteon",
+                "wave": "0......10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

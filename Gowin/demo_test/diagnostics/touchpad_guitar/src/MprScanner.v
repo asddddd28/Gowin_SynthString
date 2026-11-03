@@ -20,7 +20,9 @@ reg [1:0] operation;
 reg [31:0] delay_count;
 reg [5:0] config_index;
 reg [6:0] verify_interval;
-reg [15:0] config_word;
+// A small combinational initialization table must not reserve a whole BSRAM.
+// Keep the original lookup and I2C schedule; only change the storage mapping.
+(* syn_romstyle="distributed_rom" *) reg [15:0] config_word;
 reg [6:0] address_o;
 reg [7:0] error_o;
 reg [15:0] sequence_o;

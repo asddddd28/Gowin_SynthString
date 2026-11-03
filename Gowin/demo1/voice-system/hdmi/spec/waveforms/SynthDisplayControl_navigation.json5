@@ -1,0 +1,30 @@
+{
+  "signal": [
+    {
+      "name": "clock",
+      "wave": "p......."
+    },
+    {
+      "name": "region",
+      "wave": "=.=..=.=",
+      "data": [
+        "centre",
+        "right",
+        "centre",
+        "left"
+      ]
+    },
+    {
+      "name": "armed",
+      "wave": "01.0..10"
+    },
+    {
+      "name": "right_event",
+      "wave": "0..10..."
+    },
+    {
+      "name": "left_event",
+      "wave": "0......1"
+    }
+  ]
+}

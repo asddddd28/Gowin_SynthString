@@ -1,0 +1,34 @@
+{
+  "signal": [
+    {
+      "name": "time",
+      "wave": "=.=.=.=.",
+      "data": [
+        "T-21ms",
+        "T-20ms",
+        "T",
+        "T+one bar-20ms"
+      ]
+    },
+    {
+      "name": "recording",
+      "wave": "1......."
+    },
+    {
+      "name": "waiting_first_note",
+      "wave": "1..0...."
+    },
+    {
+      "name": "first_note",
+      "wave": "0..10..."
+    },
+    {
+      "name": "metronome_accent",
+      "wave": "0...10.."
+    },
+    {
+      "name": "complete_window",
+      "wave": "0.....10"
+    }
+  ]
+}

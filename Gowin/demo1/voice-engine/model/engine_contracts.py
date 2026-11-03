@@ -29,7 +29,7 @@ def generate():
         'Output words: sample, next phase, EG level, EG flags, next noise state.',
         'Independent four-stage linear EG advances once per request. Feedback reads two previous samples, not current output.',
         'Six waveform types; 1024-point interpolated sine and two writable frames; initial tables are sine.',
-        'Two signed33-by-signed32 multiplier lanes share phase/feedback and gain phases. Dedicated signed33-by-positive23 interpolation and signed33-by-positive18 morph products break mux paths. Preserve native64, interpolation56, morph51 and factor65 slices; request latency remains ten clocks.',
+        'Two signed33-by-signed32 multiplier lanes share phase/feedback and gain phases. Dedicated signed33-by-positive23 interpolation registers retain the full56-bit products before the base addition; morph remains signed33-by-positive18 with51 bits. State2 reads tables; state3 registers interpolation products; state4 adds bases; state5 computes morph and AM/ring factor; state6 computes wave*factor and accepts EG; state7 extracts the scaled wave and computes EG*gain; state8 computes the sample; state9 stores the result; state10 is valid. State6 may wait for EG. Preserve native64 and factor65 slices; native request latency is ten clocks; pipelined DX envelope extends DX requests to eleven clocks.',
         'Single in-flight request. Output and tag stable during backpressure. Table writes only when idle and no request accepted.' ])
     contract('VoiceSynthEngine','驻留音色程序、8 声部生命周期与 6 算子逐采样调度。',[
         ('input','i_s_axis_tdest',8,'高层命令 A0..A9 与调制 B0..B3'),('output','o_m_axis_tdest',8,'完成的命令'),
@@ -38,7 +38,8 @@ def generate():
         ('output','o_overruns',32,'忙碌时到来的采样脉冲'),('output','o_render_cycles',32,'最近一次渲染时钟数'),
         ('output','o_active',8,'活动声部位图')],{'i_s_axis_tdata':384,'o_m_axis_tdata':128},[
         'Four patch slots, two atomic parameter banks each; six topologically ordered operators per patch.',
-        'Synchronous program RAM captures core and envelope rows. State17 waits one cycle after advancing operator; pipelined modulation reduces the complete workload to voice866 and Voice/LFO/FX940 of1024.',
+        'Synchronous RAM outputs prefetch the next core/envelope/context row during states1/2/3. Current carrier is latched; history writeback takes current request last, not the prefetched row. State4 now registers final route sum/saturation after state1 partial sums; state17 is removed. Voice gain/pan row selection, smoothing and modulation occupy states13/14/15. Native full-load voice834; optional FX chain908. Board defaults to C_FX_ENABLE=0 and dry PCM.',
+        'State16 registers unsigned27 left/right pan coefficients. State7 multiplies signed32 audio by signed27 zero-extended low26 coefficient bits; state18 selects exact sample<<26 for unity or sign-extends the full59-bit product. Inactive voices still clear products in state1 and skip directly to state8.',
         'Packed163-bit context RAM has one synchronous read and one result write. New NoteOn invalidates its eight context flags; first use supplies zero phase/level/history and context+1 noise seed. Initialization is independent from pending gate events.',
         'Eight dynamic voices, independent phase/EG/noise/feedback state; a single physical composite operator is scheduled for each enabled logical operator.',
         'Control sequence/epoch protects retries; note identity protects held-key duplicate events; note release never targets a replacement with another identity.',
@@ -58,6 +59,7 @@ def generate():
         ('output','o_fx_frames',32,'FX处理帧数'),('output','o_fx_clipped',32,'FX削波帧数'),
         ('output','o_fx_dropped',32,'FX输入丢帧数'),('output','o_fx_cycles',32,'FX处理时钟数')],
         {'i_s_axis_tdata':384,'o_m_axis_tdata':128},[
+        'C_FX_ENABLE=0 removes the FX instance and input storage; dry Voice PCM enters the original PCM queue. FX commands return unsupported in the board LEGACY_ENABLE=0 configuration.',
         'Single-beat A0..A9 and B0..B3 route to the resident engine; C0..C4 route to the independent shared FX domain.',
         'LEGACY_ENABLE defaults to one for compatibility; the AxiSynthEndpoint wrapper sets zero and returns unsupported status 1 to old raw/context commands.',
         'Malformed packet head and tails remain in the legacy drain domain.',
@@ -85,7 +87,7 @@ def refresh_endpoint_and_tests():
         'tb_voice_engine':['400 stereo frames versus independent Python; two patches, 8 voices, 48 logical operators.', 'Sustain, duplicate NoteID, sequence replay/conflict/gap, live pitch/gain/pan, oldest stealing, stale release, panic, reset and control backpressure.'],
         'tb_axi_synth_engine':['AXI patch upload, continuous PCM, parameter-bank commit, replay, legacy arithmetic coexistence, PCM FIFO overflow and coherent AR snapshot.'],
         'tb_voice_presets':['Five actual compiler outputs executed in RTL; 10240 stereo frames versus Python; three-voice played chord.'],
-        'tb_axi_voice_endpoint':['Legacy AXI interface/context regression against ABI 0x00010005 with LEGACY_ENABLE=1.'],
+        'tb_axi_voice_endpoint':['Legacy AXI interface/context regression against ABI 0x00010006 with LEGACY_ENABLE=1.'],
         'tb_lfo_step':['3560 independent LFO oracle vectors; five-cycle transfer latency, II=1, stalls and reset cancellation.'],
         'tb_lfo_engine':['1600 stereo PCM frames and 38400 source-state snapshots; eight voices, seven shapes, signed routes and all target types.', 'Global/key-synced scopes, live bank commit, duplicate NoteID, sustain/release, source inspection/retry and deadline.'],
         'tb_axi_lfo':['Three actual compiled LFO example patches via AXI; persistent PCM, global/local lifetime, duplicate NoteOn, exact B2 replay and invalid requests.']}

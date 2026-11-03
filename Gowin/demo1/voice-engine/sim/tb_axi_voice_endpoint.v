@@ -300,7 +300,7 @@ module tb_axi_voice_endpoint(output o_done);
         for(n=0;n<7392;n=n+1) code=$fscanf(fd,"%h %h\n",ep[n],ex[n]);
         $fclose(fd);
         repeat(3) @(negedge clk); rstn=1;
-        check_word(0,32'h56534531,0); check_word(4,32'h00010005,0); check_word(12,31,0);
+        check_word(0,32'h56534531,0); check_word(4,32'h00010006,0); check_word(12,31,0);
         check_word(16'h200,0,2); write_word(16'h218,1); expect_b(2);
 
         // W-before-AW, partial byte strobes, and no-op strobe.

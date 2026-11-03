@@ -1,0 +1,8 @@
+IO_LOC "io_touch_scl[0]" AB22;
+IO_PORT "io_touch_scl[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC "io_touch_sda[0]" Y22;
+IO_PORT "io_touch_sda[0]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC "io_touch_scl[1]" AA18;
+IO_PORT "io_touch_scl[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;
+IO_LOC "io_touch_sda[1]" AB20;
+IO_PORT "io_touch_sda[1]" IO_TYPE=LVCMOS33 PULL_MODE=UP BANK_VCCIO=3.3;

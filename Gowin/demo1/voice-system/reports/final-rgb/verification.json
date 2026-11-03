@@ -1,0 +1,94 @@
+{
+  "rtl_tests": {
+    "rgb-test-opt.log": [
+      "PASS keyboard RGB: edges, held-key suppression, calibration, modes, reject/readback, 1537 WS2812 pulses"
+    ],
+    "rgb-effects-opt.log": [
+      "PASS: four effects, parallel timers, interruptions, both sweep directions, clipping, off; 215 frames 6880 pixels 165120 pulses"
+    ],
+    "voice-sim/smoothing.log": [
+      "PASS smoothing: 4096 exact gain/pan and baseline writes, endpoints and sub-64 distances"
+    ],
+    "voice-sim/studio.log": [
+      "PASS studio_system filter_AXI_LFO_bypass=PASS independent_note_sequence=PASS local_CRC_replay=PASS mapped_physical_key=PASS held_remap_release=PASS PCM512_bit_exact=PASS latency_cycles=1187 max_compute=394"
+    ],
+    "voice-sim/schedule-current.log": [
+      "PASS axi_fx commands=117 pcm=6128 full_voice_cycles=834 total_cycles=939 fx_cycles=72 clear_pulses=1",
+      "PASS prefetch_ownership issued=147930 retired=147930 skipped=0 pending=0"
+    ]
+  },
+  "rust_tests": {
+    "passed": 81,
+    "failed": 0,
+    "ignored": 1
+  },
+  "typescript_build": true,
+  "board": {
+    "modes": [
+      {
+        "mode": 0,
+        "direction": false,
+        "readback": true
+      },
+      {
+        "mode": 1,
+        "direction": false,
+        "readback": true
+      },
+      {
+        "mode": 2,
+        "direction": false,
+        "readback": true
+      },
+      {
+        "mode": 3,
+        "direction": false,
+        "readback": true
+      },
+      {
+        "mode": 3,
+        "direction": true,
+        "readback": true
+      },
+      {
+        "mode": 4,
+        "direction": false,
+        "readback": true
+      },
+      {
+        "mode": 6,
+        "direction": false,
+        "readback": true
+      }
+    ],
+    "audio": [
+      {
+        "voices": 1,
+        "peak_pcm": 570
+      },
+      {
+        "voices": 8,
+        "peak_pcm": 2200
+      }
+    ],
+    "telemetry": {
+      "active": 0,
+      "bad_packets": 0,
+      "cycles": 53,
+      "flags": 1398342929,
+      "frames": 4027209,
+      "fx_clips": 0,
+      "fx_cycles": 0,
+      "fx_dropped": 0,
+      "overruns": 0,
+      "pcm_dropped": 0,
+      "pressed": 0,
+      "underruns": 0
+    },
+    "retries": 0,
+    "settings_restored": true,
+    "hdmi_pages_readback": 8
+  },
+  "physical_rgb_visual_confirmation": "not recorded",
+  "strict_style_gate_passed": false
+}

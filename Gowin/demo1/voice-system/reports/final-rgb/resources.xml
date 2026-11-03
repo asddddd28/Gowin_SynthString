@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="SynthHdmiTop" Register="21" Lut="12" T_Register="28097(21)" T_Alu="6456(0)" T_Lut="29980(12)" T_MULTALU27X18="6(0)" T_MULT12X12="5(0)" T_MULT27X36="30(0)" T_Bsram="79(0)" T_Ssram="225(0)" T_ROM16="68(0)">
+ <SubModule name="Synth_Inst" Register="68" Alu="62" Lut="43" T_Register="26043(68)" T_Alu="6196(62)" T_Lut="26359(43)" T_MULTALU27X18="4(0)" T_MULT12X12="4(0)" T_MULT27X36="30(0)" T_Bsram="58(0)" T_Ssram="215(0)" T_ROM16="68(0)">
+  <SubModule name="Scanner_Inst" Register="93" Alu="4" Lut="235" T_Register="93(93)" T_Alu="4(4)" T_Lut="235(235)"/>
+  <SubModule name="Thresholds_Inst" Register="796" Alu="142" Lut="1270" Bsram="6" T_Register="1121(796)" T_Alu="302(142)" T_Lut="1606(1270)" T_MULTALU27X18="1(0)" T_Bsram="8(6)">
+   <SubModule name="Crossing_Inst" Register="325" Alu="160" Lut="336" MULTALU27X18="1" Bsram="2" T_Register="325(325)" T_Alu="160(160)" T_Lut="336(336)" T_MULTALU27X18="1(1)" T_Bsram="2(2)"/>
+  </SubModule>
+  <SubModule name="Boot_Inst" Register="381" Lut="124" Bsram="2" T_Register="381(381)" T_Lut="124(124)" T_Bsram="2(2)"/>
+  <SubModule name="Keys_Inst" Register="1251" Alu="35" Lut="827" Bsram="3" T_Register="1251(1251)" T_Alu="35(35)" T_Lut="827(827)" T_Bsram="3(3)"/>
+  <SubModule name="Host_Inst" Register="2128" Alu="483" Lut="1794" T_Register="2191(2128)" T_Alu="483(483)" T_Lut="2082(1794)">
+   <SubModule name="Receiver_Inst" Register="33" Lut="56" T_Register="33(33)" T_Lut="56(56)"/>
+   <SubModule name="Transmitter_Inst" Register="30" Lut="232" T_Register="30(30)" T_Lut="232(232)"/>
+  </SubModule>
+  <SubModule name="Arbiter_Inst" Register="393" Lut="536" T_Register="393(393)" T_Lut="536(536)"/>
+  <SubModule name="Master_Inst" Register="713" Alu="125" Lut="746" T_Register="713(713)" T_Alu="125(125)" T_Lut="746(746)"/>
+  <SubModule name="Endpoint_Inst" T_Register="14066(0)" T_Alu="3574(0)" T_Lut="13395(0)" T_MULTALU27X18="2(0)" T_MULT12X12="1(0)" T_MULT27X36="30(0)" T_Bsram="38(0)" T_Ssram="215(0)">
+   <SubModule name="Endpoint_Inst" Register="2966" Alu="93" Lut="1921" Ssram="36" T_Register="14066(2966)" T_Alu="3574(93)" T_Lut="13395(1921)" T_MULTALU27X18="2(0)" T_MULT12X12="1(0)" T_MULT27X36="30(0)" T_Bsram="38(0)" T_Ssram="215(36)">
+    <SubModule name="Runtime_Inst" Register="411" Alu="71" Lut="360" Ssram="24" T_Register="11100(411)" T_Alu="3481(71)" T_Lut="11474(360)" T_MULTALU27X18="2(0)" T_MULT12X12="1(0)" T_MULT27X36="30(0)" T_Bsram="38(0)" T_Ssram="179(24)">
+     <SubModule name="Voice_Inst" Register="5730" Alu="1890" Lut="6515" MULT27X36="15" Bsram="19" T_Register="9655(5730)" T_Alu="2997(1890)" T_Lut="10562(6515)" T_MULTALU27X18="1(0)" T_MULT12X12="1(0)" T_MULT27X36="29(15)" T_Bsram="36(19)" T_Ssram="155(0)">
+      <SubModule name="Modulation_Inst" Register="1279" Alu="71" Lut="1418" MULT27X36="2" Bsram="2" Ssram="152" T_Register="1944(1279)" T_Alu="312(71)" T_Lut="1979(1418)" T_MULT27X36="5(2)" T_Bsram="2(2)" T_Ssram="155(152)">
+       <SubModule name="Lfo_Inst" Register="665" Alu="241" Lut="561" MULT27X36="3" Ssram="3" T_Register="665(665)" T_Alu="241(241)" T_Lut="561(561)" T_MULT27X36="3(3)" T_Ssram="3(3)"/>
+      </SubModule>
+      <SubModule name="Operator_Inst" Register="951" Alu="461" Lut="1025" MULT27X36="7" Bsram="8" T_Register="1981(951)" T_Alu="795(461)" T_Lut="2068(1025)" T_MULTALU27X18="1(0)" T_MULT12X12="1(0)" T_MULT27X36="9(7)" T_Bsram="15(8)">
+       <SubModule name="LowWave_Inst" Bsram="2" T_Bsram="2(2)"/>
+       <SubModule name="HighWave_Inst" Bsram="2" T_Bsram="2(2)"/>
+       <SubModule name="Envelope_Inst" Register="153" Lut="271" T_Register="514(153)" T_Alu="96(0)" T_Lut="360(271)">
+        <SubModule name="Segment_Inst" Register="361" Alu="96" Lut="89" T_Register="361(361)" T_Alu="96(96)" T_Lut="89(89)"/>
+       </SubModule>
+       <SubModule name="DxEnvelope_Inst" Register="516" Alu="238" Lut="683" MULTALU27X18="1" MULT12X12="1" MULT27X36="2" Bsram="3" T_Register="516(516)" T_Alu="238(238)" T_Lut="683(683)" T_MULTALU27X18="1(1)" T_MULT12X12="1(1)" T_MULT27X36="2(2)" T_Bsram="3(3)"/>
+      </SubModule>
+     </SubModule>
+     <SubModule name="Filter_Inst" Register="1034" Alu="413" Lut="552" MULTALU27X18="1" MULT27X36="1" Bsram="2" T_Register="1034(1034)" T_Alu="413(413)" T_Lut="552(552)" T_MULTALU27X18="1(1)" T_MULT27X36="1(1)" T_Bsram="2(2)"/>
+    </SubModule>
+   </SubModule>
+  </SubModule>
+  <SubModule name="Audio_Inst" Register="106" Alu="105" Lut="156" T_Register="106(106)" T_Alu="105(105)" T_Lut="156(156)"/>
+  <SubModule name="Monitor_Inst" Register="447" Alu="161" Lut="527" Bsram="1" T_Register="447(447)" T_Alu="161(161)" T_Lut="527(527)" T_Bsram="1(1)"/>
+  <SubModule name="SequenceDomain.Recorder_Inst" Register="1797" Alu="568" Lut="2535" Bsram="5" T_Register="2007(1797)" T_Alu="568(568)" T_Lut="2933(2535)" T_Bsram="5(5)">
+   <SubModule name="gen_buttons[0].Button_Inst" Register="35" Lut="66" T_Register="35(35)" T_Lut="66(66)"/>
+   <SubModule name="gen_buttons[1].Button_Inst" Register="35" Lut="66" T_Register="35(35)" T_Lut="66(66)"/>
+   <SubModule name="gen_buttons[2].Button_Inst" Register="35" Lut="66" T_Register="35(35)" T_Lut="66(66)"/>
+   <SubModule name="gen_buttons[3].Button_Inst" Register="35" Lut="67" T_Register="35(35)" T_Lut="67(67)"/>
+   <SubModule name="gen_buttons[4].Button_Inst" Register="35" Lut="66" T_Register="35(35)" T_Lut="66(66)"/>
+   <SubModule name="gen_buttons[5].Button_Inst" Register="35" Lut="67" T_Register="35(35)" T_Lut="67(67)"/>
+  </SubModule>
+  <SubModule name="SequenceDomain.Click_Inst" Register="53" Alu="54" Lut="75" T_Register="53(53)" T_Alu="54(54)" T_Lut="75(75)"/>
+  <SubModule name="TouchDomain.Input_Inst" T_Register="2562(0)" T_Alu="454(0)" T_Lut="2126(0)" T_MULT12X12="2(0)" T_ROM16="68(0)">
+   <SubModule name="gen_pad[0].Scanner_Inst" Register="787" Alu="15" Lut="169" ROM16="34" T_Register="968(787)" T_Alu="15(15)" T_Lut="533(169)" T_ROM16="34(34)">
+    <SubModule name="transaction" Register="86" Lut="125" T_Register="181(86)" T_Lut="364(125)">
+     <SubModule name="byte_engine" Register="24" Lut="87" T_Register="95(24)" T_Lut="239(87)">
+      <SubModule name="bit_controller" Register="71" Lut="152" T_Register="71(71)" T_Lut="152(152)"/>
+     </SubModule>
+    </SubModule>
+   </SubModule>
+   <SubModule name="gen_pad[0].Position_Inst" Register="313" Alu="212" Lut="530" MULT12X12="1" T_Register="313(313)" T_Alu="212(212)" T_Lut="530(530)" T_MULT12X12="1(1)"/>
+   <SubModule name="gen_pad[1].Scanner_Inst" Register="787" Alu="15" Lut="169" ROM16="34" T_Register="968(787)" T_Alu="15(15)" T_Lut="533(169)" T_ROM16="34(34)">
+    <SubModule name="transaction" Register="86" Lut="123" T_Register="181(86)" T_Lut="364(123)">
+     <SubModule name="byte_engine" Register="24" Lut="88" T_Register="95(24)" T_Lut="241(88)">
+      <SubModule name="bit_controller" Register="71" Lut="153" T_Register="71(71)" T_Lut="153(153)"/>
+     </SubModule>
+    </SubModule>
+   </SubModule>
+   <SubModule name="gen_pad[1].Position_Inst" Register="313" Alu="212" Lut="530" MULT12X12="1" T_Register="313(313)" T_Alu="212(212)" T_Lut="530(530)" T_MULT12X12="1(1)"/>
+  </SubModule>
+  <SubModule name="TouchDomain.Performance_Inst" Register="591" Alu="269" Lut="948" MULTALU27X18="1" MULT12X12="1" Bsram="1" T_Register="591(591)" T_Alu="269(269)" T_Lut="948(948)" T_MULTALU27X18="1(1)" T_MULT12X12="1(1)" T_Bsram="1(1)"/>
+ </SubModule>
+ <SubModule name="u_tmds_pll"/>
+ <SubModule name="Control_Inst" Register="564" Alu="40" Lut="965" T_Register="564(564)" T_Alu="40(40)" T_Lut="965(965)"/>
+ <SubModule name="Rgb_Inst" Register="78" Lut="45" T_Register="584(78)" T_Alu="45(0)" T_Lut="1055(45)" T_MULT12X12="1(0)">
+  <SubModule name="Effects_Inst" Register="435" Alu="45" Lut="815" MULT12X12="1" T_Register="435(435)" T_Alu="45(45)" T_Lut="815(815)" T_MULT12X12="1(1)"/>
+  <SubModule name="Tx_Inst" Register="71" Lut="195" T_Register="71(71)" T_Lut="195(195)"/>
+ </SubModule>
+ <SubModule name="Snapshot_Inst" Register="473" Lut="224" T_Register="473(473)" T_Lut="224(224)"/>
+ <SubModule name="Analyse_Inst" Register="165" Alu="87" Lut="375" MULTALU27X18="2" Bsram="5" T_Register="165(165)" T_Alu="87(87)" T_Lut="375(375)" T_MULTALU27X18="2(2)" T_Bsram="5(5)"/>
+ <SubModule name="Video_Inst" Register="174" Alu="19" Lut="761" Bsram="16" Ssram="10" T_Register="174(174)" T_Alu="19(19)" T_Lut="761(761)" T_Bsram="16(16)" T_Ssram="10(10)"/>
+ <SubModule name="Dvi_Inst" Register="73" Alu="69" Lut="229" T_Register="73(73)" T_Alu="69(69)" T_Lut="229(229)"/>
+</Module>

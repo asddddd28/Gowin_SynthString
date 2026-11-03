@@ -38,7 +38,8 @@
         "invalid stage or operation or bus request"
       ],
       "verification_cases": [
-        "10096 DX envelope oracle vectors; all curves and events; stalls and reset"
+        "10096 DX envelope oracle vectors; all curves and events; stalls and reset",
+        "分拍回归：DX包络7拍、DX算子11拍；新增流水每阶段复位取消和重新请求，数值参考不变。"
       ],
       "timing_diagrams": [
         {

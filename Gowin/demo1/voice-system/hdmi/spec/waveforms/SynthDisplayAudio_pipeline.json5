@@ -1,0 +1,28 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "audio_sample",
+      "wave": "010....10."
+    },
+    {
+      "name": "observe",
+      "wave": "0.1.....1."
+    },
+    {
+      "name": "publish",
+      "wave": "0....1...."
+    },
+    {
+      "name": "vblank",
+      "wave": "0.....10.."
+    },
+    {
+      "name": "display_bank",
+      "wave": "0......1.."
+    }
+  ]
+}

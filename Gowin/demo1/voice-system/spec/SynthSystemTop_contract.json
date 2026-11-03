@@ -103,25 +103,202 @@
             "width": 1,
             "role": "control",
             "description": "PA_EN"
+          },
+          {
+            "name": "o_display_reset_n",
+            "width": 1,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_reset_n"
+          },
+          {
+            "name": "o_display_keys",
+            "width": 32,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_keys"
+          },
+          {
+            "name": "o_display_latency",
+            "width": 32,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_latency"
+          },
+          {
+            "name": "o_display_underruns",
+            "width": 32,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_underruns"
+          },
+          {
+            "name": "o_display_errors",
+            "width": 32,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_errors"
+          },
+          {
+            "name": "o_display_frames",
+            "width": 32,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_frames"
+          },
+          {
+            "name": "o_display_sample_valid",
+            "width": 1,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_sample_valid"
+          },
+          {
+            "name": "o_display_sample",
+            "width": 16,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_sample"
+          },
+          {
+            "name": "o_display_request",
+            "width": 1,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_request"
+          },
+          {
+            "name": "o_display_opcode",
+            "width": 8,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_opcode"
+          },
+          {
+            "name": "o_display_argument",
+            "width": 8,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_argument"
+          },
+          {
+            "name": "o_display_words",
+            "width": 64,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_display_words"
+          },
+          {
+            "name": "i_display_response_valid",
+            "width": 1,
+            "direction": "input",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: i_display_response_valid"
+          },
+          {
+            "name": "i_display_response",
+            "width": 136,
+            "direction": "input",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: i_display_response"
+          },
+          {
+            "name": "o_display_calibrating",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_display_calibrating"
+          },
+          {
+            "name": "i_touch_next",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_touch_next"
+          },
+          {
+            "name": "io_touch_scl",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_touch_scl"
+          },
+          {
+            "name": "io_touch_sda",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_touch_sda"
+          },
+          {
+            "name": "o_touch_mode",
+            "direction": "output",
+            "width": 2,
+            "role": "data",
+            "description": "o_touch_mode"
+          },
+          {
+            "name": "i_buttons",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "i_buttons"
+          },
+          {
+            "name": "o_sequence_status",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "description": "o_sequence_status"
+          },
+          {
+            "name": "o_sequence_bpm",
+            "direction": "output",
+            "width": 9,
+            "role": "data",
+            "description": "o_sequence_bpm"
           }
         ]
       },
       "clock": {
-        "name": "i_axis_aclk",
+        "name": "i_clk",
         "edge": "posedge",
         "frequency_hz": 50000000
       },
       "reset": {
-        "name": "i_axis_arstn",
+        "name": "i_rstn",
         "active": "low",
         "style": "asynchronous",
         "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
       },
       "behavior": [
-        "Single50MHz board hierarchy: ADC scanner and hysteresis → note source; UART → framed control; boot/keys/host → arbiter → AXI master → AxiSynthEndpoint → PT8211.",
-        "Reset synchronously released after powerup delay; ADC/UART inputs synchronized. PA_EN active low, enabled only after successful boot and amplifier delay and no faults.",
-        "Core subsystem is shared with voice-engine. No generic AXI crossbar/DMA or external RAM master is claimed.",
-        "C_DELAY_ADDR_BITS=13 board default; core library defaults to15. Capability registers and parameter limits follow the synthesized depth."
+        "SynthStudioMonitor connects to the UART local command port, keyboard mapping RAM and actual PT8211 frame acceptance.",
+        "DSP AXI routing, six-operator pool, eight voices, 50MHz clock and 1024-cycle sample period remain unchanged.",
+        "Audio capture and host reads are passive. The monitor tracks one key dispatch at a time, correlates the Note-On completion frame tag, and reports cycles to that exact output frame.",
+        "HDMI observer interface: no display backpressure into audio. Display commands are enabled only with C_DISPLAY_ENABLE=1; default0 retains original monitor routing.",
+        "Keyboard frontend supports banked calibration and measured velocity. Enabled physical NoteOn gain=(velocity+1)/128; fixed mode retains unity. Calibration flag drives HDMI overlay.",
+        "Keyboard local opcodes20..28 include atomic microsecond timing observation;50MHz scanner cadence unchanged.",
+        "C_TOUCH_ENABLE默认0；HDMI顶层开启后，串口0x30..0x33分派触摸模块，物理按键先经TouchPerformance再交给KeyboardSource。",
+        "C_SEQUENCE_ENABLE默认0；启用后实例化SynthSequencer/SynthMetronome，真实键盘命令在ready/valid同时有效时采样。校准中静音停录/停播。",
+        "本地0x40..0x42与原键盘/显示/滤波/触摸本地指令解码互斥；音序器是第三个运行期AXI命令来源。",
+        "本地0x40..0x48与原键盘/显示/滤波/触摸本地指令解码互斥；音序器是第三个运行期AXI命令来源。",
+        "本地0x40..0x49与原键盘/显示/滤波/触摸本地指令解码互斥；音序器是第三个运行期AXI命令来源。",
+        "SD local requests 0x50..0x55 share the existing CRC/replay-protected UART. SynthHdmiTop instantiates autonomous storage mount; archive save/load control is not yet connected."
       ],
       "constraints": [
         "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
@@ -134,46 +311,48 @@
         "reset while pipeline holds transactions"
       ],
       "verification_cases": [
-        "Independent protocol/PCM model",
-        "Real UART/ADC pins to serial DAC simulation",
-        "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
-        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+        "Full existing board regression: 134 UART replies, all 32 keys, eight-voice load and serial DAC.",
+        "tb_studio_system: local command CRC/replay, distinct key patches, held remapping/release, 512 signed16 capture samples compared to DAC quantization, tagged latency."
       ],
       "timing_diagrams": [
         {
-          "id": "stream",
-          "title": "流水接纳与反压",
-          "scenario": "stream",
-          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "id": "record-play",
+          "title": "小节提交与回放握手",
+          "scenario": "record-play",
+          "description": "按键事件暂存，停止后保留完成的小节；回放命令稳定等待仲裁和回执。",
           "wavejson": {
             "signal": [
               {
                 "name": "clk",
-                "wave": "p........"
+                "wave": "p........."
               },
               {
-                "name": "s_valid",
-                "wave": "01....0.."
+                "name": "record",
+                "wave": "01....0..."
               },
               {
-                "name": "s_ready",
-                "wave": "1...0..1."
+                "name": "bar_boundary",
+                "wave": "0..10....."
               },
               {
-                "name": "m_valid",
-                "wave": "0...1...."
+                "name": "note_capture",
+                "wave": "0.10.10..."
               },
               {
-                "name": "m_ready",
-                "wave": "1...0..1."
+                "name": "committed",
+                "wave": "0......1.."
               },
               {
-                "name": "data/tag",
-                "wave": "x...=..=x",
-                "data": [
-                  "held",
-                  "next"
-                ]
+                "name": "play_req",
+                "wave": "0......1.."
+              },
+              {
+                "name": "ready",
+                "wave": "1......01."
+              },
+              {
+                "name": "completion",
+                "wave": "0........1"
               }
             ]
           }

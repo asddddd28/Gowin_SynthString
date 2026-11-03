@@ -1,4 +1,4 @@
-"""Strict DX7 SysEx import and 128-entry FM1 library; four initial qualified presets.
+"""Strict DX7 SysEx import; 21 qualified presets and four boot slots.
 
 CLI: python model/dx7_bank.py factory | list | import FILE --output JSON |
      export PROGRAM --output PATCH_JSON [--experimental]
@@ -13,6 +13,7 @@ from dx7_model import scale_level
 
 ROOT = Path(__file__).resolve().parents[1]
 INITIAL = (4,1,42,68)
+QUALIFIED = INITIAL + (32,43,79,106,16,25,28,60,72,80,81,89,97,101,110,118,126)
 FACTORY_SHA = 'ecad0b8620f9d784d46c8da1e3c5de02c40214649ed8dec218026431046aad25'
 ALGORITHMS = [bytes.fromhex(s) for s in '''
 c1 11 11 14 01 14
@@ -185,7 +186,9 @@ def catalog(voices, origin):
         v=unpack_voice(raw);missing=blockers(v)
         entries.append(dict(program=n,bank=n//32,index=n%32,name=v['name'],algorithm=v['algorithm']+1,
             raw_vmem=raw.hex(),sha256=hashlib.sha256(raw).hexdigest(),blocked_by=missing,
-            status='initial-four' if factory_source and n in INITIAL and not missing else 'blocked' if missing else 'unqualified'))
+            status='initial-four' if factory_source and n in INITIAL and not missing else
+                   'qualified-dry' if factory_source and n in QUALIFIED and not missing else
+                   'blocked' if missing else 'unqualified'))
     return dict(schema='synthstring.dx7-library.v1',capacity=128,resident_slots=4,origin=origin,entries=entries)
 
 
@@ -222,7 +225,7 @@ def main():
         if args.input is None or not args.output:parser.error('export needs PROGRAM and --output')
         n=int(args.input);entry=next((x for x in library['entries'] if x['program']==n),None)
         if entry is None:raise ValueError('program not found')
-        if entry['status']!='initial-four' and not args.experimental:raise ValueError('not one of the initial four; use --experimental only for explicit evaluation')
+        if entry['status'] not in ('initial-four','qualified-dry') and not args.experimental:raise ValueError('not a qualified preset; use --experimental only for explicit evaluation')
         patch=convert(bytes.fromhex(entry['raw_vmem']),n)
         args.output.write_text(json.dumps(patch,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
 

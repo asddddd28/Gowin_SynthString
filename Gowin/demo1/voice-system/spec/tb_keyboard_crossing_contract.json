@@ -1,0 +1,83 @@
+{
+  "modules": [
+    {
+      "name": "tb_keyboard_crossing",
+      "rtl_path": "keyboard/tb_keyboard_crossing.v",
+      "description": "Bit-exact shared interpolation verification",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "clk",
+            "role": "data",
+            "description": "All assertions completed"
+          }
+        ]
+      },
+      "clock": {
+        "name": "clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "2064 directed/random reference vectors, including32key histories, unsigned timestamp wrap, both motion polarities, exact endpoint threshold, zero/stale intervals, reversals and no motion.",
+        "Assert both timestamps, estimation flags and valid-history interval against Python integer model; bound completion below80core clocks."
+      ],
+      "constraints": [
+        "Simulation only.50MHz clock with accelerated10-cycle millisecond and100ms watchdog."
+      ],
+      "corner_cases": [
+        "Both ADC directions; incomplete config; threshold chatter; held key during commit; same-sample fast crossing; long holds; watchdog."
+      ],
+      "verification_cases": [
+        "test_crossing_vectors.py generates deterministic fixture; xsim executes every vector."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "interpolate",
+          "title": "Shared arithmetic sequence",
+          "scenario": "interpolate",
+          "description": "Each divide span represents28core cycles; done follows both crossing estimates.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "start",
+                "wave": "010......."
+              },
+              {
+                "name": "phase",
+                "wave": "x.========",
+                "data": [
+                  "history",
+                  "delta",
+                  "release-mul",
+                  "release-div28",
+                  "release-store",
+                  "press-mul",
+                  "press-div28",
+                  "done"
+                ]
+              },
+              {
+                "name": "done",
+                "wave": "0........1"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

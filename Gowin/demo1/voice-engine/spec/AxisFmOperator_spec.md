@@ -35,6 +35,8 @@
 | `i_wave_address` | input | 11 | 未声明 | data | 帧与采样地址 |
 | `i_wave_data` | input | 32 | 未声明 | data | 有符号 Q26 采样 |
 | `o_wave_ready` | output | 1 | 未声明 | control | 波表可安全写入 |
+| `i_wave_read` | input | 1 | i_axis_aclk | data | i_wave_read |
+| `o_wave_data` | output | 32 | i_axis_aclk | data | o_wave_data |
 
 ## 5. 周期行为与延迟
 
@@ -46,16 +48,20 @@
 - DX envelope executes in parallel with wave math. State result is logarithmic, amplitude is separate. PM source normalized by8 restores phase with source<<9; feedback strength0..7 uses history_average<<(strength+1). DX sine reads old phase before increment.
 - DX extension: request flags word19 bit5 selects DX mode; bits12:6 note,19:13 velocity,26:20 scaled output level. Word20 carries packed key/velocity scaling.
 - Two signed33-by-signed32 lanes share phase/feedback and gain phases. Dedicated signed33-by-positive23 interpolation and signed33-by-positive18 morph products break mux paths. Preserve native64, interpolation56, morph51 and factor65 slices; latency remains10 clocks.
+- Interpolation pipeline: state2 table read; state3 signed56 delta*fraction registers; state4 add held base to product>>>22; state5 morph and AM/ring factor; state6 wave*factor and parallel EG completion; state7 scaled wave plus EG*gain; state8 final sample product; state9 result; state10 valid. State6 may wait for EG without consuming or advancing a second request. Nominal latency remains10 clocks; waveform and coefficient snapshots stay stable.
+- DX EG新增ROM前寄存边界，由现有state6等待完成；native10拍不变，DX11拍，不改变本模块RTL。
+- 波表morph系数在state2读表期间提前限幅并寄存，state5插值只使用该17位系数。切断参数比较/mux到乘加路径；十拍延迟、插值精度、饱和范围和ready/valid语义保持不变。
+- Wave read reuses common-address write-through DPB port A; two idle clocks settle read data. DSP lookup uses separate sine/wave outputs with unchanged computation states.
 
 ## 6. WaveDrom 时序图
 
-### 流水接纳与反压
+### 波表插值系数提前准备
 
-请求锁存后运算；结果可以暂停，已驻留声部仍按采样时钟推进。图示握手关系，不按图推断延迟。
+state2读表并限幅morph，state3分数乘积、state4基值相加、state5双表morph；最终握手保持原来的十拍结果延迟。
 
-![流水接纳与反压](waveforms/AxisFmOperator_stream.svg)
+![波表插值系数提前准备](waveforms/AxisFmOperator_morph-coefficient.svg)
 
-- WaveJSON：[AxisFmOperator_stream.json5](waveforms/AxisFmOperator_stream.json5)
+- WaveJSON：[AxisFmOperator_morph-coefficient.json5](waveforms/AxisFmOperator_morph-coefficient.json5)
 
 ## 7. 边界、反压与错误
 
@@ -76,6 +82,7 @@
 - Backpressure stability and reset cancellation
 - Illegal parameters and voice lifecycle
 - 1024-clock frame deadline under eight voices and six operators
+- Full signed32 uploaded tables, fraction boundaries, neighbour1023 wrap, morph endpoints/clamp, exact ten-cycle latency, output stalls, reset at every compute stage.
 
 ## 10. 可追溯性
 

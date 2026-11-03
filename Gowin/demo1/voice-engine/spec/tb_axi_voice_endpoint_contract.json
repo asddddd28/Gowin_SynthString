@@ -3,7 +3,7 @@
     {
       "name": "tb_axi_voice_endpoint",
       "rtl_path": "sim/tb_axi_voice_endpoint.v",
-      "description": "Legacy AXI interface/context regression against ABI 0x00010005 with LEGACY_ENABLE=1.",
+      "description": "Legacy AXI interface/context regression against ABI 0x00010006 with LEGACY_ENABLE=1.",
       "interfaces": {
         "ports": [
           {
@@ -26,7 +26,7 @@
         "style": "asynchronous"
       },
       "behavior": [
-        "Legacy AXI interface/context regression against ABI 0x00010005 with LEGACY_ENABLE=1."
+        "Legacy AXI interface/context regression against ABI 0x00010006 with LEGACY_ENABLE=1."
       ],
       "constraints": [
         "Simulation-only testbench. Actual completion output is part of this explicit contract. Design RTL specifications are source-cross-checked."
@@ -38,7 +38,7 @@
         "invalid stage or operation or bus request"
       ],
       "verification_cases": [
-        "Legacy AXI interface/context regression against ABI 0x00010005 with LEGACY_ENABLE=1."
+        "Legacy AXI interface/context regression against ABI 0x00010006 with LEGACY_ENABLE=1."
       ],
       "timing_diagrams": [
         {

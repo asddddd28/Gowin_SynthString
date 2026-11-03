@@ -56,3 +56,5 @@
 @media(max-width:1400px){.performance-controls{grid-template-columns:124px 130px 94px 108px minmax(210px,1fr);gap:12px}.control-hint{display:none}.performance-mode .segmented button{padding:5px}.midi-channel{gap:4px}.midi-channel>span{font-size:8px}}
 @media(max-width:1150px){.performance-controls{grid-template-columns:113px 125px 84px 100px minmax(205px,1fr);gap:10px}.performance-mode .segmented button{font-size:9px}.compact-parameter .parameter-head{font-size:9px}.pad-toolbar>span{font-size:9px}.edit-tools{gap:5px}.live-status{font-size:8px}}
 @media(max-height:800px){.main{padding-top:14px}.page-heading{padding-bottom:12px}.edit-tools{padding-bottom:10px}.performance{padding-top:9px;padding-bottom:8px}.performance-controls{padding:9px 0}.performance-header{margin-bottom:8px}.pad{min-height:46px}.pad-toolbar{margin:5px 0 7px}.patch-heading{margin-bottom:10px}}
+/* Long upstream commit URLs remain readable inside the preset details dialog. */
+.preset-source-url { overflow-wrap: anywhere; font-size: 12px; color: var(--muted); }

@@ -14,6 +14,16 @@ use std::{
 fn assets() -> PathBuf {
     PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("assets")
 }
+#[test]
+fn voice_upload_preserves_full_wave_resolution() {
+    let (_temp,mut engine)=setup();
+    let p=json!({"resource_id":0,"position":30.0});
+    let full=call(&mut engine,"voice_wave_pair",p.clone());
+    let preview=call(&mut engine,"wave_preview",p);
+    assert_eq!(full["frames"].as_array().unwrap().len(),2);
+    for i in 0..2 {let frame=full["frames"][i].as_array().unwrap();assert_eq!(frame.len(),1024);assert_eq!(json!(frame.iter().step_by(4).collect::<Vec<_>>()),preview["frames"][i]);}
+    assert_eq!(full["fraction"],preview["fraction"]);
+}
 fn vectors() -> Value {
     serde_json::from_str(include_str!("../tests/fixtures/legacy-vectors.json")).unwrap()
 }

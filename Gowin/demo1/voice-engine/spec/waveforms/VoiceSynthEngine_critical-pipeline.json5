@@ -1,0 +1,41 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p......"
+    },
+    {
+      "name": "state",
+      "wave": "====..=",
+      "data": [
+        "1",
+        "4",
+        "2",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "name": "partial sums",
+      "wave": "x=.....",
+      "data": [
+        "current"
+      ]
+    },
+    {
+      "name": "packet complete",
+      "wave": "0.1...."
+    },
+    {
+      "name": "operator valid",
+      "wave": "0.10..."
+    },
+    {
+      "name": "prefetch row",
+      "wave": "x=.....",
+      "data": [
+        "next"
+      ]
+    }
+  ]
+}

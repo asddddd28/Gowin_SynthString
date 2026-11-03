@@ -103,6 +103,22 @@
             "width": 1,
             "role": "control",
             "description": "波表可安全写入"
+          },
+          {
+            "name": "i_wave_read",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_axis_aclk",
+            "description": "i_wave_read"
+          },
+          {
+            "name": "o_wave_data",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_axis_aclk",
+            "description": "o_wave_data"
           }
         ]
       },
@@ -125,7 +141,11 @@
         "Single in-flight request. Output and tag stable during backpressure. Table writes only when idle and no request accepted.",
         "DX envelope executes in parallel with wave math. State result is logarithmic, amplitude is separate. PM source normalized by8 restores phase with source<<9; feedback strength0..7 uses history_average<<(strength+1). DX sine reads old phase before increment.",
         "DX extension: request flags word19 bit5 selects DX mode; bits12:6 note,19:13 velocity,26:20 scaled output level. Word20 carries packed key/velocity scaling.",
-        "Two signed33-by-signed32 lanes share phase/feedback and gain phases. Dedicated signed33-by-positive23 interpolation and signed33-by-positive18 morph products break mux paths. Preserve native64, interpolation56, morph51 and factor65 slices; latency remains10 clocks."
+        "Two signed33-by-signed32 lanes share phase/feedback and gain phases. Dedicated signed33-by-positive23 interpolation and signed33-by-positive18 morph products break mux paths. Preserve native64, interpolation56, morph51 and factor65 slices; latency remains10 clocks.",
+        "Interpolation pipeline: state2 table read; state3 signed56 delta*fraction registers; state4 add held base to product>>>22; state5 morph and AM/ring factor; state6 wave*factor and parallel EG completion; state7 scaled wave plus EG*gain; state8 final sample product; state9 result; state10 valid. State6 may wait for EG without consuming or advancing a second request. Nominal latency remains10 clocks; waveform and coefficient snapshots stay stable.",
+        "DX EG新增ROM前寄存边界，由现有state6等待完成；native10拍不变，DX11拍，不改变本模块RTL。",
+        "波表morph系数在state2读表期间提前限幅并寄存，state5插值只使用该17位系数。切断参数比较/mux到乘加路径；十拍延迟、插值精度、饱和范围和ready/valid语义保持不变。",
+        "Wave read reuses common-address write-through DPB port A; two idle clocks settle read data. DSP lookup uses separate sine/wave outputs with unchanged computation states."
       ],
       "constraints": [
         "Single 50 MHz clock domain; reset cancels in-flight work.",
@@ -142,14 +162,15 @@
         "Independent Python integer model versus xsim",
         "Backpressure stability and reset cancellation",
         "Illegal parameters and voice lifecycle",
-        "1024-clock frame deadline under eight voices and six operators"
+        "1024-clock frame deadline under eight voices and six operators",
+        "Full signed32 uploaded tables, fraction boundaries, neighbour1023 wrap, morph endpoints/clamp, exact ten-cycle latency, output stalls, reset at every compute stage."
       ],
       "timing_diagrams": [
         {
-          "id": "stream",
-          "title": "流水接纳与反压",
-          "scenario": "stream",
-          "description": "请求锁存后运算；结果可以暂停，已驻留声部仍按采样时钟推进。图示握手关系，不按图推断延迟。",
+          "id": "morph-coefficient",
+          "title": "波表插值系数提前准备",
+          "scenario": "morph-coefficient",
+          "description": "state2读表并限幅morph，state3分数乘积、state4基值相加、state5双表morph；最终握手保持原来的十拍结果延迟。",
           "wavejson": {
             "signal": [
               {
@@ -157,27 +178,50 @@
                 "wave": "p........"
               },
               {
-                "name": "s_valid",
-                "wave": "01....0.."
-              },
-              {
-                "name": "s_ready",
-                "wave": "1...0..1."
-              },
-              {
-                "name": "m_valid",
-                "wave": "0...1...."
-              },
-              {
-                "name": "m_ready",
-                "wave": "1...0..1."
-              },
-              {
-                "name": "data/tag",
-                "wave": "x...=..=x",
+                "name": "state",
+                "wave": "=========",
                 "data": [
-                  "held",
-                  "next"
+                  "0",
+                  "1",
+                  "2",
+                  "3",
+                  "4",
+                  "5",
+                  "6",
+                  "7",
+                  "8"
+                ]
+              },
+              {
+                "name": "request_valid",
+                "wave": "10......."
+              },
+              {
+                "name": "morph_clamped",
+                "wave": "x..=.....",
+                "data": [
+                  "0..65536"
+                ]
+              },
+              {
+                "name": "fraction_product",
+                "wave": "x...=....",
+                "data": [
+                  "registered"
+                ]
+              },
+              {
+                "name": "interpolated_tables",
+                "wave": "x....=...",
+                "data": [
+                  "low/high"
+                ]
+              },
+              {
+                "name": "wave",
+                "wave": "x.....=..",
+                "data": [
+                  "morph result"
                 ]
               }
             ]

@@ -7,6 +7,7 @@ rtl/AxisDxEnvelope.v
 rtl/AxisVoiceFabric.v
 rtl/AxisVoiceRuntime.v
 rtl/AxisFmOperator.v
+rtl/SynthWaveRam.v
 rtl/AxisLfoStep.v
 rtl/VoiceModulation.v
 rtl/VoiceSynthEngine.v
@@ -16,3 +17,5 @@ rtl/AxisFxEngine.v
 rtl/AxisSynthSystem.v
 rtl/AxiVoiceEndpoint.v
 rtl/AxiSynthEndpoint.v
+
+D:/Projects/ai/Gowin/demo1/voice-engine/rtl/AxisMasterLowpass.v

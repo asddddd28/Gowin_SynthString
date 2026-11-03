@@ -1,0 +1,50 @@
+{
+  "signal": [
+    {
+      "name": "pixel_clk",
+      "wave": "p......."
+    },
+    {
+      "name": "row_address",
+      "wave": "=.......",
+      "data": [
+        "page,row"
+      ]
+    },
+    {
+      "name": "row_index",
+      "wave": "x=......",
+      "data": [
+        "0..87"
+      ]
+    },
+    {
+      "name": "cell",
+      "wave": "xx=.....",
+      "data": [
+        "18 bits"
+      ]
+    },
+    {
+      "name": "text",
+      "wave": "xxx=....",
+      "data": [
+        "8 bits"
+      ]
+    },
+    {
+      "name": "character",
+      "wave": "xxxx=...",
+      "data": [
+        "glyph"
+      ]
+    },
+    {
+      "name": "font",
+      "wave": "xxxxx=..",
+      "data": [
+        "5 bits"
+      ]
+    }
+  ]
+}

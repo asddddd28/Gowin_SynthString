@@ -1,63 +1,90 @@
 # Gowin_SynthString
 
-Tang Mega 60K（GW5AT-60B）合成器与综合硬件调试工程。2026-11-02新增FM1四音色Voice Engine及Tauri/Rust Voice Studio快照；保留此前已测试的音频合成器、综合硬件调试、Python App和pair固件。
+Tang Mega 60K（GW5AT-60B）上的纯 FPGA 实时合成器，配套 Tauri / React / Rust 桌面工作台。
 
-**最新Voice Engine候选尚未烧录，50MHz时序未通过。** 16组RTL仿真通过，8声部×6算子加LFO/FX最重940/1024拍；实际布局Fmax35.944MHz，setup -7.821ns。按用户要求暂停进一步调试并先保存快照，未降低50MHz时钟。当前候选不能替代下面已验证的演奏固件。
+**终版：Final RGB · 2026-11-04 · `build-keyboard-rgb-02`。** 保持 50 MHz，完整布局布线通过，已下载 SRAM 并完成串口与数字音频测试。本版启用键盘 RGB，停用 SD 存取和 Delay / Reverb；内存音序录制与回放保留。
 
-- [各模块资源、执行拍数与长路径报告](Gowin/demo1/voice-system/RESOURCE_TIMING.md)
-- [完整结构与协议](Gowin/demo1/voice-system/SYSTEM.md) · [当前验证状态](Gowin/demo1/voice-system/BOARD_TEST.md)
-- [SynthStringVoiceStudio.exe](Gowin/demo1/voice-system/app/SynthStringVoiceStudio.exe) · [使用方法](Gowin/demo1/voice-system/app/README.md)
-- [未通过时序的候选位流](Gowin/demo1/voice-system/firmware/README.md)，文件名明确带有UNVERIFIED。
+## 下载与运行
 
-新版App包含可滚动界面、四槽音色、六算子电平/频率/DX包络编辑、电脑键盘/MIDI/鼠标演奏、旋钮、延音、共享FX及硬件遥测。滚动已由用户确认；新版协议实板联调尚未执行。库保留128条原厂数据，只开放PIANO 2、ORGAN 1、BASS 3、BRASS 2四个已验证参数配置。
+- **[终版 bitstream：synth_hdmi.fs](Gowin/demo1/voice-system/firmware/final-rgb/synth_hdmi.fs)** · [烧录说明与校验值](Gowin/demo1/voice-system/firmware/README.md)
+- **[Windows App：TangSynthStudio.exe](Gowin/demo1/voice-system/app/TangSynthStudio.exe)** · [App 使用说明](Gowin/demo1/voice-system/app/README.md)
+- [完整操作指南](Gowin/demo1/voice-system/UNIFIED_STUDIO.md) · [RGB 灯效](Gowin/demo1/voice-system/KEYBOARD_RGB.md) · [发布清单](FINAL_RELEASE.json)
 
-## 运行入口与固件配对
+App 需要 WebView2 Runtime。请保留同目录的 `assets` 和 `licenses`，不要只复制 exe。连接板卡调试串口（本机为 COM4，其他电脑按实际端口选择）。板卡重新烧录/复位后建立新会话；普通断线重连继续原会话。
 
-| 用途 | Windows App | FPGA 固件 / 工程 |
-|---|---|---|
-| 键盘、六键开关、RGB、游戏、编码器、摇杆、双触摸板、触摸吉他 | [TangHardwareLab.exe](Gowin/demo_test/desktop-tauri/release/TangHardwareLab.exe) | [hardware_lab.fs](Gowin/demo_test/diagnostics/hardware_lab/impl/pnr/hardware_lab.fs) |
-| 上述综合调试 + HDMI 信息面板 | 同上 | [hardware_hdmi.fs](Gowin/demo_test/diagnostics/hardware_hdmi/impl/pnr/hardware_hdmi.fs) · [说明](Gowin/demo_test/diagnostics/hardware_hdmi/README.md) |
-| 六颗轻触开关独立测试 | 同上 | [tactile_buttons.fs](Gowin/demo_test/diagnostics/tactile_buttons/impl/pnr/tactile_buttons.fs) · [说明](Gowin/demo_test/diagnostics/tactile_buttons/README.md) |
-| 32 声部 AXIS 合成器、音色编辑、起音延迟监测、板载 DAC/喇叭 | [TangSynthStudio.exe](Gowin/demo1/keyboard-timbres/app/TangSynthStudio.exe) | [keyboard_latency.fs](Gowin/demo1/keyboard-latency/impl/pnr/keyboard_latency.fs) · [说明](Gowin/demo1/keyboard-latency/README.md) |
+当前实板采用 **SRAM 下载**，UserCode **ED65**，未写配置 Flash；断电后需重新加载。不要误选历史 `UNVERIFIED_synth_fm1.fs`。
 
-以上是独立固件，不会同时运行。综合调试 App 的吉他通过电脑原生音频发声；板载喇叭测试使用 AXIS 合成器固件。HDMI 面板当前显示 K01 ADC 曲线，不是音频 FFT，也没有 HDMI 音频。
+## 终版功能
 
-Windows App 需要 WebView2 Runtime。当前实板 DEBUG 串口为 COM4（FTDI B）；其他电脑请按实际枚举选择。App 与测试脚本需要轮流使用串口。优先进行 SRAM 下载；本次 HDMI / 喇叭测试没有写外部 Flash。
+| 部分 | 本版能力 |
+|---|---|
+| Voice Engine | 8 复音，每声部 6 个逻辑算子；共享物理运算核心，独立相位/包络状态；4 个驻留音色槽 |
+| 音源 | FM/PM、线性 FM、AM、Ring、基础波形、共享双帧波表与噪声；六算子路由及包络编辑 |
+| 音色 | 基础音色、AM/PM/鼓预设及 FM1 Convert；保留 128 条原始目录，其中 21 条已适配验证，并非完整 FM-1/DX7 复刻 |
+| 调制/滤波 | LFO 调制引擎；全局双声道低通及 Cutoff LFO，触摸控制音量/音高/Cutoff |
+| 键盘与演奏 | 32 键 ADC 采集、逐键校准、按下/松开阈值、速度力度与灵敏度；App/MIDI 演奏、延音、移调 |
+| 触摸与控制 | 双触摸板、四种演奏模式（含四弦吉他）；五旋钮及摇杆 |
+| 音序器 | SW1 录制/结束/叠录，SW2 清空，SW4 播放/暂停；四拍循环、可调 BPM、每层保留音色；仅 RAM 存储 |
+| RGB | 32 颗灯：单键点亮、涟漪、横/纵扫光、十字扩散、彩虹流水及关闭；App 设备页切换，FPGA 独立运行 |
+| HDMI | 1280×720，32 键状态、真实 PCM 波形、频谱、延迟与页面导航；显示器不承载音频 |
+| 音频输出 | 底板 3.5 mm / PT8211，**48,828.125 Hz、16-bit、双声道** |
 
-## 源码与工程
+声音从 FPGA 实时产生，没有用预录整段音频替代合成。波表用于周期波形查表。4 个驻留槽由琴键与录音层共享，不能同时为 32 键配置 32 种互不相同的驻留音色。波表上传期间会暂停发声。
 
-- [Rust + Tauri / React App](Gowin/demo_test/desktop-tauri/README.md)：综合硬件界面以及共享目录中的 Synth Studio 模块，含 Cargo/npm 锁文件、图标、测试和协议样本。
-- [综合硬件 RTL](Gowin/demo_test/diagnostics/hardware_lab/README.md)：键盘扫描、校准阈值、响应灯效、FPGA 游戏、六键、编码器、摇杆和双触摸板。六键独立 5 ms 去抖、10 Hz B1 快照，支持同时按键和按下／松开计数；新 H1 为能力 0x00FF / build 0x0101。App 仍兼容旧综合版和独立六键固件。
-- [HDMI 工程](Gowin/demo_test/diagnostics/hardware_hdmi/)：无软核，1280×720 视频，显示输入值、按键/触摸高亮及状态；含 GPRJ、CST、SDC、布局 ROM、仿真及厂商 DVI/PLL 文件。
-- [合成器 RTL](Gowin/demo1/rtl/) 与 [keyboard-latency](Gowin/demo1/keyboard-latency/)：32 声部双振荡器/双包络/SVF，保留 keyboard-performance、keyboard-studio、keyboard-parallel 源码依赖和初始化数据。
-- [五类基础音色](Gowin/demo1/keyboard-timbres/README.md)：16 个基础音色与 32 键示范库。
-- [2 针喇叭测试](Gowin/demo_test/diagnostics/speaker_test/README.md)：短音脚本、下载记录和串口原始数据。J27 / J28 为左右桥接喇叭输出。
+SD 保存/加载已停用，HDMI 中保留的 SD 库页面不能用来存取文件。RAM 录音断电丢失。Delay/Reverb 源码保留，但终版没有实例化。旋钮音色参数编辑仍由 App 桥接；本地键盘、触摸、音序、RGB、HDMI 波形/频谱可独立运行。
 
-旧版 [demo1 App](Gowin/demo1/desktop-tauri/README.md)、[Python Keyboard Lab](Gowin/demo_test/desktop/README.md) 和 `demo1_pair_31002/31004.fs` 保留为历史版本，不是上表的新 App / 固件组合。历史发布包见 [Releases](https://github.com/asddddd28/Gowin_SynthString/releases)；这次新程序直接放在表中的仓库路径。
+## 资源与验证
 
-## 验证记录
+Gowin V1.9.11.03 Education，GW5AT-LV60PG484AC1/I0；来自本次最终 PnR 报告。
 
-| 固件 | User Code | SHA-256 |
-|---|---|---|
-| HDMI 综合调试 + 六键 | `7180` | `5545f79fc81c29b7aa9764f03e245f5db66f7cdcbb3e333f7bee9f7595a2dee5` |
-| 普通综合调试 + 六键 | 本轮未下载此变体 | `574e8a836868e195f7a8db6536bbae108238fac9d1aa986b946ed0f22c7b3bba` |
-| 六键独立测试 | `5CC2` | `f59c66ac3652b2298f4e3d7ce3c962d3a46f5783cf76e29634b8b7283815d6ce` |
-| AXIS 音频 / 延迟监督 | `FED2` | `3a75079156d8297e54b693b39644fd1981deadba368cbdc0e5d5e6e1047d02ec` |
+| 资源 | 用量 / 总量 | 占比 |
+|---|---:|---:|
+| Logic | 38,053 / 59,904 | 63.5% |
+| CLS | 26,577 / 29,952 | 88.7% |
+| FF | 28,097 / 60,780 | 46.2% |
+| BSRAM | 107 / 118 | 90.7% |
+| DSP | 68.5 / 118 | 58.1% |
 
-六键合并版通过联合 RTL 仿真、六源串口仲裁、HDMI 解析／光栅仿真、Gowin 时序检查及 28 项 Rust 测试。HDMI 版已实际下载 SRAM，收到 35/35 校准确认，六颗开关均出现按下与释放，串口校验／序号错误为 0。本轮 RGB 关闭。两块触摸板当时未应答，App 显示 44/46；不能将此记录当作双 Pad／划弦验收。详见 [本轮验证](Gowin/demo_test/diagnostics/hardware_lab/reports/buttons_merge/validation.md)。
+- 主时钟约束 50 MHz，报告 Fmax **50.164 MHz**；最差 setup **+0.066 ns**、hold **+0.069 ns**，零违例。余量仍小，修改源码或重建后必须重新检查时序。
+- 像素域约束 73.333 MHz，报告 Fmax **88.407 MHz**。
+- RGB 215 帧 / 6,880 像素参考比对、4,096 组声像平滑向量、完整 ADC/UART/滤波/PT8211 回归通过；8 声部/48 算子压力测试通过。
+- 已上板验证全部灯效模式的硬件读回，单音和八音和弦有有效 PCM，串口重试、音频欠载/超期/丢帧/坏包均为 0；原音色与键盘设置已恢复。
+- TypeScript 构建通过，Rust 81 项通过、1 项需专用实板条件的测试未执行。
+- 实体 RGB 的肉眼效果尚未记录用户确认；严格 RTL 风格门禁也未全部通过。以上功能/时序结果不等同于全部质量门禁或模拟音质测量。
 
-HDMI 保持原仪表盘布局，六键详情在 App 页面显示。上一版 89B5 曾完成实屏确认：画面正常，数据与高亮跟随输入变化，详见 [历史验证](Gowin/demo_test/diagnostics/hardware_hdmi/reports/validation.md)；不能将旧版实屏观察当作新位流的再次确认。
+[时序与资源 JSON](Gowin/demo1/voice-system/reports/final-rgb/timing.json) · [最差路径](Gowin/demo1/voice-system/reports/final-rgb/paths.json) · [仿真与上板摘要](Gowin/demo1/voice-system/reports/final-rgb/verification.json)
 
-音频固件通过 50 MHz 时序检查（余量很小）和数字链路验收。4 Ω / 3 W 喇叭在 3/8 主音量测试中，用户反馈有声音但较小；6/8 测试记录到非零 PCM，未单独确认听感。没有测量实际声压、输出功率或两个物理声道。测试结束静音，详见 [喇叭记录](Gowin/demo_test/diagnostics/speaker_test/README.md)。
+## 源码与重建
 
-上述是此前独立固件的实测记录；本次Voice Engine快照重新进行了综合和布局布线，但未通过时序、未烧录。严格RTL风格审查仍有未通过项，不能将功能仿真理解为全部门禁通过。
+[硬件顶层](Gowin/demo1/voice-system/hdmi/rtl/SynthHdmiTop.v) · [Voice Engine](Gowin/demo1/voice-engine/rtl/VoiceSynthEngine.v) · [工作台源码](Gowin/demo1/desktop-tauri/) · [共享 Rust 后台](Gowin/demo_test/desktop-tauri/src-tauri/src/voice_engine.rs)
 
-## 构建与快照边界
+从仓库根目录创建可迁移的终版工程（无需 `reference` 或原电脑绝对路径）：
 
-App 可在 `Gowin/demo_test/desktop-tauri` 执行 `npm ci`、`npm test`、`npm run test:ui` 和 `./build.ps1`。前置依赖为 Node.js、Rust MSVC、Visual Studio C++ Build Tools 和 WebView2。旧Synth Studio入口是Cargo二进制`synth-debug`；新Voice Studio执行`./build-voice-studio.ps1`，二进制入口`synthstring-voice-studio`，共用前端及Rust模块。新DSP测试向量由`voice-engine/model`生成，未上传大型生成向量及构建缓存。
+```powershell
+python tools/verify_snapshot.py
+python tools/prepare_final_build.py
+cd build/final-rgb
+& 'C:/Gowin/Gowin_V1.9.11.03_Education_x64/IDE/bin/gw_sh.exe' build.tcl
+```
 
-本次补齐新增工程及直接依赖的 GPRJ / CST / SDC 文件。为保留已验证源文件的 SHA-256，源码、生成脚本和报告中的原工作区路径 `D:/Projects/ai` 未自动改写。换目录重建时需调整 GPRJ/Tcl、ROM 路径及仿真文件列表，并重新生成验证结果；历史报告不能直接作为修改后源码的通过证明。HDMI 的厂商文件和 `layout.hex` 已随附，普通重建不必重新运行依赖外部 reference 目录的 `prepare_assets.py`；历史迁移/生成脚本也不应无差别执行。
+该脚本校验发布输入、生成 55 个 RTL 文件的 GPRJ/Tcl、复制最终约束及必要 ROM。输出在 `build/final-rgb/impl/pnr/synth_hdmi.fs`；脚本不会自动烧录。最终 bitstream 的 SHA-256 见发布清单，重新构建不保证产生相同哈希。
 
-不追加 `reference` / `material`、原始 88 键 WAV 库、完整备份、个人 App 配置／校准、安装依赖、编译缓存、崩溃转储和重复发布包。保留必要 ROM、示范音色、许可证、测试样本、选定的仿真/时序/实板证据和当前可执行程序。本轮 App 诊断 JSON 仅导出计数／协议摘要，详细严格风格报告导出失败摘要，原始 profile/settings 不随报告上传。旧说明中的部分 baseline、大型报告或历史发布包未纳入仓库。
+App 构建需要 Node.js、Rust MSVC、Visual Studio C++ Build Tools 和 WebView2：
 
-[UPLOAD_MANIFEST.json](UPLOAD_MANIFEST.json) 记录所收录工程文件的路径、大小和 SHA-256；运行 `python tools/verify_snapshot.py` 可只读核对文件及新增工程的直接依赖。原工作目录未移动或改写。第三方代码保留各自许可证，厂商加密 IP 保留原始标记；未另行给整个项目指定统一许可证。
+```powershell
+cd Gowin/demo_test/desktop-tauri
+npm ci
+cd ../../demo1/desktop-tauri
+npm ci
+npm run build
+npm run test:backend
+npm run desktop:build
+```
+
+输出位于 `release-merged/TangSynthStudio/`。共享的 `demo_test/desktop-tauri` 源码目录必须保留；必要的内置资源、许可证和锁文件已随仓库收录。开发脚本、历史 GPRJ/报告仍可能保留原工作区路径，终版请使用上面的可迁移构建入口。
+
+## 历史版本与收录范围
+
+`demo_test` 的硬件综合调试、旧 `keyboard-latency`、Python App 和 `UNVERIFIED_synth_fm1.fs` 均为历史版本；其验证记录只适用于各自的固件。2026-11-02 的未通过时序候选已被本终版取代，不能把历史报告用于当前源码。
+
+按项目约定不上传 `reference`、`material`、大型原始音频库、完整备份、个人会话/配置、依赖安装目录或编译缓存。仅收录源码、必要资源、固件、App 和选定验证证据。[UPLOAD_MANIFEST.json](UPLOAD_MANIFEST.json) 记录文件哈希；第三方代码和厂商 IP 保留原许可证，仓库未另外声明统一许可证。

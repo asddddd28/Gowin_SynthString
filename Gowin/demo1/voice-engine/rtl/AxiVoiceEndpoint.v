@@ -30,9 +30,11 @@
 
 module AxiVoiceEndpoint #(
 	parameter LEGACY_ENABLE=1,
+	parameter C_TOUCH_ENABLE=0,parameter C_FX_ENABLE=1,
 	parameter C_DELAY_ADDR_BITS=15
 )(
-	input i_axi_aclk, // AXI与内部计算共用时钟
+	    input [17:0] i_touch_gain,input [31:0] i_touch_pitch,input [19:0] i_touch_cutoff,input i_touch_cutoff_active,
+input i_axi_aclk, // AXI与内部计算共用时钟
 	input i_axi_arstn, // 清除总线事务与队列
 	input [3:0]i_s_axi_awid, // 请求awid
 	input [15:0]i_s_axi_awaddr, // 请求awaddr
@@ -382,7 +384,7 @@ module AxiVoiceEndpoint #(
 					dec_read_data = 32'h56534531;
 					end
 				16'h0004:begin
-					dec_read_data = 32'h00010005;
+					dec_read_data = C_TOUCH_ENABLE ? 32'h00010007 : 32'h00010006;
 					end
 				16'h0008:begin
 					dec_read_data[2:0] = cnt_command;
@@ -420,12 +422,13 @@ module AxiVoiceEndpoint #(
 				16'h0040:begin dec_read_data = wire_render_cycles; end
 				16'h0044:begin dec_read_data = wire_pcm_dropped; end
 				16'h0048:begin dec_read_data = 32'h0002087f; end
-				16'h004c:begin dec_read_data = 32'h04001203 | (C_DELAY_ADDR_BITS<<16); end
-				16'h0050:begin dec_read_data = (32'd1<<C_DELAY_ADDR_BITS)-1; end
+				16'h004c:begin dec_read_data = C_FX_ENABLE ? (32'h04001203 | (C_DELAY_ADDR_BITS<<16)) : 32'd0; end
+				16'h0050:begin dec_read_data = C_FX_ENABLE ? ((32'd1<<C_DELAY_ADDR_BITS)-1) : 32'd0; end
 				16'h0054:begin dec_read_data = wire_fx_frames; end
 				16'h0058:begin dec_read_data = wire_fx_clipped; end
 				16'h005c:begin dec_read_data = wire_fx_dropped; end
 				16'h0060:begin dec_read_data = wire_fx_cycles; end
+                16'h0064:begin dec_read_data = 32'h4c504631; end
 				16'h0300:begin dec_read_data = reg_pcm_snapshot[31:0]; end
 				16'h0304:begin dec_read_data = reg_pcm_snapshot[63:32]; end
 				16'h0308:begin dec_read_data = reg_pcm_snapshot[95:64]; end
@@ -516,8 +519,9 @@ module AxiVoiceEndpoint #(
 	end
 
 	// 外部AXI事务在这里转换为私有流式算子任务，不把AXIS当外部主干。
-	AxisSynthSystem #(.LEGACY_ENABLE(LEGACY_ENABLE),.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS)) Runtime_Inst(
-		.i_axis_aclk(i_axi_aclk),.i_axis_arstn(i_axi_arstn),
+	AxisSynthSystem #(.C_TOUCH_ENABLE(C_TOUCH_ENABLE),.LEGACY_ENABLE(LEGACY_ENABLE),.C_FX_ENABLE(C_FX_ENABLE),.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS)) Runtime_Inst(
+		        .i_touch_gain(i_touch_gain),.i_touch_pitch(i_touch_pitch),.i_touch_cutoff(i_touch_cutoff),.i_touch_cutoff_active(i_touch_cutoff_active),
+.i_axis_aclk(i_axi_aclk),.i_axis_arstn(i_axi_arstn),
 		.i_s_axis_tdata(wire_command_head[383:0]),.i_s_axis_tuser(wire_command_head[415:384]),
 		.i_s_axis_tdest(wire_command_head[423:416]),.i_s_axis_tlast(1'b1),
 		.i_s_axis_tvalid(flag_command_head_valid),.o_s_axis_tready(flag_engine_ready),

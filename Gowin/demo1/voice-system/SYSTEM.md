@@ -1,4 +1,22 @@
-# FM1增量（2026-11-02）
+# 当前板级增量（2026-11-03）：共享低通 / Cutoff LFO
+
+实际使用 `SynthHdmiTop` 包装整机，保留 HDMI、32 键标定与速度力度；50 MHz、48,828.125 Hz / 16-bit stereo。下方 FX 开启时的 hierarchy 为历史版本：**当前 C_FX_ENABLE=0，Delay/Reverb 未实例化**。
+
+`AxiVoiceEndpoint.Runtime_Inst` / `AxisSynthSystem` 下新增 **`Filter_Inst: AxisMasterLowpass` × 1**：
+
+```text
+VoiceSynthEngine → 混合后双声道 Q26 → AxisMasterLowpass → PCM FIFO → SynthPcmOutput → PT8211
+                                           ↑
+UART D0/D1 → SynthAxiMaster → AXI-MM 邮箱 → 配置 / 独立完成通道
+```
+
+模块内左右各两级低通状态，共享音频乘加通路；12 dB/oct，无共振。Cutoff 20～18,000 Hz；内部全局 LFO 正弦/三角、0.05～20 Hz、深度 0～6 oct，逐采样运行。VoiceModulation 的逐声部 LFO 与此次全局 LFO 分开。模块每帧计算 30 拍，配置 ACK 的反压不阻塞音频。
+
+ABI `0x00010006`，新增 `0x64=0x4c504631`（LPF1）。D0 配置 / D1 查询复用原有命令、完成邮箱；`SynthAxiMaster.cnt_filter_sequence` 独立递增，不制造 Voice 命令序号缺口。控制操作不重新触发声音。完整字段见 [filter/CONTRACT.md](filter/CONTRACT.md)。
+
+App 控制入口为声音设计和设备与输出；保存配置以硬件 ACK 为准，连续拖动合并更新，错误提供重试。上板证据与限制见 [reports/master-lowpass/README.md](reports/master-lowpass/README.md)。以下保留原始 FM1/FX 设计说明。
+
+# FM1增量（2026-11-02，历史配置）
 
 当前ABI更新为0x00010005；以下原始结构说明中的0x00010004是FX加入时的历史版本。
 `AxisFmOperator` 新增并行子模块 `AxisDxEnvelope`，原生线性EG保留。A1/A2增加DX参数格式，

@@ -1,0 +1,45 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p...."
+    },
+    {
+      "name": "state",
+      "wave": "=====",
+      "data": [
+        "4",
+        "17",
+        "1",
+        "2",
+        "3"
+      ]
+    },
+    {
+      "name": "core row",
+      "wave": "x.===",
+      "data": [
+        "target",
+        "target",
+        "target"
+      ]
+    },
+    {
+      "name": "route sum",
+      "wave": "x.===",
+      "data": [
+        "sum",
+        "sum",
+        "sum"
+      ]
+    },
+    {
+      "name": "request",
+      "wave": "x..==",
+      "data": [
+        "latched",
+        "held"
+      ]
+    }
+  ]
+}

@@ -1,6 +1,7 @@
 `timescale 1ns / 1ps
 // Mailbox master / 命令邮箱主控. Contract: spec/SynthAxiMaster_spec.md.
-module SynthAxiMaster #(parameter C_WATCHDOG=65535)(
+module SynthAxiMaster #(parameter C_WATCHDOG=65535,parameter C_SEQUENCE_ENABLE=0)(
+    input [3:0] i_patch_lock,
     input i_clk, input i_rstn,
     input [391:0] i_request, input i_request_valid, output o_request_ready,
     output [135:0] o_response, output o_response_valid, input i_response_ready,
@@ -21,12 +22,19 @@ module SynthAxiMaster #(parameter C_WATCHDOG=65535)(
     reg flag_poll, flag_pop;
     reg [15:0] reg_write_address, reg_read_address;
     reg [31:0] reg_write_data;
-    reg [31:0] cnt_voice_sequence, cnt_fx_sequence;
+    reg [31:0] cnt_voice_sequence, cnt_fx_sequence,cnt_filter_sequence;
     reg [31:0] cnt_watchdog, cnt_completed;
     reg flag_fault;
+    reg flag_locked;
+    wire [7:0] wire_input_opcode=i_request[327:320];
+    wire [1:0] wire_input_patch=(wire_input_opcode==8'ha1 || wire_input_opcode==8'ha2) ? i_request[332:331] : i_request[329:328];
+    wire flag_input_locked=C_SEQUENCE_ENABLE &&
+        (((wire_input_opcode>=8'ha0 && wire_input_opcode<=8'ha3) && i_patch_lock[wire_input_patch]) ||
+          (wire_input_opcode==8'ha8 && i_patch_lock!=0));
     reg [135:0] reg_response;
     wire flag_fx=reg_request[327:320]>=8'hc0 && reg_request[327:320]<=8'hc4;
-    wire [31:0] wire_sequence=flag_fx ? cnt_fx_sequence : cnt_voice_sequence;
+    wire flag_filter=reg_request[327:320]==8'hd0 || reg_request[327:320]==8'hd1;
+    wire [31:0] wire_sequence=flag_filter ? cnt_filter_sequence : flag_fx ? cnt_fx_sequence : cnt_voice_sequence;
     wire flag_read_error=i_axi_rresp!=0 || !i_axi_rlast;
     wire flag_read_identity=(reg_read_word==4 && i_axi_rdata!=reg_request[391:360]) ||
         (reg_read_word==5 && i_axi_rdata!={24'd0,reg_request[327:320]});
@@ -51,7 +59,7 @@ module SynthAxiMaster #(parameter C_WATCHDOG=65535)(
         next_state=reg_state;
         case (reg_state)
             IDLE: if (i_request_valid && o_request_ready) next_state=PREPARE;
-            PREPARE: if (flag_fault) next_state=FINISH;
+            PREPARE: if (flag_fault || flag_locked) next_state=FINISH;
                 else next_state=reg_request[336] ? ADDRESS_READ : ADDRESS_WRITE;
             ADDRESS_WRITE: if (i_axi_awready) next_state=DATA_WRITE;
             DATA_WRITE: if (i_axi_wready) next_state=WRITE_RESPONSE;
@@ -75,8 +83,8 @@ module SynthAxiMaster #(parameter C_WATCHDOG=65535)(
         if (!i_rstn) begin
             reg_request<=0;reg_word<=0;reg_read_word<=0;flag_poll<=0;flag_pop<=0;
             reg_write_address<=0;reg_read_address<=0;reg_write_data<=0;
-            cnt_voice_sequence<=0;cnt_fx_sequence<=0;cnt_watchdog<=0;cnt_completed<=0;
-            flag_fault<=0;reg_response<=0;
+            cnt_voice_sequence<=0;cnt_fx_sequence<=0;cnt_filter_sequence<=0;cnt_watchdog<=0;cnt_completed<=0;
+            flag_fault<=0;flag_locked<=0;reg_response<=0;
         end else begin
             // A timeout flags failure but never illegally withdraws an AXI VALID.
             if (reg_state==IDLE || reg_state==FINISH) cnt_watchdog<=0;
@@ -85,6 +93,8 @@ module SynthAxiMaster #(parameter C_WATCHDOG=65535)(
             case (reg_state)
                 IDLE: if (i_request_valid && o_request_ready) begin
                     reg_request<=i_request;reg_response<=0;reg_word<=0;reg_read_word<=0;
+                    flag_locked<=flag_input_locked;
+                    if(flag_input_locked)reg_response[135:128]<=11;
                     flag_pop<=0;flag_poll<=1;
                 end
                 PREPARE: begin
@@ -105,7 +115,8 @@ module SynthAxiMaster #(parameter C_WATCHDOG=65535)(
                 WRITE_RESPONSE: if (i_axi_bvalid) begin
                     if (i_axi_bresp!=0) begin flag_fault<=1;reg_response[135:128]<=6;end
                     else if (flag_pop) begin
-                        if (flag_fx) cnt_fx_sequence<=cnt_fx_sequence+1'b1;
+                        if (flag_filter) cnt_filter_sequence<=cnt_filter_sequence+1'b1;
+                        else if (flag_fx) cnt_fx_sequence<=cnt_fx_sequence+1'b1;
                         else cnt_voice_sequence<=cnt_voice_sequence+1'b1;
                     end else if (reg_word==14) reg_read_address<=16'h008;
                     else reg_word<=reg_word+1'b1;

@@ -1,0 +1,196 @@
+{
+  "modules": [
+    {
+      "name": "KeyboardCrossingTime",
+      "rtl_path": "rtl/KeyboardCrossingTime.v",
+      "description": "Shared sequential threshold timestamp interpolation for32physical keys",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_start",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_start"
+          },
+          {
+            "name": "i_key",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_key"
+          },
+          {
+            "name": "i_raw",
+            "direction": "input",
+            "width": 12,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_raw"
+          },
+          {
+            "name": "i_time",
+            "direction": "input",
+            "width": 32,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_time"
+          },
+          {
+            "name": "i_release",
+            "direction": "input",
+            "width": 12,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_release"
+          },
+          {
+            "name": "i_press",
+            "direction": "input",
+            "width": 12,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_press"
+          },
+          {
+            "name": "i_falling",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_falling"
+          },
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_done"
+          },
+          {
+            "name": "o_release_time",
+            "direction": "output",
+            "width": 32,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_release_time"
+          },
+          {
+            "name": "o_press_time",
+            "direction": "output",
+            "width": 32,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_press_time"
+          },
+          {
+            "name": "o_interval",
+            "direction": "output",
+            "width": 32,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_interval"
+          },
+          {
+            "name": "o_release_estimated",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_release_estimated"
+          },
+          {
+            "name": "o_press_estimated",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_press_estimated"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Capture input on idle/start; synchronous per-key44bit history and valid bitmap; delta=current_time-previous_time unsigned32 wraps naturally.",
+        "For forward bracketed motion and interval1..65535us, estimate each crossing as now-floor(interval*overshoot/distance); shared28bit restoring divider,28cycles each. Otherwise return now and clear estimated flag.",
+        "Done pulses one clock; caller must not start while busy. Worst case below80clocks, then idle. Reset clears validity so uninitialized history never qualifies."
+      ],
+      "constraints": [
+        "50MHz singleclock; caller holds start onecycle only and serializes requests.32keys,12bitADC,1us timestamp. Acquisition cadence unchanged."
+      ],
+      "corner_cases": [
+        "No history,zero delta/reversal,stale/zero interval,timestamp wrap,positive/negative direction,threshold exactly on endpoint,both thresholds same interval."
+      ],
+      "verification_cases": [
+        "tb_keyboard_crossing uses model-generated directed and random vectors with exact integer quotient; verify latency bound and reset."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "interpolate",
+          "title": "Shared arithmetic sequence",
+          "scenario": "interpolate",
+          "description": "Each divide span represents28core cycles; done follows both crossing estimates.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "start",
+                "wave": "010......."
+              },
+              {
+                "name": "phase",
+                "wave": "x.========",
+                "data": [
+                  "history",
+                  "delta",
+                  "release-mul",
+                  "release-div28",
+                  "release-store",
+                  "press-mul",
+                  "press-div28",
+                  "done"
+                ]
+              },
+              {
+                "name": "done",
+                "wave": "0........1"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

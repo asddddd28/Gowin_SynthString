@@ -1,0 +1,443 @@
+[
+  {
+    "number": 1,
+    "file": "00000001.SSP",
+    "id": "basic-1",
+    "name": "正弦贝斯",
+    "category": "基础合成",
+    "sha256": "8ba1eaec288a0c8dd37ea0edc55acf04d00fff869856a64c9ff57c99e7fe014e",
+    "wavetable_required": false
+  },
+  {
+    "number": 2,
+    "file": "00000002.SSP",
+    "id": "basic-2",
+    "name": "柔和三角",
+    "category": "基础合成",
+    "sha256": "c194aa224a301fa1e0244d526a7648612a098fb37f3f9622ba6f7191ca6f2e9b",
+    "wavetable_required": false
+  },
+  {
+    "number": 3,
+    "file": "00000003.SSP",
+    "id": "basic-3",
+    "name": "方波主音",
+    "category": "基础合成",
+    "sha256": "3b74745a9e179eb8f4e9d1ec73211d6ad837f92390cc64fb9f6c0e3743e52b5a",
+    "wavetable_required": false
+  },
+  {
+    "number": 4,
+    "file": "00000004.SSP",
+    "id": "basic-4",
+    "name": "FM 电钢琴",
+    "category": "FM / 调制",
+    "sha256": "99ee9a37d5874a3c6bd50b7de82e581b786d40ffe997128cc40bbb0a7ff6294c",
+    "wavetable_required": false
+  },
+  {
+    "number": 5,
+    "file": "00000005.SSP",
+    "id": "basic-5",
+    "name": "FM 钟声",
+    "category": "FM / 调制",
+    "sha256": "3d6fb734ffe5c63567366c0ae5e7a2dc4d821caaad82eee055e921a6a43a576d",
+    "wavetable_required": false
+  },
+  {
+    "number": 6,
+    "file": "00000006.SSP",
+    "id": "basic-6",
+    "name": "FM 贝斯",
+    "category": "FM / 调制",
+    "sha256": "c596c4a66b3f881f3adf01be6006969a84730305107941705d16954dbae287a7",
+    "wavetable_required": false
+  },
+  {
+    "number": 7,
+    "file": "00000007.SSP",
+    "id": "basic-7",
+    "name": "AM 颤音",
+    "category": "FM / 调制",
+    "sha256": "4592e731ff4609fc1bd8cca4396684e878544684f127074e8972e6272cb1c21f",
+    "wavetable_required": false
+  },
+  {
+    "number": 8,
+    "file": "00000008.SSP",
+    "id": "basic-8",
+    "name": "环形金属",
+    "category": "FM / 调制",
+    "sha256": "a0c82296eabc12561b69dbd4d315022210f6a1dc4653b2c1ddf7ba8dd475178c",
+    "wavetable_required": false
+  },
+  {
+    "number": 9,
+    "file": "00000009.SSP",
+    "id": "am-tone-basic",
+    "name": "AM · Tone 柔和合成",
+    "category": "AM",
+    "sha256": "907612bc38258c81b8468726f11da8c4d9a87e4b31f4ced9256316a56aff5e84",
+    "wavetable_required": false
+  },
+  {
+    "number": 10,
+    "file": "00000010.SSP",
+    "id": "am-tone-saw",
+    "name": "AM · Tone 锯齿合奏",
+    "category": "AM",
+    "sha256": "86c42ba4c6d9f6c0088316aa69c51e4d5fb41c4f97ed4f68285e98a8cbdab377",
+    "wavetable_required": false
+  },
+  {
+    "number": 11,
+    "file": "00000011.SSP",
+    "id": "am-soft-bell",
+    "name": "AM · 柔光钟",
+    "category": "AM",
+    "sha256": "23e517c25b74a1d5cc686f785ae90a1164508c3600f8d799d44f0a58710e9dc7",
+    "wavetable_required": false
+  },
+  {
+    "number": 12,
+    "file": "00000012.SSP",
+    "id": "am-reed",
+    "name": "AM · 芦管",
+    "category": "AM",
+    "sha256": "901b0ad515973b0d350c2df88d8ccb517ccea15d0c54b7394236cd07671530b9",
+    "wavetable_required": false
+  },
+  {
+    "number": 13,
+    "file": "00000013.SSP",
+    "id": "am-tremolo-pad",
+    "name": "AM · 呼吸铺底",
+    "category": "AM",
+    "sha256": "1ae79f040b4ff0405a1c1ca4b26d56a84270e9bd70881a0fa6e05e635812926c",
+    "wavetable_required": false
+  },
+  {
+    "number": 14,
+    "file": "00000014.SSP",
+    "id": "am-pluck",
+    "name": "AM · 木质拨弦",
+    "category": "AM",
+    "sha256": "63822c97d49f53585c75e85278253f71d31b8e9b6f2c0424f1344ac18c6dcc73",
+    "wavetable_required": false
+  },
+  {
+    "number": 15,
+    "file": "00000015.SSP",
+    "id": "pm-tone-basic",
+    "name": "PM · Tone 经典",
+    "category": "PM",
+    "sha256": "86717e313a6aed31c043e974cd42acf5175fece8447c1a4cce3a7ea62d74d458",
+    "wavetable_required": false
+  },
+  {
+    "number": 16,
+    "file": "00000016.SSP",
+    "id": "pm-tone-bright",
+    "name": "PM · Tone 明亮主音",
+    "category": "PM",
+    "sha256": "266c892671304c12066e14109c1c13e7c95df772d73a2dc46744e56965f4b573",
+    "wavetable_required": false
+  },
+  {
+    "number": 17,
+    "file": "00000017.SSP",
+    "id": "pm-electric-piano",
+    "name": "PM · 柔亮电钢",
+    "category": "PM",
+    "sha256": "b87442d8145ac3cf5fffb289953e1fb1efd4cdfb74fb8a5f6f27f2d5b0383492",
+    "wavetable_required": false
+  },
+  {
+    "number": 18,
+    "file": "00000018.SSP",
+    "id": "pm-round-bass",
+    "name": "PM · 圆润贝斯",
+    "category": "PM",
+    "sha256": "9932169f807ffbdadaec70399ffaad67b266e492585d88b3d343354f709f5241",
+    "wavetable_required": false
+  },
+  {
+    "number": 19,
+    "file": "00000019.SSP",
+    "id": "pm-marimba",
+    "name": "PM · 木琴",
+    "category": "PM",
+    "sha256": "18e37cd6f4f61869d410192a0f54336264bb9040e6db02a9a606d708d55bfda3",
+    "wavetable_required": false
+  },
+  {
+    "number": 20,
+    "file": "00000020.SSP",
+    "id": "pm-glass-bell",
+    "name": "PM · 玻璃钟",
+    "category": "PM",
+    "sha256": "b9ab5e758b4628c9f92cf6ddd410aca0b185b49c2f96c3e4cb41a822548017ee",
+    "wavetable_required": false
+  },
+  {
+    "number": 21,
+    "file": "00000021.SSP",
+    "id": "drum-kick",
+    "name": "Drum · 深底鼓",
+    "category": "Drum",
+    "sha256": "75f61d1ba8026b1346a60303c742986d9c09603ea80a5473de98d333ffa767d1",
+    "wavetable_required": false
+  },
+  {
+    "number": 22,
+    "file": "00000022.SSP",
+    "id": "drum-snare",
+    "name": "Drum · 电子军鼓",
+    "category": "Drum",
+    "sha256": "02bcaeead443c11f5f216580d8e40d38828be1ef39ccd5a8ffc5a0f5ccf8e174",
+    "wavetable_required": false
+  },
+  {
+    "number": 23,
+    "file": "00000023.SSP",
+    "id": "drum-tom",
+    "name": "Drum · 低音通鼓",
+    "category": "Drum",
+    "sha256": "f1e2cf9196c391388cc661cb4705ac4fe0ee78cfe1c0718bbd2558db0092df97",
+    "wavetable_required": false
+  },
+  {
+    "number": 24,
+    "file": "00000024.SSP",
+    "id": "drum-hat-closed",
+    "name": "Drum · 闭镲",
+    "category": "Drum",
+    "sha256": "4090acd5f8bcbf279789f3d82af80539857ea480ef0dec7ecf59950fab6299a6",
+    "wavetable_required": false
+  },
+  {
+    "number": 25,
+    "file": "00000025.SSP",
+    "id": "drum-hat-open",
+    "name": "Drum · 开镲",
+    "category": "Drum",
+    "sha256": "e011c97c2b43e999d3e9b9c5e38eba2a3a2b516befca332de58dc8448fbc989b",
+    "wavetable_required": false
+  },
+  {
+    "number": 26,
+    "file": "00000026.SSP",
+    "id": "drum-clave",
+    "name": "Drum · 木击",
+    "category": "Drum",
+    "sha256": "be0198590682955c39f3cfa95cafb898b4fee45a1176aae86913e224f7951b8a",
+    "wavetable_required": false
+  },
+  {
+    "number": 27,
+    "file": "00000027.SSP",
+    "id": "drum-cowbell",
+    "name": "Drum · 牛铃",
+    "category": "Drum",
+    "sha256": "050c50369a6fd39f51352066d38982affc62fb0d2b43f366e4ccd8f3bf02fdda",
+    "wavetable_required": false
+  },
+  {
+    "number": 28,
+    "file": "00000028.SSP",
+    "id": "drum-tone-noise",
+    "name": "Drum · Tone 噪声击",
+    "category": "Drum",
+    "sha256": "fce845c3247fd154a8254f1cd8dad5557495eb3b4b778fbab51456b497a3f6e6",
+    "wavetable_required": false
+  },
+  {
+    "number": 29,
+    "file": "00000029.SSP",
+    "id": "fm1-4",
+    "name": "PIANO 2",
+    "category": "FM1 Convert",
+    "sha256": "873baee186b1254dc7653f21678db02143f4d604b611f823ea425fea7bdbf45e",
+    "wavetable_required": false
+  },
+  {
+    "number": 30,
+    "file": "00000030.SSP",
+    "id": "fm1-1",
+    "name": "ORGAN 1",
+    "category": "FM1 Convert",
+    "sha256": "1e052f41c4fa7ce5278aed5d00a80a2468e9db6d4bfde830249af048da1d589c",
+    "wavetable_required": false
+  },
+  {
+    "number": 31,
+    "file": "00000031.SSP",
+    "id": "fm1-42",
+    "name": "BASS 3",
+    "category": "FM1 Convert",
+    "sha256": "4c3ffea375e30c550520cdc6a2b260198f4d5cdd1d2ad827feaa82823600b9d5",
+    "wavetable_required": false
+  },
+  {
+    "number": 32,
+    "file": "00000032.SSP",
+    "id": "fm1-68",
+    "name": "BRASS 2",
+    "category": "FM1 Convert",
+    "sha256": "48624cc1e4399d5f5a46f53587668d0f8fe499446cd4e418294f048282bae2f4",
+    "wavetable_required": false
+  },
+  {
+    "number": 33,
+    "file": "00000033.SSP",
+    "id": "fm1-32",
+    "name": "GUITAR 1",
+    "category": "FM1 Convert",
+    "sha256": "a69ec731b92a2ba61e22b3d55fda0c0dc5bf1d4157e5706bea913e5035ba3994",
+    "wavetable_required": false
+  },
+  {
+    "number": 34,
+    "file": "00000034.SSP",
+    "id": "fm1-43",
+    "name": "SYN BASS3",
+    "category": "FM1 Convert",
+    "sha256": "70a1c2028d11b67078b37e6b50204d18e053fb9d387148214688f626797e56ef",
+    "wavetable_required": false
+  },
+  {
+    "number": 35,
+    "file": "00000035.SSP",
+    "id": "fm1-79",
+    "name": "VOICE 4",
+    "category": "FM1 Convert",
+    "sha256": "3f4cc4a14093e3e2c796b7b7cda59c6f538bffd75df4ab5ea7b701e012ed81d5",
+    "wavetable_required": false
+  },
+  {
+    "number": 36,
+    "file": "00000036.SSP",
+    "id": "fm1-106",
+    "name": "COWBELL",
+    "category": "FM1 Convert",
+    "sha256": "ed92209985bb93fd238c40d3488707c1dac20bded825a2cf211d3a4ad16dccea",
+    "wavetable_required": false
+  },
+  {
+    "number": 37,
+    "file": "00000037.SSP",
+    "id": "fm1-16",
+    "name": "PIANO 5",
+    "category": "FM1 Convert",
+    "sha256": "64bc968ae7c9b3551a47cee1e218f33bc17906198e9f0019fed2c586c2da4b42",
+    "wavetable_required": false
+  },
+  {
+    "number": 38,
+    "file": "00000038.SSP",
+    "id": "fm1-25",
+    "name": "ORGAN 7",
+    "category": "FM1 Convert",
+    "sha256": "48fc4caaa869c6f6024f4abbb885c91a8197791483c281afd54f9e90995b8dc7",
+    "wavetable_required": false
+  },
+  {
+    "number": 39,
+    "file": "00000039.SSP",
+    "id": "fm1-28",
+    "name": "PIANO 8",
+    "category": "FM1 Convert",
+    "sha256": "590960b75b3b4bfed1a6eef84cff0227d9309f6aff365e5a682dfc8406774237",
+    "wavetable_required": false
+  },
+  {
+    "number": 40,
+    "file": "00000040.SSP",
+    "id": "fm1-60",
+    "name": "GUITAR 8",
+    "category": "FM1 Convert",
+    "sha256": "d9c93fa68ac87498a0852d2d14ebc7fb4232f493ed77092e3b6db8fee4920947",
+    "wavetable_required": false
+  },
+  {
+    "number": 41,
+    "file": "00000041.SSP",
+    "id": "fm1-72",
+    "name": "BRASS 3",
+    "category": "FM1 Convert",
+    "sha256": "d0317d40d9279bb90f518b1e7dd59c42fc4752c8237dd552cfd7bec910d8d8d9",
+    "wavetable_required": false
+  },
+  {
+    "number": 42,
+    "file": "00000042.SSP",
+    "id": "fm1-80",
+    "name": "BRASS 5",
+    "category": "FM1 Convert",
+    "sha256": "d821de527623e4dc89866936ecf0ba17048c656063b845560822d3506f5c32ee",
+    "wavetable_required": false
+  },
+  {
+    "number": 43,
+    "file": "00000043.SSP",
+    "id": "fm1-81",
+    "name": "WOODWIND 5",
+    "category": "FM1 Convert",
+    "sha256": "29930308c10c0d5957ec169cfed35a2ef5403ca1ff03f7f2b19895108d5d7277",
+    "wavetable_required": false
+  },
+  {
+    "number": 44,
+    "file": "00000044.SSP",
+    "id": "fm1-89",
+    "name": "WOODWIND 7",
+    "category": "FM1 Convert",
+    "sha256": "f97a05fe457f480cfa29b1d5e17b96603c9c9ae6f542c800d5c22a87cd419bc6",
+    "wavetable_required": false
+  },
+  {
+    "number": 45,
+    "file": "00000045.SSP",
+    "id": "fm1-97",
+    "name": "BDWHOCARES",
+    "category": "FM1 Convert",
+    "sha256": "aeebfaa110d65ae4fc81b0eb821201375f6db500cbd6c85751cb98e4661d3d2e",
+    "wavetable_required": false
+  },
+  {
+    "number": 46,
+    "file": "00000046.SSP",
+    "id": "fm1-101",
+    "name": "ELECT.GONG",
+    "category": "FM1 Convert",
+    "sha256": "7b86e5506c96a2d0229b5b42530eb1f21ec3d5d3abab8b46a212aaf1c697b9c7",
+    "wavetable_required": false
+  },
+  {
+    "number": 47,
+    "file": "00000047.SSP",
+    "id": "fm1-110",
+    "name": "TAMBOURINE",
+    "category": "FM1 Convert",
+    "sha256": "8edc16e627349d95a426e53867159ecc66bce7b284cc1f2f766e14f97a832c0e",
+    "wavetable_required": false
+  },
+  {
+    "number": 48,
+    "file": "00000048.SSP",
+    "id": "fm1-118",
+    "name": "GAMALONG",
+    "category": "FM1 Convert",
+    "sha256": "51db69eae73390cc00d13bb4344394eae6077249850cfb8a86dc096f0a79eb1f",
+    "wavetable_required": false
+  },
+  {
+    "number": 49,
+    "file": "00000049.SSP",
+    "id": "fm1-126",
+    "name": "PERCUSSION",
+    "category": "FM1 Convert",
+    "sha256": "07244e8b83153fce2dcd362c5b0e826a862a10c4298228266e5ccd85f3535961",
+    "wavetable_required": false
+  }
+]

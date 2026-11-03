@@ -1,0 +1,249 @@
+{
+  "modules": [
+    {
+      "name": "SynthStorageDisplay",
+      "rtl_path": "rtl/SynthStorageDisplay.v",
+      "description": "Autonomous SD page text renderer",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "clock_domain": "i_clk",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "clock_domain": "i_clk",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_page",
+            "direction": "input",
+            "width": 3,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_page"
+          },
+          {
+            "name": "i_slot",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_slot"
+          },
+          {
+            "name": "i_delete_mode",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_delete_mode"
+          },
+          {
+            "name": "i_status",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_status"
+          },
+          {
+            "name": "i_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_ready"
+          },
+          {
+            "name": "i_busy",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_busy"
+          },
+          {
+            "name": "i_dirty",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_dirty"
+          },
+          {
+            "name": "i_error",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_error"
+          },
+          {
+            "name": "i_sequence",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_sequence"
+          },
+          {
+            "name": "i_preset",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_preset"
+          },
+          {
+            "name": "i_sequence_count",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_sequence_count"
+          },
+          {
+            "name": "i_preset_count",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_preset_count"
+          },
+          {
+            "name": "i_sequence_status",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_sequence_status"
+          },
+          {
+            "name": "i_bpm",
+            "direction": "input",
+            "width": 9,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_bpm"
+          },
+          {
+            "name": "o_title_address",
+            "direction": "output",
+            "width": 6,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_title_address"
+          },
+          {
+            "name": "i_title",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_title"
+          },
+          {
+            "name": "o_write",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_write"
+          },
+          {
+            "name": "o_address",
+            "direction": "output",
+            "width": 10,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_address"
+          },
+          {
+            "name": "o_data",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_data"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Pages 6/7 update only addresses 128..383, 512..639 and 832..863 in existing character RAM.",
+        "A 1024-byte synchronous ROM supplies text; address, valid and character selection are delayed together by one clock.",
+        "416 writes per 2^20 clocks show card/service state, number/count, title, Slot and errors. No new framebuffer."
+      ],
+      "constraints": [
+        "50 MHz control; existing dual-clock text RAM crosses to video."
+      ],
+      "corner_cases": [
+        "Page change, title absent, count 0/128, error and busy priority."
+      ],
+      "verification_cases": [
+        "tb_storage_display verifies address/valid alignment, fields and page isolation."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transaction",
+          "title": "后台读取、校验与提交",
+          "scenario": "transaction",
+          "description": "存储请求独立于 PCM；校验完成之前不给调用方成功状态。每格表示事务阶段，不是固定总周期数。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "request",
+                "wave": "010......."
+              },
+              {
+                "name": "busy",
+                "wave": "0.1.....0."
+              },
+              {
+                "name": "data",
+                "wave": "x..=...x..",
+                "data": [
+                  "sector / snapshot"
+                ]
+              },
+              {
+                "name": "verified",
+                "wave": "0......10."
+              },
+              {
+                "name": "done",
+                "wave": "0.......10"
+              },
+              {
+                "name": "pcm_tick",
+                "wave": "0101010101"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

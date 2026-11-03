@@ -20,3 +20,16 @@
 便携包的 `licenses/` 由构建脚本从实际 JavaScript 包和 Rust crate 收集许可原文（源码目录生成于 `licenses-native/`）；字体、Lucide 的完整许可应随目录保留。完整 JavaScript 版本锁定在 `package-lock.json`，Rust 依赖锁定在 `src-tauri/Cargo.lock`。`rust-crates.json` 记录所有已解析 crate 的版本、许可与源。
 
 0.4.0 继续使用 [Tauri Rust commands](https://v2.tauri.app/develop/calling-rust/) 直接调用主进程内的 Rust 后台，不开放额外的 HTTP 服务端口。旧 Python/PyInstaller 后台不再随新包分发。Windows 参考试听使用系统 PlaySoundW；源代码与包均保留原音色素材出处。
+# Native AM / PM / Drum bank (2026-11-03)
+
+Five presets adapt Tone.js AMSynth, FMSynth and NoiseSynth parameters / example
+configurations from commit `105c04cc00289caf49684ac5c7621bce8a042c4c`:
+https://github.com/Tonejs/Tone.js . Tone.js is MIT licensed. The full license,
+selected original sources and a SHA-256 source manifest ship in
+`assets/native-bank-sources/`. The other fifteen recipes are original
+SynthString configurations. Per-preset source and adaptation limits are included
+in `assets/native-presets.json` and displayed in the preset browser.
+
+The native conversions change envelope curves, phase behaviour, levels and some
+oscillator structures; they are not bit-exact Tone.js emulations. No external
+drum recordings or third-party commercial preset packs are included.

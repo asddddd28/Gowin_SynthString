@@ -1,0 +1,293 @@
+{
+  "name": "SynthString Final RGB",
+  "date": "2026-11-04",
+  "status": "final_timing_passed_sram_tested",
+  "source_build": "build-keyboard-rgb-02",
+  "top": "SynthHdmiTop",
+  "device": "GW5AT-LV60PG484AC1/I0",
+  "user_code": "ED65",
+  "clock_hz": 50000000,
+  "sample_rate_hz": 48828.125,
+  "audio_bits": 16,
+  "voices": 8,
+  "operators_per_voice": 6,
+  "slots": 4,
+  "sd_enabled": false,
+  "fx_enabled": false,
+  "programmed_to": "SRAM",
+  "flash_written": false,
+  "bitstream": "Gowin/demo1/voice-system/firmware/final-rgb/synth_hdmi.fs",
+  "bitstream_sha256": "d2f4793f8d67c0b1ba3f4a762c002a36f6178b546996eb3120ab6f66a33325c9",
+  "app": "Gowin/demo1/voice-system/app/TangSynthStudio.exe",
+  "app_sha256": "3ab0172692000a0ed56503f3b7d2f1f2b4e7cb31510a788dac306aa21e56ddab",
+  "source_sha256": {
+    "Gowin/demo1/voice-engine/rtl/AxisPhasePm.v": "c5ae183e532a6d4114b336a12d60b53eb9997c8e9d980500c467a273a982ddde",
+    "Gowin/demo1/voice-engine/rtl/AxisEnvelopeSegment.v": "8f01fffa6523a4770ea94e0c0b51d94105368acc595d1b433703b5e888e04a61",
+    "Gowin/demo1/voice-engine/rtl/AxisGainMix.v": "90acbe2e1c9a28e989de5551f594bb605662c27049cd12026a9ae48aecd1dff4",
+    "Gowin/demo1/voice-engine/rtl/AxisNoiseStep.v": "6a6f7bdbdba0929b70d70893bc300df20a1bdb5f34ba7c58376bbbdce1e14074",
+    "Gowin/demo1/voice-engine/rtl/AxisEnvelopeMulti.v": "6febd53fb81a060f32f54dbd9afa74c1e54f480fb6d8f1c2e34f80f81c852bd7",
+    "Gowin/demo1/voice-engine/rtl/AxisDxEnvelope.v": "4108610837a975f20044afaa29ecc9da36161df2020b5187a92bb6335a922ca9",
+    "Gowin/demo1/voice-engine/rtl/AxisVoiceFabric.v": "e4737d873d206ddcff81ad156d55a48640029d2b5ab4ec3fdc2f9221af45781f",
+    "Gowin/demo1/voice-engine/rtl/AxisVoiceRuntime.v": "4e8c8cfc6e446a1efb871707493b42947c1c938bc36e89d0d7061611da270090",
+    "Gowin/demo1/voice-engine/rtl/AxisFmOperator.v": "50eed1e9bc935eeabfea9384ae98cd737be8b27a623038ef72b05b70fb6daa13",
+    "Gowin/demo1/voice-engine/rtl/AxisLfoStep.v": "adbe8dcb0a658f60fc540bdc47092e66e88dfe76f472fff341e7c91eafaf157a",
+    "Gowin/demo1/voice-engine/rtl/VoiceModulation.v": "a8d2dbcb9f2c09a2d1329d03b6691dd1a98b369dac1bb26f5a7bde907ba3471c",
+    "Gowin/demo1/voice-engine/rtl/VoiceSynthEngine.v": "971e8215e130064cabd5de953c724ffa593fa686dc031f8c9d1dc90ecfa55932",
+    "Gowin/demo1/voice-engine/rtl/AxisStereoDelay.v": "d34f8000b3eb45b78db051f962e8dcb8d15a913e4e32b5f46b2798b4e71883f1",
+    "Gowin/demo1/voice-engine/rtl/AxisSchroederReverb.v": "bd793f3ef76c66f6a95c409da6c65d73230e23cb0f141478a7d70231d95d82d8",
+    "Gowin/demo1/voice-engine/rtl/AxisFxEngine.v": "56fe734d3071f76b524c7e9f4de759a7784b7e1f16f20e4ad1a7398f16693018",
+    "Gowin/demo1/voice-engine/rtl/AxisSynthSystem.v": "7ce898d3bcc685cd274930f703add8871d13bec961858d3f7e974c6d5625624a",
+    "Gowin/demo1/voice-engine/rtl/AxiVoiceEndpoint.v": "1cf07217d8d4d9d08c4654a279d247b2199244d77a5d1375f95b6ef830ea74e9",
+    "Gowin/demo1/voice-engine/rtl/AxiSynthEndpoint.v": "63f7ae79c41c810328e66a282944c4cf4493dc11c2545b3b5a6d63e1a95e41a8",
+    "Gowin/demo1/voice-system/rtl/SynthAxiMaster.v": "223cbb4a387165039f1be0a7fbef68aeedb3497e2d560f0785aba017e3129a42",
+    "Gowin/demo1/voice-system/rtl/SynthBootSequencer.v": "08e7507de3e8d25fbea09edf23520f55ec0ccf6b2ae1a4553f2ee5432362da08",
+    "Gowin/demo1/voice-system/rtl/SynthKeyboardSource.v": "6261aeda49997ecccba4957c080f4681c46736f990c27853f1d56c22aa78f581",
+    "Gowin/demo1/voice-system/rtl/SynthUartControl.v": "87f4d3c7abeaded20c4138b9625eebd5f94a9fb80b595ebdb903f1bf92df3533",
+    "Gowin/demo1/voice-system/rtl/SynthPcmOutput.v": "0ae3dab9afdb80516e77a5722b0ee98850717356d73952b01298095aa21f7314",
+    "Gowin/demo1/voice-system/rtl/SynthSystemTop.v": "95702c611d75de316dd3749091ae1fdc81ff80dbc65eddcfc9352bae8dfce434",
+    "Gowin/demo1/voice-system/rtl/SynthCommandArbiter.v": "9253ab6dce2b2e047f5520a910d194bf18ffccc5f41a49ce397cac314dadfd82",
+    "Gowin/demo_test/diagnostics/keyboard_games/src/KeyboardSampler.v": "5570655eff6746438b366031e5ad0c0e4ebe3c44d23109bc06f446f613c500a8",
+    "Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v": "e2624eeaa0cb6a67df40c786e82954e064f5d42bb77cdb7bede58d9729475f76",
+    "Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v": "f621123c5d9bb2edc2429fdff144a2c2095d7ab4e8844e6eb3fcd52a34372e9f",
+    "Gowin/demo1/keyboard-latency/src/LatencyKeyThresholds.v": "636c8b762b91c0239d48b645e6b4297048a113fe6eabda78823c990a3af43ba0",
+    "Gowin/demo1/voice-system/rtl/SynthStudioMonitor.v": "be6ce07d95aec2ea356dcc1c0a59b49a16242c7d6c38892644dcdfd07b584c2d",
+    "Gowin/demo1/voice-system/rtl/SynthKeyboardControl.v": "5c7f123ce515a39849648847e04de490d175f396b2690e7f14df75179d769687",
+    "Gowin/demo1/voice-system/rtl/KeyboardCrossingTime.v": "a6a644a91aa74e81c34a795e1c2cb0602c8240214158d29e48ac7b9af23a5a39",
+    "Gowin/demo1/voice-engine/rtl/AxisMasterLowpass.v": "549a5e3055472347a3efcbe7016c5dfc516de18d94fe58331e8fa66616b01783",
+    "Gowin/demo1/voice-system/touch/rtl/SynthTouchInput.v": "30ad68bafa02c351fcc230b695bd888e2f6a4d46baeb13869ee49b4bfc52154e",
+    "Gowin/demo1/voice-system/touch/rtl/SynthTouchPerformance.v": "fa7eea6929e3079eb255eeb010d411c6c68ecbdccac4b1b3dd088d9f2a1e6285",
+    "Gowin/demo1/voice-system/touch/rtl/TouchPosition.v": "d691deec4f48383de38a70dd717d244619856e1f03258cb269272178d46d9ece",
+    "Gowin/demo_test/diagnostics/touchpad_guitar/src/MprScanner.v": "0c95f94aba51180c027fa61636f74809683604dfd7abe44423c1e6c6ba13e09e",
+    "Gowin/demo_test/diagnostics/touchpad/src/I2cRegister.v": "f02895025923046d44850acd5f6556bd49c329e9005266967ae01abdb7e34d4a",
+    "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_defines.v": "64fa14fb58af069c5b497cbefca28945761d69ba2ce3482a557170026de39d16",
+    "Gowin/demo_test/diagnostics/touchpad/vendor/timescale.v": "51d0bd23e68fff1dc81b7e51aed20d46b743807bbadc1265bdbd34c1f1465c8f",
+    "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_byte_ctrl.v": "fabdde9ac23c96333eda6de38d5c96c979075e064954d6f3ff0eab221dc060f4",
+    "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_bit_ctrl.v": "1f9e5988d047897d5322a06095e209750d21712d2d2c6936703cb8fc802ca527",
+    "Gowin/demo_test/diagnostics/tactile_buttons/src/TactileInput.v": "89ef78440b6c3c71fcae8e96c2f575bccc8b8a20606688921d18d0a2525b79ee",
+    "Gowin/demo1/voice-system/sequencer/rtl/SynthSequencer.v": "911b4e2fef5f7ea2b26a835a05d515a90bf6595652efb8413b2a902296af9f93",
+    "Gowin/demo1/voice-system/sequencer/rtl/SynthMetronome.v": "8e6a01c393686766d0ea7d4b87400388ad9b35d0b025635915107a1918867018",
+    "Gowin/demo1/voice-engine/rtl/SynthWaveRam.v": "ce72ec3389a86109077a5be85c9e6aaa8e9203bec01ee6b1058b11b1623c0368",
+    "Gowin/demo_test/diagnostics/keyboard_reactive/src/LedFrameTx.v": "9d84fcd72310abe554cd056cd882b7bdf963735ca810f20860a5575a77460bed",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplayAudio.v": "09d9d8378ea313b65de47e1666087af50d0ef67f0cbc09276ddc06cca440a221",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplayControl.v": "340a023586186064589503b1662d1b4e37476b38e34f756ce9cbb12f11b1316b",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplaySnapshot.v": "cfa148843bc3d9a059d2cea92570c0a123679eb581f02d5cd31b431f4fc6a35b",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplayVideo.v": "98b7118d9f4d34e204a4a1e7942b636e05ad8ab8a805d39b5b2ef67c9417dd3b",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthHdmiTop.v": "996a767e23f724062e649eb1d20d9f0f0fad1435ba59c7eb8c954efecafa24ba",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthKeyboardLightEffects.v": "975edaf9e546e66b5bdee7d5b3f85ba9beb6d8acf01156e99dffcbe1830aee22",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthKeyboardRgb.v": "847d05c08b6ad6ed14f233adc4990f57f8dfe05e5a830aa31d96eaae8e6c4b72",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthStorageDisplay.v": "cf29a7210808640795b076491157a1dfdaa348ebc27d009ab55915c3a09113b4",
+    "Gowin/demo_test/diagnostics/hardware_hdmi/vendor/DVI_TX_Top.v": "a2dc2f338438864307dc8da6c8f50b582d412eeb5ea899af9f047a8d6b46815f",
+    "Gowin/demo_test/diagnostics/hardware_hdmi/vendor/TMDS_PLL.v": "93f75ddfc086df167e245b840d6b07f016d281bc14a2b707a1e1c264ebc2d7bf",
+    "Gowin/demo1/voice-system/rom/boot.hex": "fc3322e1b87280ebd2106bef1088d48fa4f96d35e135dfe2758140898e1639ea",
+    "Gowin/demo1/voice-system/rom/boot_dry.hex": "105f35d42101c5036fc193671aa39850f27c89e5a07e1b7a266f734540d1a8ac",
+    "Gowin/demo1/voice-system/rom/dx_exp2.hex": "ae93c2e63ffd9c2ec495eb060e7fd6a6ff4266b9135782b0de1f7e5a41f07806",
+    "Gowin/demo1/voice-system/rom/dx_keyscale.hex": "797fd54fd6f9d5fee1345f9065584d68c7992442533e63e0f9b5b83fd0caf7ab",
+    "Gowin/demo1/voice-system/rom/dx_keyscale_product.hex": "d82497ebaffe3cbd40eace3b515db899192134e89377873ca79e5771a743cb23",
+    "Gowin/demo1/voice-system/rom/dx_rate.hex": "17c98ca82caf90405e8c327ff6d7a4088782b04f8e64ba65702797c9e6425806",
+    "Gowin/demo1/voice-system/rom/dx_velocity.hex": "e4ee8adf31b5457563103d51ea79291e5f28d07f77d13bd822eeaf6815cf7bc7",
+    "Gowin/demo1/voice-system/rom/keyboard_mapping.hex": "9391dff12593c571a3672efe90690f1fbd59e95b28cdf0837cbf964ef8adb7b7",
+    "Gowin/demo1/voice-system/rom/keyboard_phase.hex": "232cfd61c2983450596d750ec613f98c84a3891e164655b4b5b8ef08f21e3347",
+    "Gowin/demo1/voice-system/rom/keyboard_threshold_banks.hex": "794f7708e5c5301a2269daf0353e1e8f66a95559131be234132c4778ad25c853",
+    "Gowin/demo1/voice-system/rom/lowpass_alpha.hex": "9cd961c5699fdc7f4b0ffe8e50c6f102f1eef94bbac51d52221c4dca7e85fdeb",
+    "Gowin/demo1/voice-system/rom/lowpass_sine.hex": "969483c54b36dd4cd6361994e65f302538d9184fe154e34dd71e53d400026cd8",
+    "Gowin/demo1/voice-system/rom/sine_q26.hex": "f88541c3d8d27fce396c999378725fb573bafefb177c187ecf640bd04bf04e70",
+    "Gowin/demo1/voice-system/rom/touch_pitch.hex": "651a78a5333e628a071f4d3aa21132aaecdad4ce03219758cd1686508f4ca6a8",
+    "Gowin/demo1/voice-system/key_thresholds.hex": "08744000960c115a7df7751499ac37671e40ee962e11d90509e54dd8ee2fa4be",
+    "Gowin/demo1/voice-system/raw_rest.hex": "26b83817f2a6e4e952210fa5f3150c89296e6ffc3ab79ba47abb396bffb121d8",
+    "Gowin/demo1/voice-system/raw_bottom.hex": "092ebf43f16a96a185a6e3d2523d5bba78efab4ad5b03563c6cc4c954ebde12f",
+    "Gowin/demo1/voice-system/hdmi/assets/calibration.hex": "27ff543dd80a1426f261cb327f38212a6a08cdc4dce3f8c74b55f4e9eead8dbc",
+    "Gowin/demo1/voice-system/hdmi/assets/cells.hex": "bc63dc6332adc8b52618e309fbb06ad29a9cf70a7f75ed27bd45016774d3f212",
+    "Gowin/demo1/voice-system/hdmi/assets/cells_main.hex": "5a72c71188e88fe88acdc2091e57d5e45c9d7a9b514de5902b6246c41bdbb214",
+    "Gowin/demo1/voice-system/hdmi/assets/cells_middle.hex": "1dba03546c422c4965d32f84412b48b2ead3fb89d469e942f431dfd9c20075a8",
+    "Gowin/demo1/voice-system/hdmi/assets/cells_tail.hex": "a63ad0e2716d12359a9c7f6e048ff20ab4459bcf60007146ffc7b1cc8c5a8076",
+    "Gowin/demo1/voice-system/hdmi/assets/dft.hex": "b5ac5b23ca5d375ea8f8a7850cfc9e80cc6ad0ad181fb5ee38c0fcbf91ad5e33",
+    "Gowin/demo1/voice-system/hdmi/assets/font.hex": "d7791bd5a8d3fca127671888023318985157c26ed115c387d993e7901ca6448a",
+    "Gowin/demo1/voice-system/hdmi/assets/history.hex": "9b5ee346b05d90d1d624ecfcfb8a45471128a2734fd684cadee0f03a33439cc5",
+    "Gowin/demo1/voice-system/hdmi/assets/rows.hex": "2727edec293a261f6ff2524a3b1d1924139bd2a4ec6e8a1a3cb1525993ff6a12",
+    "Gowin/demo1/voice-system/hdmi/assets/storage-lines.hex": "bb9709bc1e9008fbf4b948080df4898f329ae8d2db837aead21f641dc56acf2b",
+    "Gowin/demo1/voice-system/hdmi/assets/text.hex": "fd536be23d2d264f102732f8932876255f6abd09f402c503589a6f46146621b1"
+  },
+  "rtl_sources": [
+    "Gowin/demo1/voice-engine/rtl/AxisPhasePm.v",
+    "Gowin/demo1/voice-engine/rtl/AxisEnvelopeSegment.v",
+    "Gowin/demo1/voice-engine/rtl/AxisGainMix.v",
+    "Gowin/demo1/voice-engine/rtl/AxisNoiseStep.v",
+    "Gowin/demo1/voice-engine/rtl/AxisEnvelopeMulti.v",
+    "Gowin/demo1/voice-engine/rtl/AxisDxEnvelope.v",
+    "Gowin/demo1/voice-engine/rtl/AxisVoiceFabric.v",
+    "Gowin/demo1/voice-engine/rtl/AxisVoiceRuntime.v",
+    "Gowin/demo1/voice-engine/rtl/AxisFmOperator.v",
+    "Gowin/demo1/voice-engine/rtl/AxisLfoStep.v",
+    "Gowin/demo1/voice-engine/rtl/VoiceModulation.v",
+    "Gowin/demo1/voice-engine/rtl/VoiceSynthEngine.v",
+    "Gowin/demo1/voice-engine/rtl/AxisStereoDelay.v",
+    "Gowin/demo1/voice-engine/rtl/AxisSchroederReverb.v",
+    "Gowin/demo1/voice-engine/rtl/AxisFxEngine.v",
+    "Gowin/demo1/voice-engine/rtl/AxisSynthSystem.v",
+    "Gowin/demo1/voice-engine/rtl/AxiVoiceEndpoint.v",
+    "Gowin/demo1/voice-engine/rtl/AxiSynthEndpoint.v",
+    "Gowin/demo1/voice-system/rtl/SynthAxiMaster.v",
+    "Gowin/demo1/voice-system/rtl/SynthBootSequencer.v",
+    "Gowin/demo1/voice-system/rtl/SynthKeyboardSource.v",
+    "Gowin/demo1/voice-system/rtl/SynthUartControl.v",
+    "Gowin/demo1/voice-system/rtl/SynthPcmOutput.v",
+    "Gowin/demo1/voice-system/rtl/SynthSystemTop.v",
+    "Gowin/demo1/voice-system/rtl/SynthCommandArbiter.v",
+    "Gowin/demo_test/diagnostics/keyboard_games/src/KeyboardSampler.v",
+    "Gowin/demo_test/diagnostics/keyboard_games/src/UartRx.v",
+    "Gowin/demo_test/diagnostics/encoder/src/EncoderUartTx.v",
+    "Gowin/demo1/keyboard-latency/src/LatencyKeyThresholds.v",
+    "Gowin/demo1/voice-system/rtl/SynthStudioMonitor.v",
+    "Gowin/demo1/voice-system/rtl/SynthKeyboardControl.v",
+    "Gowin/demo1/voice-system/rtl/KeyboardCrossingTime.v",
+    "Gowin/demo1/voice-engine/rtl/AxisMasterLowpass.v",
+    "Gowin/demo1/voice-system/touch/rtl/SynthTouchInput.v",
+    "Gowin/demo1/voice-system/touch/rtl/SynthTouchPerformance.v",
+    "Gowin/demo1/voice-system/touch/rtl/TouchPosition.v",
+    "Gowin/demo_test/diagnostics/touchpad_guitar/src/MprScanner.v",
+    "Gowin/demo_test/diagnostics/touchpad/src/I2cRegister.v",
+    "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_byte_ctrl.v",
+    "Gowin/demo_test/diagnostics/touchpad/vendor/i2c_master_bit_ctrl.v",
+    "Gowin/demo_test/diagnostics/tactile_buttons/src/TactileInput.v",
+    "Gowin/demo1/voice-system/sequencer/rtl/SynthSequencer.v",
+    "Gowin/demo1/voice-system/sequencer/rtl/SynthMetronome.v",
+    "Gowin/demo1/voice-engine/rtl/SynthWaveRam.v",
+    "Gowin/demo_test/diagnostics/keyboard_reactive/src/LedFrameTx.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplayAudio.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplayControl.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplaySnapshot.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthDisplayVideo.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthHdmiTop.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthKeyboardLightEffects.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthKeyboardRgb.v",
+    "Gowin/demo1/voice-system/hdmi/rtl/SynthStorageDisplay.v",
+    "Gowin/demo_test/diagnostics/hardware_hdmi/vendor/DVI_TX_Top.v",
+    "Gowin/demo_test/diagnostics/hardware_hdmi/vendor/TMDS_PLL.v"
+  ],
+  "assets": [
+    {
+      "source": "Gowin/demo1/voice-system/rom/boot.hex",
+      "target": "rom/boot.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/boot_dry.hex",
+      "target": "rom/boot_dry.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/dx_exp2.hex",
+      "target": "rom/dx_exp2.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/dx_keyscale.hex",
+      "target": "rom/dx_keyscale.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/dx_keyscale_product.hex",
+      "target": "rom/dx_keyscale_product.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/dx_rate.hex",
+      "target": "rom/dx_rate.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/dx_velocity.hex",
+      "target": "rom/dx_velocity.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/keyboard_mapping.hex",
+      "target": "rom/keyboard_mapping.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/keyboard_phase.hex",
+      "target": "rom/keyboard_phase.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/keyboard_threshold_banks.hex",
+      "target": "rom/keyboard_threshold_banks.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/lowpass_alpha.hex",
+      "target": "rom/lowpass_alpha.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/lowpass_sine.hex",
+      "target": "rom/lowpass_sine.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/sine_q26.hex",
+      "target": "rom/sine_q26.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/rom/touch_pitch.hex",
+      "target": "rom/touch_pitch.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/key_thresholds.hex",
+      "target": "key_thresholds.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/raw_rest.hex",
+      "target": "raw_rest.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/raw_bottom.hex",
+      "target": "raw_bottom.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/calibration.hex",
+      "target": "hdmi/calibration.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/cells.hex",
+      "target": "hdmi/cells.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/cells_main.hex",
+      "target": "hdmi/cells_main.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/cells_middle.hex",
+      "target": "hdmi/cells_middle.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/cells_tail.hex",
+      "target": "hdmi/cells_tail.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/dft.hex",
+      "target": "hdmi/dft.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/font.hex",
+      "target": "hdmi/font.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/history.hex",
+      "target": "hdmi/history.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/rows.hex",
+      "target": "hdmi/rows.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/storage-lines.hex",
+      "target": "hdmi/storage-lines.hex"
+    },
+    {
+      "source": "Gowin/demo1/voice-system/hdmi/assets/text.hex",
+      "target": "hdmi/text.hex"
+    }
+  ],
+  "constraints": {
+    "hdmi.cst": {
+      "path": "Gowin/demo1/voice-system/firmware/final-rgb/hdmi.cst",
+      "sha256": "70f60ee81e78153a6eff020fec17c3fc5e6df65200d7586a1cac4cf8fe0723cc"
+    },
+    "hdmi.sdc": {
+      "path": "Gowin/demo1/voice-system/firmware/final-rgb/hdmi.sdc",
+      "sha256": "f6ce216f011036285067ceb002e6180eaf44873c110aab38271a567ea27a720d"
+    }
+  },
+  "timing_report": "Gowin/demo1/voice-system/reports/final-rgb/timing.json",
+  "verification": "Gowin/demo1/voice-system/reports/final-rgb/verification.json"
+}

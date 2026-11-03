@@ -5,10 +5,12 @@ module SynthUartControl #(parameter C_UART_CYCLES=434,parameter C_GAP_CYCLES=C_U
     output [391:0] o_request,output o_request_valid,input i_request_ready,
     input [135:0] i_response,input i_response_valid,output o_response_ready,
     input i_rx,output o_tx,input i_initialized,input [127:0] i_status,
-    output [31:0] o_bad_packets,output [31:0] o_replayed
+    output [31:0] o_bad_packets,output [31:0] o_replayed,
+    output o_local_request,output [7:0] o_local_opcode,output [7:0] o_local_argument,output [63:0] o_local_words,
+    input i_local_valid,input [135:0] i_local_response
 );
     localparam IDLE=0,CHECK=1,SEND=2,WAIT_REPLY=3,PREPARE_TX=4,TX_LAUNCH=5,TX_WAIT=6;
-    localparam DECODE=7,CLASSIFY=8;
+    localparam DECODE=7,CLASSIFY=8,LOCAL_SEND=9,LOCAL_WAIT=10;
     reg [3:0] reg_state,next_state;
     wire [7:0] wire_rx;
     wire flag_rx_valid,flag_rx_error,flag_tx_busy;
@@ -30,10 +32,14 @@ module SynthUartControl #(parameter C_UART_CYCLES=434,parameter C_GAP_CYCLES=C_U
     reg flag_same_sequence,flag_next_sequence;
     reg flag_replay,flag_conflict,flag_bad_sequence,flag_bad_request;
     integer compare_index;
-    wire flag_opcode=(wire_opcode>=8'ha0 && wire_opcode<=8'ha9) || (wire_opcode>=8'hb0 && wire_opcode<=8'hb3) || (wire_opcode>=8'hc0 && wire_opcode<=8'hc4);
+    wire flag_opcode=(wire_opcode>=8'ha0 && wire_opcode<=8'ha9) || (wire_opcode>=8'hb0 && wire_opcode<=8'hb3) || (wire_opcode>=8'hc0 && wire_opcode<=8'hc4) || wire_opcode==8'hd0 || wire_opcode==8'hd1;
     wire flag_reserved_note=(wire_opcode==8'ha4 || wire_opcode==8'ha5 || wire_opcode==8'ha6) && reg_packet[111];
     wire flag_not_ready=wire_kind!=2 && !i_initialized;
     wire [7:0] wire_tx_byte=reg_tx_index<30 ? reg_tx_image[reg_tx_index*8+:8] : (reg_tx_index==30 ? reg_tx_crc[7:0] : reg_tx_crc[15:8]);
+    assign o_local_request=reg_state==LOCAL_SEND;
+    assign o_local_opcode=wire_opcode;
+    assign o_local_argument=wire_argument;
+    assign o_local_words=reg_packet[143:80];
     assign o_request=reg_request;
     assign o_request_valid=reg_state==SEND;
     assign o_response_ready=reg_state==WAIT_REPLY;
@@ -102,7 +108,9 @@ module SynthUartControl #(parameter C_UART_CYCLES=434,parameter C_GAP_CYCLES=C_U
             DECODE: next_state=CLASSIFY;
             CLASSIFY: next_state=CHECK;
             CHECK: if (flag_replay || flag_conflict || flag_bad_sequence || flag_bad_request || flag_not_ready || wire_kind==2) next_state=PREPARE_TX;
-                else next_state=SEND;
+                else next_state=wire_kind==3 ? LOCAL_SEND : SEND;
+            LOCAL_SEND: next_state=LOCAL_WAIT;
+            LOCAL_WAIT: if(i_local_valid) next_state=PREPARE_TX;
             SEND: if (i_request_ready) next_state=WAIT_REPLY;
             WAIT_REPLY: if (i_response_valid) next_state=PREPARE_TX;
             PREPARE_TX: next_state=TX_LAUNCH;
@@ -131,9 +139,10 @@ module SynthUartControl #(parameter C_UART_CYCLES=434,parameter C_GAP_CYCLES=C_U
                     flag_replay<=flag_session && flag_same_sequence && (&reg_equal_parts);
                     flag_conflict<=flag_session && flag_same_sequence && !(&reg_equal_parts);
                     flag_bad_sequence<=!(flag_session && flag_same_sequence) && !flag_next_sequence;
-                    flag_bad_request<=wire_kind>2 ||
+                    flag_bad_request<=wire_kind>3 ||
+                        (wire_kind==3 && !(&reg_zero_words[9:2])) ||
                         (wire_kind==0 && (!flag_opcode || flag_reserved_note)) ||
-                        (wire_kind==1 && (wire_opcode!=0 || wire_argument!=0 || !(&reg_zero_words[9:1]) || reg_packet[111:80]>96 || reg_packet[81:80]!=0)) ||
+                        (wire_kind==1 && (wire_opcode!=0 || wire_argument!=0 || !(&reg_zero_words[9:1]) || reg_packet[111:80]>100 || reg_packet[81:80]!=0)) ||
                         (wire_kind==2 && (wire_opcode!=0 || wire_argument!=0 || !(&reg_zero_words)));
                 end
                 CHECK: begin
@@ -149,6 +158,9 @@ module SynthUartControl #(parameter C_UART_CYCLES=434,parameter C_GAP_CYCLES=C_U
                     else begin
                         reg_request<={wire_sequence,reg_packet[95:80],7'd0,wire_kind==1,wire_argument,wire_opcode,reg_packet[399:80]};
                     end
+                end
+                LOCAL_WAIT: if(i_local_valid) begin
+                    reg_tx_image[191:64]<=i_local_response[127:0];reg_tx_image[199:192]<=i_local_response[135:128];
                 end
                 WAIT_REPLY: if (i_response_valid) begin
                     reg_tx_image[191:64]<=i_response[127:0];reg_tx_image[199:192]<=i_response[135:128];

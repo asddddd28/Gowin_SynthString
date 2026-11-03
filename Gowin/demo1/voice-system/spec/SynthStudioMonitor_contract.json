@@ -1,0 +1,253 @@
+{
+  "modules": [
+    {
+      "name": "SynthStudioMonitor",
+      "rtl_path": "rtl/SynthStudioMonitor.v",
+      "description": "Independent board-local key mapping control, frozen PCM capture and tagged digital output latency.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_request",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "i_request"
+          },
+          {
+            "name": "i_opcode",
+            "direction": "input",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_opcode"
+          },
+          {
+            "name": "i_argument",
+            "direction": "input",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_argument"
+          },
+          {
+            "name": "i_words",
+            "direction": "input",
+            "width": 64,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_words"
+          },
+          {
+            "name": "o_response_valid",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "o_response_valid"
+          },
+          {
+            "name": "o_response",
+            "direction": "output",
+            "width": 136,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_response"
+          },
+          {
+            "name": "o_key_write",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "o_key_write"
+          },
+          {
+            "name": "o_key_index",
+            "direction": "output",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_key_index"
+          },
+          {
+            "name": "o_key_data",
+            "direction": "output",
+            "width": 48,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_key_data"
+          },
+          {
+            "name": "i_key_data",
+            "direction": "input",
+            "width": 48,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_key_data"
+          },
+          {
+            "name": "i_pcm_valid",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "i_pcm_valid"
+          },
+          {
+            "name": "i_pcm_sample",
+            "direction": "input",
+            "width": 16,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_pcm_sample"
+          },
+          {
+            "name": "i_pcm_frame",
+            "direction": "input",
+            "width": 32,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_pcm_frame"
+          },
+          {
+            "name": "i_key_start",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "i_key_start"
+          },
+          {
+            "name": "i_key_finish",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "i_key_finish"
+          },
+          {
+            "name": "i_key_failed",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "i_key_failed"
+          },
+          {
+            "name": "i_event_key",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_event_key"
+          },
+          {
+            "name": "i_event_frame",
+            "direction": "input",
+            "width": 32,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_event_frame"
+          },
+          {
+            "name": "o_latency",
+            "width": 32,
+            "direction": "output",
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "Passive display / local request interface: o_latency"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Command pulse latches opcode/argument/words; VALIDATE then EXECUTE; RESPOND asserts one cycle. No second command until response.",
+        "Opcodes0..5 implement the exact table in UNIFIED_STUDIO_CONTRACT.md. Invalid arguments return status5; capture busy/not-ready returns10.",
+        "Capture starts at the next accepted PCM frame and freezes after512 signed16 left samples; 64 chunks of8 samples read synchronously in16 clocks.",
+        "Latency starts at key PREPARE, commits target tag on successful Note-On response, ends on matching PCM frame. Only one observation is in flight; other keys still execute normally.",
+        "Reset clears capture-ready and observation state. Mapping RAM initialization belongs to SynthKeyboardSource.",
+        "o_latency continuously exposes last completed digital key-to-PCM latency in50MHz clock cycles without consuming telemetry."
+      ],
+      "constraints": [
+        "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
+        "See SYSTEM.md and model/system_model.py for ABI, numerical behavior, memory images and validation scope."
+      ],
+      "corner_cases": [
+        "Capture trigger while busy; read before ready; malformed opcode or argument.",
+        "Identical request replay handled by SynthUartControl without repeating side effects.",
+        "Old PCM frames queued before a key command do not complete the tagged latency observation.",
+        "Simultaneous keys coalesce monitoring only; failed Note-On cancels pending observation."
+      ],
+      "verification_cases": [
+        "studio_monitor_model.py independent PCM rounding and scheduling model",
+        "tb_studio_system bit-exact output sample capture and mapped real key path"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "local",
+          "title": "本地命令与冻结快照读取",
+          "scenario": "local",
+          "description": "命令锁存、校验、执行；读样本每两拍装入一个16位结果，最后响应。此图是阶段示意。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "request",
+                "wave": "010......."
+              },
+              {
+                "name": "state",
+                "wave": "x=========",
+                "data": [
+                  "LATCH",
+                  "VALIDATE",
+                  "EXECUTE",
+                  "READ",
+                  "COLLECT",
+                  "READ",
+                  "COLLECT",
+                  "...",
+                  "RESPOND"
+                ]
+              },
+              {
+                "name": "response_valid",
+                "wave": "0........1"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

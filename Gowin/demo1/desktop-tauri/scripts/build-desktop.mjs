@@ -11,10 +11,12 @@ function run(file, args) {
 run(process.execPath, ['scripts/prepare-assets.mjs']);
 run(process.execPath, ['scripts/collect-licenses.mjs']);
 run(process.execPath, ['node_modules/@tauri-apps/cli/tauri.js', 'build', '--no-bundle']);
-const out = join(root, 'release-performance/TangSynthStudio');
+const out = join(root, 'release-merged/TangSynthStudio');
 mkdirSync(out, { recursive: true });
 cpSync(join(root, 'src-tauri/target/release/tang-synth-studio.exe'), join(out, 'TangSynthStudio.exe'));
 cpSync(join(root, 'src-tauri/assets'), join(out, 'assets'), { recursive: true });
 cpSync(join(root, 'licenses-native'), join(out, 'licenses'), { recursive: true });
 for (const name of ['README.md', 'THIRD_PARTY_NOTICES.md']) cpSync(join(root, name), join(out, name));
+cpSync(join(root, '../voice-system/UNIFIED_STUDIO.md'), join(out, 'UNIFIED_STUDIO.md'));
+cpSync(join(root, '../voice-system/TOUCH_PERFORMANCE.md'), join(out, 'TOUCH_PERFORMANCE.md'));
 console.log(`Portable desktop release: ${out}`);

@@ -1,8 +1,9 @@
 `timescale 1ns / 1ps
 // Lean synthesis endpoint / 精简合成顶层. Contract: spec/AxiSynthEndpoint_spec.md.
 // The legacy raw/context branch remains available through AxiVoiceEndpoint.
-module AxiSynthEndpoint #(parameter C_DELAY_ADDR_BITS=15)(
-    input i_axi_aclk,
+module AxiSynthEndpoint #(parameter C_DELAY_ADDR_BITS=15,parameter C_TOUCH_ENABLE=0,parameter C_FX_ENABLE=1)(
+        input [17:0] i_touch_gain,input [31:0] i_touch_pitch,input [19:0] i_touch_cutoff,input i_touch_cutoff_active,
+input i_axi_aclk,
     input i_axi_arstn,
     input [3:0] i_s_axi_awid,
     input [15:0] i_s_axi_awaddr,
@@ -40,8 +41,9 @@ module AxiSynthEndpoint #(parameter C_DELAY_ADDR_BITS=15)(
     output [63:0] o_pcm_data,
     output [31:0] o_pcm_frame
 );
-    AxiVoiceEndpoint #(.LEGACY_ENABLE(0),.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS)) Endpoint_Inst(
-        .i_axi_aclk(i_axi_aclk),
+    AxiVoiceEndpoint #(.C_TOUCH_ENABLE(C_TOUCH_ENABLE),.LEGACY_ENABLE(0),.C_FX_ENABLE(C_FX_ENABLE),.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS)) Endpoint_Inst(
+                .i_touch_gain(i_touch_gain),.i_touch_pitch(i_touch_pitch),.i_touch_cutoff(i_touch_cutoff),.i_touch_cutoff_active(i_touch_cutoff_active),
+.i_axi_aclk(i_axi_aclk),
         .i_axi_arstn(i_axi_arstn),
         .i_s_axi_awid(i_s_axi_awid),
         .i_s_axi_awaddr(i_s_axi_awaddr),

@@ -26,6 +26,8 @@ Real UART and ADC pins through boot, arbitration, AXI command execution, voice/L
 ## 5. 周期行为与延迟
 
 - Real UART and ADC pins through boot, arbitration, AXI command execution, voice/LFO/FX and independent PT8211 decoder.
+- 完整实体键/UART/四音色/PCM/PT8211回归，满载计算必须观测到948拍，且每帧严格小于1024拍。
+- 默认干声构建：57启动命令，FX命令状态1，能力/容量/遥测为0；保留PCM队列及PT8211频率。
 
 ## 6. WaveDrom 时序图
 
@@ -55,6 +57,7 @@ Real UART and ADC pins through boot, arbitration, AXI command execution, voice/L
 - Real UART/ADC pins to serial DAC simulation
 - AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset
 - Boot, physical chord, release, host voice/FX commands and resource/timing checks
+- 实测66按键事件、134串口回复，CRC缓存重放、4预设、8声部、PT8211逐帧解码及零drop/overrun/underrun；PCM脉冲最大878拍、native压力835拍。
 
 ## 10. 可追溯性
 

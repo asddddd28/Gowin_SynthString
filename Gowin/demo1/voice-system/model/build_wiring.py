@@ -50,7 +50,7 @@ def generate():
 endmodule
 '''
     (ROOT/'rtl/SynthCommandArbiter.v').write_text(arb,encoding='utf-8')
-    top=header('SynthSystemTop',' #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10000,parameter C_HALF_CYCLES=6,parameter C_POWERUP_CYCLES=65535,parameter C_AMP_CYCLES=1048576,parameter C_DELAY_ADDR_BITS=13)')
+    top=header('SynthSystemTop',' #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10000,parameter C_HALF_CYCLES=6,parameter C_POWERUP_CYCLES=65535,parameter C_AMP_CYCLES=1048576,parameter C_DELAY_ADDR_BITS=13,parameter C_FX_ENABLE=0)')
     top+='''
     reg [31:0] cnt_powerup=0;
     reg [1:0] reg_reset=0,reg_adc=0;
@@ -93,7 +93,7 @@ endmodule
     clock={'i_clk':'i_clk','i_rstn':'flag_rstn'}
     top+=instance('KeyboardSampler','Scanner_Inst',{**clock,'i_adc_dout':'reg_adc[1]','i_ready':"1'b1",'o_mux_sel':'o_mux_sel','o_mux_en':'o_mux_en','o_adc_cs_n':'o_adc_cs_n','o_adc_sclk':'o_adc_sclk','o_adc_din':'o_adc_din','o_key':'wire_key','o_raw':'wire_raw','o_valid':'flag_sample'},'#(.C_SETTLE_CYCLES(C_SETTLE_CYCLES),.C_HALF_CYCLES(C_HALF_CYCLES))')
     top+=instance('LatencyKeyThresholds','Thresholds_Inst',{**clock,'i_key':'wire_key','i_raw':'wire_raw','i_valid':'flag_sample','o_candidate':'','o_confirm':'','o_cancel':'','o_pressed':'wire_pressed'})
-    top+=instance('SynthBootSequencer','Boot_Inst',{**clock,**stream('boot',True),'o_done':'flag_boot_done','o_fault':'flag_boot_fault'})
+    top+=instance('SynthBootSequencer','Boot_Inst',{**clock,**stream('boot',True),'o_done':'flag_boot_done','o_fault':'flag_boot_fault'},'#(.C_FX_ENABLE(C_FX_ENABLE))')
     top+=instance('SynthKeyboardSource','Keys_Inst',{**clock,**stream('key',True),'i_enabled':'flag_boot_done','i_pressed':'wire_pressed','o_delivered':'wire_delivered','o_events':'wire_key_events','o_fault':'flag_key_fault'})
     top+=instance('SynthUartControl','Host_Inst',{**clock,**stream('host',True),'i_rx':'i_uart_rx','o_tx':'o_uart_tx','i_initialized':'flag_boot_done && !flag_master_fault','i_status':'wire_status','o_bad_packets':'wire_bad_packets','o_replayed':'wire_replayed'},'#(.C_UART_CYCLES(C_UART_CYCLES))')
     mapping={**clock,**stream('master',True),'i_boot_done':'flag_boot_done'}
@@ -109,7 +109,7 @@ endmodule
         if name not in mapping:
             channel=name.split('_axi_')[-1]
             mapping[name]=constants.get(channel,'axi_'+channel)
-    top+=instance('AxiSynthEndpoint','Endpoint_Inst',mapping,'#(.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS))')
+    top+=instance('AxiSynthEndpoint','Endpoint_Inst',mapping,'#(.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS),.C_FX_ENABLE(C_FX_ENABLE))')
     top+=instance('SynthPcmOutput','Audio_Inst',{**clock,'i_valid':'flag_pcm_valid','i_data':'wire_pcm','o_ready':'flag_pcm_ready','o_bclk':'HP_BCK','o_ws':'HP_WS','o_data':'HP_DIN','o_frames':'wire_pcm_frames','o_underruns':'wire_underruns'})
     (ROOT/'rtl/SynthSystemTop.v').write_text(top+'endmodule\n',encoding='utf-8')
     engine=ROOT.parent/'voice-engine'

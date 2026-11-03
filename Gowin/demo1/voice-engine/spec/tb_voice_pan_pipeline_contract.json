@@ -1,0 +1,92 @@
+{
+  "modules": [
+    {
+      "name": "tb_voice_pan_pipeline",
+      "rtl_path": "sim/tb_voice_pan_pipeline.v",
+      "description": "定向检查真实 VoiceSynthEngine 声像分拍、精确乘积、非活动清零和复位。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "全部检查通过时置1；内部产生时钟与激励，无外部输入。"
+          }
+        ]
+      },
+      "clock": {
+        "name": "clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "初始复位及11次声像乘积寄存后复位"
+      },
+      "behavior": [
+        "force限定于状态、已限幅声像与音频源；真实系数寄存、乘法、选择、清零和声部累加逻辑保持运行。",
+        "90组边界与2000组固定种子随机输入，每组用原signed32乘法表达式计算左右精确64位参考结果。",
+        "检查state7不提前更新最终乘积、state18结果准确、state1→8快速路径不重复累加、流水中异步复位清空全部新增状态。",
+        "真实状态机、AXI控制和音频端到端行为另由tb_axi_fx、tb_axi_synth_engine、tb_axi_lfo和tb_synth_system覆盖。"
+      ],
+      "constraints": [
+        "只用于功能仿真，不能替代STA。",
+        "o_done仅在2090组向量、4180个乘积、2090次非活动检查及11次复位均通过后置1。"
+      ],
+      "corner_cases": [
+        "signed32最小最大值；声像0、1、中心±1、2^26−1、2^26；上一声部非零后进入非活动声部。"
+      ],
+      "verification_cases": [
+        "xsim PASS voice_pan_pipeline，遇Fatal或缺少PASS均失败。",
+        "新测试严格门禁0错误、0警告。"
+      ],
+      "parameters": [],
+      "timing_diagrams": [
+        {
+          "id": "stereo-pan",
+          "title": "声像乘法分拍",
+          "scenario": "stereo-pan",
+          "description": "示例非最后一个活动声部；各列为采样沿前状态，运算在本列末沿提交。声像系数已在 state16 锁存。新增加 state18；非活动快速路径仍 state1→state8。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p...."
+              },
+              {
+                "name": "state",
+                "wave": "=====",
+                "data": [
+                  "6",
+                  "7",
+                  "18",
+                  "8",
+                  "13"
+                ]
+              },
+              {
+                "name": "voice_product_current",
+                "wave": "01..."
+              },
+              {
+                "name": "raw_product_current",
+                "wave": "0.1.."
+              },
+              {
+                "name": "stereo_product_current",
+                "wave": "0..1."
+              },
+              {
+                "name": "sum_includes_voice",
+                "wave": "0...1"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

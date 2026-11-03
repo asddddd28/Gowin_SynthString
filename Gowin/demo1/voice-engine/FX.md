@@ -1,8 +1,8 @@
 # 共享立体声 FX：Delay + Reverb
 
-更新：2026-11-02。候选子系统；未替换板上 `LatencyAxisTop`。机器可读证据见 [fx-verification.json](reports/fx-verification.json)。
+更新：2026-11-02。当前控制流水候选未烧录，见 [FX控制寄存实验](../voice-system/FX_CONTROL_PIPELINE.md)。早期子系统证据见 [fx-verification.json](reports/fx-verification.json)。
 
-整机扩展：见 [voice-system](../voice-system/SYSTEM.md) 与 [最新验证](../voice-system/VERIFICATION.md)。新增板级 Master、键盘、UART 和 PT8211；Voice参数/状态RAM调整后完整周期为971拍。下文931拍和原综合资源为调整前历史记录。Delay新增深度参数 `C_DELAY_ADDR_BITS`，库默认15，整板默认14；能力字和参数上限随配置变化，整板最大约335.544 ms。仍共享一个Slave入口，旧App尚未适配UART协议5。
+整机扩展：板级包含 Master、键盘、UART 和 PT8211。当前回归满载为 Voice874 / 含FX整链948拍，50MHz物理收敛状态以 [资源与时序](../voice-system/RESOURCE_TIMING.md) 为准。下文931拍和早期综合资源保留为历史记录。Delay地址位数库默认15，当前整板为13，能力字和参数上限随配置变化，整板最大约167.772 ms。外部仍共享一个AXI Slave入口。
 
 ## 接口与层次
 
@@ -52,6 +52,7 @@ Reverb的comb阻尼状态 `lp=(1−d)×delayed+d×old_lp`，写回 `(1−g)×mon
 - disabled返回精确干声，内部零注入但继续衰减；再次启用可能听到剩余尾音。
 - C3帧间清空指针、有效年龄、滤波状态，不复位整块RAM；无效历史读零。
 - C2在FX帧间原子切换全部参数，一帧不会混用两个版本。
+- 控制先预译码，再寄存校验结果与五位执行动作，最后在真实握手沿执行；空闲命令比原实现增加一拍校验。音频到达取消未接受快照并优先处理，结束后重新校验，音频计算周期不增加。
 - 延迟时间、开关和wet瞬变可能有跳变；尚无参数斜坡、新旧读头交叉淡化，实时旋钮控制还需补这一层。
 - C3不撤回已排队PCM，最多仍有4个旧输出帧；立即静音还需要板级输出策略。
 - 核心背压时不重复写状态；系统PCM满时丢新帧并计数，FX仍持续计算。输入队列异常满也丢新帧并单独计数。

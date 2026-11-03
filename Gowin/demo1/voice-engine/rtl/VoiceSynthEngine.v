@@ -2,7 +2,8 @@
 // Resident program and voice state owner. Contract: spec/VoiceSynthEngine_spec.md.
 // The audio FSM and control completion register are independent: a stalled host
 // cannot stop a sounding note. Commands mutate state only between whole frames.
-module VoiceSynthEngine(
+module VoiceSynthEngine #(parameter C_TOUCH_ENABLE=0)(
+    input [17:0] i_touch_gain,input [31:0] i_touch_pitch,
 	input i_axis_aclk,
 	input i_axis_arstn,
 	input [383:0] i_s_axis_tdata,
@@ -49,8 +50,28 @@ module VoiceSynthEngine(
 	reg [2:0] mem_carrier_count [0:3];
 	reg flag_enabled, flag_sustain;
 	reg [31:0] reg_master;
+    reg [49:0] reg_touch_master_product;
+    reg [31:0] reg_touch_master,reg_frame_master;
+    reg signed [31:0] reg_frame_pitch;
+    reg signed [32:0] reg_combined_pitch;
+    // Free-running registered gain preparation stays outside the audio FSM.
+    always @(posedge i_axis_aclk or negedge i_axis_arstn)begin
+        if(!i_axis_arstn)begin reg_touch_master_product<=50'd4398046511104;reg_touch_master<=67108864;end
+        else begin
+            reg_touch_master_product<=reg_master*i_touch_gain;
+            reg_touch_master<=reg_touch_master_product[49:16]>67108864 ? 32'd67108864 : reg_touch_master_product[47:16];
+        end
+    end
 	reg [31:0] reg_mod_increment, reg_mod_gain, reg_mod_pan;
-	reg [671:0] reg_operator_request;
+	reg [31:0] reg_gain_current, reg_gain_target, reg_pan_current, reg_pan_target; // 声部选择先寄存，后续平滑/调制不再串接数组mux
+	reg [31:0] reg_gain_distance, reg_pan_distance;
+    reg flag_gain_up, flag_pan_up;
+    wire [31:0] wire_gain_step=reg_gain_distance<64 ? (reg_gain_distance!=0) : reg_gain_distance>>6;
+    wire [31:0] wire_pan_step=reg_pan_distance<64 ? (reg_pan_distance!=0) : reg_pan_distance>>6;
+    wire [31:0] wire_smooth_gain=flag_gain_up ? reg_gain_current+wire_gain_step : reg_gain_current-wire_gain_step;
+    wire [31:0] wire_smooth_pan=flag_pan_up ? reg_pan_current+wire_pan_step : reg_pan_current-wire_pan_step;
+    reg [671:0] reg_operator_request;
+	reg flag_operator_carrier; // 当前在途算子的载波资格，参数预取后不能再读取下一行的carrier位
 	wire flag_operator_ready, flag_operator_valid, flag_wave_ready;
 	wire [159:0] wire_operator_result;
 	wire [31:0] wire_operator_tag;
@@ -58,20 +79,37 @@ module VoiceSynthEngine(
 	wire [31:0] wire_noise_seed = {26'd0,wire_context}+32'd1;
 	wire [162:0] wire_context_data = flag_context_valid[wire_context] ? reg_context_row : {wire_noise_seed,131'd0};
 	wire [1:0] wire_patch = mem_patch[reg_voice];
-	wire [5:0] wire_program = {reg_bank[wire_patch],wire_patch,reg_operator};
+	wire flag_prefetch = reg_state == 1 || reg_state == 2 || reg_state == 3 || reg_state == 4; // 求和装包期间也保持预取下一行
+	wire [2:0] wire_read_operator = flag_prefetch && reg_operator != 5 ? reg_operator + 3'd1 : reg_operator; // 最后一行不越界
+	wire [5:0] wire_read_context = {reg_voice,wire_read_operator}; // 读地址可以先行，写回仍使用当前wire_context
+    wire flag_snapshot = i_s_axis_tvalid && i_s_axis_tdest == 8'haa && reg_state == 0;
+    wire [1:0] wire_snapshot_patch = i_s_axis_tdata[7:6];
+    wire [5:0] wire_snapshot_program = {reg_bank[wire_snapshot_patch],wire_snapshot_patch,i_s_axis_tdata[5:3]};
+	wire [5:0] wire_program = flag_snapshot ? wire_snapshot_program : {reg_bank[wire_patch],wire_patch,wire_read_operator};
 	reg [191:0] wire_core;
 	reg [255:0] wire_envelope;
+    wire [31:0] wire_wave_snapshot, wire_mod_snapshot;
+    reg [31:0] reg_snapshot_word;
+    reg [2:0] cnt_snapshot_settle;
+
 	wire [31:0] wire_flags = wire_core[159:128];
 	wire [63:0] wire_tuned = reg_mod_increment * wire_core[31:0];
-	wire [31:0] wire_increment = wire_flags[13] ? wire_core[31:0] :
-		(wire_tuned[63:47] != 0 ? 32'h7fffffff : wire_tuned[47:16]);
+	// Capture the ratio product before saturation. State4 already assembles routing,
+	// so this separates RAM/multiply/clamp without adding an operator issue cycle.
+	reg [63:0] reg_tuned_product;
+	reg flag_fixed_increment;
 	reg signed [34:0] dec_route_sum;
+	reg signed [33:0] dec_route_low, dec_route_high; // 每组最多三个signed32源，signed34保留全部和
+	reg signed [33:0] reg_route_low, reg_route_high; // 当前算子的部分和，与预取参数相互独立
 	reg signed [31:0] dec_modulation;
 	reg signed [35:0] reg_carrier_sum;
 	reg flag_carrier_live;
 	reg signed [67:0] reg_mono_product;
 	reg signed [63:0] reg_voice_product;
 	reg signed [63:0] reg_left_product, reg_right_product;
+	reg [26:0] reg_pan_left, reg_pan_right; // 无符号Q26系数；最高位仅在精确满增益时置位
+	reg signed [31:0] reg_pan_sample; // 与声像原始乘积同步锁存，供满增益旁路使用
+	reg signed [58:0] reg_pan_left_raw, reg_pan_right_raw; // signed32乘signed27的完整结果
 	reg signed [39:0] reg_left_sum, reg_right_sum;
 	reg signed [71:0] reg_master_left, reg_master_right;
 	reg [63:0] reg_pcm;
@@ -81,6 +119,7 @@ module VoiceSynthEngine(
 	reg [31:0] reg_completion_tag;
 	reg [7:0] reg_completion_opcode;
 	reg flag_completion;
+	reg flag_issue;
 	reg flag_session;
 	reg [23:0] reg_epoch;
 	reg [31:0] reg_sequence;
@@ -127,15 +166,16 @@ module VoiceSynthEngine(
 	wire flag_control_apply = flag_accept && flag_checked_eligible && reg_checked_status == 0;
 	wire flag_mod_done, flag_mod_busy;
 	wire [479:0] wire_modulation;
+    wire signed [32:0] wire_combined_pitch=C_TOUCH_ENABLE ? reg_combined_pitch : $signed({wire_modulation[31],wire_modulation[31:0]});
 	wire [127:0] wire_lfo_inspect;
 	wire [15:0] wire_voice_patches = {mem_patch[7],mem_patch[6],mem_patch[5],mem_patch[4],mem_patch[3],mem_patch[2],mem_patch[1],mem_patch[0]};
 	wire [1:0] wire_mod_patch = i_s_axis_tdest == 8'ha0 ? wire_address[1:0] : wire_address[4:3];
 	reg signed [63:0] reg_pitch_product;
 	wire signed [63:0] wire_pitch_sum = $signed({32'd0,mem_increment[reg_voice]}) + (reg_pitch_product >>> 26);
-	wire signed [31:0] wire_pitch_delta = $signed(wire_modulation[31:0]) > 32'sd67108864 ? 32'sd67108864 :
-		($signed(wire_modulation[31:0]) < -32'sd67108864 ? -32'sd67108864 : $signed(wire_modulation[31:0]));
-	wire signed [32:0] wire_gain_sum = $signed({1'b0,smooth(mem_gain[reg_voice],mem_gain_target[reg_voice])}) + $signed({wire_modulation[63],wire_modulation[63:32]});
-	wire signed [32:0] wire_pan_sum = $signed({1'b0,smooth(mem_pan[reg_voice],mem_pan_target[reg_voice])}) + $signed({wire_modulation[95],wire_modulation[95:64]});
+	wire signed [31:0] wire_pitch_delta = wire_combined_pitch > 33'sd67108864 ? 32'sd67108864 :
+		(wire_combined_pitch < -33'sd67108864 ? -32'sd67108864 : $signed(wire_combined_pitch[31:0]));
+	wire signed [32:0] wire_gain_sum = $signed({1'b0,reg_mod_gain}) + $signed({wire_modulation[63],wire_modulation[63:32]});
+	wire signed [32:0] wire_pan_sum = $signed({1'b0,reg_mod_pan}) + $signed({wire_modulation[95],wire_modulation[95:64]});
 	wire signed [31:0] wire_operator_gain_delta = wire_modulation[(3+reg_operator)*32+:32];
 	wire signed [31:0] wire_operator_depth_delta = wire_modulation[(9+reg_operator)*32+:32];
 	wire signed [32:0] wire_operator_gain_sum = $signed({1'b0,wire_core[63:32]}) + $signed({wire_operator_gain_delta[31],wire_operator_gain_delta});
@@ -176,8 +216,33 @@ module VoiceSynthEngine(
 		end
 	endfunction
 
-	assign o_s_axis_tready = i_axis_arstn && reg_state == 0 && !i_sample_tick && (!flag_completion || i_m_axis_tready) &&
-		flag_checked;
+    // A tagged read waits for the shared RAM ports and a registered word mux.
+    // Frame start cancels the wait; the existing command handshake retries it.
+    always @(posedge i_axis_aclk or negedge i_axis_arstn) begin
+        if (!i_axis_arstn) begin cnt_snapshot_settle<=0; reg_snapshot_word<=0; end
+        else begin
+            if (!flag_snapshot || i_sample_tick || flag_accept) cnt_snapshot_settle<=0;
+            else if (cnt_snapshot_settle!=4) cnt_snapshot_settle<=cnt_snapshot_settle+1'b1;
+            case (wire_address)
+                0: reg_snapshot_word<=wire_core[i_s_axis_tdata[2:0]*32+:32];
+                1: reg_snapshot_word<=wire_envelope[i_s_axis_tdata[2:0]*32+:32];
+                2,3: reg_snapshot_word<=wire_mod_snapshot;
+                4: reg_snapshot_word<=wire_wave_snapshot;
+                5: reg_snapshot_word<=i_s_axis_tdata[0] ? {30'd0,flag_sustain,flag_enabled} : reg_master;
+                6: reg_snapshot_word<=mem_revision[i_s_axis_tdata[1:0]];
+                default: reg_snapshot_word<=0;
+            endcase
+        end
+    end
+
+	assign o_s_axis_tready = i_axis_arstn && reg_state == 0 && !i_sample_tick && flag_issue;
+	// Register validation/completion availability before it fans out to command writes.
+	// A sample tick still wins immediately; an accepted packet clears the permit.
+	always @(posedge i_axis_aclk or negedge i_axis_arstn) begin
+		if(!i_axis_arstn)flag_issue<=0;
+		else flag_issue<=i_s_axis_tvalid && flag_checked && !flag_accept &&
+			reg_state==0 && !i_sample_tick && (!flag_completion || i_m_axis_tready);
+	end
 	assign o_m_axis_tdata = reg_completion;
 	assign o_m_axis_tuser = reg_completion_tag;
 	assign o_m_axis_tdest = reg_completion_opcode;
@@ -191,10 +256,15 @@ module VoiceSynthEngine(
 
 	// Program edges only point to lower operator indices. Sum before saturation.
 	always @(*) begin
-		dec_route_sum = 0;
+		dec_route_low = 0;
+		dec_route_high = 0;
 		for (op_scan=0;op_scan<6;op_scan=op_scan+1) begin
-			if (op_scan < reg_operator && wire_flags[op_scan]) dec_route_sum = dec_route_sum + reg_outputs[op_scan];
+			if (op_scan < reg_operator && wire_flags[op_scan]) begin
+				if (op_scan < 3) dec_route_low = dec_route_low + reg_outputs[op_scan];
+				else dec_route_high = dec_route_high + reg_outputs[op_scan];
+			end
 		end
+		dec_route_sum = $signed({reg_route_low[33],reg_route_low}) + $signed({reg_route_high[33],reg_route_high});
 		if (dec_route_sum > 2147483647) dec_modulation = 32'h7fffffff;
 		else if (dec_route_sum < -35'sd2147483648) dec_modulation = 32'h80000000;
 		else dec_modulation = dec_route_sum[31:0];
@@ -324,6 +394,32 @@ module VoiceSynthEngine(
 						3: dec_completion={32'd0,32'd0,mem_revision[0],24'd0,reg_drafting,reg_patch_valid};
 					endcase
 				end
+                8'haa: begin
+                    dec_completion[31:0]=reg_snapshot_word;
+                    if (!(&reg_payload_zero[9:1]) || wire_address>6) dec_status=8;
+                    else case (wire_address)
+                        0,1: begin
+                            if (i_s_axis_tdata[31:8]!=0 || i_s_axis_tdata[5:3]>5 ||
+                                (wire_address==0 && i_s_axis_tdata[2:0]>5)) dec_status=8;
+                            else if (!reg_patch_valid[wire_snapshot_patch]) dec_status=9;
+                        end
+                        2: begin
+                            if (i_s_axis_tdata[31:8]!=0 || i_s_axis_tdata[5:4]!=0 || i_s_axis_tdata[2:0]>4) dec_status=8;
+                            else if (!reg_patch_valid[wire_snapshot_patch]) dec_status=9;
+                        end
+                        3: begin
+                            if (i_s_axis_tdata[31:8]!=0 || i_s_axis_tdata[2:1]!=0) dec_status=8;
+                            else if (!reg_patch_valid[wire_snapshot_patch]) dec_status=9;
+                        end
+                        4: if (i_s_axis_tdata[31:11]!=0) dec_status=8;
+                        5: if (i_s_axis_tdata[31:1]!=0) dec_status=8;
+                        6: begin
+                            if (i_s_axis_tdata[31:2]!=0) dec_status=8;
+                            else if (!reg_patch_valid[i_s_axis_tdata[1:0]]) dec_status=9;
+                        end
+                        default: dec_status=8;
+                    endcase
+                end
 				8'hb0: begin
 					if (wire_address > 25 || wire_address[2:0] > 1 || !(&reg_payload_zero[9:5]) ||
 						i_s_axis_tdata[31:0] > 32'd8796093 || i_s_axis_tdata[95:70] != 0 || i_s_axis_tdata[66:64] > 6) dec_status=8;
@@ -339,6 +435,7 @@ module VoiceSynthEngine(
 				end
 				default: dec_status=1;
 			endcase
+        if(i_s_axis_tdest==8'haa && dec_status!=0)dec_completion=0;
 		dec_completion[71:64]=dec_status;
 	end
 
@@ -366,7 +463,8 @@ module VoiceSynthEngine(
 			if (flag_prechecked_replay) begin reg_checked_completion<=reg_cached;reg_checked_completion[72]<=1;end
 			else if (flag_prechecked_eligible) reg_checked_completion<=reg_prechecked_completion;
 			else reg_checked_completion<={56'd0,reg_prechecked_identity,64'd0};
-		end else if (!flag_prechecked && (!flag_lookup_needed || reg_lookup_state==2)) begin
+		end else if (!flag_prechecked && (!flag_lookup_needed || reg_lookup_state==2) &&
+            (i_s_axis_tdest!=8'haa || cnt_snapshot_settle==4)) begin
 			flag_prechecked<=1;flag_prechecked_replay<=flag_replay;flag_prechecked_eligible<=flag_eligible;
 			reg_prechecked_identity<=dec_identity_status;reg_prechecked_status<=dec_status;reg_prechecked_completion<=dec_completion;
 		end
@@ -378,25 +476,26 @@ module VoiceSynthEngine(
 			0: if (i_sample_tick) dec_next_state=flag_enabled ? 11 : 1;
 			1: begin
 				if (!flag_enabled || !reg_active[reg_voice]) dec_next_state=8;
-				else if (!wire_flags[12]) dec_next_state=4;
-				else dec_next_state=2;
+				else if (!wire_flags[12]) dec_next_state=reg_operator == 5 ? 5 : 1;
+				else dec_next_state=4;
 			end
 			2: if (flag_operator_ready) dec_next_state=3;
-			3: if (flag_operator_valid) dec_next_state=4;
-			4: dec_next_state=reg_operator == 5 ? 5 : 17;
+			3: if (flag_operator_valid) dec_next_state=reg_operator == 5 ? 5 : 1;
+			4: dec_next_state=2;
 			5: dec_next_state=6;
 			6: dec_next_state=7;
-			7: dec_next_state=8;
+			7: dec_next_state=18;
 			8: dec_next_state=reg_voice == 7 ? 9 : (flag_enabled ? 13 : 1);
 			9: dec_next_state=10;
 			10: dec_next_state=0;
 			11: dec_next_state=12;
 			12: if (flag_mod_done) dec_next_state=13;
-			13: dec_next_state=reg_active[reg_voice] ? 14 : 1;
+			13: dec_next_state=reg_active[reg_voice] ? 17 : 1;
+            17: dec_next_state=14;
 			14: if (flag_mod_done) dec_next_state=15;
 			15: dec_next_state=16;
 			16: dec_next_state=1;
-			17: dec_next_state=1;
+			18: dec_next_state=8;
 			default: dec_next_state=0;
 		endcase
 	end
@@ -405,14 +504,15 @@ module VoiceSynthEngine(
 		else reg_state<=dec_next_state;
 	end
 
-	// Synchronous program banks: operator advance spends state 17 fetching the next row.
+	// 请求/执行期间预取下一行；完成沿仍以旧索引写回当前context，不依赖同址读写模式。
 	// No reset on RAM contents; loaded masks and committed-bank validity guard all use.
 	always @(posedge i_axis_aclk) begin
 		wire_core<=mem_core[wire_program];
 		wire_envelope<=mem_envelope[wire_program];
-		reg_context_row<=mem_context[wire_context];
+		reg_context_row<=mem_context[wire_read_context];
+		// 当前last历史已在请求中保存；RAM输出此时属于预取行，不能用于当前反馈写回。
 		if (i_axis_arstn && reg_state==3 && flag_operator_valid)
-			mem_context[wire_context]<={wire_operator_result[159:128],wire_context_data[98:67],wire_operator_result[31:0],
+			mem_context[wire_context]<={wire_operator_result[159:128],reg_operator_request[511:480],wire_operator_result[31:0],
 				wire_operator_result[98:96],wire_operator_result[95:64],wire_operator_result[63:32]};
 		if (i_axis_arstn && flag_control_apply && i_s_axis_tdest==8'ha1)
 			mem_core[wire_draft_row]<=i_s_axis_tdata[191:0];
@@ -426,14 +526,20 @@ module VoiceSynthEngine(
 			flag_dx_row<=0;
 			reg_voice<=0; reg_operator<=0; reg_active<=0; reg_held<=0; reg_age<=0;
 			reg_bank<=0; reg_patch_valid<=0; reg_drafting<=0; flag_enabled<=0; flag_sustain<=0; reg_master<=Q_UNITY;
-			reg_operator_request<=0; reg_carrier_sum<=0; flag_carrier_live<=0;
+			reg_operator_request<=0; flag_operator_carrier<=0; reg_carrier_sum<=0; flag_carrier_live<=0;
 			reg_mono_product<=0; reg_voice_product<=0; reg_left_product<=0; reg_right_product<=0;
+			reg_pan_left<=0; reg_pan_right<=0; reg_pan_sample<=0;
+			reg_pan_left_raw<=0; reg_pan_right_raw<=0;
 			reg_left_sum<=0; reg_right_sum<=0; reg_master_left<=0; reg_master_right<=0;
 			reg_pcm<=0; flag_pcm<=0; cnt_frame<=0; cnt_overruns<=0; cnt_cycles<=0; reg_cycles<=0;
 			flag_completion<=0; reg_completion<=0; reg_completion_tag<=0; reg_completion_opcode<=0;
 			flag_session<=0; reg_epoch<=0; reg_sequence<=0; reg_signature<=0; reg_cached_address<=0; reg_cached<=0;
 			cnt_applied<=0; cnt_replayed<=0; cnt_rejected<=0; cnt_stolen<=0;
-			reg_pitch_product<=0; reg_mod_increment<=0; reg_mod_gain<=0; reg_mod_pan<=0;
+			reg_frame_master<=67108864;reg_frame_pitch<=0;reg_combined_pitch<=0;reg_pitch_product<=0; reg_mod_increment<=0; reg_mod_gain<=0; reg_mod_pan<=0;
+			reg_gain_current<=0; reg_gain_target<=0; reg_pan_current<=0; reg_pan_target<=0;
+            reg_gain_distance<=0;reg_pan_distance<=0;flag_gain_up<=0;flag_pan_up<=0;
+			reg_route_low<=0; reg_route_high<=0;
+			reg_tuned_product<=0; flag_fixed_increment<=0;
 			for(reset_index=0;reset_index<4;reset_index=reset_index+1) begin
 				mem_revision[reset_index]<=0; mem_draft_revision[reset_index]<=0; mem_core_loaded[reset_index]<=0;
 				mem_eg_loaded[reset_index]<=0; mem_carriers[reset_index]<=0; mem_carrier_count[reset_index]<=0;
@@ -453,35 +559,43 @@ module VoiceSynthEngine(
 			if (reg_state != 0) cnt_cycles<=cnt_cycles+1'b1;
 			case(reg_state)
 				0: if (i_sample_tick) begin
+                    reg_frame_master<=C_TOUCH_ENABLE ? reg_touch_master : reg_master;reg_frame_pitch<=C_TOUCH_ENABLE ? i_touch_pitch : 32'd0;
 					reg_voice<=0; reg_operator<=0; reg_left_sum<=0; reg_right_sum<=0;
 					reg_carrier_sum<=0; flag_carrier_live<=0; cnt_cycles<=1;
 					for(reset_index=0;reset_index<6;reset_index=reset_index+1) reg_outputs[reset_index]<=0;
 				end
 				1: begin
-					if (reg_operator == 0) begin
-						mem_gain[reg_voice]<=smooth(mem_gain[reg_voice],mem_gain_target[reg_voice]);
-						mem_pan[reg_voice]<=smooth(mem_pan[reg_voice],mem_pan_target[reg_voice]);
-					end
 					if (flag_enabled && reg_active[reg_voice] && wire_flags[12]) begin
+						flag_operator_carrier<=wire_flags[6];
+						reg_route_low<=dec_route_low; reg_route_high<=dec_route_high;
+						reg_tuned_product<=wire_tuned;
+						flag_fixed_increment<=wire_flags[13];
 						reg_operator_request<={wire_core[191:160],5'd0,wire_flags[22:16],mem_velocity[reg_voice],mem_note[reg_voice],wire_flags[15],wire_flags[11:10],wire_flags[9:7],wire_context_data[162:131],
 							wire_core[127:96],wire_context_data[130:99],wire_context_data[98:67],wire_envelope,
 							26'd0,wire_flags[14],mem_event[reg_voice],wire_context_data[66:64],wire_context_data[63:32],
-							wire_operator_gain,wire_operator_depth,dec_modulation,wire_increment,wire_context_data[31:0]};
+							wire_operator_gain,wire_operator_depth,32'd0,wire_core[31:0],wire_context_data[31:0]};
 					end else begin
 						reg_outputs[reg_operator]<=0;
 						// Clear stale stereo products for the inactive-voice fast path.
 						reg_left_product<=0; reg_right_product<=0;
+						if (flag_enabled && reg_active[reg_voice] && reg_operator != 5) reg_operator<=reg_operator+1'b1;
 					end
 				end
 				3: if (flag_operator_valid) begin
 					flag_context_valid[wire_context]<=1;
 					reg_outputs[reg_operator]<=wire_operator_result[31:0];
-					if (wire_flags[6]) begin
+					if (flag_operator_carrier) begin
 						reg_carrier_sum<=reg_carrier_sum+$signed(wire_operator_result[31:0]);
 						flag_carrier_live<=flag_carrier_live || wire_operator_result[98:96] != 0;
 					end
+					if (reg_operator != 5) reg_operator<=reg_operator+1'b1;
 				end
-				4: if (reg_operator != 5) reg_operator<=reg_operator+1'b1;
+				4: begin
+					reg_operator_request[95:64]<=dec_modulation;
+					// The fixed-frequency word was latched with the current row in state1.
+					if (!flag_fixed_increment)
+						reg_operator_request[63:32]<=reg_tuned_product[63:47]!=0 ? 32'h7fffffff : reg_tuned_product[47:16];
+				end
 				5: begin
 					reg_mono_product<=reg_carrier_sum*$signed(reciprocal(mem_carrier_count[wire_patch]));
 					mem_event[reg_voice]<=0;
@@ -489,8 +603,10 @@ module VoiceSynthEngine(
 				end
 				6: reg_voice_product<=$signed(reg_mono_product[57:26])*$signed(reg_mod_gain);
 				7: begin
-					reg_left_product<=$signed(reg_voice_product[57:26])*$signed(Q_UNITY-reg_mod_pan);
-					reg_right_product<=$signed(reg_voice_product[57:26])*$signed(reg_mod_pan);
+					// 将系数低26位作为正signed27乘数，完整乘积先寄存，避免串接输出选择。
+					reg_pan_sample<=reg_voice_product[57:26];
+					reg_pan_left_raw<=$signed(reg_voice_product[57:26])*$signed({1'b0,reg_pan_left[25:0]});
+					reg_pan_right_raw<=$signed(reg_voice_product[57:26])*$signed({1'b0,reg_pan_right[25:0]});
 				end
 				8: begin
 					reg_left_sum<=reg_left_sum+{{8{reg_left_product[57]}},reg_left_product[57:26]};
@@ -499,19 +615,52 @@ module VoiceSynthEngine(
 					for(reset_index=0;reset_index<6;reset_index=reset_index+1) reg_outputs[reset_index]<=0;
 				end
 				9: begin
-					reg_master_left<=(reg_left_sum >>> 3)*$signed(reg_master);
-					reg_master_right<=(reg_right_sum >>> 3)*$signed(reg_master);
+					reg_master_left<=(reg_left_sum >>> 3)*$signed(C_TOUCH_ENABLE ? reg_frame_master : reg_master);
+					reg_master_right<=(reg_right_sum >>> 3)*$signed(C_TOUCH_ENABLE ? reg_frame_master : reg_master);
 				end
 				10: begin
 					reg_pcm<={saturate_audio(reg_master_right),saturate_audio(reg_master_left)};
 					flag_pcm<=1; cnt_frame<=cnt_frame+1'b1; reg_cycles<=cnt_cycles;
+				end
+				13: begin
+					reg_gain_current<=mem_gain[reg_voice]; reg_gain_target<=mem_gain_target[reg_voice];
+					reg_pan_current<=mem_pan[reg_voice]; reg_pan_target<=mem_pan_target[reg_voice];
+				end
+				17: begin
+                    // Overlap the existing eight-route modulation walk; no extra frame cycles.
+                    // Separate compare/subtract from step/add and bank write fanout.
+                    flag_gain_up<=reg_gain_current<reg_gain_target;
+                    flag_pan_up<=reg_pan_current<reg_pan_target;
+                    reg_gain_distance<=reg_gain_current<reg_gain_target ? reg_gain_target-reg_gain_current : reg_gain_current-reg_gain_target;
+                    reg_pan_distance<=reg_pan_current<reg_pan_target ? reg_pan_target-reg_pan_current : reg_pan_current-reg_pan_target;
+                end
+                14: begin
+                    reg_combined_pitch<=$signed({wire_modulation[31],wire_modulation[31:0]})+$signed({reg_frame_pitch[31],reg_frame_pitch});
+                    // Commit the unmodulated baseline from the same prefetched operands.
+                    // Commands only commit at state0; these operands stay fixed through state14.
+                    if(flag_mod_done) begin
+                        mem_gain[reg_voice]<=wire_smooth_gain;
+                        mem_pan[reg_voice]<=wire_smooth_pan;
+                    end
+					reg_mod_gain<=wire_smooth_gain;
+					reg_mod_pan<=wire_smooth_pan;
 				end
 				15: begin
 					reg_pitch_product<=$signed(mem_increment[reg_voice])*wire_pitch_delta;
 					reg_mod_gain<=wire_gain_sum < 0 ? 32'd0 : (wire_gain_sum > 67108864 ? Q_UNITY : wire_gain_sum[31:0]);
 					reg_mod_pan<=wire_pan_sum < 0 ? 32'd0 : (wire_pan_sum > 67108864 ? Q_UNITY : wire_pan_sum[31:0]);
 				end
-				16: reg_mod_increment<=wire_pitch_sum < 0 ? 32'd0 : (wire_pitch_sum > 64'sh7fffffff ? 32'h7fffffff : wire_pitch_sum[31:0]);
+				16: begin
+					reg_mod_increment<=wire_pitch_sum < 0 ? 32'd0 : (wire_pitch_sum > 64'sh7fffffff ? 32'h7fffffff : wire_pitch_sum[31:0]);
+					// state15已将声像限幅到[0,2^26]；提前完成左系数相减。
+					reg_pan_left<=27'd67108864-reg_mod_pan[26:0];
+					reg_pan_right<=reg_mod_pan[26:0];
+				end
+				18: begin
+					// 最高位代表系数恰为1，精确旁路保留全部数值位；非活动快速路径不经过此状态。
+					reg_left_product<=reg_pan_left[26] ? {{6{reg_pan_sample[31]}},reg_pan_sample,26'd0} : {{5{reg_pan_left_raw[58]}},reg_pan_left_raw};
+					reg_right_product<=reg_pan_right[26] ? {{6{reg_pan_sample[31]}},reg_pan_sample,26'd0} : {{5{reg_pan_right_raw[58]}},reg_pan_right_raw};
+				end
 				default: reg_pcm<=reg_pcm;
 			endcase
 			if (flag_accept) begin
@@ -522,6 +671,12 @@ module VoiceSynthEngine(
 				if (flag_checked_eligible) begin
 					flag_session<=1; reg_epoch<=wire_epoch; reg_sequence<=wire_sequence;
 					reg_signature<=wire_signature; reg_cached_address<=wire_address; reg_cached<=reg_checked_completion;
+                    // The next rendered frame is the first affected by this accepted Note-On.
+                    // Cache the same tag so a retransmission cannot move the observation boundary.
+                    if(reg_checked_status==0 && i_s_axis_tdest==8'ha4) begin
+                        reg_completion[63:32]<=cnt_frame+32'd1;
+                        reg_cached[63:32]<=cnt_frame+32'd1;
+                    end
 					if (reg_checked_status == 0) begin
 						cnt_applied<=cnt_applied+1'b1;
 						case(i_s_axis_tdest)
@@ -587,6 +742,8 @@ module VoiceSynthEngine(
 		.i_config_route(i_s_axis_tdest == 8'hb1),.i_config_bank(!reg_bank[wire_mod_patch]),
 		.i_config_patch(wire_mod_patch),.i_config_index(wire_address[2:0]),.i_config_data(i_s_axis_tdata[159:0]),
 		.i_inspect(wire_address[4:0]),.o_inspect(wire_lfo_inspect),.o_busy(flag_mod_busy),
+        .i_snapshot(flag_snapshot),.i_snapshot_route(wire_address==3),
+        .i_snapshot_address(i_s_axis_tdata[7:0]),.o_snapshot_data(wire_mod_snapshot),
 		.o_done(flag_mod_done),.o_modulation(wire_modulation)
 	);
 	AxisFmOperator Operator_Inst(
@@ -594,6 +751,7 @@ module VoiceSynthEngine(
 		.i_s_axis_tuser({26'd0,wire_context}),.i_s_axis_tvalid(reg_state == 2),.o_s_axis_tready(flag_operator_ready),
 		.o_m_axis_tdata(wire_operator_result),.o_m_axis_tuser(wire_operator_tag),
 		.o_m_axis_tvalid(flag_operator_valid),.i_m_axis_tready(reg_state == 3),
-		.i_wave_write(flag_wave_write),.i_wave_address(i_s_axis_tdata[10:0]),.i_wave_data(i_s_axis_tdata[63:32]),.o_wave_ready(flag_wave_ready)
+		.i_wave_write(flag_wave_write),.i_wave_address(i_s_axis_tdata[10:0]),.i_wave_data(i_s_axis_tdata[63:32]),.o_wave_ready(flag_wave_ready),
+        .i_wave_read(flag_snapshot && wire_address==4),.o_wave_data(wire_wave_snapshot)
 	);
 endmodule

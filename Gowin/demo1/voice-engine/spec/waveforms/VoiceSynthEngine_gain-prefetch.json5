@@ -1,0 +1,37 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p....."
+    },
+    {
+      "name": "state",
+      "wave": "===.==",
+      "data": [
+        "13",
+        "14",
+        "14",
+        "15",
+        "16"
+      ]
+    },
+    {
+      "name": "smooth base",
+      "wave": "x=....",
+      "data": [
+        "latched"
+      ]
+    },
+    {
+      "name": "modulation done",
+      "wave": "0...10"
+    },
+    {
+      "name": "gain pan result",
+      "wave": "x....=",
+      "data": [
+        "limited"
+      ]
+    }
+  ]
+}

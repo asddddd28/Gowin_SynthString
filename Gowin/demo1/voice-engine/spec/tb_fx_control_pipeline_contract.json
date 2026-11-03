@@ -1,0 +1,95 @@
+{
+  "modules": [
+    {
+      "name": "tb_fx_control_pipeline",
+      "rtl_path": "sim/tb_fx_control_pipeline.v",
+      "description": "真实FX命令域校验流水、反压、原子提交及音频抢占定向验证。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "全部自检通过置1；内部提供时钟与刺激。"
+          }
+        ]
+      },
+      "parameters": [],
+      "clock": {
+        "name": "clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "起始复位及已校验命令被完成反压阻塞时复位"
+      },
+      "behavior": [
+        "不force任何硬件逻辑，直接实例化C_DELAY_ADDR_BITS=13的真实AxisFxEngine。",
+        "先以阻塞的C0完成包占据输出槽，C4查询校验后两次插入音频；旧查询必须重新校验并返回更新后的帧数。",
+        "C2原子提交和C3清空各在checked之后被音频抢占，控制动作必须延后到音频完成并重新校验后执行。",
+        "同序号同payload重放只返回缓存并使用新tag；冲突及非法参数不修改配置；非法但合格序号仍被消耗。",
+        "复位取消一个已接受完成包和一个尚未接受命令，随后seq0重新建立会话。",
+        "校验后临时翻转raw payload再恢复，期间不发生采样沿，仅验证参数到执行使能的组合传播已经切断；正式输入在实际采样沿遵守保持协议。"
+      ],
+      "constraints": [
+        "只证明功能与握手行为，不能替代STA。",
+        "真实音频路径固定四帧，独立核对返回帧号与完成包完整字段。"
+      ],
+      "corner_cases": [
+        "完成阻塞+同时出入队；快照就绪后音频到达；错误重放；复位丢弃在途命令。"
+      ],
+      "verification_cases": [
+        "xsim: accepted12/delivered11/reset_cancelled1/audio4/preemptions4/clears1+1。",
+        "严格测试门禁；完整Voice/LFO/FX音频整数模型和UART/键盘回归另行覆盖。"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "control-check",
+          "title": "控制校验寄存与接受",
+          "scenario": "control-check",
+          "description": "空闲且完成输出可接收：列表示采样沿前状态，操作在列末上升沿提交。先比较块，再校验快照，第三沿才执行；期间音频到达会取消两级资格。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p...."
+              },
+              {
+                "name": "cmd_valid",
+                "wave": "1..0."
+              },
+              {
+                "name": "predecoded",
+                "wave": "01.0."
+              },
+              {
+                "name": "checked",
+                "wave": "0.10."
+              },
+              {
+                "name": "cmd_ready",
+                "wave": "0.10."
+              },
+              {
+                "name": "audio_valid",
+                "wave": "0...."
+              },
+              {
+                "name": "completion_valid",
+                "wave": "0..10"
+              },
+              {
+                "name": "mutation_at_edge",
+                "wave": "0.10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

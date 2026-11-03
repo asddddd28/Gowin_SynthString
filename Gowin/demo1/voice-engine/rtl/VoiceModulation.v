@@ -24,6 +24,10 @@ module VoiceModulation(
 	input [159:0] i_config_data,
 	input [4:0] i_inspect,
 	output [127:0] o_inspect,
+    input i_snapshot,
+    input i_snapshot_route,
+    input [7:0] i_snapshot_address,
+    output [31:0] o_snapshot_data,
 	output o_busy,
 	output o_done,
 	output [479:0] o_modulation
@@ -34,12 +38,17 @@ module VoiceModulation(
 	reg [2:0] reg_route, reg_voice;
 	reg [1:0] reg_patch;
 	reg [159:0] mem_lfo_config [0:15];
-	reg [63:0] mem_route_config [0:63];
+    (* syn_ramstyle="block_ram" *) reg [63:0] mem_route_config [0:63];
 	reg [15:0] flag_lfo_enabled;
 	reg [63:0] flag_route_enabled;
+    reg [15:0] flag_lfo_configured;
+    reg [63:0] flag_route_configured;
 	reg [23:0] flag_initialized;
-	reg [31:0] mem_phase [0:23], mem_rng [0:23], mem_origin [0:23];
-	reg signed [31:0] mem_value [0:23];
+	reg [23:0] flag_state_written;
+	(* syn_ramstyle="distributed_ram" *) reg [31:0] mem_phase [0:23];
+	(* syn_ramstyle="distributed_ram" *) reg [31:0] mem_rng [0:23];
+	(* syn_ramstyle="distributed_ram" *) reg [31:0] mem_origin [0:23];
+	(* syn_ramstyle="distributed_ram" *) reg signed [31:0] mem_value [0:23];
 	reg signed [35:0] mem_accumulator [0:14];
 	reg signed [63:0] reg_product;
 	reg [3:0] reg_target;
@@ -54,7 +63,11 @@ module VoiceModulation(
 	wire [4:0] wire_local_context = reg_context - 5'd8;
 	wire [2:0] wire_voice = wire_local_context[3:1];
 	wire [1:0] wire_patch = flag_local ? i_voice_patch[wire_voice*2+:2] : reg_context[2:1];
-	wire [3:0] wire_source_address = {i_patch_bank[wire_patch],wire_patch,reg_context[0]};
+    wire [1:0] wire_snapshot_patch = i_snapshot_address[7:6];
+    wire [3:0] wire_snapshot_lfo = {i_patch_bank[wire_snapshot_patch],wire_snapshot_patch,i_snapshot_address[3]};
+    wire [5:0] wire_snapshot_route = {i_patch_bank[wire_snapshot_patch],wire_snapshot_patch,i_snapshot_address[5:3]};
+    wire flag_snapshot = reg_state == 0 && i_snapshot;
+	wire [3:0] wire_source_address = flag_snapshot ? wire_snapshot_lfo : {i_patch_bank[wire_patch],wire_patch,reg_context[0]};
 	wire [159:0] wire_config = mem_lfo_config[wire_source_address];
 	wire flag_eligible = reg_context < 24 && flag_lfo_enabled[wire_source_address] && i_patch_valid[wire_patch] &&
 		(wire_config[68] == flag_local) && (!flag_local || i_voice_active[wire_voice]);
@@ -63,22 +76,32 @@ module VoiceModulation(
 	wire flag_submit = flag_issue && flag_lfo_ready;
 	wire [159:0] wire_lfo_result;
 	wire [31:0] wire_lfo_tag;
+	wire [31:0] wire_state_phase = flag_state_written[reg_context] ? mem_phase[reg_context] : 32'd0;
+	wire [31:0] wire_state_rng = flag_state_written[reg_context] ? mem_rng[reg_context] : 32'd1;
+	wire [31:0] wire_state_origin = flag_state_written[reg_context] ? mem_origin[reg_context] : 32'd0;
 	wire [255:0] wire_request = {wire_config[159:128],wire_config[127:96],wire_config[63:32],
-		27'd0,!flag_initialized[reg_context],wire_config[67:64],mem_origin[reg_context],mem_rng[reg_context],wire_config[31:0],mem_phase[reg_context]};
+		27'd0,!flag_initialized[reg_context],wire_config[67:64],wire_state_origin,wire_state_rng,wire_config[31:0],wire_state_phase};
 	wire [5:0] wire_route_address = {i_patch_bank[reg_patch],reg_patch,reg_route};
+    wire [5:0] wire_route_memory_address=flag_snapshot && i_snapshot_route ? wire_snapshot_route : wire_route_address;
 	wire [63:0] wire_route_config = reg_route_descriptor;
 	wire [3:0] wire_selected_lfo = {i_patch_bank[reg_patch],reg_patch,wire_route_config[1]};
 	wire [4:0] wire_selected_context = mem_lfo_config[wire_selected_lfo][68] ?
 		(5'd8+{reg_voice,1'b0}+wire_route_config[1]) : {2'd0,reg_patch,wire_route_config[1]};
-	wire signed [31:0] wire_source_value = flag_lfo_enabled[wire_selected_lfo] ? mem_value[wire_selected_context] : 32'sd0;
+	wire signed [31:0] wire_source_value = flag_lfo_enabled[wire_selected_lfo] && flag_state_written[wire_selected_context] ? mem_value[wire_selected_context] : 32'sd0;
 	wire [3:0] wire_config_lfo = {i_config_bank,i_config_patch,i_config_index[0]};
 	wire [5:0] wire_config_route = {i_config_bank,i_config_patch,i_config_index};
 	wire flag_inspect_valid = i_inspect < 24;
+	wire [31:0] wire_inspect_rng = flag_state_written[i_inspect] ? mem_rng[i_inspect] : 32'd1;
+	wire [31:0] wire_inspect_phase = flag_state_written[i_inspect] ? mem_phase[i_inspect] : 32'd0;
+	wire [31:0] wire_inspect_value = flag_state_written[i_inspect] ? mem_value[i_inspect] : 32'd0;
 	integer index;
 	assign o_busy = reg_state != 0;
 	assign o_done = flag_done;
 	assign o_modulation = reg_modulation;
-	assign o_inspect = flag_inspect_valid ? {mem_rng[i_inspect],21'd0,flag_initialized[i_inspect],10'd0,mem_phase[i_inspect],mem_value[i_inspect]} : 128'd0;
+	assign o_inspect = flag_inspect_valid ? {wire_inspect_rng,21'd0,flag_initialized[i_inspect],10'd0,wire_inspect_phase,wire_inspect_value} : 128'd0;
+    assign o_snapshot_data = i_snapshot_route ?
+        (flag_route_configured[wire_snapshot_route] ? reg_route_descriptor[i_snapshot_address[0]*32+:32] : 32'd0) :
+        (flag_lfo_configured[wire_snapshot_lfo] ? wire_config[i_snapshot_address[2:0]*32+:32] : 32'd0);
 
 	always @(*) begin
 		dec_next_state=reg_state;
@@ -109,10 +132,11 @@ module VoiceModulation(
 			reg_patch<=0;
 			flag_lfo_enabled<=0;
 			flag_route_enabled<=0;
+            flag_lfo_configured<=0;flag_route_configured<=0;
 			flag_initialized<=0;
+			flag_state_written<=0;
 			reg_product<=0;
 			reg_target<=0;
-			reg_route_descriptor<=0;
 			flag_descriptor_valid<=0;
 			flag_descriptor_enabled<=0;
 			reg_source_operand<=0;
@@ -122,12 +146,6 @@ module VoiceModulation(
 			flag_product_valid<=0;
 			reg_modulation<=0;
 			flag_done<=0;
-			for(index=0;index<24;index=index+1) begin
-				mem_phase[index]<=0;
-				mem_rng[index]<=1;
-				mem_origin[index]<=0;
-				mem_value[index]<=0;
-			end
 			for(index=0;index<15;index=index+1) mem_accumulator[index]<=0;
 		end else begin
 			flag_done<=0;
@@ -136,7 +154,6 @@ module VoiceModulation(
 			flag_operand_valid <= flag_descriptor_valid;
 			flag_product_valid <= flag_operand_valid;
 			if (reg_state == 3) begin
-				reg_route_descriptor <= mem_route_config[wire_route_address];
 				flag_descriptor_enabled <= flag_route_enabled[wire_route_address];
 			end
 			if (flag_descriptor_valid) begin
@@ -157,11 +174,8 @@ module VoiceModulation(
 				default: cnt_pending<=cnt_pending;
 			endcase
 			if (flag_lfo_valid) begin
-				mem_value[wire_lfo_tag[4:0]]<=wire_lfo_result[31:0];
-				mem_phase[wire_lfo_tag[4:0]]<=wire_lfo_result[63:32];
-				mem_rng[wire_lfo_tag[4:0]]<=wire_lfo_result[95:64];
-				mem_origin[wire_lfo_tag[4:0]]<=wire_lfo_result[127:96];
 				flag_initialized[wire_lfo_tag[4:0]]<=1;
+				flag_state_written[wire_lfo_tag[4:0]]<=1;
 			end
 			case(reg_state)
 				0: begin
@@ -180,9 +194,16 @@ module VoiceModulation(
 					if (i_begin) begin
 						flag_lfo_enabled[{i_config_bank,i_config_patch,1'b0}+:2]<=0;
 						flag_route_enabled[{i_config_bank,i_config_patch,3'd0}+:8]<=0;
+                        flag_lfo_configured[{i_config_bank,i_config_patch,1'b0}+:2]<=0;
+                        flag_route_configured[{i_config_bank,i_config_patch,3'd0}+:8]<=0;
 					end else if (i_config_write) begin
-						if (i_config_route) flag_route_enabled[wire_config_route]<=i_config_data[0];
-						else flag_lfo_enabled[wire_config_lfo]<=i_config_data[69];
+                        if (i_config_route) begin
+                            flag_route_enabled[wire_config_route]<=i_config_data[0];
+                            flag_route_configured[wire_config_route]<=1;
+                        end else begin
+                            flag_lfo_enabled[wire_config_lfo]<=i_config_data[69];
+                            flag_lfo_configured[wire_config_lfo]<=1;
+                        end
 					end
 				end
 				1: if (!flag_eligible || flag_lfo_ready) reg_context<=reg_context+1'b1;
@@ -200,8 +221,21 @@ module VoiceModulation(
 			endcase
 		end
 	end
+	// Data RAM has no reset. The written mask supplies the original reset values;
+	// note restarts retain old observable state until a new completion replaces it.
+	always @(posedge i_axis_aclk) begin
+		if (i_axis_arstn && flag_lfo_valid) begin
+			mem_value[wire_lfo_tag[4:0]]<=wire_lfo_result[31:0];
+			mem_phase[wire_lfo_tag[4:0]]<=wire_lfo_result[63:32];
+			mem_rng[wire_lfo_tag[4:0]]<=wire_lfo_result[95:64];
+			mem_origin[wire_lfo_tag[4:0]]<=wire_lfo_result[127:96];
+		end
+	end
 	// Descriptor RAM is invalidated by masks, not a reset on every data bit.
 	always @(posedge i_axis_aclk) begin
+        // One unreset synchronous RAM port, shared by route execution and idle
+        // snapshots. Valid flags guard all consumers; no output-reset FF array.
+        reg_route_descriptor<=mem_route_config[wire_route_memory_address];
 		if (i_axis_arstn && reg_state == 0 && i_config_write && !i_begin) begin
 			if (i_config_route) mem_route_config[wire_config_route]<=i_config_data[63:0];
 			else mem_lfo_config[wire_config_lfo]<=i_config_data;

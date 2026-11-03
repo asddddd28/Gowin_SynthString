@@ -3207,6 +3207,7 @@ dependencies = [
  "chrono",
  "crc32fast",
  "midir",
+ "serde",
  "serde_json",
  "serialport",
  "sha2",

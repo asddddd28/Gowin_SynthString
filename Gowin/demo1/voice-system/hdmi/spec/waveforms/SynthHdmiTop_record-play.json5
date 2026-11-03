@@ -1,0 +1,36 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "record",
+      "wave": "01....0..."
+    },
+    {
+      "name": "bar_boundary",
+      "wave": "0..10....."
+    },
+    {
+      "name": "note_capture",
+      "wave": "0.10.10..."
+    },
+    {
+      "name": "committed",
+      "wave": "0......1.."
+    },
+    {
+      "name": "play_req",
+      "wave": "0......1.."
+    },
+    {
+      "name": "ready",
+      "wave": "1......01."
+    },
+    {
+      "name": "completion",
+      "wave": "0........1"
+    }
+  ]
+}

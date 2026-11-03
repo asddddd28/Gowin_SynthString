@@ -1,0 +1,20 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p......."
+    },
+    {
+      "name": "config",
+      "wave": "010....."
+    },
+    {
+      "name": "audio",
+      "wave": "0..1010."
+    },
+    {
+      "name": "checked",
+      "wave": "0...1010"
+    }
+  ]
+}

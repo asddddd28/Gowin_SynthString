@@ -1,0 +1,30 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "start",
+      "wave": "010......."
+    },
+    {
+      "name": "phase",
+      "wave": "x.========",
+      "data": [
+        "history",
+        "delta",
+        "release-mul",
+        "release-div28",
+        "release-store",
+        "press-mul",
+        "press-div28",
+        "done"
+      ]
+    },
+    {
+      "name": "done",
+      "wave": "0........1"
+    }
+  ]
+}

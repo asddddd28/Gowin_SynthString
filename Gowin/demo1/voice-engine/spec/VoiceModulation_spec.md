@@ -47,6 +47,10 @@
 | `o_busy` | output | 1 | 未声明 | control | 帧或路由执行中 |
 | `o_done` | output | 1 | 未声明 | control | 单周期完成通知 |
 | `o_modulation` | output | 480 | 未声明 | data | 15个有符号32位调制累加结果 |
+| `i_snapshot` | input | 1 | i_axis_aclk | data | i_snapshot |
+| `i_snapshot_route` | input | 1 | i_axis_aclk | data | i_snapshot_route |
+| `i_snapshot_address` | input | 8 | i_axis_aclk | data | i_snapshot_address |
+| `o_snapshot_data` | output | 32 | i_axis_aclk | data | o_snapshot_data |
 
 ## 5. 周期行为与延迟
 
@@ -56,6 +60,8 @@
 - Eight routes accumulate in 36-bit guards across fifteen targets; output saturates to signed32. Base musical parameters are not modified.
 - Route descriptor, source/depth operands, product and accumulator are registered separately. Eight descriptors issue at II=1, drain before final clamp; start-to-done is13 clocks. Disabled routes force both operands to zero; same-target writes retain source order.
 - Start pulses and configuration writes are only accepted while idle by contract; parent prevents control writes during a render.
+- Idle snapshot reads live-bank configuration; configured masks preserve disabled descriptors and prevent undefined RAM reads.
+- Idle snapshot reads live-bank configuration; configured masks preserve disabled descriptors and prevent undefined RAM reads. LFO phase/RNG/origin/value arrays use unreset distributed RAM; a separate reset-only written mask supplies phase/value/origin zero and RNG one until the first completion. Note restart clears initialization, not the written mask, preserving inspect semantics and cycle timing.
 
 ## 6. WaveDrom 时序图
 

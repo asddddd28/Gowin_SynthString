@@ -73,6 +73,11 @@ def assets():
     for row in rows:image.extend([row['opcode']|(row['address']<<8),*row['words']])
     assert len(image)<=1024
     (ROOT/'rom/boot.hex').write_text('\n'.join(f'{v:08x}' for v in image+[0]*(1024-len(image)))+'\n',encoding='utf-8')
+    dry_rows=[row for row in rows if not 0xc0<=row['opcode']<=0xc4]
+    dry_image=[len(dry_rows)]
+    for row in dry_rows:dry_image.extend([row['opcode']|(row['address']<<8),*row['words']])
+    (ROOT/'rom/boot_dry.hex').write_text(''.join(f'{v:08x}\n' for v in dry_image+[0]*(1024-len(dry_image))),encoding='ascii')
+    (ROOT/'rom/boot_dry.commands.json').write_text(json.dumps(dry_rows,indent=2)+'\n',encoding='utf-8')
     notes=[round(440*2**((48+key-69)/12)*(1<<32)/RATE) for key in range(32)]
     (ROOT/'rom/keyboard_phase.hex').write_text('\n'.join(f'{n:08x}' for n in notes)+'\n',encoding='utf-8')
     shutil.copyfile(ENGINE/'rom/sine_q26.hex',ROOT/'rom/sine_q26.hex')

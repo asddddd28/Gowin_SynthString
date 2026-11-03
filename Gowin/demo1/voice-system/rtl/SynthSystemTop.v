@@ -1,6 +1,10 @@
 `timescale 1ns / 1ps
 // Contract: spec/SynthSystemTop_spec.md.
-module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10000,parameter C_HALF_CYCLES=6,parameter C_POWERUP_CYCLES=65535,parameter C_AMP_CYCLES=1048576,parameter C_DELAY_ADDR_BITS=13)(
+module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10000,parameter C_HALF_CYCLES=6,parameter C_POWERUP_CYCLES=65535,parameter C_AMP_CYCLES=1048576,parameter C_DELAY_ADDR_BITS=13,parameter C_FX_ENABLE=0,parameter C_DISPLAY_ENABLE=0,parameter C_TOUCH_ENABLE=0,parameter C_SEQUENCE_ENABLE=0)(
+    input [5:0] i_buttons,
+    output [31:0] o_sequence_status,
+    output [8:0] o_sequence_bpm,
+    input i_touch_next,inout [1:0] io_touch_scl,inout [1:0] io_touch_sda,output [1:0] o_touch_mode,
     input i_clk,
     input i_rstn,
     input i_adc_dout,
@@ -14,7 +18,22 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
     output HP_BCK,
     output HP_WS,
     output HP_DIN,
-    output PA_EN
+    output PA_EN,
+    output o_display_reset_n,
+    output o_display_calibrating,
+    output [31:0] o_display_keys,
+    output [31:0] o_display_latency,
+    output [31:0] o_display_underruns,
+    output [31:0] o_display_errors,
+    output [31:0] o_display_frames,
+    output o_display_sample_valid,
+    output [15:0] o_display_sample,
+    output o_display_request,
+    output [7:0] o_display_opcode,
+    output [7:0] o_display_argument,
+    output [63:0] o_display_words,
+    input i_display_response_valid,
+    input [135:0] i_display_response
 );
 
     reg [31:0] cnt_powerup=0;
@@ -29,6 +48,51 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
     wire [63:0] wire_pcm;
     wire [31:0] wire_pcm_frame;
     wire flag_pcm_valid,flag_pcm_ready;
+    wire flag_local_request,flag_local_response,flag_key_write,flag_monitor_sample;
+    wire flag_key_start,flag_key_finish,flag_key_failed;
+    wire [7:0] wire_local_opcode,wire_local_argument;
+    wire [63:0] wire_local_words;
+    wire [135:0] wire_local_response;
+    wire [4:0] wire_config_key,wire_event_key;
+    wire [47:0] wire_config_data,wire_config_read;
+    wire [15:0] wire_monitor_sample;
+    wire [31:0] wire_event_frame;
+    wire flag_monitor_response;
+    wire [135:0] wire_monitor_response;
+    wire flag_touch_select=C_TOUCH_ENABLE && wire_local_opcode>=8'h30 && wire_local_opcode<=8'h33;
+    wire flag_sequence_select=C_SEQUENCE_ENABLE && wire_local_opcode>=8'h40 && wire_local_opcode<=8'h49;
+    wire [391:0] wire_sequence_request;
+    wire flag_sequence_request,flag_sequence_ready,flag_sequence_response,flag_sequence_response_ready;
+    wire [135:0] wire_sequence_response,wire_sequence_local_response;
+    wire flag_sequence_local_response,flag_sequence_click,flag_sequence_accent,flag_sequence_record;
+    wire [3:0] wire_patch_lock;
+    wire [15:0] wire_click_sample;
+    wire flag_touch_response,flag_keys_idle;
+    wire [135:0] wire_touch_response;
+    wire [31:0] wire_performance_keys,wire_touch_pitch;
+    wire [17:0] wire_touch_gain;
+    wire [19:0] wire_touch_cutoff;
+    wire flag_touch_cutoff_active;
+    wire flag_keyboard_select=wire_local_opcode>=8'h20 && wire_local_opcode<=8'h28;
+    wire flag_keyboard_response,flag_velocity_enabled;
+    wire [135:0] wire_keyboard_response;
+    wire [4:0] wire_velocity_key;
+    wire [6:0] wire_velocity;
+    wire flag_display_select=C_DISPLAY_ENABLE && ((wire_local_opcode>=8'h10 && wire_local_opcode<8'h20) ||
+        (wire_local_opcode>=8'h50 && wire_local_opcode<=8'h55));
+    assign flag_local_response=flag_sequence_select ? flag_sequence_local_response : flag_touch_select ? flag_touch_response : flag_keyboard_select ? flag_keyboard_response : flag_display_select ? i_display_response_valid : flag_monitor_response;
+    assign wire_local_response=flag_sequence_select ? wire_sequence_local_response : flag_touch_select ? wire_touch_response : flag_keyboard_select ? wire_keyboard_response : flag_display_select ? i_display_response : wire_monitor_response;
+    assign o_display_reset_n=flag_rstn;
+    assign o_display_keys=wire_pressed;
+    assign o_display_underruns=wire_underruns;
+    assign o_display_errors=wire_bad_packets;
+    assign o_display_frames=wire_pcm_frames;
+    assign o_display_sample_valid=flag_monitor_sample;
+    assign o_display_sample=wire_monitor_sample;
+    assign o_display_request=flag_local_request && flag_display_select;
+    assign o_display_opcode=wire_local_opcode;
+    assign o_display_argument=wire_local_argument;
+    assign o_display_words=wire_local_words;
     wire flag_amplifier=flag_rstn && flag_boot_done && cnt_amplifier==C_AMP_CYCLES && !flag_boot_fault && !flag_key_fault && !flag_master_fault && wire_underruns==0;
     wire [127:0] wire_status={wire_bad_packets[15:0],wire_underruns[15:0],wire_pcm_frames,wire_pressed,24'h535905,3'd0,flag_amplifier,flag_boot_fault,flag_key_fault,flag_master_fault,flag_boot_done};
     assign PA_EN=!flag_amplifier;
@@ -93,18 +157,14 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
         .o_raw(wire_raw),
         .o_valid(flag_sample)
     );
-    LatencyKeyThresholds  Thresholds_Inst(
-        .i_clk(i_clk),
-        .i_rstn(flag_rstn),
-        .i_key(wire_key),
-        .i_raw(wire_raw),
-        .i_valid(flag_sample),
-        .o_candidate(),
-        .o_confirm(),
-        .o_cancel(),
-        .o_pressed(wire_pressed)
+    SynthKeyboardControl Thresholds_Inst(
+        .i_clk(i_clk),.i_rstn(flag_rstn),.i_key(wire_key),.i_raw(wire_raw),.i_valid(flag_sample),
+        .o_pressed(wire_pressed),.o_calibrating(o_display_calibrating),.o_velocity_enabled(flag_velocity_enabled),
+        .i_velocity_key(wire_velocity_key),.o_velocity(wire_velocity),
+        .i_request(flag_local_request && flag_keyboard_select),.i_opcode(wire_local_opcode),.i_argument(wire_local_argument),.i_words(wire_local_words),
+        .o_response_valid(flag_keyboard_response),.o_response(wire_keyboard_response)
     );
-    SynthBootSequencer  Boot_Inst(
+    SynthBootSequencer #(.C_FX_ENABLE(C_FX_ENABLE)) Boot_Inst(
         .i_clk(i_clk),
         .i_rstn(flag_rstn),
         .o_request(boot_request),
@@ -126,10 +186,13 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
         .i_response_valid(key_response_valid),
         .o_response_ready(key_response_ready),
         .i_enabled(flag_boot_done),
-        .i_pressed(wire_pressed),
+        .i_pressed(wire_performance_keys),.o_idle(flag_keys_idle),
+        .o_velocity_key(wire_velocity_key),.i_velocity(wire_velocity),.i_velocity_enabled(flag_velocity_enabled),
         .o_delivered(wire_delivered),
         .o_events(wire_key_events),
-        .o_fault(flag_key_fault)
+        .o_fault(flag_key_fault),
+        .i_config_write(flag_key_write),.i_config_key(wire_config_key),.i_config_data(wire_config_data),.o_config_data(wire_config_read),
+        .o_event_start(flag_key_start),.o_event_finish(flag_key_finish),.o_event_failed(flag_key_failed),.o_event_key(wire_event_key),.o_event_frame(wire_event_frame)
     );
     SynthUartControl #(.C_UART_CYCLES(C_UART_CYCLES)) Host_Inst(
         .i_clk(i_clk),
@@ -145,9 +208,13 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
         .i_initialized(flag_boot_done && !flag_master_fault),
         .i_status(wire_status),
         .o_bad_packets(wire_bad_packets),
-        .o_replayed(wire_replayed)
+        .o_replayed(wire_replayed),
+        .o_local_request(flag_local_request),.o_local_opcode(wire_local_opcode),.o_local_argument(wire_local_argument),.o_local_words(wire_local_words),
+        .i_local_valid(flag_local_response),.i_local_response(wire_local_response)
     );
-    SynthCommandArbiter  Arbiter_Inst(
+    SynthCommandArbiter #(.C_SEQUENCE_ENABLE(C_SEQUENCE_ENABLE)) Arbiter_Inst(
+        .i_sequence_request(wire_sequence_request),.i_sequence_request_valid(flag_sequence_request),.o_sequence_request_ready(flag_sequence_ready),
+        .o_sequence_response(wire_sequence_response),.o_sequence_response_valid(flag_sequence_response),.i_sequence_response_ready(flag_sequence_response_ready),
         .i_clk(i_clk),
         .i_rstn(flag_rstn),
         .o_request(master_request),
@@ -176,7 +243,8 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
         .o_host_response_valid(host_response_valid),
         .i_host_response_ready(host_response_ready)
     );
-    SynthAxiMaster  Master_Inst(
+    SynthAxiMaster #(.C_SEQUENCE_ENABLE(C_SEQUENCE_ENABLE)) Master_Inst(
+        .i_patch_lock(wire_patch_lock),
         .i_clk(i_clk),
         .i_rstn(flag_rstn),
         .i_request(master_request),
@@ -205,7 +273,8 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
         .o_fault(flag_master_fault),
         .o_completed(wire_completed)
     );
-    AxiSynthEndpoint #(.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS)) Endpoint_Inst(
+    AxiSynthEndpoint #(.C_TOUCH_ENABLE(C_TOUCH_ENABLE),.C_DELAY_ADDR_BITS(C_DELAY_ADDR_BITS),.C_FX_ENABLE(C_FX_ENABLE)) Endpoint_Inst(
+        .i_touch_gain(wire_touch_gain),.i_touch_pitch(wire_touch_pitch),.i_touch_cutoff(wire_touch_cutoff),.i_touch_cutoff_active(flag_touch_cutoff_active),
         .i_axi_aclk(i_clk),
         .i_axi_arstn(flag_rstn),
         .o_pcm_valid(flag_pcm_valid),
@@ -244,7 +313,8 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
         .o_s_axi_rvalid(axi_rvalid),
         .i_s_axi_rready(axi_rready)
     );
-    SynthPcmOutput  Audio_Inst(
+    SynthPcmOutput #(.C_METRONOME_ENABLE(C_SEQUENCE_ENABLE)) Audio_Inst(
+        .i_click(wire_click_sample),
         .i_clk(i_clk),
         .i_rstn(flag_rstn),
         .i_valid(flag_pcm_valid),
@@ -254,6 +324,47 @@ module SynthSystemTop #(parameter C_UART_CYCLES=434,parameter C_SETTLE_CYCLES=10
         .o_ws(HP_WS),
         .o_data(HP_DIN),
         .o_frames(wire_pcm_frames),
-        .o_underruns(wire_underruns)
+        .o_underruns(wire_underruns),.o_sample_valid(flag_monitor_sample),.o_sample(wire_monitor_sample)
     );
+    SynthStudioMonitor Monitor_Inst(
+        .i_clk(i_clk),.i_rstn(flag_rstn),
+        .i_request(flag_local_request && !flag_display_select && !flag_keyboard_select && !flag_touch_select && !flag_sequence_select),.i_opcode(wire_local_opcode),.i_argument(wire_local_argument),.i_words(wire_local_words),
+        .o_response_valid(flag_monitor_response),.o_response(wire_monitor_response),.o_latency(o_display_latency),
+        .o_key_write(flag_key_write),.o_key_index(wire_config_key),.o_key_data(wire_config_data),.i_key_data(wire_config_read),
+        .i_pcm_valid(flag_monitor_sample),.i_pcm_sample(wire_monitor_sample),.i_pcm_frame(wire_pcm_frame),
+        .i_key_start(flag_key_start),.i_key_finish(flag_key_finish),.i_key_failed(flag_key_failed),.i_event_key(wire_event_key),.i_event_frame(wire_event_frame)
+    );
+    generate if(C_SEQUENCE_ENABLE)begin:SequenceDomain
+        SynthSequencer Recorder_Inst(
+            .i_clk(i_clk),.i_rstn(flag_rstn),.i_enabled(flag_boot_done && !flag_key_fault && !flag_master_fault),.i_silent(o_display_calibrating),.i_buttons(i_buttons),
+            .i_capture(key_request_valid && key_request_ready),.i_key(wire_velocity_key),.i_event(key_request),
+            .o_request(wire_sequence_request),.o_request_valid(flag_sequence_request),.i_request_ready(flag_sequence_ready),
+            .i_response(wire_sequence_response),.i_response_valid(flag_sequence_response),.o_response_ready(flag_sequence_response_ready),
+            .i_local_request(flag_local_request && flag_sequence_select),.i_opcode(wire_local_opcode),.i_argument(wire_local_argument),.i_words(wire_local_words),
+            .o_local_valid(flag_sequence_local_response),.o_local_response(wire_sequence_local_response),.o_patch_lock(wire_patch_lock),
+            .o_click(flag_sequence_click),.o_accent(flag_sequence_accent),.o_recording(flag_sequence_record),.o_bpm(o_sequence_bpm),.o_status(o_sequence_status));
+        SynthMetronome Click_Inst(.i_clk(i_clk),.i_rstn(flag_rstn),.i_sample(flag_monitor_sample),.i_running(flag_sequence_record),
+            .i_click(flag_sequence_click),.i_accent(flag_sequence_accent),.o_sample(wire_click_sample));
+    end else begin:NoSequenceDomain
+        assign wire_sequence_request=0;assign flag_sequence_request=0;assign flag_sequence_response_ready=1;
+        assign flag_sequence_local_response=0;assign wire_sequence_local_response=0;assign wire_patch_lock=0;
+        assign flag_sequence_click=0;assign flag_sequence_accent=0;assign flag_sequence_record=0;assign wire_click_sample=0;
+        assign o_sequence_status=0;assign o_sequence_bpm=0;
+    end endgenerate
+    generate if(C_TOUCH_ENABLE)begin:TouchDomain
+        wire [1:0] wire_update,wire_contact;
+        wire [19:0] wire_x,wire_y;
+        wire [15:0] wire_error;
+        SynthTouchInput Input_Inst(.i_clk(i_clk),.i_rstn(flag_rstn),.io_scl(io_touch_scl),.io_sda(io_touch_sda),
+            .o_update(wire_update),.o_touch(wire_contact),.o_x(wire_x),.o_y(wire_y),.o_error(wire_error));
+        SynthTouchPerformance Performance_Inst(.i_clk(i_clk),.i_rstn(flag_rstn),.i_next_mode(i_touch_next),.i_silent(o_display_calibrating),
+            .i_update(wire_update),.i_touch(wire_contact),.i_x(wire_x),.i_y(wire_y),.i_error(wire_error),
+            .i_pressed(wire_pressed),.i_delivered(wire_delivered),.i_keys_idle(flag_keys_idle),.o_pressed(wire_performance_keys),.o_mode(o_touch_mode),
+            .o_gain(wire_touch_gain),.o_pitch(wire_touch_pitch),.o_cutoff(wire_touch_cutoff),.o_cutoff_active(flag_touch_cutoff_active),
+            .i_request(flag_local_request && flag_touch_select),.i_opcode(wire_local_opcode),.i_argument(wire_local_argument),.i_words(wire_local_words),
+            .o_response_valid(flag_touch_response),.o_response(wire_touch_response));
+    end else begin:NoTouchDomain
+        assign wire_performance_keys=wire_pressed;assign wire_touch_gain=18'd65536;assign wire_touch_pitch=0;assign wire_touch_cutoff=0;
+        assign flag_touch_cutoff_active=0;assign flag_touch_response=0;assign wire_touch_response=0;assign o_touch_mode=0;
+    end endgenerate
 endmodule

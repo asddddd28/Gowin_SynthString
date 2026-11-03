@@ -87,8 +87,9 @@ module tb_lfo_engine(output o_done);
             if(code!=1 || pcm!==expected) $fatal(1,"LFO audio frame %0d expected %h got %h cycles=%0d",n,expected,pcm,cycles);
             for(c=0;c<24;c=c+1) begin
                 code=$fscanf(state_file,"%h",expected_state);if(code!=1) $fatal(1,"state format");
-                actual_state={Dut.Modulation_Inst.mem_rng[c],21'd0,Dut.Modulation_Inst.flag_initialized[c],10'd0,
-                              Dut.Modulation_Inst.mem_phase[c],Dut.Modulation_Inst.mem_value[c]};
+                // Compare observable state, independent of its physical RAM encoding.
+                @(negedge clk);data[327:320]=c;#1;
+                actual_state=Dut.wire_lfo_inspect;
                 if(actual_state!==expected_state) $fatal(1,"LFO state frame=%0d context=%0d expected %h got %h",n,c,expected_state,actual_state);
             end
             if(n==79 || n==599) begin
@@ -112,6 +113,10 @@ module tb_lfo_engine(output o_done);
         if(pcm!=0 || Dut.Modulation_Inst.mem_phase[0]!=phase_before) $fatal(1,"disabled engine must freeze LFO and emit silence");
         @(negedge clk);rstn=0;repeat(2) @(negedge clk);rstn=1;
         if(Dut.Modulation_Inst.flag_initialized!==0) $fatal(1,"reset retained LFO state");
+        for(c=0;c<24;c=c+1)begin
+            @(negedge clk);data[327:320]=c;#1;
+            if(Dut.wire_lfo_inspect!==128'h00000001000000000000000000000000)$fatal(1,"reset exposes stale RAM %0d",c);
+        end
         $display("PASS lfo_engine pcm_frames=1600 state_snapshots=38400 voices=8 logical_ops=48 max_render_cycles=%0d commands=%0d",max_cycles,commands);
         done=1;$finish;
     end

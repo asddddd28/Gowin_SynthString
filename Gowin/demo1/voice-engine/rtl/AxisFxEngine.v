@@ -45,6 +45,11 @@ module AxisFxEngine #(parameter C_DELAY_ADDR_BITS=15)(
     reg flag_replay;
     reg flag_eligible;
     reg flag_packet_decoded;
+    reg flag_checked; // 结果与动作快照已经完成校验，可以等待实际握手
+    reg flag_checked_eligible; // 序列合格请求需推进会话，包括返回参数错误的请求
+    reg flag_checked_apply; // 仅首次有效命令允许修改配置或清空效果状态
+    reg [127:0] reg_checked_result; // 反压期间保持本次校验结果，音频到达后作废重算
+    reg [4:0] reg_checked_actions; // Delay草稿、Reverb草稿、提交、清Delay、清Reverb
     reg [20:0] reg_signature_equal;
     reg [9:0] reg_payload_zero;
     integer signature_chunk, payload_chunk;
@@ -59,9 +64,9 @@ module AxisFxEngine #(parameter C_DELAY_ADDR_BITS=15)(
     wire [31:0] wire_sequence=i_s_axis_tdata[383:352];
     wire [335:0] wire_signature={i_s_axis_tdest,wire_address,i_s_axis_tdata[319:0]};
     wire flag_accept=i_s_axis_tvalid && o_s_axis_tready;
-    wire flag_apply=flag_accept && flag_eligible && dec_status==0;
-    wire flag_clear_delay=flag_apply && i_s_axis_tdest==8'hc3 && i_s_axis_tdata[0];
-    wire flag_clear_reverb=flag_apply && i_s_axis_tdest==8'hc3 && i_s_axis_tdata[1];
+    wire flag_apply=flag_accept && flag_checked_apply;
+    wire flag_clear_delay=flag_apply && reg_checked_actions[3];
+    wire flag_clear_reverb=flag_apply && reg_checked_actions[4];
     wire flag_delay_ready;
     wire flag_delay_valid;
     wire flag_reverb_ready;
@@ -69,7 +74,7 @@ module AxisFxEngine #(parameter C_DELAY_ADDR_BITS=15)(
     wire flag_reverb_clipped;
     wire [63:0] wire_delay_data;
     wire [31:0] wire_delay_frame;
-    assign o_s_axis_tready=i_axis_arstn && flag_packet_decoded && !flag_audio_busy && !i_audio_valid && (!flag_completion || i_m_axis_tready);
+    assign o_s_axis_tready=i_axis_arstn && flag_checked && !flag_audio_busy && !i_audio_valid && (!flag_completion || i_m_axis_tready);
     assign o_m_axis_tvalid=flag_completion;
     assign o_m_axis_tdata=reg_completion;
     assign o_m_axis_tuser=reg_tag;
@@ -84,14 +89,28 @@ module AxisFxEngine #(parameter C_DELAY_ADDR_BITS=15)(
     always @(posedge i_axis_aclk or negedge i_axis_arstn) begin
         if (!i_axis_arstn) begin
             flag_packet_decoded<=0;reg_signature_equal<=0;reg_payload_zero<=0;
+            flag_checked<=0;flag_checked_eligible<=0;flag_checked_apply<=0;
+            reg_checked_result<=0;reg_checked_actions<=0;
         end else if (flag_audio_busy || i_audio_valid || !i_s_axis_tvalid || flag_accept) begin
             flag_packet_decoded<=0;
+            flag_checked<=0;
         end else if (!flag_packet_decoded) begin
             flag_packet_decoded<=1;
             for (signature_chunk=0;signature_chunk<21;signature_chunk=signature_chunk+1)
                 reg_signature_equal[signature_chunk]<=wire_signature[signature_chunk*16+:16]==reg_signature[signature_chunk*16+:16];
             for (payload_chunk=0;payload_chunk<10;payload_chunk=payload_chunk+1)
                 reg_payload_zero[payload_chunk]<=i_s_axis_tdata[payload_chunk*32+:32]==0;
+        end else if (!flag_checked) begin
+            // 参数判断停在本地寄存器；配置及清空使能不再组合依赖远端参数总线。
+            flag_checked<=1;
+            flag_checked_eligible<=flag_eligible;
+            flag_checked_apply<=flag_eligible && dec_status==0;
+            reg_checked_result<=dec_result;
+            reg_checked_actions[0]<=flag_eligible && dec_status==0 && i_s_axis_tdest==8'hc0;
+            reg_checked_actions[1]<=flag_eligible && dec_status==0 && i_s_axis_tdest==8'hc1;
+            reg_checked_actions[2]<=flag_eligible && dec_status==0 && i_s_axis_tdest==8'hc2;
+            reg_checked_actions[3]<=flag_eligible && dec_status==0 && i_s_axis_tdest==8'hc3 && i_s_axis_tdata[0];
+            reg_checked_actions[4]<=flag_eligible && dec_status==0 && i_s_axis_tdest==8'hc3 && i_s_axis_tdata[1];
         end
     end
 
@@ -173,27 +192,24 @@ module AxisFxEngine #(parameter C_DELAY_ADDR_BITS=15)(
             if (flag_completion && i_m_axis_tready) flag_completion<=0;
             if (flag_accept) begin
                 flag_completion<=1;
-                reg_completion<=dec_result;
+                reg_completion<=reg_checked_result;
                 reg_tag<=i_s_axis_tuser;
                 reg_opcode<=i_s_axis_tdest;
-                if (flag_eligible) begin
+                if (flag_checked_eligible) begin
                     flag_session<=1;
                     reg_epoch<=wire_epoch;
                     reg_sequence<=wire_sequence;
                     reg_signature<=wire_signature;
-                    reg_cached<=dec_result;
+                    reg_cached<=reg_checked_result;
                 end
                 if (flag_apply) begin
-                case (i_s_axis_tdest)
-                    8'hc0: reg_delay_draft<=i_s_axis_tdata[159:0];
-                    8'hc1: reg_reverb_draft<=i_s_axis_tdata[127:0];
-                    8'hc2: begin
+                    if (reg_checked_actions[0]) reg_delay_draft<=i_s_axis_tdata[159:0];
+                    if (reg_checked_actions[1]) reg_reverb_draft<=i_s_axis_tdata[127:0];
+                    if (reg_checked_actions[2]) begin
                         reg_delay_active<=reg_delay_draft;
                         reg_reverb_active<=reg_reverb_draft;
                         cnt_revision<=cnt_revision+1'b1;
                     end
-                    default: cnt_revision<=cnt_revision;
-                endcase
                 end
             end
             if (i_audio_valid && o_audio_ready) begin

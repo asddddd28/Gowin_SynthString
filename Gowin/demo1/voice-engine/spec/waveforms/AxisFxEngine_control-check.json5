@@ -1,0 +1,36 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p...."
+    },
+    {
+      "name": "cmd_valid",
+      "wave": "1..0."
+    },
+    {
+      "name": "predecoded",
+      "wave": "01.0."
+    },
+    {
+      "name": "checked",
+      "wave": "0.10."
+    },
+    {
+      "name": "cmd_ready",
+      "wave": "0.10."
+    },
+    {
+      "name": "audio_valid",
+      "wave": "0...."
+    },
+    {
+      "name": "completion_valid",
+      "wave": "0..10"
+    },
+    {
+      "name": "mutation_at_edge",
+      "wave": "0.10."
+    }
+  ]
+}

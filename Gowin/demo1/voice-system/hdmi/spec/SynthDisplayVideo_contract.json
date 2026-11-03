@@ -1,0 +1,344 @@
+{
+  "modules": [
+    {
+      "name": "SynthDisplayVideo",
+      "rtl_path": "rtl/SynthDisplayVideo.v",
+      "description": "1280x720 active; totals1650x750; HS1390..1429, VS725..729, positive polarity. Pixel clock73.333333MHz.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_system_clk",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_system_clk",
+            "role": "clock",
+            "description": "i_system_clk"
+          },
+          {
+            "name": "i_calibrating",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_calibrating"
+          },
+          {
+            "name": "i_host_live",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_system_clk",
+            "role": "data",
+            "description": "i_host_live"
+          },
+          {
+            "name": "i_page",
+            "direction": "input",
+            "width": 3,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_page"
+          },
+          {
+            "name": "i_fields",
+            "direction": "input",
+            "width": 160,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_fields"
+          },
+          {
+            "name": "i_text_write",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_system_clk",
+            "role": "data",
+            "description": "i_text_write"
+          },
+          {
+            "name": "i_text_address",
+            "direction": "input",
+            "width": 10,
+            "clock_domain": "i_system_clk",
+            "role": "data",
+            "description": "i_text_address"
+          },
+          {
+            "name": "i_text_data",
+            "direction": "input",
+            "width": 8,
+            "clock_domain": "i_system_clk",
+            "role": "data",
+            "description": "i_text_data"
+          },
+          {
+            "name": "i_wave",
+            "direction": "input",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_wave"
+          },
+          {
+            "name": "i_spectrum",
+            "direction": "input",
+            "width": 7,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_spectrum"
+          },
+          {
+            "name": "i_audio_available",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_audio_available"
+          },
+          {
+            "name": "i_publish",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_publish"
+          },
+          {
+            "name": "o_wave_address",
+            "direction": "output",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_wave_address"
+          },
+          {
+            "name": "o_spectrum_address",
+            "direction": "output",
+            "width": 6,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_spectrum_address"
+          },
+          {
+            "name": "o_blank_start",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_blank_start"
+          },
+          {
+            "name": "o_rgb",
+            "direction": "output",
+            "width": 24,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_rgb"
+          },
+          {
+            "name": "o_hsync",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_hsync"
+          },
+          {
+            "name": "o_vsync",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_vsync"
+          },
+          {
+            "name": "o_de",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_de"
+          },
+          {
+            "name": "i_touch_mode",
+            "direction": "input",
+            "width": 2,
+            "role": "data",
+            "description": "i_touch_mode"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 73333333
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "1280x720 active; totals1650x750; HS1390..1429, VS725..729, positive polarity. Pixel clock73.333333MHz.",
+        "Deduplicated12x16 character cells use SynthUI palette and original5x7 bitmap font, eight pages, real32-key highlight. Footer order is E5,E4,E3,E2,E1 matching physical placement.",
+        "Five pixel pipeline stages align RGB and timing. No framebuffer or external RAM. Text metadata may become visible during the current frame; whole-page geometry changes in blanking.",
+        "Host-live synchronizes to pixel clock; expired connection selects offline banner. 64x64 spectrum history updates in blanking; DFT display covers190.735Hz..12.207kHz.",
+        "C_TOUCH_ENABLE开启时页眉显示TOUCH 1..4，2位模式经两拍同步用于显示。",
+        "页面单元 ROM 保持 128 单元行跨度，以 C_CELL_DEPTH=11264 分配十一组 1024x18 存储；88 个实际行，流水延迟不变。",
+        "Gowin 对非二次幂深度仍取整，实际使用三个 8192/2048/1024 数组和各自的寄存读出；选区标志同步寄存，组合选择进入原有文本与字符后级，不插入额外时钟。",
+        "资源生成器提供八页，总计88个唯一128字符行，仍使用11264×18位字符ROM（11块BSRAM）和原512项行指针。共享导航块背景元数据13表示页签，前景3位表示页编号；末级按i_page匹配绘制选中颜色。",
+        "新库页面共用文本128..383显示8条列表，512..639显示库标题/操作说明/选择/状态；其余页面显示内容不变。未挂载时显示明确的SD未就绪状态，不显示伪造条目。",
+        "八个144×48像素等宽页签从x=24、y=64开始，步进156像素，间隔12像素。标签位于y=80，页标题下移到y=128。选中背景efad73、字101820；其他背景21323f、字dce8ed。总88行、11264×18字符ROM和原像素流水延迟不变。"
+      ],
+      "constraints": [
+        "50MHz system; 73.333333MHz pixel; related5x serializer. Hold multi-bit CDC payload through toggle acknowledgement.",
+        "ROM/RAM contents generated by prepare_assets.mjs; no asynchronous array reset.",
+        "prepare_assets.mjs 从 RTL 读取 C_CELL_DEPTH，容量必须是 1024 的倍数且容纳全部唯一行；所有 512 个只读行指针均指向已分配范围。",
+        "总容量固定等于三存储区之和；页生成器超容量即失败，不允许静默截断。main 使用 row[5:0]，middle 使用 row[3:0]，tail 使用 row[2:0]；只读行索引当前范围 0..87。"
+      ],
+      "corner_cases": [
+        "Reset while transfer pending; invalid opcode/argument; sustained key; missing display consumer.",
+        "No host connection: monitoring and page navigation continue; metadata edits require connected App."
+      ],
+      "verification_cases": [
+        "tb_display_audio: phase-invariant triggered captures, bounded quiet/silence/DC timeout,448 spectral bins and1792 waveform values including30.5Hz exact vs Python, dual-clock publication.",
+        "tb_display_control: valid/invalid local commands, text ACK ordering and decimal CDC.",
+        "tb_display_video: six921600-pixel frames with no unknown RGB; visually inspect actual RTL images.",
+        "Full SynthSystemTop UART/keyboard/PCM regression and actual Gowin place-and-route.",
+        "check_storage_compaction.py 枚举 65536 个页/行/列地址，并比较七幅完整 RGB 图逐字节一致；MprScanner 仅存储映射属性改变。",
+        "tb_display_control覆盖页面6/7、无效8、7→0和0→7回绕；显示资源88行不超原ROM；Rust库页面屏蔽算子编辑内容。",
+        "tb_display_video九幅完整图；validate_navigation.py逐像素核对页签位置/留白/字色/唯一选中项，并验证标题移动外其他画面逐位一致。"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "cell_lookup",
+          "title": "页面 ROM 容量压缩不改变流水",
+          "scenario": "cell_lookup",
+          "description": "行指针、单元、文本和字形均沿用原有寄存读出级；缩小数组上界不增加或删除任何寄存器。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "pixel_clk",
+                "wave": "p......."
+              },
+              {
+                "name": "row_address",
+                "wave": "=.......",
+                "data": [
+                  "page,row"
+                ]
+              },
+              {
+                "name": "row_index",
+                "wave": "x=......",
+                "data": [
+                  "0..87"
+                ]
+              },
+              {
+                "name": "cell",
+                "wave": "xx=.....",
+                "data": [
+                  "18 bits"
+                ]
+              },
+              {
+                "name": "text",
+                "wave": "xxx=....",
+                "data": [
+                  "8 bits"
+                ]
+              },
+              {
+                "name": "character",
+                "wave": "xxxx=...",
+                "data": [
+                  "glyph"
+                ]
+              },
+              {
+                "name": "font",
+                "wave": "xxxxx=..",
+                "data": [
+                  "5 bits"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "selected_tab",
+          "title": "页签元数据与字形同拍着色",
+          "scenario": "selected_tab",
+          "description": "背景标记13和页ID沿现有cell/font流水，在RGB输出拍与i_page比较；页面号在消隐区稳定提交。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "pixel_clk",
+                "wave": "p......."
+              },
+              {
+                "name": "page",
+                "wave": "=.......",
+                "data": [
+                  "selected ID"
+                ]
+              },
+              {
+                "name": "cell",
+                "wave": "x=......",
+                "data": [
+                  "bg13 / tab ID"
+                ]
+              },
+              {
+                "name": "metadata",
+                "wave": "xx=.....",
+                "data": [
+                  "latched"
+                ]
+              },
+              {
+                "name": "character",
+                "wave": "xxx=....",
+                "data": [
+                  "label"
+                ]
+              },
+              {
+                "name": "font_and_tab",
+                "wave": "xxxx=...",
+                "data": [
+                  "aligned"
+                ]
+              },
+              {
+                "name": "rgb",
+                "wave": "xxxxx=..",
+                "data": [
+                  "selected / inactive"
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

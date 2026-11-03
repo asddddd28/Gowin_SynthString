@@ -1,0 +1,31 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p....."
+    },
+    {
+      "name": "valid",
+      "wave": "01...0"
+    },
+    {
+      "name": "decoded",
+      "wave": "0.1..0"
+    },
+    {
+      "name": "local address",
+      "wave": "x.=...",
+      "data": [
+        "snapshot"
+      ]
+    },
+    {
+      "name": "prechecked",
+      "wave": "0..1.0"
+    },
+    {
+      "name": "checked",
+      "wave": "0...10"
+    }
+  ]
+}

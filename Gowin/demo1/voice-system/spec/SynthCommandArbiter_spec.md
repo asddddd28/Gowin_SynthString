@@ -48,21 +48,28 @@ Boot has exclusive command ownership until initialized. Afterwards round-robin a
 | `o_host_response` | output | 136 | 未声明 | data | o_host_response |
 | `o_host_response_valid` | output | 1 | 未声明 | control | o_host_response_valid |
 | `i_host_response_ready` | input | 1 | 未声明 | control | i_host_response_ready |
+| `i_sequence_request` | input | 392 | 未声明 | data | i_sequence_request |
+| `i_sequence_request_valid` | input | 1 | 未声明 | data | i_sequence_request_valid |
+| `o_sequence_request_ready` | output | 1 | 未声明 | data | o_sequence_request_ready |
+| `o_sequence_response` | output | 136 | 未声明 | data | o_sequence_response |
+| `o_sequence_response_valid` | output | 1 | 未声明 | data | o_sequence_response_valid |
+| `i_sequence_response_ready` | input | 1 | 未声明 | data | i_sequence_response_ready |
 
 ## 5. 周期行为与延迟
 
 - Boot has exclusive command ownership until initialized. Afterwards round-robin arbitration between physical keys and host.
 - Owner held until its response is accepted; samples run independently of command arbitration.
+- C_SEQUENCE_ENABLE=1时新增回放请求源，启动完成后按键/主机/回放轮询；启动请求独占。现有单拍offer缓存保持392位命令直到下游接受，Completion按owner返回。默认0保持旧两源策略。
 
 ## 6. WaveDrom 时序图
 
-### 流水接纳与反压
+### 小节提交与回放握手
 
-事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。
+按键事件暂存，停止后保留完成的小节；回放命令稳定等待仲裁和回执。
 
-![流水接纳与反压](waveforms/SynthCommandArbiter_stream.svg)
+![小节提交与回放握手](waveforms/SynthCommandArbiter_record-play.svg)
 
-- WaveJSON：[SynthCommandArbiter_stream.json5](waveforms/SynthCommandArbiter_stream.json5)
+- WaveJSON：[SynthCommandArbiter_record-play.json5](waveforms/SynthCommandArbiter_record-play.json5)
 
 ## 7. 边界、反压与错误
 

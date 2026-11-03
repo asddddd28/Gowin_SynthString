@@ -9,7 +9,8 @@ module tb_synth_system(output o_done);
     reg [11:0] raw[0:31],rest[0:31],bottom[0:31];
     reg [1:0] selected=0;
     reg [15:0] adc_response=0,adc_command=0;
-    integer edges=0,col=0,conversions=0,k,clock_count=0,last_tick=0,max_compute=0;
+    integer edges=0,col=0,conversions=0,k,clock_count=0,last_tick=0,max_compute=0,max_stress_compute=0;
+    reg stress_active=0; // 单独核对全native压力帧，不覆盖此前DX负载最大值
     integer pcm_count=0,serial_count=0,serial_slot=0,serial_nonzero=0;
     reg [15:0] serial_left=0,serial_right=0,expected_left=0,expected_right=0;
     reg previous_ws=1;
@@ -67,6 +68,7 @@ module tb_synth_system(output o_done);
         if(Dut.Endpoint_Inst.Endpoint_Inst.Runtime_Inst.flag_tick) last_tick=clock_count;
         if(Dut.Endpoint_Inst.Endpoint_Inst.Runtime_Inst.flag_pcm) begin
             if(clock_count-last_tick>max_compute)max_compute=clock_count-last_tick;
+            if(stress_active && clock_count-last_tick>max_stress_compute)max_stress_compute=clock_count-last_tick;
             if(clock_count-last_tick>=1024)$fatal(1,"DSP deadline");
         end
         if(Dut.flag_pcm_ready) begin
@@ -128,7 +130,11 @@ module tb_synth_system(output o_done);
             if(reply_count!=target)$fatal(1,"UART timeout packet=%0d host_state=%d master=%d",number,Dut.Host_Inst.reg_state,Dut.Master_Inst.reg_state);
             if(replies[target-1][199:192]!==status)$fatal(1,"UART status packet=%0d got=%0d expected=%0d",number,replies[target-1][199:192],status);
             if(replies[target-1][63:32]!=={packets[number*52+7],packets[number*52+6],packets[number*52+5],packets[number*52+4]})$fatal(1,"UART identity");
-            if(status==0 && packets[number*52+3]==0 && replies[target-1][135:128]!=0)$fatal(1,"engine command status packet=%0d %h",number,replies[target-1]);
+            if(status==0 && packets[number*52+3]==0) begin
+                if(packets[number*52+8]>=8'hc0 && packets[number*52+8]<=8'hc4) begin
+                    if(replies[target-1][135:128]!=1)$fatal(1,"disabled FX did not return unsupported");
+                end else if(replies[target-1][135:128]!=0)$fatal(1,"engine command status packet=%0d %h",number,replies[target-1]);
+            end
         end
     endtask
     initial begin
@@ -138,7 +144,7 @@ module tb_synth_system(output o_done);
         while(!Dut.flag_boot_done)@(negedge clk);
         frames(80);
         if(Dut.Endpoint_Inst.Endpoint_Inst.C_DELAY_ADDR_BITS!=13)$fatal(1,"board delay capacity");
-        if(pa || Dut.wire_completed!=60 || Dut.wire_pressed!=0 || serial_nonzero!=0)$fatal(1,"boot or idle");
+        if(pa || Dut.wire_completed!=57 || Dut.wire_pressed!=0 || serial_nonzero!=0)$fatal(1,"boot or idle");
         transact(0,0);
         if(replies[0][71:64]!=8'h11)$fatal(1,"board status initialized/amplifier flags %h",replies[0]);
         transact(1,0);if(replies[1][95:64]!=32'h00010005)$fatal(1,"AXI ABI read");
@@ -162,7 +168,7 @@ module tb_synth_system(output o_done);
         transact(12,0);transact(13,0);transact(14,0);
         frames(400);
         if(Dut.wire_delivered!==32'hffffffff || Dut.wire_key_events!=32 || Dut.Endpoint_Inst.Endpoint_Inst.Runtime_Inst.o_active!==8'hff)$fatal(1,"32 keys / 8 voice allocation");
-        transact(15,0);if(replies[reply_count-1][95:64]!=72)$fatal(1,"FX telemetry");
+        transact(15,0);if(replies[reply_count-1][95:64]!=0)$fatal(1,"FX telemetry");
         transact(16,3);transact(17,0);
         for(k=0;k<10;k=k+1)send_byte(packets[18*52+k]);
         repeat(10000)@(negedge clk);transact(18,0);
@@ -187,19 +193,21 @@ module tb_synth_system(output o_done);
             while(reply_count==old_count && stress_timeout<20000)begin @(negedge clk);stress_timeout=stress_timeout+1;end
             if(reply_count!=old_count+1 || replies[old_count][199:192]!=0 || replies[old_count][63:32]!=19+stress_command)
                 $fatal(1,"stress UART command %0d reply=%h",stress_command,replies[old_count]);
-            if(stress_command<107 && replies[old_count][135:128]!=0)$fatal(1,"stress engine status %d",stress_command);
-            if(stress_command==108 && replies[old_count][95:64]!=32'h040d1203)$fatal(1,"FX capacity address bits");
-            if(stress_command==109 && replies[old_count][95:64]!=8191)$fatal(1,"FX capacity maximum");
-            if(stress_command==110 && replies[old_count][135:128]!=8)$fatal(1,"oversized board delay accepted");
+            if(stress_command<107 && stress_packets[stress_command*52+8]!=8'hc3 && replies[old_count][135:128]!=0)$fatal(1,"stress engine status %d",stress_command);
+            if(stress_command==108 && replies[old_count][95:64]!=0)$fatal(1,"FX capacity address bits");
+            if(stress_command==109 && replies[old_count][95:64]!=0)$fatal(1,"FX capacity maximum");
+            if((stress_command==106 || stress_command==110) && replies[old_count][135:128]!=1)$fatal(1,"oversized board delay accepted");
             if(stress_command==104)begin
+                stress_active=1;
                 frames(256);
-                if(max_compute!=940)$fatal(1,"worst-case frame not observed %0d",max_compute);
+                stress_active=0;
+                if(max_stress_compute!=835)$fatal(1,"native dry worst-case frame not observed %0d",max_stress_compute); // Voice834拍后下一沿观察到PCM脉冲；保留1024拍硬期限。
             end
         end
         frames(10);
         if(Dut.Endpoint_Inst.Endpoint_Inst.Runtime_Inst.o_pcm_dropped!=0 || Dut.Endpoint_Inst.Endpoint_Inst.Runtime_Inst.o_fx_dropped!=0 || Dut.Endpoint_Inst.Endpoint_Inst.Runtime_Inst.o_overruns!=0)$fatal(1,"audio drop/overrun");
         completed=1;
-        $display("PASS synth_system boot=60 FM1_presets=4 keys=66 UART_replies=%0d CRC_replay=PASS PCM=%0d PT8211=%0d nonzero=%0d ADC=%0d max_compute=%0d",reply_count,pcm_count,serial_count,serial_nonzero,conversions,max_compute);
+        $display("PASS synth_system boot=57 FX=disabled FM1_presets=4 keys=66 UART_replies=%0d CRC_replay=PASS PCM=%0d PT8211=%0d nonzero=%0d ADC=%0d max_compute=%0d native_stress=%0d",reply_count,pcm_count,serial_count,serial_nonzero,conversions,max_compute,max_stress_compute);
         $finish;
     end
     initial begin #300000000;$fatal(1,"system watchdog state=%0d boot=%0d",Dut.Master_Inst.reg_state,Dut.Boot_Inst.reg_command);end

@@ -1,0 +1,141 @@
+{
+  "modules": [
+    {
+      "name": "SynthWaveRam",
+      "rtl_path": "rtl/SynthWaveRam.v",
+      "description": "双端口波表 RAM；明确使用 Gowin 写穿模式。",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "clock_domain": "i_clk",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_write",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_write"
+          },
+          {
+            "name": "i_address_a",
+            "direction": "input",
+            "width": 10,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_address_a"
+          },
+          {
+            "name": "i_data",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_data"
+          },
+          {
+            "name": "i_address_b",
+            "direction": "input",
+            "width": 10,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_address_b"
+          },
+          {
+            "name": "o_data_a",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_data_a"
+          },
+          {
+            "name": "o_data_b",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_data_b"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "none",
+        "polarity": "none",
+        "synchronous": true,
+        "description": "No RAM reset; configuration initialization only."
+      },
+      "behavior": [
+        "Two physical DPB blocks provide 1024 x 32 storage, one-clock read latency, port A write-through.",
+        "INIT_RAM values generated from canonical Q26 sine; port B read during same-address A write is not consumed."
+      ],
+      "constraints": [
+        "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
+        "See SYSTEM.md and model/system_model.py for ABI, numerical behavior, memory images and validation scope."
+      ],
+      "corner_cases": [
+        "signed minima/maxima and zero",
+        "changing tags and parameters every accepted beat",
+        "long backpressure and bubbles",
+        "reset while pipeline holds transactions"
+      ],
+      "verification_cases": [
+        "Full existing board regression: 134 UART replies, all 32 keys, eight-voice load and serial DAC.",
+        "tb_studio_system: local command CRC/replay, distinct key patches, held remapping/release, 512 signed16 capture samples compared to DAC quantization, tagged latency."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "transaction",
+          "title": "后台读取、校验与提交",
+          "scenario": "transaction",
+          "description": "存储请求独立于 PCM；校验完成之前不给调用方成功状态。每格表示事务阶段，不是固定总周期数。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "request",
+                "wave": "010......."
+              },
+              {
+                "name": "busy",
+                "wave": "0.1.....0."
+              },
+              {
+                "name": "data",
+                "wave": "x..=...x..",
+                "data": [
+                  "sector / snapshot"
+                ]
+              },
+              {
+                "name": "verified",
+                "wave": "0......10."
+              },
+              {
+                "name": "done",
+                "wave": "0.......10"
+              },
+              {
+                "name": "pcm_tick",
+                "wave": "0101010101"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

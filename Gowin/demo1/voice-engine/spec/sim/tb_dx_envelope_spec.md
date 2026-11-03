@@ -51,6 +51,7 @@
 ## 9. 验证与验收
 
 - 10096 DX envelope oracle vectors; all curves and events; stalls and reset
+- 分拍回归：DX包络7拍、DX算子11拍；新增流水每阶段复位取消和重新请求，数值参考不变。
 
 ## 10. 可追溯性
 

@@ -4,11 +4,11 @@ $taskRoot=Split-Path -Parent $PSScriptRoot
 Push-Location $taskRoot
 try {
     $env:PYTHONIOENCODING='utf-8'
-    foreach ($script in @('dx7_validation.py','voice_engine_model.py','preset_vectors.py','lfo_engine_vectors.py')) {
+    foreach ($script in @('dx7_validation.py','voice_engine_model.py','fm_interpolation_validation.py','preset_vectors.py','lfo_engine_vectors.py')) {
         python "model/$script"
         if ($LASTEXITCODE -ne 0) { throw "Python failed: $script" }
     }
-    $suites=@('dx_envelope','dx_operator','fm1_engine','fm_operator','voice_engine','voice_presets','lfo_engine')
+    $suites=@('dx_envelope','dx_operator','fm1_engine','fm_operator','fm_interpolation','voice_engine','voice_presets','lfo_engine')
     $testSources=$suites | ForEach-Object { "sim/tb_$_.v" }
     & "$VivadoBin/xvlog.bat" -f sources.f @testSources -log reports/dx-xvlog.log *> reports/dx-compile.log
     if ($LASTEXITCODE -ne 0) { throw 'xvlog failed' }

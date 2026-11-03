@@ -18,6 +18,7 @@ export type StudioState = {
 };
 export type MidiPort = {id:number;name:string};
 export type Timbre = { id: number; title: string; category: string; description: string; profile: Profile; resource_id: number | null; waveform: number[] | null };
+export type NativePreset = {id:string;title:string;category:'AM'|'PM'|'Drum';description:string;source:string;source_url:string|null;adaptation:string[];percussive:boolean;patch:import('../../../demo_test/desktop-tauri/src/native-voice').NativePatch};
 export type Resource = { id: number; title: string; frames: number; resource_id: number; revision: number };
 export type PairPreview = { frames: number[][]; first: number; second: number; fraction: number };
 export type Snapshot = { patch: string; parameters: Record<string, { value: number; display: string }>; docs: Record<string, unknown> };

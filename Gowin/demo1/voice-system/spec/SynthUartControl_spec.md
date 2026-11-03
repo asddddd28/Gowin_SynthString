@@ -14,8 +14,8 @@ Protocol5: fixed52-byte request SY/version/kind/sequence/opcode/argument/payload
 
 ## 3. 时钟与复位
 
-- 时钟：`{"name": "i_axis_aclk", "edge": "posedge", "frequency_hz": 50000000}`
-- 复位：`{"name": "i_axis_arstn", "active": "low", "style": "asynchronous", "values": "all pipeline valid and output data/tag registers clear; external synchronous release"}`
+- 时钟：`{"name": "i_clk", "edge": "posedge", "frequency_hz": 50000000}`
+- 复位：`{"name": "i_rstn", "active": "low", "style": "asynchronous", "values": "all pipeline valid and output data/tag registers clear; external synchronous release"}`
 
 ## 4. 接口信号规范
 
@@ -35,15 +35,20 @@ Protocol5: fixed52-byte request SY/version/kind/sequence/opcode/argument/payload
 | `i_status` | input | 128 | 未声明 | data | i_status |
 | `o_bad_packets` | output | 32 | 未声明 | data | o_bad_packets |
 | `o_replayed` | output | 32 | 未声明 | data | o_replayed |
+| `o_local_request` | output | 1 | i_clk | control | o_local_request |
+| `o_local_opcode` | output | 8 | i_clk | data | o_local_opcode |
+| `o_local_argument` | output | 8 | i_clk | data | o_local_argument |
+| `o_local_words` | output | 64 | i_clk | data | o_local_words |
+| `i_local_valid` | input | 1 | i_clk | control | i_local_valid |
+| `i_local_response` | input | 136 | i_clk | data | i_local_response |
 
 ## 5. 周期行为与延迟
 
-- Protocol5: fixed52-byte request SY/version/kind/sequence/opcode/argument/payload40/CRC16-CCITT, little-endian.
-- Response32 bytes SR/version/kind/sequence/result128/transport_status/opcode/argument/replayflag/reserved16/CRC16.
-- Kind0 engine command; kind1 read AXI register (payload W0); kind2 local status. Stop-and-wait, latest exact request cached, conflicts/stale/gaps reject without execution.
-- Invalid CRC, framing, byte gap or packets while busy never execute. RX and TX use independent byte engines; host retries on timeout.
-- DECODE registers packet equality and payload-zero chunks; CLASSIFY registers replay/conflict/sequence/payload decisions before CHECK. Adds two control clocks, preserves byte-exact retry semantics.
-- Host NoteIDs must have bit31 clear; physical key IDs reserved. Boot-not-ready rejects engine/read requests. Local status is accepted while the parser is idle; a permanently stalled AXI request holds WAIT_REPLY until handshake or reset.
+- Protocol5 retains 52-byte requests and 32-byte CRC16 responses. Kinds0/1/2 preserve existing AXI/status behavior.
+- Kind3 dispatches to a board-local monitor, with unused payload words2..9 required zero. LOCAL_SEND is a single-cycle pulse; LOCAL_WAIT waits for completion.
+- Duplicate sequence plus identical complete payload replays the cached response without another write or capture trigger. Changed duplicate and out-of-order sequence reject without side effects.
+- Local operation errors consume their sequence and are cached, exactly like other validated requests.
+- Allow D0/D1 globalfilter mailbox commands and aligned capability read through0x64; preserve CRC/exact replay andsequence handling.
 
 ## 6. WaveDrom 时序图
 
@@ -69,10 +74,8 @@ Protocol5: fixed52-byte request SY/version/kind/sequence/opcode/argument/payload
 
 ## 9. 验证与验收
 
-- Independent protocol/PCM model
-- Real UART/ADC pins to serial DAC simulation
-- AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset
-- Boot, physical chord, release, host voice/FX commands and resource/timing checks
+- Full existing board regression: 134 UART replies, all 32 keys, eight-voice load and serial DAC.
+- tb_studio_system: local command CRC/replay, distinct key patches, held remapping/release, 512 signed16 capture samples compared to DAC quantization, tagged latency.
 
 ## 10. 可追溯性
 

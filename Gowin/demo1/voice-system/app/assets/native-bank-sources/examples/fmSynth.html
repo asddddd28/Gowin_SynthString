@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>FMSynth</title>
+		<script src="./tone-ui.js"></script>
+	</head>
+	<body>
+		<tone-example>
+			<div slot="explanation">
+				<a href="https://tonejs.github.io/docs/latest/classes/FMSynth"
+					>Tone.FMSynth</a
+				>
+				is composed of two
+				<a href="https://tonejs.github.io/docs/latest/classes/Synth"
+					>Tone.Synths</a
+				>
+				where one Tone.Synth modulates the frequency of a second
+				Tone.Synth.
+			</div>
+		</tone-example>
+
+		<script data-tone-code>
+			const synth = new Tone.FMSynth({
+				modulationIndex: 12.22,
+				envelope: {
+					attack: 0.01,
+					decay: 0.2,
+				},
+				modulation: {
+					type: "square",
+				},
+				modulationEnvelope: {
+					attack: 0.2,
+					decay: 0.01,
+				},
+			}).toDestination();
+		</script>
+
+		<script>
+			piano(synth);
+			ui(synth);
+		</script>
+	</body>
+</html>

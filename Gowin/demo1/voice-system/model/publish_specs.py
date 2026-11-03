@@ -16,7 +16,7 @@ def publish():
         path=ENGINE/f'spec/{name}_contract.json'
         contract=json.loads(path.read_text(encoding='utf-8'))
         module=contract['modules'][0]
-        text=('Synchronous program and packed163-bit context RAM: state17 waits after operator advance; pipelined modulation gives voice866 / full chain940 of1024. Allocation invalidates context flags; first use zeroes phase/EG/history and seeds noise=context+1; note gate events cannot bypass initialization.' if name=='VoiceSynthEngine' else
+        text=('Synchronous program and packed163-bit context RAM: state17 waits after operator advance; stereo pan adds state18 after state7. Verified voice874 / full chain948 of1024. Allocation invalidates context flags; first use zeroes phase/EG/history and seeds noise=context+1; note gate events cannot bypass initialization.' if name=='VoiceSynthEngine' else
               'C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15.')
         if name=='VoiceSynthEngine':module['behavior']=[b for b in module['behavior'] if not b.startswith('Synchronous program')]
         if name not in ('AxisFmOperator','AxisDxEnvelope','VoiceModulation') and text not in module['behavior']:module['behavior'].append(text)

@@ -32,6 +32,18 @@ fn main() {
                     let v: Value = serde_json::from_str(&line).map_err(|e| e.to_string())?;
                     let method = v["method"].as_str().ok_or("missing method")?;
                     match method {
+                        "test_compile_native" => {
+                            let patch = serde_json::from_value(v["params"]["patch"].clone())
+                                .map_err(|e| format!("invalid native patch: {e}"))?;
+                            let (commands, _) = tang_synth_studio::voice_engine::compile_native(patch, 0, 1)?;
+                            Ok(json!({"commands": commands}))
+                        }
+                        "test_compile_fm" => {
+                            let program = v["params"]["program"].as_u64()
+                                .filter(|p| *p < 128).ok_or("invalid FM program")? as u8;
+                            let (commands, _) = tang_synth_studio::voice_engine::compile(program, 0, 1, None)?;
+                            Ok(json!({"commands": commands}))
+                        }
                         "test_connect" => {
                             engine.test_connect();
                             Ok(Value::Null)

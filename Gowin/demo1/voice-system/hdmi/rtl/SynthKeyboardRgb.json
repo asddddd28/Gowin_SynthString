@@ -1,0 +1,1 @@
+{"signal":[{"name":"clk","wave":"p......."},{"name":"pressed","wave":"0.1...0."},{"name":"press edge","wave":"0.10...."},{"name":"request","wave":"0...10.."},{"name":"response_valid","wave":"0....10."},{"name":"clear effects","wave":"0....10."}],"head":{"text":"50 MHz synchronous inputs; set-mode response and one-cycle clear"}}

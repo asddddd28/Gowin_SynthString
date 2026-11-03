@@ -1,0 +1,3532 @@
+{
+  "format": "synthstring-native-presets-v1",
+  "version": 1,
+  "source_commit": "105c04cc00289caf49684ac5c7621bce8a042c4c",
+  "presets": [
+    {
+      "id": "am-tone-basic",
+      "title": "AM · Tone 柔和合成",
+      "category": "AM",
+      "description": "正弦载波与三倍频方波调制，调制缓慢进入。",
+      "source": "Tone.js AMSynth 默认参数",
+      "source_url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/Tone/instrument/ModulationSynth.ts",
+      "adaptation": [
+        "保留原有比率与双包络结构；指数曲线改为硬件线性段，起音重置相位，电平重新整理，非逐样本复刻。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "AM · Tone 柔和合成",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 3,
+            "fixed_hz": null,
+            "gain": 0.31622776601683794,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              500,
+              0,
+              0,
+              500.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              10,
+              0,
+              0,
+              500.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "am-tone-saw",
+      "title": "AM · Tone 锯齿合奏",
+      "category": "AM",
+      "description": "2.5 倍频 AM 与三层轻微失谐锯齿，适合短和弦。",
+      "source": "Tone.js AMSynth 示例改编",
+      "source_url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/examples/amSynth.html",
+      "adaptation": [
+        "保留原有比率与双包络结构；指数曲线改为硬件线性段，起音重置相位，电平重新整理，非逐样本复刻。",
+        "fatsawtooth 改为三个显式载波，失谐 ±10 cents；当前锯齿未带限，高音区可能混叠。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "AM · Tone 锯齿合奏",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 2.5,
+            "fixed_hz": null,
+            "gain": 0.31622776601683794,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              500,
+              0,
+              0,
+              500.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "saw",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.2,
+              0.2,
+              0.0
+            ],
+            "segment_ms": [
+              100,
+              250.0,
+              0,
+              1500.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "saw",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 0.9942404238175473,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.2,
+              0.2,
+              0.0
+            ],
+            "segment_ms": [
+              100,
+              250.0,
+              0,
+              1500.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "saw",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0057929410678534,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.2,
+              0.2,
+              0.0
+            ],
+            "segment_ms": [
+              100,
+              250.0,
+              0,
+              1500.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "am-soft-bell",
+      "title": "AM · 柔光钟",
+      "category": "AM",
+      "description": "非整数比率的边频，短调制包络带出柔和金属感。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "AM · 柔光钟",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 2.72,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.05,
+              0.05,
+              0.0
+            ],
+            "segment_ms": [
+              1,
+              473.68421052631584,
+              0,
+              4000.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.95,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.08,
+              0.08,
+              0.0
+            ],
+            "segment_ms": [
+              2,
+              1032.6086956521738,
+              0,
+              3750.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "am-reed",
+      "title": "AM · 芦管",
+      "category": "AM",
+      "description": "三角载波与同频正弦 AM，带有中低频簧片感。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "AM · 芦管",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              12,
+              350.0,
+              0,
+              200.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "triangle",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.8,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.65,
+              0.65,
+              0.0
+            ],
+            "segment_ms": [
+              25,
+              514.2857142857143,
+              0,
+              276.9230769230769
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "am-tremolo-pad",
+      "title": "AM · 呼吸铺底",
+      "category": "AM",
+      "description": "固定 4 Hz 振幅调制，缓慢起音，和弦共用现有复音。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "AM · 呼吸铺底",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 4,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              10,
+              0,
+              0,
+              700.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "triangle",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.7,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.7,
+              0.7,
+              0.0
+            ],
+            "segment_ms": [
+              350,
+              2333.333333333333,
+              0,
+              928.5714285714287
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "am-pluck",
+      "title": "AM · 木质拨弦",
+      "category": "AM",
+      "description": "双正弦 1.5 比率 AM，零持续电平，按住自然收尾。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "AM · 木质拨弦",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.5,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              1,
+              220,
+              0.0,
+              80
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.9,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              2,
+              450,
+              0.0,
+              100
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pm-tone-basic",
+      "title": "PM · Tone 经典",
+      "category": "PM",
+      "description": "三角调制波驱动正弦载波，来自 Tone FMSynth 默认结构。",
+      "source": "Tone.js FMSynth 默认参数改编",
+      "source_url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/Tone/instrument/FMSynth.ts",
+      "adaptation": [
+        "保留原有比率与双包络结构；指数曲线改为硬件线性段，起音重置相位，电平重新整理，非逐样本复刻。",
+        "原方波线性 FM 转为三角波 PM，深度=index×10^(-10/20)/(4×比率)；稳态关系可对应，包络变化时仍为近似。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "PM · Tone 经典",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "triangle",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 3,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              500,
+              0,
+              0,
+              500.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.26352313834736496,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              10,
+              0,
+              0,
+              500.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pm-tone-bright",
+      "title": "PM · Tone 明亮主音",
+      "category": "PM",
+      "description": "较强的 PM 深度与渐入调制，适合旋律和合成器主音。",
+      "source": "Tone.js FMSynth 示例改编",
+      "source_url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/examples/fmSynth.html",
+      "adaptation": [
+        "保留原有比率与双包络结构；指数曲线改为硬件线性段，起音重置相位，电平重新整理，非逐样本复刻。",
+        "原方波线性 FM 转为三角波 PM，深度=index×10^(-10/20)/(4×比率)；稳态关系可对应，包络变化时仍为近似。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "PM · Tone 明亮主音",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "triangle",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 3,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              200,
+              0,
+              0,
+              500.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.32202527506048,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              1,
+              1,
+              0.0
+            ],
+            "segment_ms": [
+              10,
+              0,
+              0,
+              500.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pm-electric-piano",
+      "title": "PM · 柔亮电钢",
+      "category": "PM",
+      "description": "二倍频短调制与长载波衰减，独立音色包络。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "PM · 柔亮电钢",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 2,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              1,
+              420,
+              0.0,
+              110
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.22,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.07,
+              0.07,
+              0.0
+            ],
+            "segment_ms": [
+              2,
+              1236.5591397849464,
+              0,
+              3714.2857142857138
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pm-round-bass",
+      "title": "PM · 圆润贝斯",
+      "category": "PM",
+      "description": "同频 PM 的短促泛音进入厚实基音，适合低音区。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "PM · 圆润贝斯",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.08,
+              0.08,
+              0.0
+            ],
+            "segment_ms": [
+              1,
+              173.91304347826087,
+              0,
+              875.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.19,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.45,
+              0.45,
+              0.0
+            ],
+            "segment_ms": [
+              3,
+              818.1818181818181,
+              0,
+              288.88888888888886
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pm-marimba",
+      "title": "PM · 木琴",
+      "category": "PM",
+      "description": "非整数比率短泛音与快速衰减，按住不会持续长鸣。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "PM · 木琴",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 3.5,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0,
+              75,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.14,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              1,
+              600,
+              0.0,
+              90
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pm-glass-bell",
+      "title": "PM · 玻璃钟",
+      "category": "PM",
+      "description": "2.71 比率带出非谐波钟声，尾音逐渐变柔。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "为当前定点六算子引擎设计；不需要波表或效果器。"
+      ],
+      "percussive": false,
+      "patch": {
+        "name": "PM · 玻璃钟",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 2.71,
+            "fixed_hz": null,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              1,
+              1000,
+              0.0,
+              300
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.72,
+            "depth": 0.32,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              2,
+              1800,
+              0.0,
+              450
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-kick",
+      "title": "Drum · 深底鼓",
+      "category": "Drum",
+      "description": "55 Hz 正弦鼓身加短促 PM 起音和噪声击打。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。",
+        "鼓身为固定频率加 PM 瞬态；没有模拟 808 的指数音高下滑。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · 深底鼓",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 83,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0,
+              24,
+              0.0,
+              20
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": null,
+            "fixed_hz": 55,
+            "gain": 0.85,
+            "depth": 0.22,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.3,
+              430,
+              0.0,
+              100
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "noise",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 4000,
+            "gain": 0.12,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0,
+              8,
+              0.0,
+              8
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-snare",
+      "title": "Drum · 电子军鼓",
+      "category": "Drum",
+      "description": "190 Hz 鼓膜与短噪声尾音，力度改变整体强度。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · 电子军鼓",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 330,
+            "gain": 0.6,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0,
+              35,
+              0.0,
+              20
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": null,
+            "fixed_hz": 190,
+            "gain": 0.7,
+            "depth": 0.15,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.5,
+              150,
+              0.0,
+              60
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "noise",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 1,
+            "gain": 0.65,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.5,
+              210,
+              0.0,
+              60
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-tom",
+      "title": "Drum · 低音通鼓",
+      "category": "Drum",
+      "description": "115 Hz 鼓身与二倍频 PM 瞬态，低沉的电子通鼓。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · 低音通鼓",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 230,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0,
+              45,
+              0.0,
+              25
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": null,
+            "fixed_hz": 115,
+            "gain": 0.75,
+            "depth": 0.2,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              1,
+              360,
+              0.0,
+              100
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-hat-closed",
+      "title": "Drum · 闭镲",
+      "category": "Drum",
+      "description": "三个非整数频率 AM 金属声部；短尾闭镲。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。",
+        "未加独立高通、未实现开/闭镲互斥组；高频为电子金属打击近似。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · 闭镲",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 3250,
+            "gain": 0.9,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              70,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": null,
+            "fixed_hz": 4870,
+            "gain": 0.6,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.3,
+              70,
+              0.0,
+              70
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 4310,
+            "gain": 0.9,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              70,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              2
+            ],
+            "ratio": null,
+            "fixed_hz": 6230,
+            "gain": 0.6,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.3,
+              70,
+              0.0,
+              70
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 5570,
+            "gain": 0.9,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              70,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              4
+            ],
+            "ratio": null,
+            "fixed_hz": 7910,
+            "gain": 0.6,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.3,
+              70,
+              0.0,
+              70
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-hat-open",
+      "title": "Drum · 开镲",
+      "category": "Drum",
+      "description": "三个非整数频率 AM 金属声部；长尾开镲。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。",
+        "未加独立高通、未实现开/闭镲互斥组；高频为电子金属打击近似。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · 开镲",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 3250,
+            "gain": 0.9,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              650,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": null,
+            "fixed_hz": 4870,
+            "gain": 0.6,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.3,
+              650,
+              0.0,
+              70
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 4310,
+            "gain": 0.9,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              650,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              2
+            ],
+            "ratio": null,
+            "fixed_hz": 6230,
+            "gain": 0.6,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.3,
+              650,
+              0.0,
+              70
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 5570,
+            "gain": 0.9,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              650,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "am",
+            "sources": [
+              4
+            ],
+            "ratio": null,
+            "fixed_hz": 7910,
+            "gain": 0.6,
+            "depth": 1,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.3,
+              650,
+              0.0,
+              70
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-clave",
+      "title": "Drum · 木击",
+      "category": "Drum",
+      "description": "1750 Hz 短正弦与弱 PM 瞬态，清晰的木质敲击。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · 木击",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 2800,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0,
+              6,
+              0.0,
+              8
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [
+              0
+            ],
+            "ratio": null,
+            "fixed_hz": 1750,
+            "gain": 0.75,
+            "depth": 0.08,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              65,
+              0.0,
+              25
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-cowbell",
+      "title": "Drum · 牛铃",
+      "category": "Drum",
+      "description": "540 / 800 Hz 方波 AM，带有电子鼓机式金属边频。",
+      "source": "SynthString 原创",
+      "source_url": null,
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · 牛铃",
+        "operators": [
+          {
+            "enabled": true,
+            "carrier": false,
+            "wave": "pulse",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 800,
+            "gain": 1.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.2,
+              180,
+              0.0,
+              60
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "pulse",
+            "mode": "am",
+            "sources": [
+              0
+            ],
+            "ratio": null,
+            "fixed_hz": 540,
+            "gain": 0.65,
+            "depth": 0.9,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              0.5,
+              300,
+              0.0,
+              100
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "drum-tone-noise",
+      "title": "Drum · Tone 噪声击",
+      "category": "Drum",
+      "description": "白噪声加 100 ms 衰减包络，适合短促沙锤与噪声打击。",
+      "source": "Tone.js NoiseSynth 结构改编",
+      "source_url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/Tone/instrument/NoiseSynth.ts",
+      "adaptation": [
+        "固定频率，不随琴键音高改变；持续电平为零，按住自动衰减，提前松键按释放段收尾。",
+        "共享低通会同时影响鼓与旋律；试听原始鼓色时可先旁路低通。",
+        "保留白噪声、100 ms 衰减与零持续，起音/释放和电平按当前键床重设；非真实鼓采样。"
+      ],
+      "percussive": true,
+      "patch": {
+        "name": "Drum · Tone 噪声击",
+        "operators": [
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": true,
+            "carrier": true,
+            "wave": "noise",
+            "mode": "pm",
+            "sources": [],
+            "ratio": null,
+            "fixed_hz": 1,
+            "gain": 0.5,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.0,
+              0.0,
+              0.0
+            ],
+            "segment_ms": [
+              5,
+              100,
+              0.0,
+              40
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          },
+          {
+            "enabled": false,
+            "carrier": false,
+            "wave": "sine",
+            "mode": "pm",
+            "sources": [],
+            "ratio": 1.0,
+            "fixed_hz": null,
+            "gain": 0.0,
+            "depth": 0.0,
+            "feedback": 0.0,
+            "morph": 0.0,
+            "pulse_width": 0.5,
+            "levels": [
+              1.0,
+              0.6,
+              0.6,
+              0.0
+            ],
+            "segment_ms": [
+              5.0,
+              300.0,
+              0.0,
+              250.0
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

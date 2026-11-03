@@ -1,5 +1,7 @@
 # FM1 上板与 App 测试记录
 
+> **最新状态（2026-11-02 夜间）**：已烧录 `critical-pipeline` 干声固件，COM4 实板八音色 / 八复音测试通过，用户确认声音正常。详见 [DRY_AUDITION.md](DRY_AUDITION.md)。下文保留早期带 FX 构建记录，不代表当前固件。
+
 当前构建：`reports/gowin-shared-operator`，Tang Mega60K，50 MHz，
 48.828125 kHz，8 声部 × 6 逻辑算子，4 个双缓冲驻留音色槽。
 

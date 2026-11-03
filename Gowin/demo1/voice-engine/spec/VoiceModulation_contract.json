@@ -187,6 +187,38 @@
             "width": 480,
             "role": "data",
             "description": "15个有符号32位调制累加结果"
+          },
+          {
+            "name": "i_snapshot",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_axis_aclk",
+            "description": "i_snapshot"
+          },
+          {
+            "name": "i_snapshot_route",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_axis_aclk",
+            "description": "i_snapshot_route"
+          },
+          {
+            "name": "i_snapshot_address",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_axis_aclk",
+            "description": "i_snapshot_address"
+          },
+          {
+            "name": "o_snapshot_data",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_axis_aclk",
+            "description": "o_snapshot_data"
           }
         ]
       },
@@ -207,7 +239,9 @@
         "New NoteID allocation clears local LFO initialization; first eligible frame restarts phase and seed. Global phase is independent of note events.",
         "Eight routes accumulate in 36-bit guards across fifteen targets; output saturates to signed32. Base musical parameters are not modified.",
         "Route descriptor, source/depth operands, product and accumulator are registered separately. Eight descriptors issue at II=1, drain before final clamp; start-to-done is13 clocks. Disabled routes force both operands to zero; same-target writes retain source order.",
-        "Start pulses and configuration writes are only accepted while idle by contract; parent prevents control writes during a render."
+        "Start pulses and configuration writes are only accepted while idle by contract; parent prevents control writes during a render.",
+        "Idle snapshot reads live-bank configuration; configured masks preserve disabled descriptors and prevent undefined RAM reads.",
+        "Idle snapshot reads live-bank configuration; configured masks preserve disabled descriptors and prevent undefined RAM reads. LFO phase/RNG/origin/value arrays use unreset distributed RAM; a separate reset-only written mask supplies phase/value/origin zero and RNG one until the first completion. Note restart clears initialization, not the written mask, preserving inspect semantics and cycle timing."
       ],
       "constraints": [
         "Verilog-2001, one clock domain. No board integration claim.",

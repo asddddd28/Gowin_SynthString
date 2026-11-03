@@ -1,6 +1,6 @@
 `timescale 1ns / 1ps
 // Boot program loader / 启动装载器. Contract: spec/SynthBootSequencer_spec.md.
-module SynthBootSequencer(
+module SynthBootSequencer #(parameter C_FX_ENABLE=0)(
     input i_clk, input i_rstn,
     output [391:0] o_request, output o_request_valid, input i_request_ready,
     input [135:0] i_response, input i_response_valid, output o_response_ready,
@@ -15,7 +15,10 @@ module SynthBootSequencer(
     reg [3:0] reg_word;
     reg [391:0] reg_request;
     wire flag_bad=i_response[135:128]!=0 || i_response[71:64]!=0;
-    initial $readmemh("rom/boot.hex",mem_program);
+    initial begin // 两种构建都只保留一个启动ROM；干声程序不发送不存在的FX配置。
+        if(C_FX_ENABLE) $readmemh("rom/boot.hex",mem_program);
+        else $readmemh("rom/boot_dry.hex",mem_program);
+    end
     assign o_request=reg_request;
     assign o_request_valid=reg_state==SEND;
     assign o_response_ready=reg_state==WAIT_REPLY;

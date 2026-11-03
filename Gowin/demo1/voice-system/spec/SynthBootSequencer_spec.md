@@ -36,6 +36,7 @@ Synchronous 32-bit ROM contains count followed by opcode/argument plus ten paylo
 
 - Synchronous 32-bit ROM contains count followed by opcode/argument plus ten payload words per command.
 - Four presets, shared FX and safe master level loaded through the same AXI master as live controls. Done only after every success completion; failure prevents amplifier enable.
+- C_FX_ENABLE编译期选择；整板SynthSystemTop默认0，内核默认1保留回归。关闭时不实例化Delay/Reverb，Voice PCM直接进入原四项PCM队列，FX能力/容量/遥测为0，C0..C4通过不支持完成路径返回状态1。开机使用剔除FX命令的boot_dry.hex，正常音色、键床、UART及音频频率不变。
 
 ## 6. WaveDrom 时序图
 
@@ -46,6 +47,14 @@ Synchronous 32-bit ROM contains count followed by opcode/argument plus ten paylo
 ![流水接纳与反压](waveforms/SynthBootSequencer_stream.svg)
 
 - WaveJSON：[SynthBootSequencer_stream.json5](waveforms/SynthBootSequencer_stream.json5)
+
+### 关闭FX的直接音频通路
+
+Voice结果脉冲在下一沿进入PCM队列；固定音频采样时钟继续消费，队列满记录drop。
+
+![关闭FX的直接音频通路](waveforms/SynthBootSequencer_dry-path.svg)
+
+- WaveJSON：[SynthBootSequencer_dry-path.json5](waveforms/SynthBootSequencer_dry-path.json5)
 
 ## 7. 边界、反压与错误
 
@@ -65,6 +74,7 @@ Synchronous 32-bit ROM contains count followed by opcode/argument plus ten paylo
 - Real UART/ADC pins to serial DAC simulation
 - AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset
 - Boot, physical chord, release, host voice/FX commands and resource/timing checks
+- 关闭FX的整板启动、真实键床/UART、不支持命令和重放、PCM/PT8211一致性；保留FX配置兼容回归。
 
 ## 10. 可追溯性
 

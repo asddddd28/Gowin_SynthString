@@ -1,0 +1,72 @@
+{
+  "modules": [
+    {
+      "name": "tb_master_lowpass",
+      "rtl_path": "filter/tb_master_lowpass.v",
+      "description": "Lowpass module / integrated system verification",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "clk",
+            "role": "data",
+            "description": "All assertions completed"
+          }
+        ]
+      },
+      "clock": {
+        "name": "clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "12288bitexact stereo frames compare model under random output stalls; hold configuration ACK for100frames whileaudio progresses; invalid config leaves revision/state untouched."
+      ],
+      "constraints": [
+        "Simulation-only,50MHzclock,allassertionsmustcomplete"
+      ],
+      "corner_cases": [
+        "Command and audio backpressure, bypass, stereo bounds andphysical note events"
+      ],
+      "verification_cases": [
+        "Externalxsimcompile andexecution, PASS required"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "validate",
+          "title": "Stimulus and result",
+          "scenario": "validate",
+          "description": "Send atomicconfiguration, thenindependent audioframes andcompare reference samples.",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p......."
+              },
+              {
+                "name": "config",
+                "wave": "010....."
+              },
+              {
+                "name": "audio",
+                "wave": "0..1010."
+              },
+              {
+                "name": "checked",
+                "wave": "0...1010"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

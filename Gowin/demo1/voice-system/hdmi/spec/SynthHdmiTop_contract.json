@@ -1,0 +1,321 @@
+{
+  "modules": [
+    {
+      "name": "SynthHdmiTop",
+      "rtl_path": "rtl/SynthHdmiTop.v",
+      "description": "Existing50MHz audio and key engine plus independent73.333MHz pixel/366.666MHz serializer clocks.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_adc_dout",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_adc_dout"
+          },
+          {
+            "name": "i_uart_rx",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_uart_rx"
+          },
+          {
+            "name": "i_encoder_a",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_encoder_a"
+          },
+          {
+            "name": "i_encoder_b",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_encoder_b"
+          },
+          {
+            "name": "i_joystick",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_joystick"
+          },
+          {
+            "name": "o_mux_sel",
+            "direction": "output",
+            "width": 3,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_mux_sel"
+          },
+          {
+            "name": "o_mux_en",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_mux_en"
+          },
+          {
+            "name": "o_adc_cs_n",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_adc_cs_n"
+          },
+          {
+            "name": "o_adc_sclk",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_adc_sclk"
+          },
+          {
+            "name": "o_adc_din",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_adc_din"
+          },
+          {
+            "name": "o_uart_tx",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_uart_tx"
+          },
+          {
+            "name": "HP_BCK",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "HP_BCK"
+          },
+          {
+            "name": "HP_WS",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "HP_WS"
+          },
+          {
+            "name": "HP_DIN",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "HP_DIN"
+          },
+          {
+            "name": "PA_EN",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "PA_EN"
+          },
+          {
+            "name": "tmds_clk_p_0",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "tmds_clk_p_0"
+          },
+          {
+            "name": "tmds_clk_n_0",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "tmds_clk_n_0"
+          },
+          {
+            "name": "tmds_d_p_0",
+            "direction": "output",
+            "width": 3,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "tmds_d_p_0"
+          },
+          {
+            "name": "tmds_d_n_0",
+            "direction": "output",
+            "width": 3,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "tmds_d_n_0"
+          },
+          {
+            "name": "hpd_en",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "hpd_en"
+          },
+          {
+            "name": "io_touch_scl",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_touch_scl"
+          },
+          {
+            "name": "io_touch_sda",
+            "direction": "inout",
+            "width": 2,
+            "role": "data",
+            "description": "io_touch_sda"
+          },
+          {
+            "name": "i_buttons",
+            "direction": "input",
+            "width": 6,
+            "role": "data",
+            "description": "i_buttons"
+          },
+          {
+            "name": "i_sd_miso",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_sd_miso"
+          },
+          {
+            "name": "o_sd_cs_n",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_sd_cs_n"
+          },
+          {
+            "name": "o_sd_sclk",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_sd_sclk"
+          },
+          {
+            "name": "o_sd_mosi",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_sd_mosi"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Existing50MHz audio and key engine plus independent73.333MHz pixel/366.666MHz serializer clocks.",
+        "Official DVI-compatible HDMI video output; headphone PT8211 remains the audio output.",
+        "Display local commands share existing durable CRC/sequence/replay UART; no second serial owner.",
+        "FX remains disabled. No display ready signal can stall synthesis or audio.",
+        "启用双MPR触摸；DisplayControl长按脉冲切换模式，模式编号同步到HDMI页眉。",
+        "板级开启C_SEQUENCE_ENABLE，映射demo_test六个独立高有效按钮；保留50MHz音频、73.333MHz像素时钟。",
+        "显示分析入口将16位PCM和valid一同寄存一级，切断PCM舍入/节拍相加到峰值和触发比较的组合链。声音采样周期不变，显示分析延后一个系统时钟。",
+        "SD local requests 0x50..0x55 share the existing CRC/replay-protected UART. SynthHdmiTop instantiates autonomous storage mount; archive save/load control is not yet connected."
+      ],
+      "constraints": [
+        "50MHz system; 73.333333MHz pixel; related5x serializer. Hold multi-bit CDC payload through toggle acknowledgement.",
+        "ROM/RAM contents generated by prepare_assets.mjs; no asynchronous array reset."
+      ],
+      "corner_cases": [
+        "Reset while transfer pending; invalid opcode/argument; sustained key; missing display consumer.",
+        "No host connection: monitoring and page navigation continue; metadata edits require connected App."
+      ],
+      "verification_cases": [
+        "tb_display_audio: phase-invariant triggered captures, bounded quiet/silence/DC timeout,448 spectral bins and1792 waveform values including30.5Hz exact vs Python, dual-clock publication.",
+        "tb_display_control: valid/invalid local commands, text ACK ordering and decimal CDC.",
+        "tb_display_video: six921600-pixel frames with no unknown RGB; visually inspect actual RTL images.",
+        "Full SynthSystemTop UART/keyboard/PCM regression and actual Gowin place-and-route."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "record-play",
+          "title": "小节提交与回放握手",
+          "scenario": "record-play",
+          "description": "按键事件暂存，停止后保留完成的小节；回放命令稳定等待仲裁和回执。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "record",
+                "wave": "01....0..."
+              },
+              {
+                "name": "bar_boundary",
+                "wave": "0..10....."
+              },
+              {
+                "name": "note_capture",
+                "wave": "0.10.10..."
+              },
+              {
+                "name": "committed",
+                "wave": "0......1.."
+              },
+              {
+                "name": "play_req",
+                "wave": "0......1.."
+              },
+              {
+                "name": "ready",
+                "wave": "1......01."
+              },
+              {
+                "name": "completion",
+                "wave": "0........1"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

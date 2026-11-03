@@ -1,0 +1,255 @@
+{
+  "modules": [
+    {
+      "name": "AxisMasterLowpass",
+      "rtl_path": "rtl/AxisMasterLowpass.v",
+      "description": "Shared stereo two-pole lowpass and independent Cutoff LFO",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "role": "clock",
+            "clock_domain": "i_clk",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "role": "reset",
+            "clock_domain": "i_clk",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_command",
+            "direction": "input",
+            "width": 384,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_command"
+          },
+          {
+            "name": "i_tag",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_tag"
+          },
+          {
+            "name": "i_opcode",
+            "direction": "input",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_opcode"
+          },
+          {
+            "name": "i_command_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_command_valid"
+          },
+          {
+            "name": "o_command_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_command_ready"
+          },
+          {
+            "name": "o_result",
+            "direction": "output",
+            "width": 128,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_result"
+          },
+          {
+            "name": "o_tag",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_tag"
+          },
+          {
+            "name": "o_opcode",
+            "direction": "output",
+            "width": 8,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_opcode"
+          },
+          {
+            "name": "o_result_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_result_valid"
+          },
+          {
+            "name": "i_result_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_result_ready"
+          },
+          {
+            "name": "i_audio",
+            "direction": "input",
+            "width": 64,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_audio"
+          },
+          {
+            "name": "i_frame",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_frame"
+          },
+          {
+            "name": "i_audio_valid",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_audio_valid"
+          },
+          {
+            "name": "o_audio_ready",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_audio_ready"
+          },
+          {
+            "name": "o_audio",
+            "direction": "output",
+            "width": 64,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_audio"
+          },
+          {
+            "name": "o_frame",
+            "direction": "output",
+            "width": 32,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_frame"
+          },
+          {
+            "name": "o_audio_valid",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "o_audio_valid"
+          },
+          {
+            "name": "i_audio_ready",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "clock_domain": "i_clk",
+            "description": "i_audio_ready"
+          },
+          {
+            "name": "i_touch_cutoff",
+            "direction": "input",
+            "width": 20,
+            "role": "data",
+            "description": "i_touch_cutoff"
+          },
+          {
+            "name": "i_touch_cutoff_active",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_touch_cutoff_active"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "bypass; zero phase and audio state; default2000Hz cutoff; command/audio valid cleared"
+      },
+      "behavior": [
+        "D0 validates five-word configuration then atomically replaces shadow registers; D1 reads flags/revision/current-cutoff. Result holds under backpressure independently of audio.",
+        "Audio accept snapshots all config. Phase increments once/frame; sine/triangle bipolar LFO changes log-frequency target. Clamp20..18000Hz, smooth with1/256, synchronous18bit coefficient ROM.",
+        "Single signed33x20 multiplier executes four one-pole updates and two dry/wet blends. Left/right states independent. Bypass transition256frames; exact dry aftersettling. Full-scale input/state convex bounds prevent overflow.",
+        "30clocks to audio valid, output data/frame stable under backpressure. Global LFO free-running peraccepted audio frame, no NoteOn retrigger.",
+        "C_TOUCH_ENABLE默认0；帧边界锁存触摸偏移，AUDIO_WAVE寄存base+touch，AUDIO_TARGET再叠加LFO。触摸有效临时开启滤波，不修改已保存配置。"
+      ],
+      "constraints": [
+        "System feeds one frame per1024clocks and always drains filter output into existingPCMqueue. LFO .05..20Hz,depth0..6oct. Filter helper is one physical instance, not one pervoice.",
+        "Command UART exact replay owns duplicate suppression; repeatedD0 is idempotent and never resets phase/state. Independent master filter sequence prevents voice/fx gaps."
+      ],
+      "corner_cases": [
+        "Full signed32range, opposite polarity stereo, silent channel, cutoff clamps, fast automation, bypass, zero depth, command completion stalled, invalid params."
+      ],
+      "verification_cases": [
+        "Python magnitude response -3dB at declared cutoff, bitexact12288frame model comparison, random output backpressure; entire keyboard/UART/AXI/PCM chain; real50MHz implementation and hardware capture."
+      ],
+      "timing_diagrams": [
+        {
+          "id": "touch",
+          "title": "触摸事件与调制提交",
+          "scenario": "touch",
+          "description": "触摸采集在系统域提交，调制每毫秒平滑；音频帧独立执行，NoteOff确认之后才重新起音。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "position_update",
+                "wave": "010...10.."
+              },
+              {
+                "name": "control_tick",
+                "wave": "0..10...10"
+              },
+              {
+                "name": "audio_frame",
+                "wave": "0101010101"
+              },
+              {
+                "name": "row_noteoff",
+                "wave": "0..10....."
+              },
+              {
+                "name": "keys_idle_ack",
+                "wave": "0.....10.."
+              },
+              {
+                "name": "row_noteon",
+                "wave": "0......10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

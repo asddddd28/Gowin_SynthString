@@ -1,0 +1,240 @@
+{
+  "modules": [
+    {
+      "name": "SynthDisplayControl",
+      "rtl_path": "rtl/SynthDisplayControl.v",
+      "description": "Protocol5 kind3 opcodes0x10..0x13 implement capability, page, eight-byte metadata write and absolute input counters.",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "i_clk",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "clock",
+            "description": "i_clk"
+          },
+          {
+            "name": "i_rstn",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "reset",
+            "description": "i_rstn"
+          },
+          {
+            "name": "i_joystick",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "asynchronous",
+            "role": "data",
+            "description": "i_joystick"
+          },
+          {
+            "name": "i_encoder_a",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "asynchronous",
+            "role": "data",
+            "description": "i_encoder_a"
+          },
+          {
+            "name": "i_encoder_b",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "asynchronous",
+            "role": "data",
+            "description": "i_encoder_b"
+          },
+          {
+            "name": "i_request",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_request"
+          },
+          {
+            "name": "i_opcode",
+            "direction": "input",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_opcode"
+          },
+          {
+            "name": "i_argument",
+            "direction": "input",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_argument"
+          },
+          {
+            "name": "i_words",
+            "direction": "input",
+            "width": 64,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_words"
+          },
+          {
+            "name": "o_response_valid",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_response_valid"
+          },
+          {
+            "name": "o_response",
+            "direction": "output",
+            "width": 136,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_response"
+          },
+          {
+            "name": "o_text_write",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_text_write"
+          },
+          {
+            "name": "o_text_address",
+            "direction": "output",
+            "width": 10,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_text_address"
+          },
+          {
+            "name": "o_text_data",
+            "direction": "output",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_text_data"
+          },
+          {
+            "name": "o_page",
+            "direction": "output",
+            "width": 3,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_page"
+          },
+          {
+            "name": "o_focus",
+            "direction": "output",
+            "width": 8,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_focus"
+          },
+          {
+            "name": "o_confirm",
+            "direction": "output",
+            "width": 16,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_confirm"
+          },
+          {
+            "name": "o_host_live",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_host_live"
+          },
+          {
+            "name": "o_touch_next",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_touch_next"
+          }
+        ]
+      },
+      "clock": {
+        "name": "i_clk",
+        "edge": "posedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "i_rstn",
+        "active": "low",
+        "style": "asynchronous",
+        "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
+      },
+      "behavior": [
+        "Protocol5 kind3 opcodes0x10..0x13 implement capability, page, eight-byte metadata write and absolute input counters.",
+        "Five encoder inputs pass two synchronizers and50us filtering; illegal Gray transitions do not count. Joystick requires5ms stable.",
+        "Electrical bit0=H/bit1=L:00 low,01 centre,11 high,10 invalid. Startup settling and centre-to-arm prevent held inputs, releases or invalid transitions from generating actions.",
+        "X high advances page, low reverses; Y high decrements focus, low increments. Horizontal has priority for diagonal moves. Switch low emits one confirmation after release-to-arm.",
+        "Page bounds checked; text writes acknowledge after all eight write edges. UART exact replay belongs to existing SynthUartControl. Host-live expires2seconds after last input query.",
+        "摇杆按下800ms产生单次o_touch_next，保持不重复；松手重新解锁。短按确认改为松手发出，长按松手不会确认音色草稿。",
+        "HDMI能力版本0x10001，支持0..7共八页；0x11参数8及以上拒绝，左右自然三位回绕。0..5兼容原页面，6为音序库，7为SD音色库。",
+        "显示接口仍为0x10..0x13和1024字节文本RAM；不直接执行文件写入。库页面上的旋钮/确认语义由存储控制器接管，不可误应用算子草稿。"
+      ],
+      "constraints": [
+        "50MHz system; 73.333333MHz pixel; related5x serializer. Hold multi-bit CDC payload through toggle acknowledgement.",
+        "ROM/RAM contents generated by prepare_assets.mjs; no asynchronous array reset."
+      ],
+      "corner_cases": [
+        "Reset while transfer pending; invalid opcode/argument; sustained key; missing display consumer.",
+        "No host connection: monitoring and page navigation continue; metadata edits require connected App."
+      ],
+      "verification_cases": [
+        "tb_display_audio: phase-invariant triggered captures, bounded quiet/silence/DC timeout,448 spectral bins and1792 waveform values including30.5Hz exact vs Python, dual-clock publication.",
+        "tb_display_control: valid/invalid local commands, text ACK ordering and decimal CDC.",
+        "tb_display_video: six921600-pixel frames with no unknown RGB; visually inspect actual RTL images.",
+        "Full SynthSystemTop UART/keyboard/PCM regression and actual Gowin place-and-route.",
+        "tb_display_control覆盖页面6/7、无效8、7→0和0→7回绕；显示资源88行不超原ROM；Rust库页面屏蔽算子编辑内容。"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "touch",
+          "title": "触摸事件与调制提交",
+          "scenario": "touch",
+          "description": "触摸采集在系统域提交，调制每毫秒平滑；音频帧独立执行，NoteOff确认之后才重新起音。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p........."
+              },
+              {
+                "name": "position_update",
+                "wave": "010...10.."
+              },
+              {
+                "name": "control_tick",
+                "wave": "0..10...10"
+              },
+              {
+                "name": "audio_frame",
+                "wave": "0101010101"
+              },
+              {
+                "name": "row_noteoff",
+                "wave": "0..10....."
+              },
+              {
+                "name": "keys_idle_ack",
+                "wave": "0.....10.."
+              },
+              {
+                "name": "row_noteon",
+                "wave": "0......10."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

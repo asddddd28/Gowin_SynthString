@@ -451,6 +451,10 @@ impl Engine {
             "library_catalog"=>return Ok(self.library_catalog()),
             "load_library_file"=>{self.library=resources::load_file(Path::new(model::text(&p,"path")?))?;self.tell(format!("已校验 {} 个波表资源。",self.library.len()),"info");return Ok(self.library_catalog());},
             "wave_preview"=>{let (frames,mut job)=self.pair(&p)?;job["frames"]=json!(frames.iter().map(|f|f.iter().step_by(4).copied().collect::<Vec<_>>()).collect::<Vec<_>>());return Ok(job);},
+            "voice_wave_pair"=>{let (frames,mut job)=self.pair(&p)?;job["frames"]=json!(frames);return Ok(job);},
+            "native_preset_catalog"=>return crate::native_presets::catalog(),
+            "voice_preset_wave"=>{let sound=self.bank_sound(model::integer(&p,"timbre_id",1,65535)?)?;let frame=sound.samples.as_ref().ok_or("此音色不需要外部波表")?;return Ok(json!({"name":sound.title,"samples":frame.iter().chain(frame.iter()).copied().collect::<Vec<_>>()}));},
+            "voice_validate_patch"=>{let patch=serde_json::from_value(p["patch"].clone()).map_err(|e|format!("无效音色: {e}"))?;let (commands,_)=crate::voice_engine::compile_native(patch,0,1)?;return Ok(json!({"commands":commands.len()}));},
             "upload_wave"=>{
                 let i=Self::index(&p)?;let (mut frames,job)=self.pair(&p)?;let single=match p.get("single") {None=>false,Some(v)=>v.as_bool().ok_or("single 必须为布尔值")?};
                 let mut c=self.config.clone();let profile=&mut c["keys"][i]["synth"];

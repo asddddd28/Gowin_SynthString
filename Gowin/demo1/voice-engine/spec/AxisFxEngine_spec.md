@@ -10,7 +10,7 @@
 
 | 参数 | 默认值 | 说明 |
 | --- | --- | --- |
-| — | — | 本模块没有可配置参数。 |
+| C_DELAY_ADDR_BITS | 15 | Delay环形RAM地址位数；板级使用13。 |
 
 ## 3. 时钟与复位
 
@@ -52,9 +52,11 @@
 - First sequence zero binds epoch; exact latest request replay returns cached response with bit72 and fresh tag; conflicts/gaps/stale requests reject.
 - Control accepted between frames, completion backpressure never stops audio; clear and commit prevent audio acceptance on the same edge.
 - Note lifecycle does not own FX state. Tail survives NoteOff and patch commit. Counts increment exactly once per output transfer.
-- C_DELAY_ADDR_BITS defaults15 in the library; board top uses14. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations14/15.
-- Packet signature equality is registered in 21 independent 16-bit chunks; payload zero tests use ten registered words. READY waits for predecode; arriving audio invalidates predecode and has priority. Accepted command and replay semantics are unchanged.
-- C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15.
+- C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Supported board configurations13/14/15.
+- 第一拍锁存21个signature比较块及10个payload零字判定，第二拍锁存完整结果、序列推进资格与5位动作掩码（Delay草稿/Reverb草稿/提交/清Delay/清Reverb）。只有checked有效才允许READY。
+- 实际握手仅使用已寄存资格和动作位产生配置/清空使能；opcode/tag/payload源按ready-valid协议保持至握手。无反压空闲命令比原版增加一拍校验时间，不增加音频计算周期。
+- 任意音频到达、音频忙、源撤回VALID或命令被接受都会清除两级快照有效位。音频与命令不同时接受，音频完成后重新校验查询/序列状态，不使用旧遥测快照。
+- 非法但序列合格的请求仍推进序列并缓存错误结果；重试仅回放缓存结果且不产生动作；新的返回tag来自当前请求。复位取消全部未完成命令状态。
 
 ## 6. WaveDrom 时序图
 
@@ -65,6 +67,14 @@
 ![流水接纳与反压](waveforms/AxisFxEngine_stream.svg)
 
 - WaveJSON：[AxisFxEngine_stream.json5](waveforms/AxisFxEngine_stream.json5)
+
+### 控制校验寄存与接受
+
+空闲且完成输出可接收：列表示采样沿前状态，操作在列末上升沿提交。先比较块，再校验快照，第三沿才执行；期间音频到达会取消两级资格。
+
+![控制校验寄存与接受](waveforms/AxisFxEngine_control-check.svg)
+
+- WaveJSON：[AxisFxEngine_control-check.json5](waveforms/AxisFxEngine_control-check.json5)
 
 ## 7. 边界、反压与错误
 
@@ -84,6 +94,8 @@
 - Independent integer model, stereo impulses and random full-scale inputs
 - Fractional and maximum delay, bypass, clipping and zero-input tail decay
 - Backpressure and reset; independent command replay; atomic parameter commit; 1024-clock deadline
+- 定向验证校验期间与checked之后的音频抢占、完成阻塞、查询重算、原子提交、清空重试去重、非法参数和复位取消。
+- 实际Voice+LFO+FX整链保持948/1024拍，独立整数PCM模型和UART/键床回归。
 
 ## 10. 可追溯性
 

@@ -1,0 +1,35 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "request",
+      "wave": "010......."
+    },
+    {
+      "name": "busy",
+      "wave": "0.1.....0."
+    },
+    {
+      "name": "data",
+      "wave": "x..=...x..",
+      "data": [
+        "sector / snapshot"
+      ]
+    },
+    {
+      "name": "verified",
+      "wave": "0......10."
+    },
+    {
+      "name": "done",
+      "wave": "0.......10"
+    },
+    {
+      "name": "pcm_tick",
+      "wave": "0101010101"
+    }
+  ]
+}

@@ -91,7 +91,8 @@
       },
       "behavior": [
         "Synchronous 32-bit ROM contains count followed by opcode/argument plus ten payload words per command.",
-        "Four presets, shared FX and safe master level loaded through the same AXI master as live controls. Done only after every success completion; failure prevents amplifier enable."
+        "Four presets, shared FX and safe master level loaded through the same AXI master as live controls. Done only after every success completion; failure prevents amplifier enable.",
+        "C_FX_ENABLE编译期选择；整板SynthSystemTop默认0，内核默认1保留回归。关闭时不实例化Delay/Reverb，Voice PCM直接进入原四项PCM队列，FX能力/容量/遥测为0，C0..C4通过不支持完成路径返回状态1。开机使用剔除FX命令的boot_dry.hex，正常音色、键床、UART及音频频率不变。"
       ],
       "constraints": [
         "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
@@ -107,7 +108,8 @@
         "Independent protocol/PCM model",
         "Real UART/ADC pins to serial DAC simulation",
         "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
-        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+        "Boot, physical chord, release, host voice/FX commands and resource/timing checks",
+        "关闭FX的整板启动、真实键床/UART、不支持命令和重放、PCM/PT8211一致性；保留FX配置兼容回归。"
       ],
       "timing_diagrams": [
         {
@@ -143,6 +145,35 @@
                 "data": [
                   "held",
                   "next"
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "id": "dry-path",
+          "title": "关闭FX的直接音频通路",
+          "scenario": "dry-path",
+          "description": "Voice结果脉冲在下一沿进入PCM队列；固定音频采样时钟继续消费，队列满记录drop。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p....."
+              },
+              {
+                "name": "voice valid",
+                "wave": "010..."
+              },
+              {
+                "name": "PCM queue valid",
+                "wave": "0.1..."
+              },
+              {
+                "name": "PCM frame",
+                "wave": "x.=...",
+                "data": [
+                  "voice frame"
                 ]
               }
             ]

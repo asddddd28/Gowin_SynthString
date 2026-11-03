@@ -351,11 +351,11 @@ module tb_axi_fx(output o_done);
         if(rstn) begin
             clock_count=clock_count+1;
             if(Dut.Runtime_Inst.flag_tick) tick_clock=clock_count;
-            if(Dut.Runtime_Inst.Fx_Inst.flag_clear_delay) pending_clear=pending_clear|1;
-            if(Dut.Runtime_Inst.Fx_Inst.flag_clear_reverb) begin pending_clear=pending_clear|2;clears=clears+1;end
-            if(Dut.Runtime_Inst.Fx_Inst.i_audio_valid && Dut.Runtime_Inst.Fx_Inst.o_audio_ready) begin
-                $fwrite(raw_file,"%h %h %h %h %h\n",pending_clear,Dut.Runtime_Inst.Fx_Inst.i_audio_frame,
-                    Dut.Runtime_Inst.Fx_Inst.i_audio_data,Dut.Runtime_Inst.Fx_Inst.reg_delay_active,Dut.Runtime_Inst.Fx_Inst.reg_reverb_active);
+            if(Dut.Runtime_Inst.FxDomain.Fx_Inst.flag_clear_delay) pending_clear=pending_clear|1;
+            if(Dut.Runtime_Inst.FxDomain.Fx_Inst.flag_clear_reverb) begin pending_clear=pending_clear|2;clears=clears+1;end
+            if(Dut.Runtime_Inst.FxDomain.Fx_Inst.i_audio_valid && Dut.Runtime_Inst.FxDomain.Fx_Inst.o_audio_ready) begin
+                $fwrite(raw_file,"%h %h %h %h %h\n",pending_clear,Dut.Runtime_Inst.FxDomain.Fx_Inst.i_audio_frame,
+                    Dut.Runtime_Inst.FxDomain.Fx_Inst.i_audio_data,Dut.Runtime_Inst.FxDomain.Fx_Inst.reg_delay_active,Dut.Runtime_Inst.FxDomain.Fx_Inst.reg_reverb_active);
                 pending_clear=0;
             end
             if(Dut.Runtime_Inst.flag_pcm) begin
@@ -407,7 +407,7 @@ module tb_axi_fx(output o_done);
             control(8'ha4,k%4,program_payload,0);
         end
         repeat(1024*3000) @(negedge clk);
-        if(nonzero_pcm<2900 || max_voice!=866) $fatal(1,"full voice workload not exercised %0d/%0d",nonzero_pcm,max_voice);
+        if(nonzero_pcm<2900 || max_voice!=834) $fatal(1,"full voice workload not exercised %0d/%0d",nonzero_pcm,max_voice); // 预取后每算子增加一拍部分和提交；1024拍期限不变。
         // Fill host completion FIFO; audio must continue through both effects.
         prior_audio=pcm_count;
         for(k=0;k<4;k=k+1) begin
@@ -436,7 +436,7 @@ module tb_axi_fx(output o_done);
         fx_control(8'hc3,0,3,0);
         repeat(1024*20) @(negedge clk);
         fx_seq=fx_seq-1;fx_control(8'hc3,0,3,0);
-        if(!control_result[72] || clears!=1 || Dut.Runtime_Inst.Fx_Inst.Reverb_Inst.cnt_age<10)
+        if(!control_result[72] || clears!=1 || Dut.Runtime_Inst.FxDomain.Fx_Inst.Reverb_Inst.cnt_age<10)
             $fatal(1,"clear retry destroyed tail state");
         // Stalled PCM head stays stable, new frames are dropped with telemetry.
         pcm_ready=0;
@@ -452,6 +452,7 @@ module tb_axi_fx(output o_done);
         $fclose(raw_file);$fclose(out_file);
         completed=1;
         $display("PASS axi_fx commands=%0d pcm=%0d full_voice_cycles=%0d total_cycles=%0d fx_cycles=%0d clear_pulses=%0d",engine_tag,pcm_count,max_voice,max_total,rd[0],clears);
+        #1; // 允许外层只读scoreboard处理完成事件后再结束仿真。
         $finish;
     end
 endmodule

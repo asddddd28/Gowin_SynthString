@@ -40,6 +40,8 @@
 | `o_overruns` | output | 32 | 未声明 | data | 忙碌时到来的采样脉冲 |
 | `o_render_cycles` | output | 32 | 未声明 | data | 最近一次渲染时钟数 |
 | `o_active` | output | 8 | 未声明 | data | 活动声部位图 |
+| `i_touch_gain` | input | 18 | 未声明 | data | i_touch_gain |
+| `i_touch_pitch` | input | 32 | 未声明 | data | i_touch_pitch |
 
 ## 5. 周期行为与延迟
 
@@ -55,25 +57,33 @@
 - Note CAM is an eight-cycle snapshot search while audio FSM idle. Note commands A4/A5/A6 wait for lookup DONE before READY. A sample tick or non-idle audio cancels the lookup; restart after rendering. Exact ID last match, first free, oldest first tie remain unchanged; other commands do not wait for CAM.
 - Command identity and payload validation are registered before mutation. The source holds its request through READY; a sample tick discards the checked snapshot and restarts lookup/validation after audio. Rendering latency is unchanged.
 - Packet predecode registers 20 payload-signature equality slices plus opcode equality and ten payload-zero words. Identity and business checks are registered independently, then selected into the checked completion. Sample tick cancels all three validation stages; no command side effects occur before handshake.
-- Synchronous program and packed163-bit context RAM: state17 waits after operator advance; pipelined modulation gives voice866 / full chain940 of1024. Allocation invalidates context flags; first use zeroes phase/EG/history and seeds noise=context+1; note gate events cannot bypass initialization.
+- Synchronous program and packed163-bit context RAM: the existing RAM output registers prefetch the next operator during states1/2/3; voice rendering uses the documented audio FSM; frame deadline remains1024. Allocation invalidates context flags; first use zeroes phase/EG/history and seeds noise=context+1; note gate events cannot bypass initialization.
+- 声像系数在 state16 从已限幅的 reg_mod_pan 锁存，左右各为无符号 27 位 [0,2^26]；本次不改变 gain/pan 每帧平滑写回或调制限幅行为。
+- state7 将有符号 32 位音频与 {0,coefficient[25:0]} 相乘并寄存 59 位精确乘积，同时锁存音频。state18 对 coefficient[26]=1 的满增益选择 sample<<26，否则对乘积符号扩展。没有额外量化或截断，后级仍消费原 product[57:26]。
+- state7→state18→state8，每个走完整计算路径的声部增加一个时钟；禁用/非活动声部仍 state1 清零立体声乘积后直接 state8。原声像流水基线Voice874/整链948；本次预取实测减少88拍，采样周期1024不变。
+- 新增声像系数、输入样本和乘积寄存器异步清零；现有复位、完成握手、程序 RAM 和命令编排保持原接口。
+- 单个预取槽复用core/envelope/context同步RAM输出；state1/2/3/4读取下一个算子（最后一个保持5）。state1打包当前请求并锁存当前carrier位；state3仅在结果有效时提交当前context/输出，再推进索引并直接进入state1或state5。禁用算子在state1清零自身输出并直接推进。state4用于部分和的最终求和/饱和；状态17退出正常调度，不增加DSP/RAM或宽参数队列。
+- 完成写回older历史时使用当前reg_operator_request[511:480]保存的last，不读取此时属于下一算子的reg_context_row。当前请求在结果提交前不被覆盖。
+- 关键路径分拍：state13锁存当前声部gain/pan及target，state14将smooth结果暂存到现有reg_mod_gain/pan，state15才加调制并限幅；对mem_gain/pan的原state1写回不变。state1捕获两组signed34的三路部分和与请求其它字段，state4对signed35总和饱和并补齐请求modulation，state2才握手；预取包含state4。
+- 实测native Voice834/可选FX整链908拍；全DX带全部LFO的估计上限Voice882拍。当前干声整板回归最大PCM脉冲延迟878拍，native压力835拍（均比对应Voice遥测多1拍观察延迟）。单物理算子、当前carrier与context/history归属不变。
+- Accepted successful Note-On completion bits63:32 carry cnt_frame+1, the first rendered frame affected by that event. Cached replay returns the same frame tag. Other completion words and DSP scheduling are unchanged.
+- Unmodulated gain/pan baseline writes at the end of state14 from state13 prefetched operands, sharing the smoothing calculation. No array mux enters the arithmetic writeback cone. Inactive/muted voices do not advance unused ramps; allocation initializes those states. Active audio timing and values remain unchanged.
+- C_TOUCH_ENABLE默认0保持旧行为。预先寄存主增益×触摸Q16增益并限制到UNITY，每帧锁存。state14叠加触摸与原调制矩阵音高，state15原乘法器执行；固定频率算子保持原频率。无新增音频FSM拍数。
+- 命令发放许可flag_issue在校验和Completion可用之后独立寄存。当前sample_tick仍立即取消ready，已接受包立即清许可；新增1拍命令等待，不改音频帧计算状态或PCM采样周期。
+- 算子频率比乘积在state1寄存，state4再饱和并组装请求；固定频率直接保留state1的参数。复用原路由求和拍，不增加算子或整帧周期，位精确截断不变。
+- AA snapshot command categories 0 core, 1 EG, 2 LFO, 3 routes, 4 wave, 5 master/enable, 6 patch revision. Payload word0 selects word; all other words zero. Four-cycle settling restarts across sample boundaries; responses use existing replay/sequence control.
+
+- 2026-11-04: state13 snapshots gain/pan operands and starts the eight-route modulation walk. State17 registers distances and directions. State14 applies the minimum-one-LSB step and writes each baseline once at mod_done. This splits compare/subtract from step/add without extending the route walk or audio frame. 4096 exact arithmetic vectors and full AXI/ADC/PT8211 regressions cover the change.
 
 ## 6. WaveDrom 时序图
 
-### 流水接纳与反压
+### 频率比乘法与饱和分拍
 
-请求锁存后运算；结果可以暂停，已驻留声部仍按采样时钟推进。图示握手关系，不按图推断延迟。
+当前参数行在state1被采样；state4使用寄存的乘积做饱和，state2发放完整请求。RAM可继续预取下一算子；固定频率保留原参数。
 
-![流水接纳与反压](waveforms/VoiceSynthEngine_stream.svg)
+![频率比乘法与饱和分拍](waveforms/VoiceSynthEngine_ratio-pipeline.svg)
 
-- WaveJSON：[VoiceSynthEngine_stream.json5](waveforms/VoiceSynthEngine_stream.json5)
-
-### 声部查找与音频优先
-
-示例采样tick打断未接纳查找，渲染结束后重新读取状态；READY只在查找完成后有效。
-
-![声部查找与音频优先](waveforms/VoiceSynthEngine_control.svg)
-
-- WaveJSON：[VoiceSynthEngine_control.json5](waveforms/VoiceSynthEngine_control.json5)
+- WaveJSON：[VoiceSynthEngine_ratio-pipeline.json5](waveforms/VoiceSynthEngine_ratio-pipeline.json5)
 
 ## 7. 边界、反压与错误
 
@@ -81,12 +91,14 @@
 - changing tags and parameters every accepted beat
 - long backpressure and bubbles
 - reset while pipeline holds transactions
+- 声像0、2^26、中心及相邻LSB；有符号音频最小/最大值；活动声部之后紧接非活动声部；声像乘法执行中复位。
 
 ## 8. CDC 与综合约束
 
 - Single 50 MHz clock domain; reset cancels in-flight work.
 - See ENGINE.md for exact fixed-point and command ABI.
 - Candidate: board timing and strict style gate are separate from functional simulation.
+- 2026-11-02干声整板完整PnR：50MHz、WNS+0.169ns，setup/hold0；未烧录。
 
 ## 9. 验证与验收
 
@@ -94,6 +106,11 @@
 - Backpressure stability and reset cancellation
 - Illegal parameters and voice lifecycle
 - 1024-clock frame deadline under eight voices and six operators
+- 独立整数模型覆盖完整 signed32 音频范围与 [0,2^26] 声像范围；随机20万组和边界，逐位比较精确乘积。
+- 定向声像时序测试与真实 AXI/键盘/PCM 整链回归，包含满载帧期限与音频整数参考模型。
+- 全部64启用掩码和64载波掩码的抽象RAM调度随机验证；真实请求/完成归属scoreboard、native/DX混合PCM与整板回归。实测满载Voice786、整链860拍。
+- 分拍算术模型、独立PCM/算子参考、随机反压、reset取消及整板UART/键床/PT8211；不放宽1024拍期限。
+- dsp_regression.py及system_test.py：DX音色数值逐位比较、固定/比例频率、非DX波表/AM、AXI背压与饱和调度；分拍不增加帧周期。
 
 ## 10. 可追溯性
 

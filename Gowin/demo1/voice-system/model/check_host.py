@@ -45,12 +45,14 @@ def check():
 
 
 class BoardLoopback(Loopback):
-    def __init__(self,abi=0x00010005):super().__init__();self.abi=abi
+    def __init__(self,abi=0x00010005,fx=0):super().__init__();self.abi=abi;self.fx=fx
+    def open(self):assert not self.dtr and not self.rts
     def __enter__(self):return self
     def __exit__(self,*args):return False
     def write(self,raw):
         super().write(raw)
-        value=self.abi if raw[3]==1 else 0
+        address=int.from_bytes(raw[10:14],'little')
+        value=(self.abi if address==4 else self.fx if address==0x4c else 0) if raw[3]==1 else 0
         header=bytes((0x53,0x52,5,raw[3]))+raw[4:8]+value.to_bytes(16,'little')+bytes((0,raw[8],raw[9],0,0,0))
         self.reply=header+crc16(header).to_bytes(2,'little')
 
@@ -59,13 +61,14 @@ def bank_check():
     with tempfile.TemporaryDirectory() as temp:
         state=Path(temp)/'bank.json';port=BoardLoopback()
         module=types.SimpleNamespace(Serial=lambda *args,**kwargs:port)
-        for slot,program in enumerate((4,1,42,68)):
-            args=['control.py','--port','MOCK','--state',str(state),'bank','--program',str(program),'--slot',str(slot),'--revision','2']
+        for index,program in enumerate((4,1,42,68,32,43,79,106)):
+            slot=index%4
+            args=['control.py','--port','MOCK','--state',str(state),'bank','--program',str(program),'--slot',str(slot),'--revision',str(2+index//4)]
             with patch.object(sys,'argv',args),patch.dict(sys.modules,{'serial':module}):control.main()
         commands=[raw for raw in port.writes if raw[3]==0]
-        assert len(commands)==56
-        assert [(raw[8],raw[9]) for raw in commands if raw[8]==0xa3]==[(0xa3,n) for n in range(4)]
-        assert json.loads(state.read_text())['slot_revisions']=={str(n):2 for n in range(4)}
+        assert len(commands)==112
+        assert [(raw[8],raw[9]) for raw in commands if raw[8]==0xa3]==[(0xa3,n%4) for n in range(8)]
+        assert json.loads(state.read_text())['slot_revisions']=={str(n):3 for n in range(4)}
         # An older engine sees only the read-only preflight, never A0/A1 writes.
         old=BoardLoopback(0x00010004);module.Serial=lambda *args,**kwargs:old
         args=['control.py','--port','MOCK','--state',str(Path(temp)/'old.json'),'bank','--program','4']
@@ -74,7 +77,12 @@ def bank_check():
             except RuntimeError as error:assert 'ABI' in str(error)
             else:raise AssertionError('old engine accepted DX profile')
         assert len(old.writes)==1 and old.writes[0][3]==1
-    print('PASS host FM1 four-slot upload, revision persistence and incompatible-ABI preflight')
+        for fx in (0,1):
+            board=BoardLoopback(fx=fx);module.Serial=lambda *args,**kwargs:board
+            args=['control.py','--port','MOCK','--state',str(Path(temp)/f'panic-{fx}.json'),'panic']
+            with patch.object(sys,'argv',args),patch.dict(sys.modules,{'serial':module}):control.main()
+            assert [raw[8] for raw in board.writes if raw[3]==0]==([0xa7,0xc3] if fx else [0xa7])
+    print('PASS host FM1 eight-preset/four-slot upload, revision persistence, ABI preflight and dry/FX panic')
 
 
 if __name__=='__main__':check()

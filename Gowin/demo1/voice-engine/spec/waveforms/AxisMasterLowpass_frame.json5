@@ -1,0 +1,33 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "input_valid",
+      "wave": "010......."
+    },
+    {
+      "name": "operation",
+      "wave": "x.=======x",
+      "data": [
+        "LFO",
+        "cutoff",
+        "Lpole1",
+        "Lpole2",
+        "Rpole1",
+        "Rpole2",
+        "LRblend"
+      ]
+    },
+    {
+      "name": "output_valid",
+      "wave": "0.......1."
+    },
+    {
+      "name": "output_ready",
+      "wave": "1........0"
+    }
+  ]
+}

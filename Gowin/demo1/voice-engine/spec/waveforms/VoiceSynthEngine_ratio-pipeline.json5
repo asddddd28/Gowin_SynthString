@@ -1,0 +1,56 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p......"
+    },
+    {
+      "name": "state",
+      "wave": "=======",
+      "data": [
+        "1",
+        "4",
+        "2",
+        "3",
+        "3",
+        "3",
+        "1"
+      ]
+    },
+    {
+      "name": "core_row",
+      "wave": "==.....",
+      "data": [
+        "current",
+        "next"
+      ]
+    },
+    {
+      "name": "tuned_product",
+      "wave": "x=.....",
+      "data": [
+        "current product"
+      ]
+    },
+    {
+      "name": "request_increment",
+      "wave": "x==....",
+      "data": [
+        "fixed value",
+        "selected/saturated"
+      ]
+    },
+    {
+      "name": "operator_valid",
+      "wave": "0.10..."
+    },
+    {
+      "name": "operator_ready",
+      "wave": "1.0...."
+    },
+    {
+      "name": "result_valid",
+      "wave": "0....10"
+    }
+  ]
+}

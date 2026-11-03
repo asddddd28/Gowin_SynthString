@@ -1,0 +1,56 @@
+{
+  "signal": [
+    {
+      "name": "i_clk",
+      "wave": "p......."
+    },
+    {
+      "name": "cnt_frame",
+      "wave": "========",
+      "data": [
+        "1022",
+        "1023",
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ]
+    },
+    {
+      "name": "i_valid",
+      "wave": "1......."
+    },
+    {
+      "name": "o_ready",
+      "wave": "0.10...."
+    },
+    {
+      "name": "o_sample_valid",
+      "wave": "0.10...."
+    },
+    {
+      "name": "i_data",
+      "wave": "=.......",
+      "data": [
+        "Q26 stereo"
+      ]
+    },
+    {
+      "name": "o_sample",
+      "wave": "=.......",
+      "data": [
+        "rounded + click, saturated"
+      ]
+    },
+    {
+      "name": "reg_left/right",
+      "wave": "=..=....",
+      "data": [
+        "previous",
+        "accepted sample"
+      ]
+    }
+  ]
+}

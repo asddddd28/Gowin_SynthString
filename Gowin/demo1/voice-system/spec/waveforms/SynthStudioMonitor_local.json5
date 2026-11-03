@@ -1,0 +1,31 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "request",
+      "wave": "010......."
+    },
+    {
+      "name": "state",
+      "wave": "x=========",
+      "data": [
+        "LATCH",
+        "VALIDATE",
+        "EXECUTE",
+        "READ",
+        "COLLECT",
+        "READ",
+        "COLLECT",
+        "...",
+        "RESPOND"
+      ]
+    },
+    {
+      "name": "response_valid",
+      "wave": "0........1"
+    }
+  ]
+}

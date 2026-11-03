@@ -1,0 +1,42 @@
+{
+  "repository": "https://github.com/Tonejs/Tone.js",
+  "commit": "105c04cc00289caf49684ac5c7621bce8a042c4c",
+  "license": "MIT",
+  "files": [
+    {
+      "path": "LICENSE.md",
+      "url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/LICENSE.md",
+      "sha256": "c2f9e2f9fd21639e8f8976e56b7df01d6efcc3b003dfd43ca59d4b10616efce7"
+    },
+    {
+      "path": "Tone/instrument/AMSynth.ts",
+      "url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/Tone/instrument/AMSynth.ts",
+      "sha256": "ecdbeb5d132ebcefddfc5a946e2a7c4dae42cfd6e179d7d12243e2c157ddfdaa"
+    },
+    {
+      "path": "Tone/instrument/FMSynth.ts",
+      "url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/Tone/instrument/FMSynth.ts",
+      "sha256": "3030fdef1576b0c53dd66c57214b07537252ba618093da3a7850837eb72b7d8f"
+    },
+    {
+      "path": "Tone/instrument/ModulationSynth.ts",
+      "url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/Tone/instrument/ModulationSynth.ts",
+      "sha256": "1d0cf0b54d72061c321cc4d6c4c801235ef7986f1f4f12a373f0bf78caf4e9a7"
+    },
+    {
+      "path": "Tone/instrument/NoiseSynth.ts",
+      "url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/Tone/instrument/NoiseSynth.ts",
+      "sha256": "b0e4ab559dc3ea931d879ce733adee11472a1e1af56523d21576a99b9bda511a"
+    },
+    {
+      "path": "examples/amSynth.html",
+      "url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/examples/amSynth.html",
+      "sha256": "f9315974510a8bc5c83f10eb6879dc1d7d22d886ebeefdb485b2e6a3eb2ddef8"
+    },
+    {
+      "path": "examples/fmSynth.html",
+      "url": "https://github.com/Tonejs/Tone.js/blob/105c04cc00289caf49684ac5c7621bce8a042c4c/examples/fmSynth.html",
+      "sha256": "85e9eb85c30088934d2e7c6f83934f75303a77030dd4708b46cb77c71e93bb43"
+    }
+  ]
+}

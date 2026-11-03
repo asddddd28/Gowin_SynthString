@@ -58,6 +58,10 @@
 | `i_pcm_ready` | input | 1 | 未声明 | control | PCM 消费者接纳 |
 | `o_pcm_data` | output | 64 | 未声明 | data | 左右 signed Q26 采样 |
 | `o_pcm_frame` | output | 32 | 未声明 | data | 采样帧编号 |
+| `i_touch_gain` | input | 18 | 未声明 | data | i_touch_gain |
+| `i_touch_pitch` | input | 32 | 未声明 | data | i_touch_pitch |
+| `i_touch_cutoff` | input | 20 | 未声明 | data | i_touch_cutoff |
+| `i_touch_cutoff_active` | input | 1 | 未声明 | data | i_touch_cutoff_active |
 
 ## 5. 周期行为与延迟
 
@@ -66,16 +70,18 @@
 - Unsupported command returns status 1 with original tag; does not hang or block audio. ABI 0x00010004.
 - C_DELAY_ADDR_BITS defaults15 in the library; board top uses14. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations14/15.
 - C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15.
+- C_FX_ENABLE编译期选择；整板SynthSystemTop默认0，内核默认1保留回归。关闭时不实例化Delay/Reverb，Voice PCM直接进入原四项PCM队列，FX能力/容量/遥测为0，C0..C4通过不支持完成路径返回状态1。开机使用剔除FX命令的boot_dry.hex，正常音色、键床、UART及音频频率不变。
+- C_TOUCH_ENABLE默认0，透传注册的硬件触摸调制源到Voice和Lowpass；AXI继续管理基础参数和音色程序。开启触摸的AxiVoiceEndpoint报告ABI1.7，否则保持1.6。
 
 ## 6. WaveDrom 时序图
 
-### 任务提交与结果保持
+### 触摸事件与调制提交
 
-输入握手移交所有权；结果等待消费时数据和事务身份保持。精确延迟以行为合同为准。
+触摸采集在系统域提交，调制每毫秒平滑；音频帧独立执行，NoteOff确认之后才重新起音。
 
-![任务提交与结果保持](waveforms/AxiSynthEndpoint_flow.svg)
+![触摸事件与调制提交](waveforms/AxiSynthEndpoint_touch.svg)
 
-- WaveJSON：[AxiSynthEndpoint_flow.json5](waveforms/AxiSynthEndpoint_flow.json5)
+- WaveJSON：[AxiSynthEndpoint_touch.json5](waveforms/AxiSynthEndpoint_touch.json5)
 
 ## 7. 边界、反压与错误
 
@@ -96,6 +102,7 @@
 - mixed tagged transactions and all sideband stability
 - event/phase transition sequence
 - AXI IDs, independent channels, WSTRB, bursts and FIFO side effects
+- 关闭FX的整板启动、真实键床/UART、不支持命令和重放、PCM/PT8211一致性；保留FX配置兼容回归。
 
 ## 10. 可追溯性
 

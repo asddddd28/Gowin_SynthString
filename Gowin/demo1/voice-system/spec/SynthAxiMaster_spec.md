@@ -48,6 +48,7 @@ Single-outstanding AXI4 master; aligned 32-bit single-beat INCR, ID=0 and full s
 | `o_axi_rready` | output | 1 | 未声明 | control | o_axi_rready |
 | `o_fault` | output | 1 | 未声明 | control | o_fault |
 | `o_completed` | output | 32 | 未声明 | data | o_completed |
+| `i_patch_lock` | input | 4 | 未声明 | data | i_patch_lock |
 
 ## 5. 周期行为与延迟
 
@@ -56,16 +57,18 @@ Single-outstanding AXI4 master; aligned 32-bit single-beat INCR, ID=0 and full s
 - Commands stage 15 register writes, poll completion, read result/tag/opcode, verify ownership, then POP. Separate Voice and FX sequences owned here, epoch=1.
 - 136-bit response: result128 and transport status8. Result held under backpressure. AXI channel VALID remains asserted until handshake.
 - Bus response errors or watchdog set a sticky fault; no new command accepted. Watchdog does not withdraw an outstanding AXI beat. Reset is required to recover.
+- D0/D1 consume dedicated32bit filter sequence; voice andFX sequence counters unaffected.
+- C_SEQUENCE_ENABLE启用时，接受请求边界检查A0..A3目标音色槽和A8共享波表；保留槽返回本地状态11，完全不发AXI写，不增加下游序号，不置全局fault。
 
 ## 6. WaveDrom 时序图
 
-### 流水接纳与反压
+### 小节提交与回放握手
 
-事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。
+按键事件暂存，停止后保留完成的小节；回放命令稳定等待仲裁和回执。
 
-![流水接纳与反压](waveforms/SynthAxiMaster_stream.svg)
+![小节提交与回放握手](waveforms/SynthAxiMaster_record-play.svg)
 
-- WaveJSON：[SynthAxiMaster_stream.json5](waveforms/SynthAxiMaster_stream.json5)
+- WaveJSON：[SynthAxiMaster_record-play.json5](waveforms/SynthAxiMaster_record-play.json5)
 
 ## 7. 边界、反压与错误
 

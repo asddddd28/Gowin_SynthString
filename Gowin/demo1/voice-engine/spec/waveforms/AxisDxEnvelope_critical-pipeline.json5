@@ -1,0 +1,44 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........."
+    },
+    {
+      "name": "state",
+      "wave": "========..",
+      "data": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "name": "request accepted",
+      "wave": "10........"
+    },
+    {
+      "name": "registered level",
+      "wave": "x....=....",
+      "data": [
+        "next"
+      ]
+    },
+    {
+      "name": "ROM data",
+      "wave": "x.....=...",
+      "data": [
+        "mantissa"
+      ]
+    },
+    {
+      "name": "result valid",
+      "wave": "0......1.."
+    }
+  ]
+}

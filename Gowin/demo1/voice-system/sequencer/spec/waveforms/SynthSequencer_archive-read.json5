@@ -1,0 +1,34 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p....."
+    },
+    {
+      "name": "lease",
+      "wave": "1....."
+    },
+    {
+      "name": "request",
+      "wave": "010..."
+    },
+    {
+      "name": "address",
+      "wave": "x.=...",
+      "data": [
+        "index"
+      ]
+    },
+    {
+      "name": "ram_data",
+      "wave": "x..=..",
+      "data": [
+        "event"
+      ]
+    },
+    {
+      "name": "response_valid",
+      "wave": "0...10"
+    }
+  ]
+}

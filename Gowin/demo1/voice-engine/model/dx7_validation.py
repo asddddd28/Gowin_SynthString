@@ -76,6 +76,7 @@ def arithmetic_vectors(source):
 
 def bench(name,request_width,result_width,count):
     module='AxisDxEnvelope' if name=='dx_envelope' else 'AxisFmOperator'
+    expected_latency=7 if name=='dx_envelope' else 11
     extra='' if name=='dx_envelope' else ',.i_wave_write(1\'b0),.i_wave_address(11\'d0),.i_wave_data(32\'d0),.o_wave_ready(wave_ready)'
     text=f'''`timescale 1ns/1ps
 module tb_{name}(output o_done);
@@ -86,7 +87,7 @@ module tb_{name}(output o_done);
     wire [{result_width-1}:0] result;
     wire [31:0] result_tag;
     reg [{result_width-1}:0] expected,held;
-    integer fd,code,n,latency,max_latency=0;
+    integer fd,code,n,latency,max_latency=0,reset_stage;
     assign o_done=done;
     always #10 clk=!clk;
     {module} Dut(.i_axis_aclk(clk),.i_axis_arstn(rstn),.i_s_axis_tdata(data),.i_s_axis_tuser(tag),
@@ -102,15 +103,27 @@ module tb_{name}(output o_done);
             @(negedge clk);valid=0;latency=1;
             while(!result_valid)begin @(negedge clk);latency=latency+1;if(latency>12)$fatal(1,"deadline");end
             if(latency>max_latency)max_latency=latency;
+            if(latency!={expected_latency})$fatal(1,"unexpected pipeline latency %0d",latency);
             if(result!==expected || result_tag!==tag)$fatal(1,"vector %0d expected %h got %h",n,expected,result);
             held=result;
             repeat(n%7)begin @(negedge clk);if(!result_valid || result!==held || result_tag!==tag)$fatal(1,"unstable stall");end
             ready=1;@(negedge clk);ready=0;
         end
-        valid=1;@(negedge clk);valid=0;repeat(2)@(negedge clk);rstn=0;
-        repeat(2)@(negedge clk);rstn=1;
-        repeat(20)begin @(negedge clk);if(result_valid)$fatal(1,"reset ghost");end
-        $display("PASS {name} vectors={count} max_latency=%0d stalls=PASS reset=PASS",max_latency);
+        // 覆盖每个计算拍及结果等待拍；复位后重发同一参考请求，检查旧状态不会泄漏。
+        for(reset_stage=1;reset_stage<={expected_latency};reset_stage=reset_stage+1)begin
+            @(negedge clk);valid=1;
+            @(posedge clk);if(!accept)$fatal(1,"reset probe refused");
+            @(negedge clk);valid=0;
+            repeat(reset_stage-1)@(negedge clk);rstn=0;
+            repeat(2)@(negedge clk);rstn=1;
+            repeat(20)begin @(negedge clk);if(result_valid)$fatal(1,"reset ghost");end
+            valid=1;@(posedge clk);if(!accept)$fatal(1,"post-reset request refused");
+            @(negedge clk);valid=0;
+            repeat({expected_latency}-1)@(negedge clk);
+            if(!result_valid || result!==expected || result_tag!==tag)$fatal(1,"post-reset result mismatch");
+            ready=1;@(negedge clk);ready=0;
+        end
+        $display("PASS {name} vectors={count} max_latency=%0d stalls=PASS reset_stages={expected_latency}",max_latency);
         done=1;$finish;
     end
     initial begin #10000000;$fatal(1,"watchdog");end

@@ -1,0 +1,46 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p............."
+    },
+    {
+      "name": "state",
+      "wave": "=============.",
+      "data": [
+        "0 accept",
+        "1 phase",
+        "2 RAM",
+        "3 product",
+        "4 lerp",
+        "5 morph",
+        "6 wave/EG",
+        "7 amp",
+        "8 sample",
+        "9 result",
+        "10 valid",
+        "10 stall",
+        "0"
+      ]
+    },
+    {
+      "name": "fraction register",
+      "wave": "x...=.........",
+      "data": [
+        "held product"
+      ]
+    },
+    {
+      "name": "s_valid",
+      "wave": "10............"
+    },
+    {
+      "name": "m_valid",
+      "wave": "0.........1.0."
+    },
+    {
+      "name": "m_ready",
+      "wave": "0..........10."
+    }
+  ]
+}

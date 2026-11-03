@@ -1,0 +1,50 @@
+{
+  "signal": [
+    {
+      "name": "pixel_clk",
+      "wave": "p......."
+    },
+    {
+      "name": "page",
+      "wave": "=.......",
+      "data": [
+        "selected ID"
+      ]
+    },
+    {
+      "name": "cell",
+      "wave": "x=......",
+      "data": [
+        "bg13 / tab ID"
+      ]
+    },
+    {
+      "name": "metadata",
+      "wave": "xx=.....",
+      "data": [
+        "latched"
+      ]
+    },
+    {
+      "name": "character",
+      "wave": "xxx=....",
+      "data": [
+        "label"
+      ]
+    },
+    {
+      "name": "font_and_tab",
+      "wave": "xxxx=...",
+      "data": [
+        "aligned"
+      ]
+    },
+    {
+      "name": "rgb",
+      "wave": "xxxxx=..",
+      "data": [
+        "selected / inactive"
+      ]
+    }
+  ]
+}

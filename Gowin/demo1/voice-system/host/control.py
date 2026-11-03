@@ -13,7 +13,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'model'))
 from system_model import packet,decode_response,RATE,UNITY
 from compile_voice_patch import compile_patch
 from compile_fx import compile_fx
-from dx7_bank import ROOT as ENGINE_ROOT, INITIAL, convert
+from dx7_bank import ROOT as ENGINE_ROOT, QUALIFIED, convert
 
 
 class Client:
@@ -83,8 +83,8 @@ def main():
     play=commands.add_parser('play');play.add_argument('--note',type=int,default=60);play.add_argument('--slot',type=int,default=0);play.add_argument('--seconds',type=float,default=1)
     play.add_argument('--velocity',type=int,default=100)
     upload=commands.add_parser('upload');upload.add_argument('file',type=Path);upload.add_argument('--slot',type=int,default=0);upload.add_argument('--fx',action='store_true')
-    bank=commands.add_parser('bank',help='Load one of the initial four FM1 library programs into a resident slot')
-    bank.add_argument('--program',type=int,required=True,choices=INITIAL)
+    bank=commands.add_parser('bank',help='Load one of the eight qualified FM1 programs into one of four resident slots')
+    bank.add_argument('--program',type=int,required=True,choices=QUALIFIED)
     bank.add_argument('--slot',type=int,default=0)
     bank.add_argument('--revision',type=int,help='Optional explicit monotonic uint32 revision; otherwise timestamp plus persisted monotonicity')
     commands.add_parser('panic')
@@ -95,7 +95,9 @@ def main():
     state=args.state or Path(__file__).resolve().parent/f'session-{args.port.replace(":", "_")}.json'
     if args.new_session and state.exists():state.replace(state.with_suffix('.previous'))
     import serial
-    with serial.Serial(args.port,115200,timeout=0.03,write_timeout=1) as port:
+    port=serial.Serial(port=None,baudrate=115200,timeout=0.03,write_timeout=1)
+    port.dtr=False;port.rts=False;port.port=args.port;port.open()
+    with port:
         client=Client(port,state)
         if args.action=='recover':
             print(json.dumps(client.finish_pending(),indent=2));return
@@ -109,7 +111,8 @@ def main():
                 print(json.dumps({hex(a):client.read(a) for a in (4,0x34,0x38,0x3c,0x40,0x44,0x48,0x4c,0x50,0x54,0x58,0x5c,0x60)},indent=2))
         elif args.action=='read':print(hex(client.read(args.address)))
         elif args.action=='panic':
-            client.request(0xa7,words=[5,UNITY//2]);client.request(0xc3,words=[3])
+            client.request(0xa7,words=[5,UNITY//2])
+            if client.read(0x4c):client.request(0xc3,words=[3])
         elif args.action=='play':
             if client.read(4)<0x00010005:raise RuntimeError('MIDI note/velocity metadata requires engine ABI 0x00010005 or newer')
             note_id=(client.state['next_sequence']+1)&0x7fffffff
@@ -132,6 +135,7 @@ def main():
             required=int(program.get('abi','0x00010004'),16)
             if client.read(4)<required:raise RuntimeError(f'Program requires engine ABI {required:#010x}; no patch data uploaded')
             if is_fx:
+                if not client.read(0x4c):raise ValueError('FX not compiled in this firmware; no FX commands uploaded')
                 maximum=((client.read(0x50)+1)<<16)-1
                 for command in program['commands']:
                     if command['opcode']==0xc0 and max(command['words'][:2])>maximum:

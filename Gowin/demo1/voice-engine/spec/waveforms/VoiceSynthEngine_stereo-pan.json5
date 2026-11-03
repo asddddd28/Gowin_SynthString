@@ -1,0 +1,35 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p...."
+    },
+    {
+      "name": "state",
+      "wave": "=====",
+      "data": [
+        "6",
+        "7",
+        "18",
+        "8",
+        "13"
+      ]
+    },
+    {
+      "name": "voice_product_current",
+      "wave": "01..."
+    },
+    {
+      "name": "raw_product_current",
+      "wave": "0.1.."
+    },
+    {
+      "name": "stereo_product_current",
+      "wave": "0..1."
+    },
+    {
+      "name": "sum_includes_voice",
+      "wave": "0...1"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
+  resolve: { dedupe: ['react','react-dom','@tauri-apps/api'] },
   clearScreen: false,
   server: { host: '127.0.0.1', port: 1421, strictPort: true,
     watch: { ignored: ['**/src-tauri/**', '**/build-sidecar/**', '**/release/**', '**/release-rust/**', '**/licenses-native/**', '**/test-results/**'] } },

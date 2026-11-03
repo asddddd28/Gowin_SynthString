@@ -8,7 +8,7 @@ try {
         python "model/$script"
         if ($LASTEXITCODE -ne 0) { throw "Python failed: $script" }
     }
-    $suites=@('fx_delay','fx_reverb','axi_fx','axi_voice_endpoint','axi_synth_engine','axi_lfo')
+    $suites=@('fx_delay','fx_reverb','voice_pan_pipeline','completion_isolation','fx_control_pipeline','axi_fx','axi_voice_endpoint','axi_synth_engine','axi_lfo')
     $testSources=$suites | ForEach-Object { "sim/tb_$_.v" }
     & "$VivadoBin/xvlog.bat" -f sources.f @testSources *> reports/fx-final-xvlog.log
     if ($LASTEXITCODE -ne 0) { throw 'xvlog failed' }

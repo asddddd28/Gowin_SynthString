@@ -264,6 +264,34 @@
             "width": 32,
             "role": "data",
             "description": "采样帧编号"
+          },
+          {
+            "name": "i_touch_gain",
+            "direction": "input",
+            "width": 18,
+            "role": "data",
+            "description": "i_touch_gain"
+          },
+          {
+            "name": "i_touch_pitch",
+            "direction": "input",
+            "width": 32,
+            "role": "data",
+            "description": "i_touch_pitch"
+          },
+          {
+            "name": "i_touch_cutoff",
+            "direction": "input",
+            "width": 20,
+            "role": "data",
+            "description": "i_touch_cutoff"
+          },
+          {
+            "name": "i_touch_cutoff_active",
+            "direction": "input",
+            "width": 1,
+            "role": "data",
+            "description": "i_touch_cutoff_active"
           }
         ]
       },
@@ -282,7 +310,9 @@
         "Voice A0..A9, LFO B0..B3, FX C0..C4 remain available. Legacy capability/context capacity registers are zero.",
         "Unsupported command returns status 1 with original tag; does not hang or block audio. ABI 0x00010004.",
         "C_DELAY_ADDR_BITS defaults15 in the library; board top uses14. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations14/15.",
-        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15."
+        "C_DELAY_ADDR_BITS defaults15 in the library; board top uses13. Depth=2**bits, Q16.16 maximum delay=(depth<<16)-1; capability registers report actual depth. Supported board configurations13/14/15.",
+        "C_FX_ENABLE编译期选择；整板SynthSystemTop默认0，内核默认1保留回归。关闭时不实例化Delay/Reverb，Voice PCM直接进入原四项PCM队列，FX能力/容量/遥测为0，C0..C4通过不支持完成路径返回状态1。开机使用剔除FX命令的boot_dry.hex，正常音色、键床、UART及音频频率不变。",
+        "C_TOUCH_ENABLE默认0，透传注册的硬件触摸调制源到Voice和Lowpass；AXI继续管理基础参数和音色程序。开启触摸的AxiVoiceEndpoint报告ABI1.7，否则保持1.6。"
       ],
       "constraints": [
         "Candidate subsystem; existing board top unchanged; no Gowin timing/area claim.",
@@ -299,42 +329,44 @@
         "independent integer reference",
         "mixed tagged transactions and all sideband stability",
         "event/phase transition sequence",
-        "AXI IDs, independent channels, WSTRB, bursts and FIFO side effects"
+        "AXI IDs, independent channels, WSTRB, bursts and FIFO side effects",
+        "关闭FX的整板启动、真实键床/UART、不支持命令和重放、PCM/PT8211一致性；保留FX配置兼容回归。"
       ],
       "timing_diagrams": [
         {
-          "id": "flow",
-          "title": "任务提交与结果保持",
-          "scenario": "flow",
-          "description": "输入握手移交所有权；结果等待消费时数据和事务身份保持。精确延迟以行为合同为准。",
+          "id": "touch",
+          "title": "触摸事件与调制提交",
+          "scenario": "touch",
+          "description": "触摸采集在系统域提交，调制每毫秒平滑；音频帧独立执行，NoteOff确认之后才重新起音。",
           "wavejson": {
             "signal": [
               {
-                "name": "clock",
+                "name": "clk",
                 "wave": "p........."
               },
               {
-                "name": "request",
-                "wave": "01.0......"
+                "name": "position_update",
+                "wave": "010...10.."
               },
               {
-                "name": "processing",
-                "wave": "01....0..."
+                "name": "control_tick",
+                "wave": "0..10...10"
               },
               {
-                "name": "result_valid",
-                "wave": "0.....1..0"
+                "name": "audio_frame",
+                "wave": "0101010101"
               },
               {
-                "name": "result_ready",
-                "wave": "1.....0.1."
+                "name": "row_noteoff",
+                "wave": "0..10....."
               },
               {
-                "name": "result_tag",
-                "wave": "x.....=..x",
-                "data": [
-                  "same tag"
-                ]
+                "name": "keys_idle_ack",
+                "wave": "0.....10.."
+              },
+              {
+                "name": "row_noteon",
+                "wave": "0......10."
               }
             ]
           }

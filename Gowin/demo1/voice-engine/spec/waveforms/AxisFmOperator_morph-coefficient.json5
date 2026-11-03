@@ -1,0 +1,55 @@
+{
+  "signal": [
+    {
+      "name": "clk",
+      "wave": "p........"
+    },
+    {
+      "name": "state",
+      "wave": "=========",
+      "data": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "name": "request_valid",
+      "wave": "10......."
+    },
+    {
+      "name": "morph_clamped",
+      "wave": "x..=.....",
+      "data": [
+        "0..65536"
+      ]
+    },
+    {
+      "name": "fraction_product",
+      "wave": "x...=....",
+      "data": [
+        "registered"
+      ]
+    },
+    {
+      "name": "interpolated_tables",
+      "wave": "x....=...",
+      "data": [
+        "low/high"
+      ]
+    },
+    {
+      "name": "wave",
+      "wave": "x.....=..",
+      "data": [
+        "morph result"
+      ]
+    }
+  ]
+}

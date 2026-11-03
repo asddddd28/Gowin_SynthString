@@ -96,25 +96,130 @@
             "width": 1,
             "role": "control",
             "description": "o_fault"
+          },
+          {
+            "name": "i_config_write",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "i_config_write"
+          },
+          {
+            "name": "i_config_key",
+            "direction": "input",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_config_key"
+          },
+          {
+            "name": "i_config_data",
+            "direction": "input",
+            "width": 48,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_config_data"
+          },
+          {
+            "name": "o_config_data",
+            "direction": "output",
+            "width": 48,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_config_data"
+          },
+          {
+            "name": "o_event_start",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "o_event_start"
+          },
+          {
+            "name": "o_event_finish",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "o_event_finish"
+          },
+          {
+            "name": "o_event_failed",
+            "direction": "output",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "control",
+            "description": "o_event_failed"
+          },
+          {
+            "name": "o_event_key",
+            "direction": "output",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_event_key"
+          },
+          {
+            "name": "o_event_frame",
+            "direction": "output",
+            "width": 32,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_event_frame"
+          },
+          {
+            "name": "o_velocity_key",
+            "direction": "output",
+            "width": 5,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "o_velocity_key"
+          },
+          {
+            "name": "i_velocity",
+            "direction": "input",
+            "width": 7,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_velocity"
+          },
+          {
+            "name": "i_velocity_enabled",
+            "direction": "input",
+            "width": 1,
+            "clock_domain": "i_clk",
+            "role": "data",
+            "description": "i_velocity_enabled"
+          },
+          {
+            "name": "o_idle",
+            "direction": "output",
+            "width": 1,
+            "role": "data",
+            "description": "o_idle"
           }
         ]
       },
       "clock": {
-        "name": "i_axis_aclk",
+        "name": "i_clk",
         "edge": "posedge",
         "frequency_hz": 50000000
       },
       "reset": {
-        "name": "i_axis_arstn",
+        "name": "i_rstn",
         "active": "low",
         "style": "asynchronous",
         "values": "all pipeline valid and output data/tag registers clear; external synchronous release"
       },
       "behavior": [
-        "Physical key bitmap becomes edge events; holding a key never emits another NoteOn.",
-        "32 keys map chromatically to MIDI48..79, slot0; every new press gets a fresh bit31-set NoteID, release uses its saved identity.",
-        "DX ABI0x00010005 NoteOn word4 carries marker31, fixed velocity100[13:7], true MIDI note[6:0]. Strike velocity is not measured by the current keybed.",
-        "Pending request is immutable; delivered bitmap changes only after successful completion. Input changes coalesce to latest bitmap while busy."
+        "32 physical keys use a synchronous 48-bit RAM mapping: phase32, slot2, MIDI7, velocity7. Power-up defaults remain MIDI48..79, patch0, velocity100.",
+        "The scan port latches a complete mapping before preparing a note. Configuration writes acknowledge after the write edge. Concurrently prepared events retain the latched mapping.",
+        "Held-key remapping never retriggers; Note-Off retains its original identity. New presses receive a fresh bit31-set identity and use the new mapping.",
+        "o_event_start observes PREPARE for Note-On; o_event_finish observes the accepted response. o_event_frame is completion bits63:32. Failed events are cancelled by the passive monitor.",
+        "Keyboard frontend supports banked calibration and measured velocity. Enabled physical NoteOn gain=(velocity+1)/128; fixed mode retains unity. Calibration flag drives HDMI overlay.",
+        "o_idle在SCAN状态有效；拨弦调度必须同时确认o_delivered等于预期门控图，防止在途NoteOn尚未ACK就覆盖重触发。"
       ],
       "constraints": [
         "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
@@ -127,46 +232,44 @@
         "reset while pipeline holds transactions"
       ],
       "verification_cases": [
-        "Independent protocol/PCM model",
-        "Real UART/ADC pins to serial DAC simulation",
-        "AXI stalls, transaction ownership, duplicate/conflicting/invalid requests and reset",
-        "Boot, physical chord, release, host voice/FX commands and resource/timing checks"
+        "Full existing board regression: 134 UART replies, all 32 keys, eight-voice load and serial DAC.",
+        "tb_studio_system: local command CRC/replay, distinct key patches, held remapping/release, 512 signed16 capture samples compared to DAC quantization, tagged latency."
       ],
       "timing_diagrams": [
         {
-          "id": "stream",
-          "title": "流水接纳与反压",
-          "scenario": "stream",
-          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "id": "touch",
+          "title": "触摸事件与调制提交",
+          "scenario": "touch",
+          "description": "触摸采集在系统域提交，调制每毫秒平滑；音频帧独立执行，NoteOff确认之后才重新起音。",
           "wavejson": {
             "signal": [
               {
                 "name": "clk",
-                "wave": "p........"
+                "wave": "p........."
               },
               {
-                "name": "s_valid",
-                "wave": "01....0.."
+                "name": "position_update",
+                "wave": "010...10.."
               },
               {
-                "name": "s_ready",
-                "wave": "1...0..1."
+                "name": "control_tick",
+                "wave": "0..10...10"
               },
               {
-                "name": "m_valid",
-                "wave": "0...1...."
+                "name": "audio_frame",
+                "wave": "0101010101"
               },
               {
-                "name": "m_ready",
-                "wave": "1...0..1."
+                "name": "row_noteoff",
+                "wave": "0..10....."
               },
               {
-                "name": "data/tag",
-                "wave": "x...=..=x",
-                "data": [
-                  "held",
-                  "next"
-                ]
+                "name": "keys_idle_ack",
+                "wave": "0.....10.."
+              },
+              {
+                "name": "row_noteon",
+                "wave": "0......10."
               }
             ]
           }

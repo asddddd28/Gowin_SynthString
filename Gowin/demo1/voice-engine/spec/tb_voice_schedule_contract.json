@@ -1,0 +1,87 @@
+{
+  "modules": [
+    {
+      "name": "tb_voice_schedule",
+      "rtl_path": "sim/tb_voice_schedule.v",
+      "description": "真实AXI/FX压力激励上的被动逐帧调度计数",
+      "interfaces": {
+        "ports": [
+          {
+            "name": "o_done",
+            "direction": "output",
+            "width": 1,
+            "role": "control",
+            "description": "原AXI压力测试完成标志"
+          }
+        ]
+      },
+      "clock": {
+        "name": "Stimulus.clk",
+        "edge": "negedge",
+        "frequency_hz": 50000000
+      },
+      "reset": {
+        "name": "Stimulus.rstn",
+        "active": "low",
+        "style": "synchronous observation",
+        "values": "取消本次计数，下一有效tick重新开始"
+      },
+      "behavior": [
+        "复用tb_axi_fx真实控制/音频激励，不驱动DUT内部信号。",
+        "在被接受的frame tick开始逐拍累计状态0..18；Voice PCM结果时校验计数之和等于o_render_cycles，并输出CSV。",
+        "单独统计state3未完成等待及state2请求背压；原测试负责功能断言及终止。",
+        "在请求构造沿核对当前程序/包络/有效context行；握手时保存当前context、carrier和反馈历史，完成时核对tag、状态写回和载波累加。只观察、不驱动DUT。",
+        "预取版不得访问旧等待状态17；确认单算子在途，反馈旧last从当前context独立取期望值，不能被预取行覆盖。"
+      ],
+      "constraints": [
+        "本夹具用于当前单帧Voice状态机，不把端到端帧延迟等同于通用流水II。",
+        "必须与sim/tb_axi_fx.v及真实sources.f共同编译。"
+      ],
+      "corner_cases": [
+        "复位取消当前计数；空闲声部、全48算子、FX背压与命令并发。"
+      ],
+      "verification_cases": [
+        "逐帧计数与硬件遥测相等；预取版满载834拍，原AXI/FX回归和独立PCM模型必须通过。",
+        "真实请求和完成的归属scoreboard；抽象模型另行覆盖全部64启用掩码和64载波掩码。"
+      ],
+      "timing_diagrams": [
+        {
+          "id": "frame-profile",
+          "title": "观察帧内状态占用",
+          "scenario": "frame-profile",
+          "description": "下降沿只读取稳定状态；从被接受的tick开始，在Voice PCM有效时结束当前计数。",
+          "wavejson": {
+            "signal": [
+              {
+                "name": "clk",
+                "wave": "p....."
+              },
+              {
+                "name": "sample tick",
+                "wave": "010..."
+              },
+              {
+                "name": "capture",
+                "wave": "01...0"
+              },
+              {
+                "name": "state",
+                "wave": "x====x",
+                "data": [
+                  "LFO",
+                  "mod",
+                  "operator",
+                  "mix"
+                ]
+              },
+              {
+                "name": "voice PCM",
+                "wave": "0....1"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

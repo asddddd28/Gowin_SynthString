@@ -194,6 +194,13 @@
             "width": 32,
             "role": "data",
             "description": "o_completed"
+          },
+          {
+            "name": "i_patch_lock",
+            "direction": "input",
+            "width": 4,
+            "role": "data",
+            "description": "i_patch_lock"
           }
         ]
       },
@@ -213,7 +220,9 @@
         "392-bit request words: payload[319:0], opcode[327:320], argument[335:328], read flag[336], register[359:344], tag[391:360].",
         "Commands stage 15 register writes, poll completion, read result/tag/opcode, verify ownership, then POP. Separate Voice and FX sequences owned here, epoch=1.",
         "136-bit response: result128 and transport status8. Result held under backpressure. AXI channel VALID remains asserted until handshake.",
-        "Bus response errors or watchdog set a sticky fault; no new command accepted. Watchdog does not withdraw an outstanding AXI beat. Reset is required to recover."
+        "Bus response errors or watchdog set a sticky fault; no new command accepted. Watchdog does not withdraw an outstanding AXI beat. Reset is required to recover.",
+        "D0/D1 consume dedicated32bit filter sequence; voice andFX sequence counters unaffected.",
+        "C_SEQUENCE_ENABLE启用时，接受请求边界检查A0..A3目标音色槽和A8共享波表；保留槽返回本地状态11，完全不发AXI写，不增加下游序号，不置全局fault。"
       ],
       "constraints": [
         "Verilog-2001, single50MHz clock; asynchronous reset assertion, externally synchronized release.",
@@ -233,39 +242,43 @@
       ],
       "timing_diagrams": [
         {
-          "id": "stream",
-          "title": "流水接纳与反压",
-          "scenario": "stream",
-          "description": "事件或命令稳定保持至握手，执行后完成返回；音频按固定帧节拍独立运行。示意图不表示绝对运算周期。",
+          "id": "record-play",
+          "title": "小节提交与回放握手",
+          "scenario": "record-play",
+          "description": "按键事件暂存，停止后保留完成的小节；回放命令稳定等待仲裁和回执。",
           "wavejson": {
             "signal": [
               {
                 "name": "clk",
-                "wave": "p........"
+                "wave": "p........."
               },
               {
-                "name": "s_valid",
-                "wave": "01....0.."
+                "name": "record",
+                "wave": "01....0..."
               },
               {
-                "name": "s_ready",
-                "wave": "1...0..1."
+                "name": "bar_boundary",
+                "wave": "0..10....."
               },
               {
-                "name": "m_valid",
-                "wave": "0...1...."
+                "name": "note_capture",
+                "wave": "0.10.10..."
               },
               {
-                "name": "m_ready",
-                "wave": "1...0..1."
+                "name": "committed",
+                "wave": "0......1.."
               },
               {
-                "name": "data/tag",
-                "wave": "x...=..=x",
-                "data": [
-                  "held",
-                  "next"
-                ]
+                "name": "play_req",
+                "wave": "0......1.."
+              },
+              {
+                "name": "ready",
+                "wave": "1......01."
+              },
+              {
+                "name": "completion",
+                "wave": "0........1"
               }
             ]
           }
